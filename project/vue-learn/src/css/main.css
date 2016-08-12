@@ -1,0 +1,227 @@
+/* line 5, ../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+/* line 22, ../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+html {
+  line-height: 1;
+}
+
+/* line 24, ../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+ol, ul {
+  list-style: none;
+}
+
+/* line 26, ../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* line 28, ../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+/* line 30, ../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+q, blockquote {
+  quotes: none;
+}
+/* line 103, ../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+/* line 32, ../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+a img {
+  border: none;
+}
+
+/* line 116, ../../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+  display: block;
+}
+
+/*jquery.tinyscrollbar-2.1.6.css*/
+/* line 3, ../sass/components/_tinyscrollbar.scss */
+.tinyscrollbar {
+  position: relative;
+  width: 200px;
+  height: 200px;
+}
+/* line 7, ../sass/components/_tinyscrollbar.scss */
+.tinyscrollbar .viewport {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+/* line 13, ../sass/components/_tinyscrollbar.scss */
+.tinyscrollbar .overview {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-family: "Courier New";
+}
+/* line 18, ../sass/components/_tinyscrollbar.scss */
+.tinyscrollbar .overview h3 {
+  background: #eee;
+  height: 30px;
+  line-height: 30px;
+  padding: 5px 0;
+  width: 100% !important;
+  text-indent: 10px;
+}
+/* line 26, ../sass/components/_tinyscrollbar.scss */
+.tinyscrollbar .overview p {
+  text-align: justify;
+  padding: 5px 10px !important;
+}
+/* line 31, ../sass/components/_tinyscrollbar.scss */
+.tinyscrollbar .scrollbar {
+  position: absolute;
+  background: #aaa;
+  width: 8px;
+  right: 0;
+  top: 0;
+  z-index: 10;
+}
+/* line 39, ../sass/components/_tinyscrollbar.scss */
+.tinyscrollbar .track {
+  height: 100%;
+  width: 8px;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+/* line 46, ../sass/components/_tinyscrollbar.scss */
+.tinyscrollbar .thumb {
+  background: #333;
+  height: 20px;
+  width: 8px;
+  cursor: pointer;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 1px;
+}
+/* line 57, ../sass/components/_tinyscrollbar.scss */
+.tinyscrollbar .disable {
+  display: none;
+}
+
+/* line 62, ../sass/components/_tinyscrollbar.scss */
+.noSelect {
+  user-select: none;
+  -o-user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+}
+
+/* jquery.tinyscrollbar-2.1.6.css axis:x */
+/* line 73, ../sass/components/_tinyscrollbar.scss */
+#tinyscrollbar-2 {
+  width: 400px;
+  margin: 5px 0;
+  border: 1px solid #aaa;
+  height: 149px;
+}
+
+/* line 80, ../sass/components/_tinyscrollbar.scss */
+#tinyscrollbar-2 .viewport {
+  width: 400px;
+  height: 141px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* line 87, ../sass/components/_tinyscrollbar.scss */
+#tinyscrollbar-2 .overview {
+  width: 1506px;
+  position: absolute;
+  left: 0;
+  top: 5px;
+  margin: 0;
+  font-family: "Courier New";
+}
+
+/* line 96, ../sass/components/_tinyscrollbar.scss */
+#tinyscrollbar-2 .overview img {
+  width: 236px;
+  height: 121px;
+  line-height: 0;
+  float: left;
+  padding: 5px;
+  margin-right: 5px;
+}
+
+/* line 105, ../sass/components/_tinyscrollbar.scss */
+#tinyscrollbar-2 .scrollbar {
+  position: relative;
+  background: #aaa;
+  float: right;
+  width: 8px;
+}
+
+/* line 112, ../sass/components/_tinyscrollbar.scss */
+#tinyscrollbar-2 .track {
+  width: 100%;
+  height: 8px;
+  position: relative;
+}
+
+/* line 118, ../sass/components/_tinyscrollbar.scss */
+#tinyscrollbar-2 .thumb {
+  background: #333;
+  height: 8px;
+  cursor: pointer;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0px;
+}
+
+/* line 130, ../sass/components/_tinyscrollbar.scss */
+#tinyscrollbar-2 .disable {
+  display: none;
+}
+
+/* line 6, ../sass/main.scss */
+.pt20 {
+  padding-top: 20px;
+}
+
+/* line 11, ../sass/main.scss */
+.spa-content {
+  border: 1px solid #eee;
+  padding: 10px;
+  margin-top: 20px;
+  min-height: 400px;
+}
+
+/* line 18, ../sass/main.scss */
+.red {
+  color: red;
+}

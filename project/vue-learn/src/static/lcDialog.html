@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<title>lcDialog</title>
+	<link rel="stylesheet" href="../css/main.css">
+	<style>
+		#btn{
+			background: #000;
+			border:none;
+			color: #fff;
+			padding:5px 20px;
+			margin:30px;
+		}
+	</style>
+</head>
+<body>
+<button id="btn">按钮</button>
+<div class="dialog-wraper" id="example">
+	<div class="dialog-box">
+		<div class="dialog-content">
+			<div class="dialog-head">
+				<button class="close">&nbsp;</button>
+				<h4>Modal title</h4>
+			</div>
+			<div class="dialog-body">
+				<h3>Overflowing text to show scroll behavior</h3>
+				<p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+				<p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+				<p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
+				<p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+			</div>
+			<div class="dialog-foot">
+				<button class="btn yes">确定</button>
+				<button class="btn no">取消</button>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="../lib/lcDialog.js"></script>
+<script>
+	var dialog = new lcDialog("#example", {
+		yes: function(dom){
+			console.log(dom.className)
+		},
+		no: function(dom){
+			console.log(dom.className)
+		}
+	});
+	var oBtn = document.querySelector("#btn")
+	var fn = function () {
+		dialog.open();
+	}
+	if (oBtn.addEventListener) {
+		oBtn.addEventListener("click", fn, false);
+	} else if (oBtn.attachEvent) {
+		oBtn.attachEvent("onclick", fn);
+	} else {
+		oBtn["onclick"] = fn;
+	}
+</script>
+</body>
+</html>

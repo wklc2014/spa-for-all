@@ -1,0 +1,63 @@
+{
+  "name": "spa-vue-less-scss",
+  "version": "1.0.0",
+  "description": "spa vue less scss gulp",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "spa",
+    "vue",
+    "less",
+    "scss",
+    "gulp"
+  ],
+  "author": "wangkun",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.11.4",
+    "babel-loader": "^6.2.4",
+    "babel-plugin-transform-runtime": "^6.12.0",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-runtime": "^6.11.6",
+    "browser-sync": "^2.14.0",
+    "css-loader": "^0.23.1",
+    "gulp": "^3.9.1",
+    "gulp-cache": "^0.4.5",
+    "gulp-clean-css": "^2.0.12",
+    "gulp-compass": "^2.1.0",
+    "gulp-cssnano": "^2.1.2",
+    "gulp-htmlmin": "^2.0.0",
+    "gulp-if": "^2.0.1",
+    "gulp-imagemin": "^3.0.2",
+    "gulp-plumber": "^1.1.0",
+    "gulp-postcss": "^6.1.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-rimraf": "^0.2.0",
+    "gulp-size": "^2.1.0",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "^1.5.4",
+    "gulp-useref": "^3.1.0",
+    "gulp-util": "^3.0.7",
+    "imagemin-pngquant": "^5.0.0",
+    "open-browser-webpack-plugin": "0.0.2",
+    "postcss-cssnext": "^2.7.0",
+    "style-loader": "^0.13.1",
+    "vue-hot-reload-api": "^1.3.2",
+    "vue-html-loader": "^1.2.3",
+    "vue-loader": "^8.5.3",
+    "vue-style-loader": "^1.0.0",
+    "webpack": "^1.13.1",
+    "webpack-dev-server": "^1.14.1"
+  },
+  "dependencies": {
+    "mint-ui": "^0.2.2",
+    "vue": "^1.0.26",
+    "vue-form": "^0.3.1",
+    "vue-router": "^0.7.13",
+    "vue-swipe": "^0.2.6",
+    "vue-validator": "^2.1.5",
+    "vuex": "^1.0.0-rc.2"
+  }
+}

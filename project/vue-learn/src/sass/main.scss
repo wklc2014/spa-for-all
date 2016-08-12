@@ -1,0 +1,21 @@
+@charset "utf-8";
+@import "compass";
+@import "compass/reset";
+@import "./components/_tinyscrollbar.scss";
+
+.pt20{
+	padding-top: 20px;
+
+}
+
+.spa-content{
+	border: 1px solid #eee;
+	padding: 10px;
+	margin-top: 20px;
+	min-height: 400px;
+}
+
+.red{
+	color: red;
+}
+

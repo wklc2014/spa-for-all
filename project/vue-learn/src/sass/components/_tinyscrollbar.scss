@@ -1,0 +1,132 @@
+/*jquery.tinyscrollbar-2.1.6.css*/
+
+.tinyscrollbar {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    .viewport {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        position: relative;
+    }
+    .overview {
+        position: absolute;
+        top: 0;
+        left: 0;
+        font-family: "Courier New";
+        h3 {
+            background: #eee;
+            height: 30px;
+            line-height: 30px;
+            padding: 5px 0;
+            width: 100% !important;
+            text-indent: 10px;
+        }
+        p {
+            text-align: justify;
+            padding: 5px 10px !important;
+        }
+    }
+    .scrollbar {
+        position: absolute;
+        background: #aaa;
+        width: 8px;
+        right: 0;
+        top: 0;
+        z-index: 10;
+    }
+    .track {
+        height: 100%;
+        width: 8px;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+    .thumb {
+        background: #333;
+        height: 20px;
+        width: 8px;
+        cursor: pointer;
+        overflow: hidden;
+        position: absolute;
+        top: 0;
+        left: 1px;
+    }
+    .end {}
+    .disable {
+        display: none;
+    }
+}
+
+.noSelect {
+    user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+}
+
+
+/* jquery.tinyscrollbar-2.1.6.css axis:x */
+
+#tinyscrollbar-2 {
+    width: 400px;
+    margin: 5px 0;
+    border: 1px solid #aaa;
+    height: 149px;
+}
+
+#tinyscrollbar-2 .viewport {
+    width: 400px;
+    height: 141px;
+    overflow: hidden;
+    position: relative;
+}
+
+#tinyscrollbar-2 .overview {
+    width: 1506px;
+    position: absolute;
+    left: 0;
+    top: 5px;
+    margin: 0;
+    font-family: "Courier New";
+}
+
+#tinyscrollbar-2 .overview img {
+    width: 236px;
+    height: 121px;
+    line-height: 0;
+    float: left;
+    padding: 5px;
+    margin-right: 5px;
+}
+
+#tinyscrollbar-2 .scrollbar {
+    position: relative;
+    background: #aaa;
+    float: right;
+    width: 8px;
+}
+
+#tinyscrollbar-2 .track {
+    width: 100%;
+    height: 8px;
+    position: relative;
+}
+
+#tinyscrollbar-2 .thumb {
+    background: #333;
+    height: 8px;
+    cursor: pointer;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0px;
+}
+
+#tinyscrollbar-2 .thumb .end {}
+
+#tinyscrollbar-2 .disable {
+    display: none;
+}
