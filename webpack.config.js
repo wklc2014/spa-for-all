@@ -34,7 +34,7 @@ var config = {
             exclude: node_modules_dir,
             loader: 'babel',
             query: {
-                presets: ['es2015']
+                presets: ['es2015', 'react']
             }
         }, {
             test: /\.vue$/,

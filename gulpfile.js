@@ -116,7 +116,7 @@ gulp.task("font:dev", function () {
 gulp.task("webpack:dev", function () {
 	// modify some webpack config options
 	webpack_config.entry.app.unshift(
-		// "webpack-dev-server/client?http://" + settings.server.host + ":" + settings.server.port + "/",
+		"webpack-dev-server/client?http://" + settings.server.host + ":" + settings.server.port + "/",
 		"webpack/hot/dev-server"
 	);
 	webpack_config.plugins.push(

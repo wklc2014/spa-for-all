@@ -1,7 +1,8 @@
 'use strict';
 
 let PROJECT = "project/"
-let curent_project = "vue-learn/";
+// let curent_project = "vue-learn/";
+let curent_project = "react-learn/";
 
 module.exports = {
 	server: {
