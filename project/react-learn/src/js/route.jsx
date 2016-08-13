@@ -7,6 +7,7 @@ import ViewFirst from './view/page/First.jsx';
 import ViewDashboard from './view/page/Dashboard.jsx';
 import ViewAbout from './view/page/About.jsx';
 import ViewInbox from './view/page/Inbox.jsx';
+import ViewTodo from './view/page/Todo.jsx';
 import ViewMessage from './view/page/Message.jsx';
 
 function f_enter(route) {
@@ -19,6 +20,7 @@ let route = (
 	        <IndexRoute component={ViewDashboard} onEnter={f_enter}/>
             <Route path='first' component={ViewFirst}/>
             <Route path='about' component={ViewAbout}/>
+            <Route path='todo' component={ViewTodo}/>
             <Route path='inbox' component={ViewInbox}>
 	            <Route path="message/:id" component={ViewMessage}/>
 	            <Redirect from="/message/:id" to="message/:id"/>

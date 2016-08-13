@@ -2,24 +2,26 @@
 import React, { Component } from 'react';
 
 import NavLink from './common/NavLink.jsx';
-import DefaultView from "./page/DefaultView.jsx";
 class App extends Component {
     render() {
-    	console.log(this.props.children)
+    	let styleObj = {
+    		paddingTop: "20px"
+    	}
         return (
-            <div className="container">
+            <div className="container" style={styleObj}>
 				<h3>app component</h3>
 				<ul className="nav nav-tabs">
 					<li role="presentation"><NavLink to="/" onlyActiveOnIndex>首页</NavLink></li>
 					<li role="presentation"><NavLink to="/first">First</NavLink></li>
 					<li role="presentation"><NavLink to="/about">About</NavLink></li>
 					<li role="presentation"><NavLink to="/inbox">Inbox</NavLink></li>
+					<li role="presentation"><NavLink to="/todo">Todo</NavLink></li>
 					<li role="presentation"><NavLink to="/inbox/message/1">Message-1</NavLink></li>
 					<li role="presentation"><NavLink to="/inbox/message/2">Message-2</NavLink></li>
 					<li role="presentation"><NavLink to="/inbox/message/3">Message-3</NavLink></li>
 				</ul>
 				<section>
-					{this.props.children || DefaultView}
+					{this.props.children}
 				</section>
 			</div>
         )
