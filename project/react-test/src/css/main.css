@@ -1,0 +1,23 @@
+/* line 4, ../sass/main.scss */
+.w100 {
+  width: 120px !important;
+}
+
+/* line 8, ../sass/main.scss */
+.mr20 {
+  margin-right: 20px;
+}
+
+/* line 12, ../sass/main.scss */
+.btn {
+  outline: none !important;
+}
+/* line 14, ../sass/main.scss */
+.btn:active, .btn:focus {
+  outline: none !important;
+}
+
+/* line 21, ../sass/main.scss */
+.list-wraper td, .list-wraper th {
+  vertical-align: middle !important;
+}

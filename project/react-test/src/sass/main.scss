@@ -1,0 +1,24 @@
+@charset "utf-8";
+@import "compass";
+
+.w100{
+	width: 120px !important;
+}
+
+.mr20{
+	margin-right: 20px;
+}
+
+.btn{
+	outline: none !important;
+	&:active,
+	&:focus{
+		outline: none !important;
+	}
+}
+
+.list-wraper{
+	td, th{
+		vertical-align: middle !important;
+	}
+}
