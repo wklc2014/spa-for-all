@@ -1,0 +1,23 @@
+@charset "utf-8";
+// 每日推荐
+.daily-sale-swipe{
+	height: 14rem;
+	position: relative;
+}
+
+.daily-sale-countdown{
+	height: 4.4rem;
+	line-height: 4.4rem;
+	background: #fff;
+	border-bottom: 1px solid $janbuy-border-color;
+	@extend .cl;
+	padding-left: $sassK-reset-padding-base;
+	padding-right: $sassK-reset-padding-base;
+	.text{
+		font-size: 1.5rem;
+		color: #414249;
+	}
+	.dountdown{
+		float: right;
+	}
+}

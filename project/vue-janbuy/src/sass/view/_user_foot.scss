@@ -1,0 +1,52 @@
+@charset 'utf-8';
+.user-foot {
+	padding-bottom: 1rem;
+    .radio-box {
+        display: none;
+    }
+    &.user-foot-edit {
+    	padding-bottom: 6rem;
+        .radio-box {
+            display: block;
+        }
+        .user-foot-btns{
+        	display: block;
+        }
+    }
+}
+
+.user-foot-item {
+    .user-foot-title {
+        padding: 1rem;
+        .radio-box {
+            width: 3rem;
+        }
+    }
+}
+
+.user-foot-btns {
+	display: none;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    z-index: $sassK-reset-zIndex-base;
+    background-color: #fff;
+    width: 100%;
+    height: 5rem;
+    border-top: 1px solid $janbuy-border-color;
+    span {
+        display: block;
+        line-height: 5rem;
+        float: right;
+        font-size: 1.5rem;
+        width: 30%;
+        text-align: center;
+    }
+    .cancel {
+        @include k-btn-active(#d7d7d7);
+    }
+    .delete {
+        @include k-btn-active(#f54b4b);
+        color: #fff;
+    }
+}

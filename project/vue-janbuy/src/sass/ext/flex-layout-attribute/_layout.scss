@@ -1,0 +1,162 @@
+/*
+==========================================================
+                  GENERAL DEFINITIONS
+==========================================================
+*/
+
+[#{$LAYOUT}] {
+    @extend %k-flexbox;
+}
+
+[#{$LAYOUT}*="row"],
+[#{$LAYOUT}*="column"] {
+    width: 100%;
+    max-width: 100%;
+}
+
+[#{$LAYOUT}^="row"] {
+    @include k-flex-direction(row);
+}
+
+[#{$LAYOUT}^="column"] {
+    @include k-flex-direction(column);
+}
+
+[#{$LAYOUT}*="row"][#{$LAYOUT}*="reverse"] {
+    @include k-flex-direction(row-reverse);
+}
+
+[#{$LAYOUT}*="column"][#{$LAYOUT}*="reverse"] {
+    @include k-flex-direction(column-reverse);
+}
+
+[#{$LAYOUT}*="rows"],
+[#{$LAYOUT}*="columns"] {
+    @include k-flex-wrap(wrap);
+}
+
+[#{$LAYOUT}="none"] {
+    flex: none;
+}
+
+
+/*
+==========================================================
+                  MAIN AXIS ALIGNMENT
+==========================================================
+*/
+
+[#{$LAYOUT}*="column"][#{$LAYOUT}*="top-"],
+[#{$LAYOUT}*="row"][#{$LAYOUT}*="-left"] {
+    @include k-justify-content(flex-start);
+}
+
+//[#{$LAYOUT}=""],
+[#{$LAYOUT}~="centered"],
+[#{$LAYOUT}*="column"][#{$LAYOUT}*="center-"],
+[#{$LAYOUT}*="row"][#{$LAYOUT}*="-center"] {
+    @include k-justify-content(center);
+}
+
+[#{$LAYOUT}*="column"][#{$LAYOUT}*="bottom-"],
+[#{$LAYOUT}*="row"][#{$LAYOUT}*="-right"] {
+    @include k-justify-content(flex-end);
+}
+
+[#{$LAYOUT}*="column"][#{$LAYOUT}*="spread-"],
+[#{$LAYOUT}*="row"][#{$LAYOUT}*="-spread"] {
+    @include k-justify-content(space-around);
+}
+
+[#{$LAYOUT}*="column"][#{$LAYOUT}*="justify-"],
+[#{$LAYOUT}*="row"][#{$LAYOUT}*="-justify"] {
+    @include k-justify-content(space-between);
+}
+
+
+/*
+==========================================================
+                CROSS AXIS ALIGNMENT
+==========================================================
+*/
+
+[#{$LAYOUT}*="column"][#{$LAYOUT}*="-left"],
+[#{$LAYOUT}*="row"][#{$LAYOUT}*="top-"] {
+    @include k-align-items(flex-start);
+}
+
+[#{$LAYOUT}~="centered"],
+[#{$LAYOUT}*="column"][#{$LAYOUT}*="-center"],
+[#{$LAYOUT}*="row"][#{$LAYOUT}*="center-"] {
+    @include k-align-items(center);
+}
+
+[#{$LAYOUT}*="column"][#{$LAYOUT}*="-right"],
+[#{$LAYOUT}*="row"][#{$LAYOUT}*="bottom-"] {
+    @include k-align-items(flex-end);
+}
+
+[#{$LAYOUT}*="column"][#{$LAYOUT}*="-stretch"],
+[#{$LAYOUT}*="row"][#{$LAYOUT}*="stretch-"] {
+    @include k-align-items(stretch);
+}
+
+
+/*
+==========================================================
+               MULTI-LINE ALIGNMENT
+==========================================================
+*/
+
+[#{$LAYOUT}*="rows"][#{$LAYOUT}*="top-"],
+[#{$LAYOUT}*="columns"][#{$LAYOUT}*="-left"] {
+    @include k-align-content(flex-start);
+}
+
+[#{$LAYOUT}*="rows"][#{$LAYOUT}*="bottom-"],
+[#{$LAYOUT}*="columns"][#{$LAYOUT}*="-right"] {
+    @include k-align-content(flex-end);
+}
+
+[#{$LAYOUT}*="rows"][#{$LAYOUT}*="center-"],
+[#{$LAYOUT}*="columns"][#{$LAYOUT}*="-center"] {
+    @include k-align-content(center);
+}
+
+[#{$LAYOUT}*="rows"][#{$LAYOUT}*="justify-"],
+[#{$LAYOUT}*="columns"][#{$LAYOUT}*="-justify"] {
+    @include k-align-content(space-between);
+}
+
+[#{$LAYOUT}*="rows"][#{$LAYOUT}*="spread-"],
+[#{$LAYOUT}*="columns"][#{$LAYOUT}*="-spread"] {
+    @include k-align-content(space-around);
+}
+
+[#{$LAYOUT}*="rows"][#{$LAYOUT}*="stretch-"],
+[#{$LAYOUT}*="columns"][#{$LAYOUT}*="-stretch"] {
+    @include k-align-content(stretch);
+}
+
+
+/*
+==========================================================
+                       IE10+ HACKS
+==========================================================
+*/
+
+@media screen and (-ms-high-contrast: active),
+(-ms-high-contrast: none) {
+    // Prevents horizontal overflow of content
+    [#{$LAYOUT}*="column"]:not([#{$LAYOUT}*="row"]) > * {
+        max-width: auto;
+    }
+    // hack to prevent text overflow on long text articles in IE
+    [#{$LAYOUT}*="column"][#{$SELF}*="top"] {
+        height: auto !important;
+    }
+    // for justified or spaced column items to prevent vertical overflow
+    [#{$SELF}~="size-"] > * {
+        height: auto;
+    }
+}

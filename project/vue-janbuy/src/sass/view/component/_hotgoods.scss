@@ -1,0 +1,57 @@
+@charset "UTF-8";
+// 热卖商品
+.hotgoods-list{
+	padding-left: $sassK-reset-padding-base;
+	padding-right: $sassK-reset-padding-base;
+	ul{
+		@extend .cl;
+	}
+	li{
+		width: 50%;
+		float: left;
+		color: #9d9d9d;
+		font-size: 1.2rem;
+		margin-bottom: 1rem;
+		&:nth-child(2n+1){
+			padding-right: 0.5rem;
+		}
+		&:nth-child(2n){
+			padding-left: .5rem;
+		}
+	}
+	.hotgoods-list-content{
+		@include k-btn-active(#fff);
+		height: 26rem;
+		overflow: hidden;
+		img{
+			display: block;
+			width: 100%;
+			height: auto;
+			@include border-radius($sassK-reset-border-radius-base);
+		}
+		h4, h5, h6{
+			@include ellipsis;
+			@include force-wrap;
+			@include nowrap;
+			padding:.5rem 1rem 0 0.5rem;
+			line-height: 1.4;
+		}
+		h4{
+			color: #414249;
+			font-size: 1.4rem;
+		}
+		h5{
+			color: #f64c4c;
+			font-size: 1.7rem;
+		}
+		h6{
+			color:inherit;
+			font-size: inherit;
+			text-decoration: line-through;
+		}
+		p{
+			@extend .cl;
+			padding:1rem 0.5rem;
+		}
+	}
+}

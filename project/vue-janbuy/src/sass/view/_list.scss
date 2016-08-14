@@ -1,0 +1,33 @@
+@charset "utf-8";
+.list-tab{
+	padding-left: $sassK-reset-padding-base;
+	padding-right: $sassK-reset-padding-base;
+	margin-bottom: 1rem;
+	height: 4rem;
+	background-color: #fff;
+	li{
+		height: 100%;
+		line-height: 4rem;
+		text-align: center;
+		color: #333;
+		font-size: 1.4rem;
+		padding: 0 1rem;
+		&.active,
+		&:active{
+			color: #ff465a;
+			border-bottom: 2px solid #ff465a;
+		}
+	}
+}
+
+.list-none{
+	text-align: center;
+	padding-top: 3rem;
+}
+
+.list-banner{
+	img{
+		// @extend %basic_mobile_image;
+	}
+}
+

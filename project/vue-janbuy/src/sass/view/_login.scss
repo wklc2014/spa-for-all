@@ -1,0 +1,44 @@
+@charset "UTF-8";
+.login-wraper {
+    .btn-wraper {
+        padding: 4.2rem 1rem 0;
+        font-size: 1.8rem;
+        .text {
+            button {
+                font-size: 1.3rem;
+                padding-left: 1em;
+                padding-right: 1em;
+                @include k-btn-active($sassK-reset-bg-color-base, false);
+            }
+            .left {
+                color: #ababab;
+            }
+            .right {
+                color: #f54b4b;
+            }
+        }
+    }
+    .other-login{
+		padding: 10rem 1rem 2rem;
+		text-align: center;
+		.weixin,
+		.weibo,
+		.qq{
+			display: block;
+			background-size: 3.5rem !important;
+			padding-top: 4rem;
+			width: 5rem;
+			color: #999;
+		}
+		.weixin{
+			background:inline-image("login/weixin.png") no-repeat center 1px;
+		}
+		.qq{
+			background:inline-image("login/qq.png") no-repeat center 0;
+		}
+		.weibo{
+			background:inline-image("login/weibo.png") no-repeat center 0;
+		}
+	}
+}
+

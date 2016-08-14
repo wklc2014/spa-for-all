@@ -1,0 +1,15 @@
+// 支付成功
+.pay-success-tips{
+	@extend %k-base-image-reset;
+	img{
+		@extend %k-base-image-mobile;
+	}
+}
+
+.pay-success-btns{
+	background-color: #fff;
+	padding: 2.6rem 0;
+	li{
+		padding: 0 1.7rem;
+	}
+}

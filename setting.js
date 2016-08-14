@@ -3,7 +3,8 @@
 let PROJECT = "project/"
 // let curent_project = "vue-learn/";
 // let curent_project = "react-learn/";
-let curent_project = "react-test/";
+// let curent_project = "react-test/";
+let curent_project = "vue-janbuy/";
 
 module.exports = {
 	server: {

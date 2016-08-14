@@ -1,0 +1,81 @@
+@charset 'utf-8';
+.btn {
+   @extend %k-base-btn;
+}
+
+.btn-link {
+    @extend .btn;
+    @include k-btn-active(#fff, false);
+    height: $janbuy-btn-height-base;
+}
+
+.btn-confirm {
+    @extend .btn;
+    @include border-radius($janbuy-border-radius-base);
+    color: #fff;
+    height: $janbuy-btn-height-base;
+    font-size: 1.6rem;
+    @include k-btn-active(#f54b4b);
+}
+
+.btn-default {
+    @extend .btn;
+    @include border-radius($janbuy-border-radius-base);
+    color: #949494;
+    font-size: 1.5rem;
+    @include k-btn-active(#ffffff);
+    border: 1px solid #949494;
+}
+
+.btn-switch {
+    @extend .btn;
+    width: 5rem;
+    height: 3rem;
+    background: #fff;
+    border: 1px solid;
+    border-color: #e5e5e5;
+    position: relative;
+    padding: 0;
+    @include border-radius(3rem);
+    text-align: left;
+    > .switch {
+        display: inline-block;
+        height: 2.8rem;
+        width: 2.8rem;
+        background: #fff;
+        @include border-radius(50%);
+        @include box-shadow(-1px 1px 2px rgba(0, 0, 0, 0.46));
+        @include transition(all .4s);
+    }
+    &.checked {
+        background: #f54b4b;
+        border-color: #f54b4b;
+         > .switch{
+            @include transform(translate3D(70%, 0, 0));
+         }
+    }
+}
+
+.btn-primary{
+    @extend .btn;
+    height: 3.2rem;
+    line-height: 3.2rem;
+    padding: 0 1.4rem;
+    font-size: 1.4rem;
+    color: #fff;
+    @include k-btn-active(#f6563f);
+    @include border-radius($sassK-reset-border-radius-base);
+}
+
+.btn-primary-reverse{
+    @extend .btn;
+    height:4rem;
+    padding: 0 3.6rem;
+    width: auto;
+    border: 1px solid #f54b4b;
+    @include border-radius($sassK-reset-border-radius-base);
+    @include inline-block;
+    color: #f54b4b;
+    @include k-btn-active(#fff);
+}
+

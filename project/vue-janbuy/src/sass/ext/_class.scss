@@ -1,0 +1,235 @@
+@charset "UTF-8";
+/**
+ * 输出一些常用的css类名，常用语一些局部布局使用
+ */
+// 输出类名前缀
+$sassK-class-prefix: "" !default;
+// 统一设定1px=1rem
+$sassK-class-unit: "rem" !default;
+$sassK-class-rote: if($sassK-class-unit==rem, 10, 1);
+//---------------------------------------------------------------
+$sassK-class-padding-top: () !default;
+$sassK-class-padding-bottom: () !default;
+$sassK-class-padding-left: () !default;
+$sassK-class-padding-right: () !default;
+$sassK-class-margin-top: () !default;
+$sassK-class-margin-bottom: () !default;
+$sassK-class-margin-left: () !default;
+$sassK-class-margin-right: () !default;
+$sassK-class-font-size: () !default;
+$sassK-class-color: () !default;
+$sassK-class-height: () !default;
+$sassK-class-height-percent: () !default;
+$sassK-class-width: () !default;
+$sassK-class-width-percent: () !default;
+$sassK-class-position-relative-top: () !default;
+$sassK-class-position-relative-left: () !default;
+$sassK-class-position-relative-right: () !default;
+$sassK-class-position-relative-bottom: () !default;
+$sassK-class-important: "m" !default;
+@function k-strip-units($number){
+	@return $number / ($number * 0 + 1);
+}
+//-----------------------------------------------------------
+//padding
+@each $cls in $sassK-class-padding-top {
+	.#{$sassK-class-prefix}pt#{$cls} {
+		@if unit($cls) == $sassK-class-important {
+			padding-top: k-strip-units($cls)/$sassK-class-rote#{$sassK-class-unit} !important;
+		} @else {
+			padding-top: $cls/$sassK-class-rote#{$sassK-class-unit};
+		}
+	}
+}
+
+@each $cls in $sassK-class-padding-bottom {
+	.#{$sassK-class-prefix}pb#{$cls} {
+		@if unit($cls) == $sassK-class-important {
+			padding-bottom: k-strip-units($cls)/$sassK-class-rote#{$sassK-class-unit} !important;
+		} @else {
+			padding-bottom: $cls/$sassK-class-rote#{$sassK-class-unit};
+		}
+	}
+}
+
+@each $cls in $sassK-class-padding-left {
+	.#{$sassK-class-prefix}pl#{$cls} {
+		@if unit($cls) == $sassK-class-important {
+			padding-left: k-strip-units($cls)/$sassK-class-rote#{$sassK-class-unit} !important;
+		} @else {
+			padding-left: $cls/$sassK-class-rote#{$sassK-class-unit};
+		}
+	}
+}
+
+@each $cls in $sassK-class-padding-right {
+	.#{$sassK-class-prefix}pr#{$cls} {
+		@if unit($cls) == $sassK-class-important {
+			padding-right: k-strip-units($cls)/$sassK-class-rote#{$sassK-class-unit} !important;
+		} @else {
+			padding-right: $cls/$sassK-class-rote#{$sassK-class-unit};
+		}
+	}
+}
+
+// margin
+@each $cls in $sassK-class-margin-top {
+	.#{$sassK-class-prefix}mt#{$cls} {
+		@if unit($cls) == $sassK-class-important {
+			margin-top: k-strip-units($cls)/$sassK-class-rote#{$sassK-class-unit} !important;
+		} @else {
+			margin-top: $cls/$sassK-class-rote#{$sassK-class-unit};
+		}
+	}
+}
+
+@each $cls in $sassK-class-margin-bottom {
+	.#{$sassK-class-prefix}mb#{$cls} {
+		@if unit($cls) == $sassK-class-important {
+			margin-bottom: k-strip-units($cls)/$sassK-class-rote#{$sassK-class-unit} !important;
+		} @else {
+			margin-bottom: $cls/$sassK-class-rote#{$sassK-class-unit};
+		}
+	}
+}
+
+@each $cls in $sassK-class-margin-left {
+	.#{$sassK-class-prefix}ml#{$cls} {
+		@if unit($cls) == $sassK-class-important {
+			margin-left: k-strip-units($cls)/$sassK-class-rote#{$sassK-class-unit} !important;
+		} @else {
+			margin-left: $cls/$sassK-class-rote#{$sassK-class-unit};
+		}
+	}
+}
+
+@each $cls in $sassK-class-margin-right {
+	.#{$sassK-class-prefix}mr#{$cls} {
+		@if unit($cls) == $sassK-class-important {
+			margin-right: k-strip-units($cls)/$sassK-class-rote#{$sassK-class-unit} !important;
+		} @else {
+			margin-right: $cls/$sassK-class-rote#{$sassK-class-unit};
+		}
+	}
+}
+
+// font-size
+@each $cls in $sassK-class-font-size {
+	.#{$sassK-class-prefix}ft#{$cls} {
+		@if unit($cls) == $sassK-class-important {
+			font-size: k-strip-units($cls)/$sassK-class-rote#{$sassK-class-unit} !important;
+		} @else {
+			font-size: $cls/$sassK-class-rote#{$sassK-class-unit};
+		}
+	}
+}
+
+// color
+@each $cls in $sassK-class-color {
+	.#{$sassK-class-prefix}color-#{$cls} {
+		@if type-of($cls) == number {
+			@if unit($cls) == $sassK-class-important {
+				color: #{"#"}k-strip-units($cls) !important;
+			} @else {
+				color: #{"#"}$cls;
+			}
+		} @else {
+			@if str-length($cls) == 6 or str-length($cls) == 3 {
+				color: #{"#"}$cls;
+			} @else {
+				color: #{"#"}str-slice($cls, 0, -2) !important;
+			}
+		}
+	}
+}
+
+// height
+@each $cls in $sassK-class-height {
+	.#{$sassK-class-prefix}h#{$cls} {
+		@if unit($cls) == $sassK-class-important {
+			height: k-strip-units($cls)/$sassK-class-rote#{$sassK-class-unit} !important;
+		} @else {
+			height: $cls/$sassK-class-rote#{$sassK-class-unit};
+		}
+	}
+}
+
+@each $cls in $sassK-class-height-percent {
+	.#{$sassK-class-prefix}hp#{$cls} {
+		@if unit($cls) == $sassK-class-important {
+			height: k-strip-units($cls)#{"%"} !important;
+		} @else {
+			height: $cls#{"%"};
+		}
+	}
+}
+
+// width
+@each $cls in $sassK-class-width {
+	.#{$sassK-class-prefix}w#{$cls} {
+		@if unit($cls) == $sassK-class-important {
+			width: k-strip-units($cls)/$sassK-class-rote#{$sassK-class-unit} !important;
+		} @else {
+			width: $cls/$sassK-class-rote#{$sassK-class-unit};
+		}
+	}
+}
+
+@each $cls in $sassK-class-width-percent {
+	.#{$sassK-class-prefix}wp#{$cls} {
+		@if unit($cls) == $sassK-class-important {
+			width: k-strip-units($cls)#{"%"} !important;
+		} @else {
+			width: $cls#{"%"};
+		}
+	}
+}
+
+// position
+%global-class-position-relative {
+	position: relative;
+}
+
+@each $cls in $sassK-class-position-relative-top {
+	.#{$sassK-class-prefix}prt#{$cls} {
+		@extend %global-class-position-relative;
+		@if unit($cls) == $sassK-class-important {
+			top: k-strip-units($cls)/$sassK-class-rote#{$sassK-class-unit} !important;
+		} @else {
+			top: $cls/$sassK-class-rote#{$sassK-class-unit};
+		}
+	}
+}
+
+@each $cls in $sassK-class-position-relative-left {
+	.#{$sassK-class-prefix}prl#{$cls} {
+		@extend %global-class-position-relative;
+		@if unit($cls) == $sassK-class-important {
+			left: k-strip-units($cls)/$sassK-class-rote#{$sassK-class-unit} !important;
+		} @else {
+			left: $cls/$sassK-class-rote#{$sassK-class-unit};
+		}
+	}
+}
+
+@each $cls in $sassK-class-position-relative-right {
+	.#{$sassK-class-prefix}prr#{$cls} {
+		@extend %global-class-position-relative;
+		@if unit($cls) == $sassK-class-important {
+			right: k-strip-units($cls)/$sassK-class-rote#{$sassK-class-unit} !important;
+		} @else {
+			right: $cls/$sassK-class-rote#{$sassK-class-unit};
+		}
+	}
+}
+
+@each $cls in $sassK-class-position-relative-bottom {
+	.#{$sassK-class-prefix}prb#{$cls} {
+		@extend %global-class-position-relative;
+		@if unit($cls) == $sassK-class-important {
+			bottom: k-strip-units($cls)/$sassK-class-rote#{$sassK-class-unit} !important;
+		} @else {
+			bottom: $cls/$sassK-class-rote#{$sassK-class-unit};
+		}
+	}
+}

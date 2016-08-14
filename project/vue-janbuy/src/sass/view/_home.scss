@@ -1,0 +1,127 @@
+@charset "utf-8";
+$home-header-height: 4.5rem;
+$home-header-btn-height: 3.2rem;
+$home-header-bg-color: #f75740;
+$home-header-border-color: #f4f4ee;
+// 首页顶部
+.index-header {
+    height: $home-header-height;
+    background: $home-header-bg-color inline-image("home/logo.png") no-repeat 1rem center;
+    background-size: 4.5rem;
+    color: #fff;
+    padding-left: 6.6rem;
+    overflow: hidden;
+    .select {
+        padding: 0 1rem;
+        font-size: 1.2rem;
+        height: $home-header-btn-height;
+        line-height: $home-header-btn-height;
+        @include k-btn-active(#f75740);
+    }
+    .search {
+        width: 0;
+        height: $home-header-btn-height;
+        line-height: $home-header-btn-height;
+        @include border-radius($sassK-reset-border-radius-base);
+        text-align: left;
+        font-size: 1.4rem;
+        padding-left: 3.4rem;
+        background: #e02400 inline-image("home/search.png") no-repeat 0.8rem center;
+        background-size: 1.9rem;
+        @include k-btn-active(#e02400, false);
+    }
+}
+
+.index-banner {
+    height: 12rem;
+    position: relative;
+    img {
+        @extend %k-base-image;
+    }
+}
+// 首页快捷导航
+.index-nav {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    > ul{
+        height: 9rem;
+        background: #fff;
+        padding: 0 $sassK-reset-padding-base;
+    }
+    .nav-item {
+        color: #444;
+        line-height: 2.2;
+        &:active {
+            opacity: 0.8;
+        }
+        @for $i from 1 through 4 {
+            &:nth-child(#{$i}) {
+                text-align: center;
+                background:inline-image("home/nav#{$i}.png") no-repeat center 0;
+                background-size: 4.8rem;
+                padding-top: 4.8rem;
+                font-size: 1.2rem;
+            }
+        }
+    }
+}
+
+.index-title {
+    height: 3.2rem;
+    line-height: 3.2rem;
+    color: #414249;
+    border-bottom: 1px solid $home-header-border-color;
+    font-size: 1.5rem;
+    @include k-btn-active(#fff);
+    padding: 0 0.5rem;
+    span {
+        float: right;
+        display: inline-block;
+        padding-right: 1.2rem;
+        font-size: 1.2rem;
+        color: #8e937e;
+        background: inline-image("home/arrow-right.png") no-repeat right center;
+        background-size: 0.7rem;
+    }
+}
+
+// 热卖列表
+.index-list-wraper{
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    .index-list-parent{
+        padding-left: 0.5rem !important;
+        padding-right: 0.5rem !important;
+    }
+    .index-list-item{
+        height: 10.5rem !important;
+    }
+}
+
+// 首页分类菜单
+.index-menu {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    > ul{
+        @extend .cl;
+        background-color: #fff;
+    }
+    li {
+        border-bottom: 1px solid #eff0ec;
+        width: 50%;
+        height: 9.8rem;
+        float: left;
+        &:active {
+            opacity: 0.8;
+        }
+        &:nth-child(2n+1) {
+            border-right: 1px solid #eff0ec;
+        }
+    }
+    @for $i from 1 through 6 {
+        li.menu#{$i} {
+            background:inline-image("home/menu#{$i}.png") no-repeat center 0;
+            background-size: 15.5rem;
+        }
+    }
+}

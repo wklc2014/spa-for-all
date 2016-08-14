@@ -1,0 +1,11 @@
+@charset "utf-8";
+.totop{
+	position: fixed;
+	bottom: 7rem;
+	right: 2rem;
+	width: 4rem;
+	height: 4rem;
+	background:inline-image("gotop/top.png") no-repeat 0 0;
+	background-size: 4rem;
+	z-index: $sassK-reset-zIndex-base;
+}

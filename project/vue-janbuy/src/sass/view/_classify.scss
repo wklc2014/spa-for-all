@@ -1,0 +1,80 @@
+@charset "utf-8";
+.classify-container {
+    @for $i from 1 through 8 {
+        .classify-item:nth-child(#{$i}) .head:before {
+            background: inline-image("classify/#{$i}.png") no-repeat 0 center;
+            background-size: 3.2rem;
+        }
+    }
+}
+
+.classify-item {
+    border-bottom: 1px solid #f3f2f0;
+    &:last-child {
+        border-bottom: none;
+    }
+    &.active {
+        .head:after {
+            @include rotate(90deg);
+        }
+        .content {
+            display: block;
+        }
+    }
+    > .head {
+        height: 6.2rem;
+        padding: 1.5rem 1rem;
+        line-height: 3.2rem;
+        @include k-btn-active(#fff);
+        position: relative;
+        &:before,
+        &:after {
+            display: inline-block;
+            content: "";
+        }
+        &:before {
+            float: left;
+            width: 3.2rem;
+            height: 3.2rem;
+            margin-right: 1.5rem;
+        }
+        &:after {
+            position: absolute;
+            right: 1rem;
+            top: 2.3rem;
+            background: inline-image("classify/arrow.png") no-repeat center center;
+            background-size: 1rem;
+            width: 1.6rem;
+            height: 1.6rem;
+            @include transition(all 0.2s);
+        }
+    }
+    > .content {
+        display: none;
+        background-color: #f3f2f0;
+        dt {
+            height: 4.6rem;
+            line-height: 4.6rem;
+            padding-left: 1rem;
+        }
+        dd {
+            @extend .cl;
+            padding: 0 0.5rem;
+            span {
+                width: 32%;
+                display: block;
+                text-align: center;
+                line-height: 3.5rem;
+                float: left;
+                margin-right: 2%;
+                margin-bottom: 0.5rem;
+                @include border-radius($janbuy-border-radius-base + 0.2rem);
+                @include k-btn-active(#fff);
+                font-size: 1.2rem;
+                &:nth-child(3n) {
+                    margin-right: 0;
+                }
+            }
+        }
+    }
+}

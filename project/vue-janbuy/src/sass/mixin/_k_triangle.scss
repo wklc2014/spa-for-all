@@ -1,0 +1,114 @@
+@charset "UTF-8";
+@function k-direction-back($direction) {
+	$ret: ();
+	@if $direction==top {
+		$ret: bottom
+	} @else if $direction==bottom {
+		$ret: top
+	} @else if $direction==left {
+		$ret: right
+	} @else if $direction==right {
+		$ret: left
+	}
+	@return $ret;
+}
+
+%k-triangle-base {
+	content: '';
+	position: absolute;
+	width: 0;
+	height: 0;
+	pointer-events: none;
+}
+
+@mixin k-triangle-border($direction, $border-size, $bgColor) {
+	@if ($direction==top or $direction==bottom) {
+		border-left: $border-size dashed transparent;
+		border-right: $border-size dashed transparent;
+	} @else if ($direction==right or $direction==left) {
+		border-top: $border-size dashed transparent;
+		border-bottom: $border-size dashed transparent;
+	}
+	border-#{$direction}: $border-size solid $bgColor;
+}
+
+@mixin k-triangle($direction: top, $size: 10px, $bg-color: gray, $border-color: false) {
+	$border-size: $size / 2;
+	$top: ();
+	$left: ();
+	position: relative;
+	@include k-inline-block;
+	@if $direction==top or $direction==bottom {
+		width: $size;
+		height: $border-size;
+		$top: 1px;
+		$left: 2px;
+	} @else {
+		width: $border-size;
+		height: $size;
+		$top: 2px;
+		$left: 1px;
+	}
+	@if ($border-color) {
+		&:before {
+			@extend %k-triangle-base;
+			@include k-triangle-border($direction, $border-size, $border-color);
+			left: 0;
+			top: 0;
+			z-index: 1;
+		}
+		&:after {
+			@extend %k-triangle-base;
+			@include k-triangle-border($direction, $border-size - 2, $bg-color);
+			left: $left;
+			top: $top;
+			z-index: 2;
+		}
+	} @else {
+		&:after {
+			@extend %k-triangle-base;
+			@include k-triangle-border($direction, $border-size, $bg-color);
+			left: 0;
+			top: 0;
+		}
+	}
+}
+
+@mixin k-triangle-position($direcition, $size, $position) {
+	@if ($direcition=='top' or $direcition==bottom) {
+		left: $position;
+		@if $position==50% {
+			margin-left: - $size;
+		}
+	} @else if ($direcition=='left' or $direcition==right) {
+		top: $position;
+		@if $position==50% {
+			margin-top: - $size;
+		}
+	}
+}
+
+@mixin k-triangle-tooltip($direction: top, $size:10px, $bg-color: gray, $border-color: false, $position: 50%) {
+	position: relative;
+	@if ($border-color) {
+		&:before {
+			@extend %k-triangle-base;
+			@include k-triangle-position($direction, $size, $position);
+			@include k-triangle-border(k-direction-back($direction), $size, $border-color);
+			#{$direction}: -$size;
+		}
+		&:after {
+			@extend %k-triangle-base;
+			@include k-triangle-position($direction, $size, $position);
+			@include k-triangle-border(k-direction-back($direction), $size, $bg-color);
+			#{$direction}: 1px -$size;
+		}
+	} @else {
+		&:after {
+			@extend %k-triangle-base;
+			@include k-triangle-position($direction, $size, $position);
+			@include k-triangle-border(k-direction-back($direction), $size, $bg-color);
+			#{$direction}: -$size;
+		}
+	}
+}

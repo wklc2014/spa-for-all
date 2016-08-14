@@ -1,0 +1,75 @@
+// Adjust media-queries to match your needs and/or add more rules
+@media screen and ( max-width: 64em) {
+    [#{$SELF}*="lg-full"] {
+        @include k-flex(1 1 100%);
+        width: 100%;
+        max-width: 100%;
+    }
+    [#{$SELF}*="lg-half"] {
+        @include k-flex(1 1 50%);
+        width: 50%;
+        max-width: 50%;
+    }
+    [#{$SELF}~="lg-first"] {
+        @include k-flex-order(-1);
+    }
+    [#{$SELF}~="lg-last"] {
+        @include k-flex-order(999);
+    }
+    [#{$SELF}~="lg-hide"] {
+        display: none;
+    }
+    [#{$SELF}~="lg-show"] {
+        display: inherit;
+    }
+}
+
+@media screen and ( max-width: 52em) {
+    [#{$SELF}*="md-full"] {
+        @include k-flex(1 1 100%);
+        width: 100%;
+        max-width: 100%;
+    }
+    [#{$SELF}*="md-half"] {
+        @include k-flex(1 1 50%);
+        width: 50%;
+        max-width: 50%;
+    }
+    [#{$SELF}~="md-first"] {
+        @include k-flex-order(-1);
+    }
+    [#{$SELF}~="md-last"] {
+        @include k-flex-order(999);
+    }
+    [#{$SELF}~="md-hide"] {
+        display: none;
+    }
+    [#{$SELF}~="md-show"] {
+        display: inherit;
+    }
+}
+
+@media screen and ( max-width: 40em) {
+    [#{$SELF}*="sm-full"] {
+        @include k-flex(1 1 100%);
+        width: 100%;
+        max-width: 100%;
+    }
+    [#{$SELF}*="sm-half"] {
+        @include k-flex(1 1 50%);
+        width: 50%;
+        max-width: 50%;
+    }
+    [#{$SELF}~="sm-first"] {
+        @include k-flex-order(-1);
+    }
+    [#{$SELF}~="sm-last"] {
+        @include k-flex-order(999);
+    }
+    [#{$SELF}~="sm-hide"] {
+        display: none;
+    }
+    [#{$SELF}~="sm-show"] {
+        display: inherit;
+    }
+}

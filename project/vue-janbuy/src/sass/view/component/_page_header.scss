@@ -1,0 +1,53 @@
+@charset 'utf-8';
+$page-header-bg-color: #f54b4b;
+$page-header-height: 4.4rem;
+$page-header-font-size: 1.8rem;
+$page-header-zIndex: 200;
+.page-header{
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: $sassK-reset-zIndex-base;
+	overflow: hidden;
+	width: 100%;
+	height: $page-header-height;
+	line-height: $page-header-height;
+	background-color: $page-header-bg-color;
+	color: #fff;
+	font-size: $page-header-font-size;
+	.text{
+		@include ellipsis;
+		&.center{
+			text-align: center;
+		}
+		&.search{
+			padding-top: 0.7rem;
+		}
+		.search-input{
+			color: #333;
+			height: 3rem;
+			padding: 0.5rem 0.5rem 0.5rem 3rem;
+			background:#fff inline-image("search/search.png") no-repeat 1.4rem center;
+			background-size: 1rem;
+			@include border-radius($sassK-reset-border-radius-base);
+			@include input-placeholder{
+				color: #999;
+			};
+		}
+	}
+	.prev,
+	.next{
+		@include k-btn-active($page-header-bg-color, false);
+		height: 100%;
+		padding-left: $sassK-reset-padding-base;
+		padding-right: $sassK-reset-padding-base;
+	}
+	.prev{
+		float: left;
+	}
+	.next{
+		float: right;
+		font-size: $page-header-font-size - 0.2rem;
+	}
+}
+
