@@ -5,10 +5,12 @@ import Store from '../../stores/store.js';
 import Action from '../../actions/action.js'
 
 import {STATUS, IMPORTANT, SOURCE} from "../../constant/constant.js";
+import tipsJS from "../mixins/tips.js";
 
 let ListComponent  = React.createClass({
 	mixins: [
-		Reflux.listenTo(Store, 'onStatusChange')
+		Reflux.listenTo(Store, 'onStatusChange'),
+		tipsJS
 	],
 	onStatusChange(){
         this.setState({
@@ -24,11 +26,17 @@ let ListComponent  = React.createClass({
 	},
 	handleDelete(e){
 		let uid = e.target.getAttribute("data-uid");
-		if(confirm("确定要删除反馈ID为" + uid + "吗？")){
-			Action.delete(uid, function(){
-				alert("删除成功");
-			});
-		}
+		let _this = this;
+		lcModel.confirm("确定要删除反馈ID为" + uid + "吗？", {
+			cb_ok: function (box, ret) {
+				lcModel.close(box);
+				Action.delete(uid, function(){
+					_this.handleTips("删除成功");
+				});
+			},
+			classname: "w200",
+			title: "提示信息"
+		});
 	},
 	handleToggleChecked(e){
 		let uid = e.target.getAttribute("data-uid");
@@ -49,7 +57,7 @@ let ListComponent  = React.createClass({
 	render(){
 		let _this = this;
 		if(!this.state.list.length){
-			return <p>暂无数据</p>
+			return <p>暂无数据</p>;
 		}
 		let trEle = this.state.list.map(function (val, idx) {
 			let important = _this.retValue(IMPORTANT, val, 'important');
@@ -67,7 +75,7 @@ let ListComponent  = React.createClass({
 			  		<td>{val.name}</td>
 			  		<td className="text-center">{val.time}</td>
 			  		<td className="text-center">
-        				<button type="button" className="btn btn-primary mr20">编辑</button>
+        				<button type="button" className="btn btn-primary mr20" onClick={_this.handleDevelope}>编辑</button>
         				<button type="button" data-uid={val.uid} onClick={_this.handleDelete} className="btn btn-default">删除</button>
 			  		</td>
 		  		</tr>

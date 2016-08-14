@@ -5,7 +5,7 @@ import {Router, Route, IndexRoute, Redirect, hashHistory, browserHistory} from '
 import ViewApp from './view/app.jsx';
 
 let route = (
-    <Router history={browserHistory}>
+    <Router history={hashHistory}>
         <Route path='/' component={ViewApp}/>
     </Router>
 )
