@@ -31,7 +31,7 @@ let TodoStore = Reflux.createStore({
 });
 
 function fn_addItem(item) {
-    TodoStore.items.unshift(item);
+    TodoStore.items.push(item);
     TodoStore.trigger(TodoStore.items);
 }
 

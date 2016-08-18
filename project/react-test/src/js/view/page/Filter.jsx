@@ -36,18 +36,18 @@ let FilterFormComponent = React.createClass({
 	],
 	getInitialState() {
 	    return {
-	        important: Store.filters.important,
-	        status: Store.filters.status,
-	        source: Store.filters.source,
-	        title: Store.filters.title
+	        important: Store.data.filters.important,
+	        status: Store.data.filters.status,
+	        source: Store.data.filters.source,
+	        title: Store.data.filters.title
 	    };
 	},
 	onStatusChange(){
 		this.setState({
-        	important: Store.filters.important,
-	        status: Store.filters.status,
-	        title: Store.filters.title,
-	        source: Store.filters.source
+        	important: Store.data.filters.important,
+	        status: Store.data.filters.status,
+	        title: Store.data.filters.title,
+	        source: Store.data.filters.source
         });
 	},
 	handleChangeTitle(e){

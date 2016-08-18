@@ -24,6 +24,7 @@
     "babel-runtime": "^6.11.6",
     "browser-sync": "^2.14.0",
     "css-loader": "^0.23.1",
+    "events": "^1.1.1",
     "gulp": "^3.9.1",
     "gulp-cache": "^0.4.5",
     "gulp-clean-css": "^2.0.12",
@@ -42,6 +43,7 @@
     "gulp-useref": "^3.1.0",
     "gulp-util": "^3.0.7",
     "imagemin-pngquant": "^5.0.0",
+    "object-assign": "^4.1.0",
     "open-browser-webpack-plugin": "0.0.2",
     "postcss-cssnext": "^2.7.0",
     "style-loader": "^0.13.1",
@@ -53,9 +55,11 @@
     "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
+    "flux": "^2.1.1",
     "mint-ui": "^0.2.2",
     "react": "^15.3.0",
     "react-dom": "^15.3.0",
+    "react-mixin": "^3.0.5",
     "react-redux": "^4.4.5",
     "react-router": "^2.6.1",
     "redux": "^3.5.2",

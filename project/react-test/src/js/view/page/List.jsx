@@ -14,14 +14,14 @@ let ListComponent  = React.createClass({
 	],
 	onStatusChange(){
         this.setState({
-        	list: Store.items,
-	        isAllChecked: Store.isAllChecked
+        	list: Store.data.items,
+	        isAllChecked: Store.data.isAllChecked
         });
     },
 	getInitialState() {
 	    return {
-	        list: Store.items,
-	        isAllChecked: Store.isAllChecked
+	        list: Store.data.items,
+	        isAllChecked: Store.data.isAllChecked
 	    };
 	},
 	handleDelete(e){
@@ -43,11 +43,10 @@ let ListComponent  = React.createClass({
 		let checked = e.target.checked;
 		Action.editcheck(uid, checked);
 	},
-	retValue(datas, val, keys){
-		let _this = this;
+	retValue(data, val, key){
 		let ret = "";
-		datas.some(function (data) {
-			if(data.uid == val[keys]){
+		data.some(function (data) {
+			if(data.uid == val[key]){
 				ret = data.text;
 				return true;
 			}
