@@ -4,8 +4,8 @@ let PROJECT = "project/"
 // let curent_project = "vue-janbuy/";
 // let curent_project = "vue-learn/";
 // let curent_project = "react-learn/";
-// let curent_project = "react-redux/";
-let curent_project = "react-test/";
+let curent_project = "react-redux/";
+// let curent_project = "react-test/";
 // let curent_project = "react-flux/";
 
 module.exports = {
