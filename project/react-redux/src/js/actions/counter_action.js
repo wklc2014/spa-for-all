@@ -3,19 +3,21 @@ export const INCREMENT_COUNTER = 'INCREMENT_COUNTER';
 export const DECREMENT_COUNTER = 'DECREMENT_COUNTER';
 
 //导出加一的方法
-export function increment() {
+export function increment(number) {
     return {
-        type: INCREMENT_COUNTER
+        type: INCREMENT_COUNTER,
+        number
     }
 }
 //导出减一的方法
-export function decrement() {
+export function decrement(number) {
     return {
-        type: DECREMENT_COUNTER
+        type: DECREMENT_COUNTER,
+        number
     }
 }
 //导出奇数加一的方法，该方法返回一个方法，包含dispatch和getState两个参数，dispatch用于执行action的方法，getState返回state
-export function incrementIfOdd() {
+export function incrementIfOdd(number) {
     return (dispatch, getState) => {
         //获取state对象中的counter属性值
         const { counter } = getState()
@@ -25,14 +27,14 @@ export function incrementIfOdd() {
             return
         }
         //没有返回就执行加一
-        dispatch(increment())
+        dispatch(increment(number))
     }
 }
 //导出一个方法,包含一个默认参数delay,返回一个方法,一秒后加一
-export function incrementAsync(delay = 1000) {
+export function incrementAsync(number, delay = 1000) {
     return dispatch => {
         setTimeout(() => {
-            dispatch(increment())
+            dispatch(increment(number))
         }, delay)
     }
 }

@@ -2,6 +2,6 @@
 
 import React from 'react';
 import {render} from 'react-dom';
-import ViewApp from './containers/App.jsx';
+import route from './route.jsx';
 let oContainer = document.getElementById("app");
-render(ViewApp, oContainer);
+render(route, oContainer);
