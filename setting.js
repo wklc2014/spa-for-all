@@ -7,7 +7,7 @@ let PROJECT = "project/"
 // let curent_project = "react-redux/";
 // let curent_project = "react-test/";
 // let curent_project = "react-flux/";
-let curent_project = "react-ant/";
+let curent_project = "es6/";
 
 module.exports = {
 	server: {
