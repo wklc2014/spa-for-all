@@ -20,7 +20,7 @@ class First extends Component{
 	render(){
 		return (
 			<div>
-				this is default page
+				this is first page
 			</div>
 		)
 	}

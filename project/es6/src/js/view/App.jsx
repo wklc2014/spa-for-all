@@ -14,6 +14,9 @@ class App extends Component{
 					<li role="presentation">
 						<NavLink to="/first">First</NavLink>
 					</li>
+					<li role="presentation">
+						<NavLink to="/second">Second</NavLink>
+					</li>
 				</ul>
 				<section>
 					{this.props.children}
