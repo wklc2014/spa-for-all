@@ -120,9 +120,9 @@ gulp.task("webpack:dev", function () {
 		"webpack/hot/dev-server"
 	);
 	webpack_config.plugins.push(
-		// new OpenBrowserPlugin({
-		// 	url: 'http://' + settings.server.host + ':' + settings.server.port
-		// }),
+		new OpenBrowserPlugin({
+			url: 'http://' + settings.server.host + ':' + settings.server.port
+		}),
 		new webpack.HotModuleReplacementPlugin()
 	)
 	var myConfig = Object.create(webpack_config);
