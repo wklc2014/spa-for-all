@@ -6,10 +6,22 @@ class Default extends Component{
 	render(){
 		return (
 			<div>
-				this is default page
+				this is
 			</div>
 		)
 	}
 }
 
 export default Default;
+
+
+
+
+
+
+
+
+
+
+
+
