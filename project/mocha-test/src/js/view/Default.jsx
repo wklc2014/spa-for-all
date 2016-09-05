@@ -2,17 +2,14 @@
 
 import React, {Component} from 'react';
 
-class First extends Component{
-	componentDidMount() {
-
-	}
+class Default extends Component{
 	render(){
 		return (
 			<div>
-				this is first page
+				this is default page
 			</div>
 		)
 	}
 }
 
-export default First;
+export default Default;
