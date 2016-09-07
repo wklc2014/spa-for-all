@@ -6,9 +6,9 @@ let PROJECT = "project/"
 // let curent_project = "mocha-test/";
 // let curent_project = "react-reflux/";
 // let curent_project = "react-redux/";
-// let curent_project = "react-test/";
+let curent_project = "react-test/";
 // let curent_project = "react-flux/";
-let curent_project = "es6/";
+// let curent_project = "es6/";
 // let curent_project = "react-ant/";
 
 module.exports = {
