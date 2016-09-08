@@ -3,7 +3,7 @@
 let PROJECT = "project/"
 // let curent_project = "vue-janbuy/";
 // let curent_project = "vue-learn/";
-
+let curent_project = "mocha-test/";
 // let curent_project = "react-reflux/";
 // let curent_project = "react-redux/";
 // let curent_project = "react-test/";
