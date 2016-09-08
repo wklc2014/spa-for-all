@@ -3,6 +3,9 @@
 import React, {Component} from 'react';
 
 class First extends Component{
+	componentDidMount() {
+
+	}
 	render(){
 		return (
 			<div>

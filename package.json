@@ -1,10 +1,11 @@
 {
-  "name": "spa-vue-less-scss",
+  "name": "spa-for-all",
   "version": "1.0.0",
-  "description": "spa vue less scss gulp",
+  "description": "spa for all as gulp",
   "main": "gulpfile.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --opts mocha.opts --compilers jsx:babel-core/register",
+    "wtest": "mocha --opts mocha.opts --compilers jsx:babel-core/register -w"
   },
   "keywords": [
     "spa",
@@ -45,6 +46,8 @@
     "gulp-useref": "^3.1.0",
     "gulp-util": "^3.0.7",
     "imagemin-pngquant": "^5.0.0",
+    "mockjs": "^1.0.1-beta3",
+    "moment": "^2.14.1",
     "object-assign": "^4.1.0",
     "open-browser-webpack-plugin": "0.0.2",
     "postcss-cssnext": "^2.7.0",
