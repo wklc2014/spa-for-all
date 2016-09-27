@@ -108,7 +108,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 
 /* line 18, ../sass/main.scss */
 .active {
-  color: red;
+  color: red !important;
 }
 
 /* line 23, ../sass/main.scss */
