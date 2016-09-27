@@ -5,7 +5,7 @@
   "main": "gulpfile.js",
   "scripts": {
     "test": "mocha --opts mocha.opts --compilers jsx:babel-core/register",
-    "wtest": "mocha --opts mocha.opts --compilers jsx:babel-core/register -w"
+    "test-watch": "mocha --opts mocha.opts --compilers jsx:babel-core/register -w"
   },
   "keywords": [
     "spa",
@@ -27,12 +27,17 @@
     "css-loader": "^0.23.1",
     "dora": "^0.4.3",
     "dora-plugin-proxy": "^0.8.0",
+    "eslint": "^3.5.0",
+    "eslint-friendly-formatter": "^2.0.6",
+    "eslint-path-formatter": "^0.1.1",
+    "eslint-plugin-react": "^6.2.0",
     "events": "^1.1.1",
     "gulp": "^3.9.1",
     "gulp-cache": "^0.4.5",
     "gulp-clean-css": "^2.0.12",
     "gulp-compass": "^2.1.0",
     "gulp-cssnano": "^2.1.2",
+    "gulp-eslint": "^3.0.1",
     "gulp-htmlmin": "^2.0.0",
     "gulp-if": "^2.0.1",
     "gulp-imagemin": "^3.0.2",

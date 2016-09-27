@@ -23,6 +23,7 @@ var gulp_size = require('gulp-size');
 var gulp_rename = require('gulp-rename');
 var gulp_util = require('gulp-util');
 var gulp_rimraf = require('gulp-rimraf');
+var gulp_eslint = require('gulp-eslint');
 
 var webpack = require("webpack");
 var WebpackDevServer = require("webpack-dev-server");
@@ -147,6 +148,19 @@ gulp.task("webpack:dev", function () {
 		gulp_util.log("[webpack-dev-server]", "http://" + settings.server.host + ":" + settings.server.port + "\n");
 	});
 });
+
+gulp.task('eslint:dev', function () {
+    var options = {
+        configFile: settings.eslint.config,
+    }
+    return gulp.src(settings.eslint.src)
+        .pipe(gulp_eslint(options))
+        .pipe(gulp_eslint.format(settings.eslint.formatter))
+})
+
+gulp.task('eslint', ['eslint:dev'], function () {
+    gulp.watch(settings.eslint.src, ["eslint:dev"]);
+})
 
 // gulp task dev
 gulp.task("dev", ["webpack:dev", "style:dev", "html:dev", "image:dev", "font:dev"], function () {
