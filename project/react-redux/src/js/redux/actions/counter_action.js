@@ -6,14 +6,18 @@ export const DECREMENT_COUNTER = 'DECREMENT_COUNTER';
 export function increment(number) {
     return {
         type: INCREMENT_COUNTER,
-        number
+        payload: {
+            number
+        }
     }
 }
 //导出减一的方法
 export function decrement(number) {
     return {
         type: DECREMENT_COUNTER,
-        number
+        payload: {
+            number
+        }
     }
 }
 //导出奇数加一的方法，该方法返回一个方法，包含dispatch和getState两个参数，dispatch用于执行action的方法，getState返回state

@@ -1,15 +1,6 @@
 'use strict';
-
 import React, {Component} from 'react';
 import NavLink from './common/NavLink.jsx';
-import { connect } from 'react-redux';
-
-//将state.counter绑定到props的counter
-function mapStateToProps(state) {
-    return {
-        counter: state.counter
-    }
-}
 
 class App extends Component{
 	render(){
@@ -33,4 +24,4 @@ class App extends Component{
 	}
 }
 
-export default connect(mapStateToProps)(App)
+export default App;

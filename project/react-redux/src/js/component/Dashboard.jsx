@@ -1,13 +1,5 @@
 "use strict";
 import React, {Component} from 'react';
-import { connect } from 'react-redux';
-
-//将state.counter绑定到props的counter
-function mapStateToProps(state) {
-    return {
-        store: state
-    }
-}
 
 class Dashboard extends Component{
 	render(){
@@ -23,4 +15,4 @@ class Dashboard extends Component{
 		)
 	}
 }
-export default connect(mapStateToProps)(Dashboard)
+export default Dashboard;

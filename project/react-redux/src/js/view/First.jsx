@@ -10,7 +10,6 @@ let data = Mock.mock({
 	}],
 	'name|+1': 10
 })
-console.log(JSON.stringify(data))
 
 class First extends Component {
 	constructor(props){
