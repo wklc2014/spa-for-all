@@ -1,6 +1,6 @@
 'use strict';
 import React, { Component, PropTypes } from 'react';
-import BaseNumber from './BaseNumber.jsx'
+import BaseNumber from '../container/BaseNumberContainer.jsx'
 
 class Counter extends Component{
 	constructor(props) {
@@ -32,16 +32,40 @@ class Counter extends Component{
 	      		<BaseNumber />
 	        	<p>Clicked: {counter} times</p>
 	      		<div className="form-group">
-	        		<button type="button" className="btn btn-primary" onClick={this.increment}>+</button>
+	        		<button
+                        type="button"
+                        className="btn btn-primary"
+                        onClick={this.increment}
+                    >
+                        +
+                    </button>
         		</div>
 	        	<div className="form-group">
-	        		<button  type="button" className="btn btn-primary" onClick={this.decrement}>-</button>
+	        		<button
+                        type="button"
+                        className="btn btn-primary"
+                        onClick={this.decrement}
+                    >
+                        -
+                    </button>
         		</div>
 	        	<div className="form-group">
-	        		<button type="button" className="btn btn-primary"  onClick={this.incrementIfOdd}>Increment if odd</button>
+	        		<button
+                        type="button"
+                        className="btn btn-primary"
+                        onClick={this.incrementIfOdd}
+                    >
+                        Increment if odd
+                    </button>
         		</div>
 	        	<div className="form-group">
-	        		<button type="button" className="btn btn-primary"  onClick={this.incrementAsync}>Increment async</button>
+	        		<button
+                        type="button"
+                        className="btn btn-primary"
+                        onClick={this.incrementAsync}
+                    >
+                        Increment async
+                    </button>
         		</div>
 	      	</div>
       	)

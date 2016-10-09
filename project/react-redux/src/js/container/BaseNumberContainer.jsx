@@ -8,7 +8,7 @@ import BaseNumber from '../component/BaseNumber.jsx';
 //将state.counter绑定到props的counter
 function mapStateToProps(state) {
     return {
-        state: state
+        state
     }
 }
 

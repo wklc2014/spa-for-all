@@ -6,10 +6,10 @@ import { INCREMENT_COUNTER, DECREMENT_COUNTER } from '../actions/counter_action.
 export default function counter(state = 0, action) {
     switch (action.type) {
         case INCREMENT_COUNTER:
-            return state + action.number
+            return state + action.payload.number;
         case DECREMENT_COUNTER:
-            return state - action.number
+            return state - action.payload.number;
         default:
-            return state
+            return state;
     }
 }

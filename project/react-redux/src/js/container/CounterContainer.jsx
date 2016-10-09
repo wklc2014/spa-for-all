@@ -1,5 +1,5 @@
 'use strict';
-import { bindActionCreators } from 'redux'
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import {increment, decrement, incrementIfOdd, incrementAsync} from '../redux/actions/counter_action.js';
 
