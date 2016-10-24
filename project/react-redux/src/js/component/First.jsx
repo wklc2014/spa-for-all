@@ -1,6 +1,6 @@
 'use strict';
-
 import React, {Component} from 'react';
+import _ from 'underscore';
 
 import Mock from 'mockjs';
 
@@ -18,6 +18,21 @@ class First extends Component {
 			list: data.list,
 	 		name: data.name
 		};
+	}
+	componentDidMount() {
+		// const a = 'a' / 'b';
+		// const b = isNaN(a);
+		// const c = _.isNumber(a);
+		// console.log(a, b, c);
+        // const a = 'aaa';
+        const a = '';
+		// const a = 'aaa';
+        const _a = _.isEmpty(a);
+        console.log(_a);
+
+
+
+
 	}
 	render(){
 		const {list, name} = this.state;
