@@ -6,7 +6,7 @@ import {changeNumber} from '../redux/actions/number_action.js';
 import BaseNumber from '../component/BaseNumber.jsx';
 
 //将state.counter绑定到props的counter
-function mapStateToProps(state) {
+function mapStateToProps(state, ownProps) {
     return {
         state
     }

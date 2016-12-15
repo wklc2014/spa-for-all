@@ -15,6 +15,7 @@ class App extends Component{
                     <li role="presentation"><NavLink to="/" onlyActiveOnIndex>首页({counter})</NavLink></li>
                     <li role="presentation"><NavLink to="/counter">Counter</NavLink></li>
                     <li role="presentation"><NavLink to="/first">First</NavLink></li>
+                    <li role="presentation"><NavLink to="/test">Test</NavLink></li>
                 </ul>
                 <section>
                     {this.props.children}

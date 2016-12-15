@@ -1,6 +1,6 @@
 'use strict';
 import React, { Component, PropTypes } from 'react';
-import BaseNumber from '../container/BaseNumberContainer.jsx'
+import BaseNumber from '../component/BaseNumberContainer.jsx'
 
 class Counter extends Component{
 	constructor(props) {

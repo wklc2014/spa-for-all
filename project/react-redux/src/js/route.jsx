@@ -6,10 +6,11 @@ import {Router, Route, IndexRoute, Redirect, hashHistory, browserHistory} from '
 import configureStore from './redux/store/configureStore.js';
 const store = configureStore();
 
-import AppContainer from './container/AppContainer.jsx';
-import DashboardContainer from './container/DashboardContainer.jsx';
-import CounterContainer from './container/CounterContainer.jsx';
-import First from './component/First.jsx';
+import AppContainer from './component/AppContainer.jsx';
+import DashboardContainer from './component/DashboardContainer.jsx';
+import CounterContainer from './component/CounterContainer.jsx';
+import First from './component/FirstContainer.jsx';
+import Test from './component/Test.jsx';
 
 function f_enter(route) {
     // console.log(route)
@@ -21,6 +22,7 @@ const route = (
             <Route path='/' component={AppContainer}>
                 <IndexRoute component={DashboardContainer} />
                 <Route path='/first' component={First} />
+                <Route path='/test' component={Test} />
                 <Route path='/counter' component={CounterContainer} />
             </Route>
         </Router>

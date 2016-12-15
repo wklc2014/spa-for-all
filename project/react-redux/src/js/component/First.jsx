@@ -1,52 +1,40 @@
 'use strict';
 import React, {Component} from 'react';
-import _ from 'underscore';
 
-import Mock from 'mockjs';
+const First = React.createClass({
+	handleClick(e) {
 
-let data = Mock.mock({
-	'list|1-10': [{
-		'id|+1': 1
-	}],
-	'name|+1': 10
-})
-
-class First extends Component {
-	constructor(props){
-		super(props);
-		this.state = {
-			list: data.list,
-	 		name: data.name
-		};
-	}
-	componentDidMount() {
-		// const a = 'a' / 'b';
-		// const b = isNaN(a);
-		// const c = _.isNumber(a);
-		// console.log(a, b, c);
-        // const a = 'aaa';
-        const a = '';
-		// const a = 'aaa';
-        const _a = _.isEmpty(a);
-        console.log(_a);
-
-
-
-
-	}
+	},
+	handleChange(e) {
+		const string = e.target.value;
+		this.props.updateJson(string);
+	},
 	render(){
-		const {list, name} = this.state;
-		const liEle = list.map((val, i) => <li key={i}>{val.id}</li>);
+		const {list} = this.props;
+		// const liEle = list.map((val, i) => <li key={i}>{val.id}</li>);
 		return (
 			<div>
 				<p>this is first page;</p>
-				<p>{name}</p>
-				<ul>
-					{liEle}
-				</ul>
+				<div className="form-group">
+					<input
+						type="text"
+						className="form-control"
+						value={list}
+						onChange={this.handleChange}
+					/>
+				</div>
+				<div className="form-group">
+					<button
+						type="button"
+						className="btn btn-primary"
+						onClick={this.handleClick}
+					>
+						按钮
+					</button>
+				</div>
 			</div>
 		)
 	}
-}
+})
 
 export default First;
