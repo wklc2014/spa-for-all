@@ -46,6 +46,7 @@ Object.keys(entryConfig.html).forEach(v => {
                 collapseWhitespace: true
             },
             filename: v + '.html',
+            favicon: path.join(currentProject, 'src/assets/img/favicon.ico'),
             template: htmlPath,
             chunks: [v]
         })

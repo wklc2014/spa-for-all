@@ -27,6 +27,7 @@ Object.keys(entryConfig.html).forEach(v => {
     config.plugins.push(
         new HtmlWebpackPlugin({
             filename: v + '.html',
+            favicon: path.join(currentProject, 'src/assets/img/favicon.ico'),
             template: htmlPath,
             chunks: [v]
         })

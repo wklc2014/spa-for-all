@@ -20,6 +20,12 @@ var config = {
                 path.join(currentProject, "src")
             ],
             loader: "babel-loader"
+        }, {
+            test: /\.(png|jpg)$/,
+            loader: 'url-loader?limit=25000'
+        }, {
+            test: /\.(eot|ttf|woff|woff2|svg)$/,
+            loader: 'file-loader?name=fonts/[name].[ext]'
         }]
     },
     plugins: [
