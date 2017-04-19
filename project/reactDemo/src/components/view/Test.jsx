@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Button, message } from 'antd';
-import ServiceLogin from '../../service/Serverlogin.js';
+import ServiceLogin from '../../services/Serverlogin.js';
 
 class Test extends Component {
 
@@ -10,24 +10,25 @@ class Test extends Component {
     }
 
     handleClick() {
+        console.log('spa-for-all click')
         const params = {
             username: 'test123',
             password: 'password456'
         }
-        ServiceLogin(params, resp => {
-            const {stat} = resp;
-            const infoObj = {
-                ok: {
-                    msg: '登陆成功',
-                    method: 'success'
-                },
-                error: {
-                    msg: '登陆失败',
-                    method: 'error'
-                }
-            }
-            message[infoObj[stat].method](infoObj[stat].msg, 3);
-        });
+        // ServiceLogin(params, resp => {
+        //     const {stat} = resp;
+        //     const infoObj = {
+        //         ok: {
+        //             msg: '登陆成功',
+        //             method: 'success'
+        //         },
+        //         error: {
+        //             msg: '登陆失败',
+        //             method: 'error'
+        //         }
+        //     }
+        //     message[infoObj[stat].method](infoObj[stat].msg, 3);
+        // });
     }
 
     render() {
@@ -39,8 +40,9 @@ class Test extends Component {
                 <p>
                     <Button
                         onClick={this.handleClick}
+                        id="phantomJS"
                     >
-                        登陆
+                        login 213
                     </Button>
                 </p>
                 <p>

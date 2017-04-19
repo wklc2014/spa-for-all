@@ -4,7 +4,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var HtmlWebpackIncludeAssetsPlugin = require('html-webpack-include-assets-plugin');
 var OpenBrowserPlugin = require("open-browser-webpack-plugin");
 var baseConfig = require('./webpack.base.config.js');
-var entryConfig = require('./webpack.entry.js');
+var entryConfig = require('./webpack.entries.js');
 var currentProject = require('./currentProject.js');
 
 var config = Object.assign({}, baseConfig, {

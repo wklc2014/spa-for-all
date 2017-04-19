@@ -2,7 +2,7 @@
  * 默认情况下，pretender 会拦截所有的 ajax 请求
  * 除非显示用 passthrough 声明取消拦截
  */
-import api from '../service/api.js';
+import api from '../services/api.js';
 import Pretender from 'pretender';
 import PretenderIncrement from './PretenderIncrement.js';
 import PretenderLogin from './PretenderLogin.js';

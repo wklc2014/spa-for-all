@@ -3,7 +3,7 @@ var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var baseConfig = require('./webpack.base.config.js');
-var entryConfig = require('./webpack.entry.js');
+var entryConfig = require('./webpack.entries.js');
 var currentProject = require('./currentProject.js');
 var config = Object.assign({}, baseConfig);
 

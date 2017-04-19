@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import store from '../redux/store';
 import history from '../redux/history';
-import route from '../route';
+import route from '../routes';
 import DevTools from '../redux/store/DevTools.jsx';
 import '../assets/scss/index.scss';
 

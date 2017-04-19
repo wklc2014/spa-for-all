@@ -1,10 +1,10 @@
 import React from 'react';
 import { Router, Route, IndexRoute } from 'react-router';
 
-import App from '../component/AppContainer.jsx';
-import Dashboard from '../component/view/DashboardContainer.jsx';
-import Test from '../component/view/Test.jsx';
-import Counter from '../component/view/CounterContainer.jsx';
+import App from '../components/AppContainer.jsx';
+import Dashboard from '../components/view/DashboardContainer.jsx';
+import Test from '../components/view/Test.jsx';
+import Counter from '../components/view/CounterContainer.jsx';
 
 function route(history, store) {
     const validate = (nextState, replaceState, callback) => {

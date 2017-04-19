@@ -1,5 +1,5 @@
 import ActionType from '../actionType';
-import ServiceIncrement from '../../service/ServiceIncrement.js';
+import ServiceIncrement from '../../services/ServiceIncrement.js';
 
 // 导出加一的方法
 export function ActionIncrement() {

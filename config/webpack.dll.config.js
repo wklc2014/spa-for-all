@@ -5,6 +5,10 @@ var currentProject = require('./currentProject.js');
 module.exports = {
     entry: {
         vendor: [
+            'brace',
+            'react-ace',
+            'react-click-outside',
+            'rc-form-validation',
             'react',
             'react-dom',
             'react-redux',
@@ -24,7 +28,8 @@ module.exports = {
             'lodash',
             'mockjs',
             'moment',
-            'pretender'
+            'pretender',
+            'underscore'
         ]
     },
     output: {

@@ -1,7 +1,7 @@
 var webpack = require('webpack');
 var path = require('path');
 var autoprefixer = require('autoprefixer');
-var entryConfig = require('./webpack.entry.js');
+var entryConfig = require('./webpack.entries.js');
 var currentProject = require('./currentProject.js');
 var __ENV__ = require('./env.js');
 
@@ -17,7 +17,8 @@ var config = {
         rules: [{
             test: /\.js|.jsx?$/,
             include: [
-                path.join(currentProject, "src")
+                path.join(currentProject, "src"),
+                path.join(__dirname, '../env_config.js')
             ],
             loader: "babel-loader"
         }, {

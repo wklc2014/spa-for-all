@@ -1,4 +1,4 @@
-import api from '../service/api.js';
+import api from '../services/api.js';
 
 const __MOCK__ = api.increment
 const __URL__ = __MOCK__.url;

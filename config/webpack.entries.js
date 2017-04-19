@@ -1,7 +1,7 @@
 var fs = require('fs');
 var path = require('path');
 var currentProject = require('./currentProject.js');
-var entryPath = path.resolve(currentProject, 'src/entry');
+var entryPath = path.resolve(currentProject, 'src/entries');
 
 var jsConfig = {};
 var htmlConfig = {};
