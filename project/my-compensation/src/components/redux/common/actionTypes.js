@@ -1,0 +1,87 @@
+// 用户登录相关
+export const USER_INFO = 'USER_INFO';
+
+export const IS_LOADING = 'IS_LOADING';
+
+// 获取理赔数据
+export const ASSESS_SUCCESS = 'ASSESS_SUCCESS';
+export const ASSESS_FAIL = 'ASSESS_FAIL';
+
+export const INFO_QUERY_SUCCESS = 'INFO_QUERY_SUCCESS';
+export const INFO_QUERY_ERROR = 'INFO_QUERY_ERROR';
+export const ACCIDENT_UPDATE = 'ACCIDENT_UPDATE';
+export const TASKFROM_SAVE = 'TASKFROM_SAVE';
+export const VOUCHER_UPDATE = 'VOUCHER_UPDATE';
+export const VOUCHER_ADD = 'VOUCHER_ADD';
+
+export const CHANGE_FUND = 'CHANGE_FUND';
+export const CHANGE_FUND_TYPE = 'CHANGE_FUND_TYPE';
+export const CHANGE_CARDNO = 'CHANGE_CARDNO';
+export const UPDATEEXT_SUCCESS = 'UPDATEEXT_SUCCESS';
+
+export const HISTORY_SUCCESS = 'HISTORY_SUCCESS';
+export const HISTORY_FAIL = 'HISTORY_FAIL';
+export const VOUCHEREXT_SAVE = 'VOUCHEREXT_SAVE';
+export const RISKNUMBER_SAVE = 'RISKNUMBER_SAVE';
+
+// 赔付历史
+export const PAYMENT_HISTORY_DATA = 'PAYMENT_HISTORY_DATA';
+export const TASK_CENTER_ID = 'TASK_CENTER_ID';
+
+// 保单信息
+export const POLICY_SUCCESS = 'POLICY_SUCCESS';
+export const POLICY_FAIL = 'POLICY_FAIL';
+
+export const POLICY_SEARCH = 'POLICY_SEARCH';
+
+// 理赔报案
+export const REPORT_CASE_SUCCESS = 'REPORT_CASE_SUCCESS';
+export const REPORT_CASE_FAIL = 'REPORT_CASE_FAIL';
+export const UPDATE_ACCIDENT = 'UPDATE_ACCIDENT';
+export const UPDATE_USERINFO = 'UPDATE_USERINFO';
+export const UPDATE_SUPPLEMENT = 'UPDATE_SUPPLEMENT';
+export const ADD_SUPPLEMENT = 'ADD_SUPPLEMENT';
+export const REMOVE_SUPPLEMENT = 'REMOVE_SUPPLEMENT';
+export const GET_SUPPLEMENT_DATA = 'GET_SUPPLEMENT_DATA';
+
+// 案件信息
+export const RISK_SUCCESS = 'RISK_SUCCESS';
+export const RISK_FAIL = 'RISK_FAIL';
+export const RISK_DELETE = 'RISK_DELETE';
+export const RISK_UPDATE = 'RISK_UPDATE';
+export const RISK_ADD = 'RISK_ADD';
+export const RISK_TASK_UPDATE = 'RISK_TASK_UPDATE';
+
+// 智能理算
+export const RISK_TASK_SUCCESS = 'RISK_TASK_SUCCESS';
+export const RISK_TASK_FAIL = 'RISK_TASK_FAIL';
+export const TAG = 'TAG';
+
+// 短信通知
+export const SMS_INFO = 'SMS_INFO';
+export const SMS_LIST_SUCCESS = 'SMS_LIST_SUCCESS';
+export const SMS_LIST_FAIL = 'SMS_LIST_FAIL';
+
+// 智慧理赔信息
+export const WITCLAIM_SUCCESS = 'WITCLAIM_SUCCESS';
+export const WITCLAIM_FAIL = 'WITCLAIM_FAIL';
+export const EVALUATION_SUCCESS = 'EVALUATION_SUCCESS';
+export const EVALUATION_SING_SUCCESS = 'EVALUATION_SING_SUCCESS';
+export const EVALUATION_FAIL = 'EVALUATION_FAIL';
+
+// 补传凭证规则
+export const VOUCHER_RULE_SUCCESS = 'VOUCHER_RULE_SUCCESS';
+export const VOUCHER_RULE_FAIL = 'VOUCHER_RULE_FAIL';
+export const VOUCHER_RULE_VALUE = 'VOUCHER_RULE_VALUE';
+
+// 智能引导
+export const GUIDE_DATA = 'GUIDE_DATA';
+export const GUIDE_UPDATE = 'GUIDE_UPDATE';
+export const GUIDE_ASSESS = 'GUIDE_ASSESS';
+export const GUIDE_DATA_ID = 'GUIDE_DATA_ID';
+
+//图片识别
+export const RECOGNITION_SUCCESS = 'RECOGNITION_SUCCESS';
+export const RECOGNITION_FAIL = 'RECOGNITION_FAIL';
+export const UPDATEPICINFO = 'UPDATEPICINFO';
+

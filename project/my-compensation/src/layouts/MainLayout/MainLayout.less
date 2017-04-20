@@ -1,0 +1,51 @@
+@margin: 16px;
+@sideWidth: 160px;
+@headHeight: 90px;
+
+.normal {
+  height: 100%;
+  background: #ececec;
+  padding-top: @headHeight;
+  display: table;
+  width: 100%;
+}
+
+.affix {
+    z-index: 1060;
+    position: relative;
+}
+
+.content{
+  position: relative;
+  z-index: 1;
+  display: table;
+  width: 100%;
+}
+
+.contentInner{
+  display: flex;
+  width: auto;
+  min-width: 100%;
+  height: 100%;
+  padding: @margin 0;
+}
+
+.side {
+  border-radius: 0 4px 4px 0;
+  background-color: #FFF;
+}
+.sideInner{
+  width: @sideWidth;
+}
+
+.main {
+  flex: 1 1 100%;
+  border-radius: 4px;
+  margin-left: 16px;
+}
+
+.mainInner{
+    display: flex;
+    height: 100%;
+    min-width: 824px;
+}

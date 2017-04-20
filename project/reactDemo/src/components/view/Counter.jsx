@@ -68,6 +68,7 @@ class Counter extends Component {
                 </div>
                 <p className="baseLine">{this.state.number}</p>
                 <div className="box" />
+                <p>modified 123 555</p>
             </div>
         );
     }

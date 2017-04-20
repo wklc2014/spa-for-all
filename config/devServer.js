@@ -20,6 +20,7 @@ var server = new WebpackDevServer(webpack(webpackConfig), {
     publicPath: webpackConfig.output.publicPath,
     contentBase: path.join(currentProject, 'dist'),
     hot: true,
+    inline: true,
     host: 'localhost',
     port: 9000,
     stats: {

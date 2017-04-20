@@ -14,7 +14,7 @@ class Dashboard extends Component {
                     <img src={picJPG} alt="" />
                 </p>
                 <p>
-                    <a href="home.html">Home 1</a>
+                    <a href="home.html">Home 12</a>
                 </p>
             </div>
         );

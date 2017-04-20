@@ -1,0 +1,45 @@
+.mockTable {
+    @borderColor: #e9e9e9;
+    @borderRadius: 6px;
+    border: 1px solid @borderColor;
+    border-radius: @borderRadius;
+    display: flex;
+    flex-wrap: wrap;
+    .mockTableItem {
+        border-right: 1px solid @borderColor;
+        border-bottom: 1px solid @borderColor;
+        width: 33.33%;
+        &:nth-child(3n) {
+            border-right: none;
+        }
+        .mockTableItemTh,
+        .mockTableItemTd {
+            display: inline-block;
+            padding: 16px 8px;
+            width: 50%;
+        }
+        .mockTableItemTh {
+            background-color: #f7f7f7;
+            font-weight: bold;
+            border-right: 1px solid @borderColor;
+        }
+    }
+    &.mockTable-1 {
+        .mockTableItem:last-child{
+            border-bottom: none;
+        }
+    }
+    &.mockTable-2 {
+        .mockTableItem:nth-last-child(1),
+        .mockTableItem:nth-last-child(2) {
+            border-bottom: none;
+        }
+    }
+    &.mockTable-0 {
+        .mockTableItem:nth-last-child(1),
+        .mockTableItem:nth-last-child(2),
+        .mockTableItem:nth-last-child(3) {
+            border-bottom: none;
+        }
+    }
+}
