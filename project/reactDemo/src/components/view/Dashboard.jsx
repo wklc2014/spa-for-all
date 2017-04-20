@@ -8,13 +8,13 @@ class Dashboard extends Component {
         return (
             <div className="appWraper">
                 <h2 className="mb16">
-                    This is home page {counter}
+                    This is home page  {counter}
                 </h2>
                 <p>
                     <img src={picJPG} alt="" />
                 </p>
                 <p>
-                    <a href="home.html">Home</a>
+                    <a href="home.html">Home 1</a>
                 </p>
             </div>
         );

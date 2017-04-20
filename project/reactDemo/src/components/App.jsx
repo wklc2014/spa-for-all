@@ -94,7 +94,7 @@ class App extends Component {
                         {this.props.children}
                     </Content>
                     <Footer className="footerWraper">
-                        Footer 1
+                        Footer
                     </Footer>
                 </Layout>
             </Layout>
