@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Button, message } from 'antd';
+import moment from 'moment';
 import ServiceLogin from '../../services/Serverlogin.js';
 
 class Test extends Component {
@@ -10,11 +11,11 @@ class Test extends Component {
     }
 
     handleClick() {
-        console.log('spa-for-all click')
-        const params = {
-            username: 'test123',
-            password: 'password456'
-        }
+        // console.log('spa-for-all click')
+        // const params = {
+        //     username: 'test123',
+        //     password: 'password456'
+        // }
         // ServiceLogin(params, resp => {
         //     const {stat} = resp;
         //     const infoObj = {
@@ -29,6 +30,10 @@ class Test extends Component {
         //     }
         //     message[infoObj[stat].method](infoObj[stat].msg, 3);
         // });
+        const time = '1490013680000';
+        // const formatTime = moment().format('YYYY-MM-DD HH:mm:ss');
+        const formatTime = new Date(time);
+        console.log(formatTime)
     }
 
     render() {
