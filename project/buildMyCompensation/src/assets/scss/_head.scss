@@ -1,0 +1,47 @@
+.headerWraper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 90px;
+    background-color: #fff;
+    @extend .global-center;
+    .logo {
+        display: flex;
+        align-items: center;
+        color: #444;
+        @extend .global-height;
+        .logoLink {
+            display: block;
+            display: flex;
+        }
+        .icon {
+            width: 40px;
+            height: 33px;
+            background: url("../../assets/img/logo.png") no-repeat;
+        }
+        .title {
+            font-size: 10px;
+            color: #999;
+            margin: 0 8px;
+            text-align: center;
+            i {
+                font-style: normal;
+                overflow: hidden;
+                display: block;
+                text-align: justify;
+                text-justify: inter-ideograph;
+                text-align-last: justify;
+                &:first-child {
+                    font-size: 22px;
+                    color: #199ed1;
+                    line-height: 1;
+                }
+            }
+        }
+        .text{
+            font-size: 13px;
+            color: #999;
+        }
+    }
+}

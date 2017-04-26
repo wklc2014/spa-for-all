@@ -6,3 +6,4 @@ var cleanPath = path.join(currentProject, 'dist');
 rimraf(cleanPath, function () {
     console.log('clean files success');
 })
+
