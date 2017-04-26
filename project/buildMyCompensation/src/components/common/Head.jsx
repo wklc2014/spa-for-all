@@ -8,7 +8,7 @@ class Head extends Component {
         super(props);
         this.processLogoEle = this.processLogoEle.bind(this);
         this.state = {
-            hasLogin: false
+            hasLogin: true
         }
     }
 
@@ -17,22 +17,16 @@ class Head extends Component {
             case 'home':
                 return (
                     <a href="/" className="logoLink">
-                        <span className="icon"></span>
-                        <span className="title">
-                            <i>理赔天平</i>
-                            <i>themis.alipay.com</i>
-                        </span>
+                        <span>理赔天平</span>
+                        <i>themis.alipay.com</i>
                     </a>
                 );
                 break;
             default:
                 return (
                     <Link to="/" className="logoLink">
-                        <span className="icon"></span>
-                        <span className="title">
-                            <i>理赔天平</i>
-                            <i>themis.alipay.com</i>
-                        </span>
+                        <span>理赔天平</span>
+                        <i>themis.alipay.com</i>
                     </Link>
                 )
         }
@@ -41,22 +35,24 @@ class Head extends Component {
     processAdditionEle(username) {
         if (username) {
             return (
-                <div className="child">
+                <div className="userChild">
                     <i className="iconfont icon-yonghu mr8" />
                     <span className="username">
-                        {username}
+                        admin
                     </span>
                 </div>
             )
         }
         return (
-            <a
-                href="denglu"
-                className="feedback"
-            >
-                <i className="iconfont icon-yonghu" />
-                <span>登陆</span>
-            </a>
+            <div className="userChild">
+                <a
+                    href="denglu"
+                    className="feedback"
+                >
+                    <i className="iconfont icon-yonghu" />
+                    <span>登陆</span>
+                </a>
+            </div>
         )
     }
 
@@ -66,24 +62,27 @@ class Head extends Component {
         const logoEle = this.processLogoEle(callFrom);
         const addtionEle = this.processAdditionEle(hasLogin);
 
-        const wraperCls = classNames({
+        const headerCls = classNames({
+            'headerCls': true,
             'global-wraper': true,
             'global-height': true,
             'global-center': callFrom === 'home'
         })
 
         return (
-            <div className="headerWraper">
-                <div className={wraperCls}>
-                    <div className="logo">
+            <section className="headerWraper">
+                <div className={headerCls}>
+                    <div className="headerLogoCls">
                         {logoEle}
-                        <div className="text">公正理赔值得信赖</div>
+                        <div className="logoText">公正理赔值得信赖</div>
                     </div>
-                    <div className="user">
-                        {addtionEle}
+                    <div className="headerUserCls">
+                        <div className="userChild">
+                            {addtionEle}
+                        </div>
                     </div>
                 </div>
-            </div>
+            </section>
         )
     }
 }

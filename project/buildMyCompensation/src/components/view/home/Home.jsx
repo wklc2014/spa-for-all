@@ -6,7 +6,7 @@ import { Row, Col } from 'antd';
 class Home extends Component {
     render() {
         return (
-            <div className="homeContainer">
+            <div className="homeWraper">
                 <Head callFrom="home" />
                 <Row>
                     <Col>

@@ -22,6 +22,10 @@ if (isExist) {
     console.log('entry path is error');
 }
 
+if (!Object.keys(jsConfig).length) {
+    console.log('webpack entry is empty.');
+}
+
 module.exports = {
     js: jsConfig,
     html: htmlConfig
