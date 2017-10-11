@@ -61,18 +61,21 @@ class FormGroup extends Component {
         };
         ids.forEach((id) => {
             const instance = this.getInstance(id);
-            if (this.getFieldType(id) !== 'editor') {
-                instance.props.form.validateFields((errors, values) => {
-                    if (errors && ret.canSubmit) {
-                        ret.canSubmit = false;
-                    }
-                    Object.assign(ret.errors, errors);
-                    Object.assign(ret.values, values);
-                })
-            } else {
-                const validateRet = instance.validateFields();
-                Object.assign(ret.errors, validateRet.errors);
-                Object.assign(ret.values, validateRet.values);
+            const type = this.getFieldType(id);
+            if (type !== 'text') {
+                if (this.getFieldType(id) !== 'editor') {
+                    instance.props.form.validateFields((errors, values) => {
+                        if (errors && ret.canSubmit) {
+                            ret.canSubmit = false;
+                        }
+                        Object.assign(ret.errors, errors);
+                        Object.assign(ret.values, values);
+                    })
+                } else {
+                    const validateRet = instance.validateFields();
+                    Object.assign(ret.errors, validateRet.errors);
+                    Object.assign(ret.values, validateRet.values);
+                }
             }
         });
         return ret;
@@ -83,10 +86,13 @@ class FormGroup extends Component {
         Object.keys(fields).forEach((id) => {
             if (ids.indexOf(id) !== -1) {
                 const instance = this.getInstance(id);
-                if (this.getFieldType(id) === 'editor') {
-                    instance.setValue(fields[id]);
-                } else {
-                    instance.props.form.setFieldsValue({ [id]: fields[id] });
+                const type = this.getFieldType(id);
+                if (type !== 'text') {
+                    if (this.getFieldType(id) === 'editor') {
+                        instance.setValue(fields[id]);
+                    } else {
+                        instance.props.form.setFieldsValue({ [id]: fields[id] });
+                    }
                 }
             }
         });
@@ -97,16 +103,19 @@ class FormGroup extends Component {
         const fieldValue = {};
         if (id && ids.indexOf(id) !== -1) {
             const instance = this.getInstance(id);
-            let value;
-            if (this.getFieldType(id) === 'editor') {
-                value = instance.getValue();
-                if (value === instance.EMPTY_VALUE) {
-                    value = '';
+            const type = this.getFieldType(id);
+            if (type !== 'text') {
+                let value;
+                if (this.getFieldType(id) === 'editor') {
+                    value = instance.getValue();
+                    if (value === instance.EMPTY_VALUE) {
+                        value = '';
+                    }
+                } else {
+                    value = instance.props.form.getFieldValue(id);
                 }
-            } else {
-                value = instance.props.form.getFieldValue(id);
+                fieldValue[id] = value;
             }
-            fieldValue[id] = value;
         }
         return fieldValue;
     }
@@ -129,11 +138,14 @@ class FormGroup extends Component {
         fields.forEach((id) => {
             if (ids.indexOf(id) !== -1) {
                 const instance = this.getInstance(id);
-                if (this.getFieldType(id) === 'editor') {
-                    instance.editor.setValue(this.props.values[id] || '');
-                    instance.resetFields(false);
-                } else {
-                    instance.props.form.resetFields();
+                const type = this.getFieldType(id);
+                if (type !== 'text') {
+                    if (this.getFieldType(id) === 'editor') {
+                        instance.editor.setValue(this.props.values[id] || '');
+                        instance.resetFields(false);
+                    } else {
+                        instance.props.form.resetFields();
+                    }
                 }
             }
         });
@@ -177,7 +189,7 @@ class FormGroup extends Component {
             return {
                 type: val.type,
                 id: val.id,
-                rules: val.rules || [],
+                formItem: val.formItem || {},
                 api: newApi,
                 params: newParams,
                 options: val.options || {},

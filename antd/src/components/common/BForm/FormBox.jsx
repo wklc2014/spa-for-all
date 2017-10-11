@@ -31,11 +31,11 @@ class FormBox extends Component {
     static defaultProps = {
     }
 
-    // shouldComponentUpdate(nextProps, nextState) {
-    //     const next = JSON.stringify(nextProps);
-    //     const prev = JSON.stringify(this.props);
-    //     return next !== prev;
-    // }
+    shouldComponentUpdate(nextProps, nextState) {
+        const next = JSON.stringify(nextProps);
+        const prev = JSON.stringify(this.props);
+        return next !== prev;
+    }
 
     beforeUpdateValue = (value) => {
         const { params } = this.props;
@@ -179,14 +179,14 @@ class FormBox extends Component {
     }
 
     getNewlabel = () => {
-        const { label } = this.props.options;
+        const { label } = this.props.formItem;
         const newLabel = label;
         return newLabel;
     }
 
     getNewPlaceholder = () => {
-        const { type, id, params, options, api } = this.props;
-        const { label } = options;
+        const { type, id, params, formItem, api } = this.props;
+        const { label } = formItem;
         const { placeholder } = api;
         let newPlaceholder = placeholder || `请输入${label || id}`;
         switch (type) {
@@ -215,9 +215,9 @@ class FormBox extends Component {
             id: this.props.id,
             onChange: this.onChange,
             value: newValue,
-            options: {
+            formItem: {
                 ...newLayout,
-                ...this.props.options,
+                ...this.props.formItem,
                 className: newClassName,
                 label: newLabel,
             },
@@ -226,7 +226,7 @@ class FormBox extends Component {
                 style: newStyle,
                 placeholder: newPlaceholder,
             },
-            rules: this.props.rules,
+            options: this.props.options,
             params: {
                 ...this.props.params,
                 childSpan: newChildSpan,

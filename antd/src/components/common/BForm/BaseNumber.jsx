@@ -16,38 +16,35 @@ class BaseNumber extends Component {
             onChange,
             value,
             form,
-            rules,
+            formItem,
             params,
             api,
             options,
         } = this.props;
 
-        // const {
-        //     addType,
-        //     childGutter,
-        //     childSpan,
-        //     data,
-        // } = params;
+        const {
+            addType,
+            childGutter,
+            childSpan,
+            data,
+        } = params;
 
         const { getFieldDecorator } = form;
 
         const defaultProps = {
-            // ...api,
-            // onChange: (value) => {
-            //     props.onChange({ id, value });
-            // },
+            ...api,
+            onChange: (value) => {
+                props.onChange({ id, value });
+            },
         };
 
         const ChildEle = <InputNumber {...defaultProps} />;
 
         return (
-            <FormItem {...options}>
+            <FormItem {...formItem}>
                 {getFieldDecorator(id, {
-                    rules: [{
-                        required: true,
-                        message: '保单金额必填'
-                    }],
-                    // initialValue: value,
+                    ...options,
+                    initialValue: value,
                 })(ChildEle)}
             </FormItem>
         );

@@ -12,12 +12,13 @@ const RadioGroup = Radio.Group;
 class BaseInput extends Component {
 
     render() {
+        console.log('BaseInput>>> render')
         const {
             id,
             onChange,
             value,
             form,
-            rules,
+            formItem,
             params,
             api,
             options,
@@ -45,7 +46,7 @@ class BaseInput extends Component {
         const childSpanRight = lodash.get(childSpan, 'right', {});
         const inputEle = <Input {...defaultProps} />;
         let ChildEle = getFieldDecorator(id, {
-            rules,
+            ...options,
             initialValue: value,
         })(inputEle);
         switch (addType) {
@@ -113,7 +114,7 @@ class BaseInput extends Component {
                 break;
         }
 
-        return <FormItem {...options}>{ChildEle}</FormItem>;
+        return <FormItem {...formItem}>{ChildEle}</FormItem>;
     }
 }
 
