@@ -78,7 +78,7 @@ class TableGroup extends Component {
 
     getTableDataSource = () => {
         const { dataSource, configs, isTotal } = this.props;
-        if (!isTotal) {
+        if (!isTotal || !dataSource.length) {
             return dataSource;
         }
         const newDataSource = [...dataSource];
