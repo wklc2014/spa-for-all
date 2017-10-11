@@ -46,11 +46,11 @@ class FormBox extends Component {
         showTime: UTILS.DATE_PICKER_OPTIONS.showTime,
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
-        const next = JSON.stringify(nextProps);
-        const prev = JSON.stringify(this.props);
-        return next !== prev;
-    }
+    // shouldComponentUpdate(nextProps, nextState) {
+    //     const next = JSON.stringify(nextProps);
+    //     const prev = JSON.stringify(this.props);
+    //     return next !== prev;
+    // }
 
     beforeUpdateValue = (value) => {
         value = value;

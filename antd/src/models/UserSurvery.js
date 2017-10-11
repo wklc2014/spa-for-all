@@ -7,7 +7,7 @@ export default {
     state: {
         Basic: {
             lossPart: ['安徽省', '池州市', '石台县'],
-            userName: 'AB',
+            // userName: 'AB',
             carNumber: 'hijklmn',
             payMoney: ['03', '01', '06'],
             // reportDate: moment('2015-12-20 06:20:45'),
@@ -17,7 +17,8 @@ export default {
             ],
             address: '天府软件园D4',
             contactPhone: '',
-            // emailContent: '<p>123</p>'
+            // emailContent: '<p>123</p>',
+            formLayout: 'vertical',
         },
     },
 

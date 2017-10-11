@@ -3,7 +3,7 @@
  */
 import { connect } from 'dva';
 import React, { Component } from 'react';
-import { Button } from 'antd';
+import { Button, Modal } from 'antd';
 
 import * as CONFIGS from './common/';
 import FormGroup from '../common/BForm/FormGroup.jsx';
@@ -74,22 +74,34 @@ class SurveryContent extends Component {
             padding: '10px 20px'
         }
 
+        const { formLayout } = this.props.values;
+
+        let layout = '';
+        switch (formLayout) {
+            case 'horizontal':
+               layout = 'H2';
+               break;
+            case 'vertical':
+               layout = 'V';
+               break;
+            case 'inline':
+            default:
+               layout = 'I';
+               break;
+        }
+
         return (
             <section>
                 <div style={commonStyle}>
                     <FormGroup
                         ref="FormGroup"
-                        configs={CONFIGS.USER_SURVERY}
+                        configs={CONFIGS.UserSurvery}
                         col={3}
                         onChange={this.onChange}
-                        formProps={{
-                            layout: 'layout_2',
-                            defaultValue: false,
-                        }}
                         values={this.props.values}
                     />
                 </div>
-                <p>
+                <p style={{ paddingBottom: 16 }}>
                     <Button onClick={this.onSubmit} style={{ marginRight: 16 }}>
                         提交
                     </Button>
@@ -100,6 +112,15 @@ class SurveryContent extends Component {
                         重置
                     </Button>
                 </p>
+                {/*<div style={commonStyle}>
+                    <FormGroup
+                        ref="FormGroup2"
+                        configs={CONFIGS.UserRegister}
+                        onChange={this.onChange}
+                        layout={layout}
+                        values={this.props.values}
+                    />
+                </div>*/}
             </section>
         );
     }

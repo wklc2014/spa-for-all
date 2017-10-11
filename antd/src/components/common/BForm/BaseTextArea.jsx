@@ -9,109 +9,86 @@ import { Form, Input, Row, Col, Button } from 'antd';
 const FormItem = Form.Item;
 const { TextArea } = Input;
 
-const BaseTextArea = (props) => {
+class BaseTextArea extends Component {
 
-    const {
-        id,
-        rules,
-        value,
-        addType,
-        childGutter,
-        childSpan,
-        options,
+    render() {
+        const {
+            id,
+            onChange,
+            value,
+            form,
+            formItem,
+            params,
+            api,
+            options,
+        } = this.props;
 
-        className,
-        extra,
-        label,
-        layout,
+        const {
+            addType,
+            childGutter,
+            childSpan,
+            data,
+        } = params;
 
-        disabled,
-        onChange,
-        placeholder,
-        rows,
-        style,
-    } = props;
+        const { getFieldDecorator } = form;
 
-    const { getFieldDecorator } = props.form;
+        const defaultProps = {
+            ...api,
+            onChange: (e) => {
+                onChange({ id, value: e.target.value });
+            },
+            rows: api.rows || 4,
+        };
 
-    const defaultProps = {
-        disabled,
-        onChange: (e) => {
-            onChange({ id, value: e.target.value });
-        },
-        placeholder,
-        rows,
-        style,
-    };
+        const childSpanLeft = lodash.get(childSpan, 'left', {});
+        const childSpanRight = lodash.get(childSpan, 'right', {});
+        const inputEle = <TextArea {...defaultProps} />;
+        let ChildEle = getFieldDecorator(id, {
+            ...options,
+            initialValue: value,
+        })(inputEle);
+        switch (addType) {
+            case 'button':
+                const btnEle = data.map((v, i) => {
+                    const style = { marginBottom: 8 };
+                    if (i < data.length - 1) {
+                        style.marginRight = 8;
+                    }
 
-    const childSpanLeft = lodash.get(childSpan, 'left', {});
-    const childSpanRight = lodash.get(childSpan, 'right', {});
-    const inputEle = <TextArea {...defaultProps} />;
-    let ChildEle = getFieldDecorator(id, {
-        rules,
-        initialValue: value,
-    })(inputEle);
-    switch (addType) {
-        case 'button':
-            const btnEle = options.map((v, i) => {
-                const style = { marginBottom: 8 };
-                if (i < options.length - 1) {
-                    style.marginRight = 8;
-                }
+                    return (
+                        <Button
+                            disabled={api.disabled}
+                            key={i}
+                            type={v.type}
+                            style={style}
+                            onClick={(e) => {
+                                onChange({ id, value: v.value, type: 'button' });
+                            }}
+                        >
+                            {v.label}
+                        </Button>
+                    )
+                });
+                ChildEle = (
+                    <Row type="flex" gutter={childGutter}>
+                        <Col {...childSpanLeft}>{ChildEle}</Col>
+                        <Col {...childSpanRight}>{btnEle}</Col>
+                    </Row>
+                );
+                break;
+        }
 
-                return (
-                    <Button
-                        disabled={disabled}
-                        key={i}
-                        type={v.type}
-                        style={style}
-                        onClick={(e) => {
-                            onChange({ id, value: v.value, type: 'button' });
-                        }}
-                    >
-                        {v.label}
-                    </Button>
-                )
-            });
-            ChildEle = (
-                <Row type="flex" gutter={childGutter}>
-                    <Col {...childSpanLeft}>{ChildEle}</Col>
-                    <Col {...childSpanRight}>{btnEle}</Col>
-                </Row>
-            );
-            break;
+        return <FormItem {...formItem}>{ChildEle}</FormItem>;
     }
-
-    return (
-        <FormItem
-            {...layout}
-            label={label}
-            className={className}
-            extra={extra}
-        >
-            {ChildEle}
-        </FormItem>
-    );
 }
 
 BaseTextArea.propTypes = {
     id: propTypes.string.isRequired,
-    rules: propTypes.array,
-    addType: propTypes.string,
-    childGutter: propTypes.number,
-    childSpan: propTypes.object,
-    options: propTypes.array,
-
-    className: propTypes.string,
-    extra: propTypes.string,
-    label: propTypes.string,
-    layout: propTypes.object,
-
-    disabled: propTypes.bool,
     onChange: propTypes.func.isRequired,
-    placeholder: propTypes.string,
-    rows: propTypes.number,
-    style: propTypes.object,
+    formItem: propTypes.object,
+    params: propTypes.object,
+    api: propTypes.object,
+    options: propTypes.object,
 };
 
 export default Form.create()(BaseTextArea);

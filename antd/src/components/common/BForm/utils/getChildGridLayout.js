@@ -8,7 +8,7 @@ export default function getChildGridLayout(childSpan) {
         lg: span,
         xl: span,
         style: {
-            marginBottom: '8px',
+            // marginBottom: '8px',
         }
     };
 

@@ -10,32 +10,30 @@ import moment from 'moment';
 const FormItem = Form.Item;
 
 const BaseText = (props) => {
+
     const {
+        id,
         value,
-
-        className,
-        label,
-        layout,
-
-        style,
+        api,
+        formItem,
+        params,
     } = props;
 
+    const {
+        addType,
+        childGutter,
+        childSpan,
+        data,
+    } = params;
+
     const defaultProps = {
+        ...api,
         className: 'ant-form-text',
-        style,
     };
 
     const ChildEle = <span {...defaultProps}>{value}</span>;
 
-    return (
-        <FormItem
-            {...layout}
-            label={label}
-            className={className}
-        >
-            {ChildEle}
-        </FormItem>
-    );
+    return <FormItem {...formItem}>{ChildEle}</FormItem>;
 }
 
 BaseText.propTypes = {

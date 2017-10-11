@@ -9,80 +9,60 @@ import { Form, Select } from 'antd';
 const FormItem = Form.Item;
 const Option = Select.Option;
 
-const BaseSelect = (props) => {
+class BaseSelect extends Component {
 
-    const {
-        id,
-        rules,
-        value,
-        options,
+    render() {
+        const {
+            id,
+            onChange,
+            value,
+            form,
+            formItem,
+            params,
+            api,
+            options,
+        } = this.props;
 
-        className,
-        extra,
-        label,
-        layout,
+        const {
+            addType,
+            childGutter,
+            childSpan,
+            data,
+        } = params;
 
-        allowClear,
-        disabled,
-        dropdownMatchSelectWidth,
-        mode,
-        onChange,
-        placeholder,
-        style,
-    } = props;
+        const { getFieldDecorator } = form;
 
-    const { getFieldDecorator } = props.form;
+        const defaultProps = {
+            ...api,
+            onChange: (value) => {
+                onChange({ id, value });
+            },
+        };
 
-    const defaultProps = {
-        allowClear,
-        disabled,
-        dropdownMatchSelectWidth,
-        mode,
-        onChange: (value) => {
-            onChange({ id, value });
-        },
-        placeholder,
-        style,
-    };
+        const ChildEle = (
+            <Select {...defaultProps}>
+                {data.map((v, i) => <Option key={i} value={v.value}>{v.label}</Option>)}
+            </Select>
+        );
 
-    const ChildEle = (
-        <Select {...defaultProps}>
-            {options.map((v, i) => <Option key={i} value={v.value}>{v.label}</Option>)}
-        </Select>
-    );
-
-    return (
-        <FormItem
-            {...layout}
-            label={label}
-            className={className}
-            extra={extra}
-        >
-            {getFieldDecorator(id, {
-                rules,
-                initialValue: value,
-            })(ChildEle)}
-        </FormItem>
-    );
+        return (
+            <FormItem {...formItem}>
+                {getFieldDecorator(id, {
+                    ...options,
+                    initialValue: value,
+                })(ChildEle)}
+            </FormItem>
+        );
+    }
 }
 
 BaseSelect.propTypes = {
     id: propTypes.string.isRequired,
-    rules: propTypes.array,
-    options: propTypes.array,
-
-    className: propTypes.string,
-    extra: propTypes.string,
-    label: propTypes.string,
-    layout: propTypes.object,
-
-    allowClear: propTypes.bool,
-    disabled: propTypes.bool,
-    dropdownMatchSelectWidth: propTypes.bool,
-    mode: propTypes.string,
     onChange: propTypes.func.isRequired,
-    placeholder: propTypes.string,
-    style: propTypes.object,
+    formItem: propTypes.object,
+    params: propTypes.object,
+    api: propTypes.object,
+    options: propTypes.object,
 };
 
 export default Form.create()(BaseSelect);

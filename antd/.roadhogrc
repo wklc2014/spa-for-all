@@ -3,9 +3,7 @@
   "theme": {
     "@primary-color": "#1DA57A",
     "@link-color": "#1DA57A",
-    "@border-radius-base": "3px",
-    "@font-size-base": "12px",
-    "@line-height-base": "1.4"
+    "@border-radius-base": "3px"
   },
   "extraBabelPlugins": [
     "transform-runtime",

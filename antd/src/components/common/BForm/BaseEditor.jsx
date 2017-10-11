@@ -31,10 +31,12 @@ class BaseEditor extends Component {
     }
 
     initEditor = () => {
-        const { placeholder, value, id } = this.props;
+        const { api, params, value, id } = this.props;
+        const { placeholder } = api;
+        const { init } = params;
         // const { hasChanged } = this.state;
         this.editor = new Simditor({
-            ...this.props.init,
+            ...init,
             placeholder,
             textarea: $(`#${id}`),
         });
@@ -62,8 +64,8 @@ class BaseEditor extends Component {
     }
 
     getRules = () => {
-        const { rules, value } = this.props;
-        // const { hasChanged } = this.state;
+        const { options, value } = this.props;
+        const { rules } = options;
         const newRules = {};
         if (!rules) {
             return newRules;
@@ -108,23 +110,26 @@ class BaseEditor extends Component {
 
     render() {
         const {
-            className,
-            label,
-            layout,
-            style,
-            value,
-
-            disabled,
             id,
             onChange,
+            value,
+            form,
+            formItem,
+            params,
+            api,
             options,
-            rules,
         } = this.props;
 
+        const {
+            addType,
+            childGutter,
+            childSpan,
+            data,
+        } = params;
+
         const defaultProps = {
-            disabled,
+            ...api,
             id,
-            style,
         };
 
         const ChildEle = <textarea {...defaultProps} />;
@@ -135,12 +140,7 @@ class BaseEditor extends Component {
         })
 
         return (
-            <FormItem
-                {...layout}
-                label={label}
-                className={className}
-                {...newRules}
-            >
+            <FormItem {...formItem} {...newRules}>
                 <div id={`FormItem_${id}_Wraper`} className={wraperClassName}>
                     {ChildEle}
                 </div>
@@ -150,15 +150,12 @@ class BaseEditor extends Component {
 }
 
 BaseEditor.propTypes = {
-    className: propTypes.string,
-    label: propTypes.string,
-    layout: propTypes.object,
-    style: propTypes.object,
-
-    disabled: propTypes.bool,
     id: propTypes.string.isRequired,
     onChange: propTypes.func.isRequired,
-    rules: propTypes.array,
+    formItem: propTypes.object,
+    params: propTypes.object,
+    api: propTypes.object,
+    options: propTypes.object,
 };
 
 export default BaseEditor;

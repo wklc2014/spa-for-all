@@ -9,77 +9,57 @@ import { Form, Cascader } from 'antd';
 
 const FormItem = Form.Item;
 
-const BaseCascader = (props) => {
-    const {
-        id,
-        rules,
-        value,
+class BaseCascader extends Component {
 
-        className,
-        extra,
-        label,
-        layout,
+    render() {
+        const {
+            id,
+            onChange,
+            value,
+            form,
+            formItem,
+            params,
+            api,
+            options,
+        } = this.props;
 
-        allowClear,
-        disabled,
-        onChange,
-        options,
-        placeholder,
-        showSearch,
-        style,
-    } = props;
+        const {
+            addType,
+            childGutter,
+            childSpan,
+            data,
+        } = params;
 
-    const { getFieldDecorator } = props.form;
+        const { getFieldDecorator } = form;
 
-    const defaultProps = {
-        allowClear,
-        disabled,
-        onChange: (value) => {
-            onChange({ id, value });
-        },
-        options,
-        placeholder,
-        showSearch,
-        style,
-    };
+        const defaultProps = {
+            ...api,
+            options: data,
+            onChange: (value) => {
+                onChange({ id, value });
+            },
+        };
 
-    const ChildEle = <Cascader {...defaultProps} />;
+        const ChildEle = <Cascader {...defaultProps} />;
 
-    return (
-        <FormItem
-            {...layout}
-            label={label}
-            className={className}
-            extra={extra}
-        >
-            {getFieldDecorator(id, {
-                rules,
-                initialValue: value,
-            })(ChildEle)}
-        </FormItem>
-    );
+        return (
+            <FormItem {...formItem}>
+                {getFieldDecorator(id, {
+                    ...options,
+                    initialValue: value,
+                })(ChildEle)}
+            </FormItem>
+        );
+    }
 }
 
 BaseCascader.propTypes = {
     id: propTypes.string.isRequired,
-    rules: propTypes.array,
-
-    className: propTypes.string,
-    extra: propTypes.string,
-    label: propTypes.oneOfType([
-        propTypes.element,
-        propTypes.string,
-        propTypes.node,
-    ]),
-    layout: propTypes.object,
-
-    allowClear: propTypes.bool,
-    disabled: propTypes.bool,
     onChange: propTypes.func.isRequired,
-    options: propTypes.array.isRequired,
-    placeholder: propTypes.string,
-    showSearch: propTypes.string,
-    style: propTypes.object,
+    formItem: propTypes.object,
+    params: propTypes.object,
+    api: propTypes.object,
+    options: propTypes.object,
 };
 
 export default Form.create()(BaseCascader);

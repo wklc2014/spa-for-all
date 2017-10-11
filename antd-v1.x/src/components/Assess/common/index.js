@@ -44,7 +44,11 @@ export const QUERY = {
     },
     instProdNo: {
         type: 'input',
-        label: '机构产品'
+        label: '机构产品',
+        rules: [{
+            required: true,
+            message: '机构产品必填'
+        }]
     },
     instId: {
         type: 'enum',

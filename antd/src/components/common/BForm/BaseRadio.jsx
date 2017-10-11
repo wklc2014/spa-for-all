@@ -10,82 +10,71 @@ const FormItem = Form.Item;
 const RadioGroup = Radio.Group;
 const RadioButton = Radio.Button;
 
-const BaseRadio =  (props) => {
+class BaseRadio extends Component {
 
-    const {
-        id,
-        rules,
-        value,
-        addType,
-        options,
+    render() {
+        const {
+            id,
+            onChange,
+            value,
+            form,
+            formItem,
+            params,
+            api,
+            options,
+        } = this.props;
 
-        className,
-        label,
-        layout,
+        const {
+            addType,
+            childGutter,
+            childSpan,
+            data,
+        } = params;
 
-        disabled,
-        onChange,
-        style,
-    } = props;
+        const { getFieldDecorator } = form;
 
-    const { getFieldDecorator } = props.form;
+        const defaultProps = {
+            ...api,
+            onChange: (e) => {
+                onChange({ id, value: e.target.value });
+            },
+        };
 
-    const defaultProps = {
-        disabled,
-        onChange: (value) => {
-            onChange({ id, value });
-        },
-        style,
-    };
+        let ChildEle = null;
+        switch (addType) {
+            case 'button':
+                ChildEle = (
+                    <RadioGroup {...defaultProps}>
+                        {data.map((v, i) => <RadioButton key={i} value={v.value}>{v.label}</RadioButton>)}
+                    </RadioGroup>
+                );
+                break;
+            default:
+                ChildEle = (
+                    <RadioGroup {...defaultProps}>
+                        {data.map((v, i) => <Radio key={i} value={v.value}>{v.label}</Radio>)}
+                    </RadioGroup>
+                );
+        }
 
-    let ChildEle = null;
-    switch (addType) {
-        case 'button':
-            ChildEle = (
-                <RadioGroup {...defaultProps}>
-                    {options.map((v, i) => <RadioButton key={i} value={v.value}>{v.label}</RadioButton>)}
-                </RadioGroup>
-            );
-            break;
-        default:
-            ChildEle = (
-                <RadioGroup {...defaultProps}>
-                    {options.map((v, i) => <Radio key={i} value={v.value}>{v.label}</Radio>)}
-                </RadioGroup>
-            );
+        return (
+            <FormItem {...formItem}>
+                {getFieldDecorator(id, {
+                    ...options,
+                    initialValue: value,
+                })(ChildEle)}
+            </FormItem>
+        );
     }
-
-    return (
-        <FormItem
-            {...layout}
-            label={label}
-            className={className}
-        >
-            {getFieldDecorator(id, {
-                rules,
-                initialValue: value,
-            })(ChildEle)}
-        </FormItem>
-    );
 }
 
 BaseRadio.propTypes = {
     id: propTypes.string.isRequired,
-    rules: propTypes.array,
-    addType: propTypes.string,
-    options: propTypes.array,
-
-    className: propTypes.string,
-    label: propTypes.oneOfType([
-        propTypes.element,
-        propTypes.string,
-        propTypes.node,
-    ]),
-    layout: propTypes.object,
-
-    disabled: propTypes.bool,
     onChange: propTypes.func.isRequired,
-    style: propTypes.object,
+    formItem: propTypes.object,
+    params: propTypes.object,
+    api: propTypes.object,
+    options: propTypes.object,
 };
 
 export default Form.create()(BaseRadio);

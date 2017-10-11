@@ -36,15 +36,15 @@ const BaseInput = (props) => {
 
     const defaultProps = {
         ...getFieldProps(id, {
-            rules,
+            // rules,
             onChange: (e) => {
                 onChange({ id, value: e.target.value });
             },
         }),
-        disabled,
-        placeholder,
-        size: 'large',
-        style,
+        // disabled,
+        // placeholder,
+        // size: 'large',
+        // style,
         value,
     };
 
@@ -54,89 +54,22 @@ const BaseInput = (props) => {
     const childSpanRight = lodash.get(childSpan, 'right', {});
     const inputEle = <Input {...defaultProps} />;
 
-    switch (addType) {
-        case 'button':
-            const btnEle = options.map((v, i) => {
-                const style = { marginBottom: 8 };
-                if (i < options.length - 1) {
-                    style.marginRight = '8px';
-                }
 
-                const btnProps = { key: i, type: v.type, size: 'large', style, disabled, };
-
-                if (v.value === 'city') {
-                    return (
-                        <Cascader
-                            key={i}
-                            options={v.citys}
-                            onChange={(value) => {
-                                onChange({ id, value: v.value, type: 'button', addValue: value, });
-                            }}
-                        >
-                            <Button {...btnProps}>{v.label}</Button>
-                        </Cascader>
-                    );
-                }
-
-                return (
-                    <Button
-                        {...btnProps}
-                        onClick={() => {
-                            onChange({ id, value: v.value, type: 'button', });
-                        }}
-                    >
-                        {v.label}
-                    </Button>
-                )
-            });
-            ChildEle = (
-                <Row type="flex" gutter={childGutter}>
-                    <Col {...childSpanLeft}>
-                        {inputEle}
-                    </Col>
-                    <Col {...childSpanRight}>
-                        {btnEle}
-                    </Col>
-                </Row>
-            );
-            break;
-        case 'radio':
-            const inputValue = lodash.get(value, 'inputValue', undefined);
-            const addValue = lodash.get(value, 'addValue', undefined);
-            const radioEle = (
-                <RadioGroup
-                    disabled={disabled}
-                    value={addValue}
-                    onChange={(e) => {
-                        onChange({ id, value: e.target.value, type: 'radio', });
-                    }}
-                >
-                    {options.map((v, i) => <Radio key={i} value={v.value}>{v.label}</Radio>)}
-                </RadioGroup>
-            );
-            ChildEle = (
-                <Row type="flex" gutter={childGutter}>
-                    <Col {...childSpanLeft}>
-                        {inputEle}
-                    </Col>
-                    <Col {...childSpanRight}>
-                        {radioEle}
-                    </Col>
-                </Row>
-            );
-            break;
-        default:
-            ChildEle = inputEle;
-    }
 
     return (
         <FormItem
             {...layout}
             label={label}
-            className={className}
-            extra={extra}
         >
-            {ChildEle}
+            <Input
+                {...getFieldProps(id, {
+                // rules,
+                onChange: (e) => {
+                    onChange({ id, value: e.target.value });
+                },
+            })}
+                value={value}
+            />
         </FormItem>
     );
 }

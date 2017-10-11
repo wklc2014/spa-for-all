@@ -7,113 +7,87 @@ const FormItem = Form.Item;
 const Option = Select.Option;
 const InputGroup = Input.Group;
 
-const BaseInputAdd = (props) => {
+class BaseInputAdd extends Component {
 
-    const {
-        id,
-        rules,
-        value,
-        addType,
-        childGutter,
-        childSpan,
+    render() {
+        const {
+            id,
+            onChange,
+            value,
+            form,
+            formItem,
+            params,
+            api,
+            options,
+        } = this.props;
 
-        className,
-        extra,
-        label,
-        layout,
+        const {
+            addType,
+            childGutter,
+            childSpan,
+            data,
+        } = params;
 
-        disabled,
-        onChange,
-        placeholder,
-        style,
+        const { getFieldDecorator } = form;
 
-        /* before-select */
-        dropdownMatchSelectWidth,
-        options,
-        selectWidth,
-    } = props;
+        const defaultProps = { ...api };
 
-    const { getFieldDecorator } = props.form;
-
-    const defaultProps = {
-        disabled,
-        placeholder,
-        style,
-    };
-
-    const inputValue = lodash.get(value, 'inputValue', undefined);
-    let addValue = lodash.get(value, 'addValue', undefined);
-    switch (addType) {
-        case 'before-select':
-            const selectOptionEle = options.map((v, i) => {
-                if (v.selected && addValue === undefined) {
-                    addValue = v.value;
-                }
-                return <Option key={i} value={v.value}>{v.label}</Option>;
-            });
-            const addonBeforeProps = {
-                disabled,
-                dropdownMatchSelectWidth,
-                onChange: (e) => {
+        const inputValue = lodash.get(value, 'inputValue', undefined);
+        let addValue = lodash.get(value, 'addValue', undefined);
+        switch (addType) {
+            case 'before-select':
+                const selectOptionEle = data.map((v, i) => {
+                    if (v.selected && addValue === undefined) {
+                        addValue = v.value;
+                    }
+                    return <Option key={i} value={v.value}>{v.label}</Option>;
+                });
+                const addonBeforeProps = {
+                    disabled: api.disabled,
+                    dropdownMatchSelectWidth: api.dropdownMatchSelectWidth,
+                    onChange: (e) => {
+                        onChange({
+                            id,
+                            value: { inputValue, addValue: e },
+                        });
+                    },
+                    style: { width: params.selectWidth },
+                    value: addValue,
+                };
+                const addonBeforeEle = <Select {...addonBeforeProps}>{selectOptionEle}</Select>;
+                Object.assign(defaultProps, { addonBefore: addonBeforeEle });
+                break;
+        }
+        const ChildEle = (
+            <Input
+                {...defaultProps}
+                onChange={(e) => {
                     onChange({
                         id,
-                        value: { inputValue, addValue: e },
+                        value: { inputValue: e.target.value, addValue },
                     });
-                },
-                style: { width: selectWidth },
-                value: addValue,
-            };
-            const addonBeforeEle = <Select {...addonBeforeProps}>{selectOptionEle}</Select>;
-            Object.assign(defaultProps, { addonBefore: addonBeforeEle });
-            break;
-    }
-    const ChildEle = (
-        <Input
-            {...defaultProps}
-            onChange={(e) => {
-                onChange({
-                    id,
-                    value: { inputValue: e.target.value, addValue },
-                });
-            }}
-        />
-    );
+                }}
+            />
+        );
 
-    return (
-        <FormItem
-            {...layout}
-            label={label}
-            className={className}
-            extra={extra}
-        >
-            {getFieldDecorator(id, {
-                rules,
-                initialValue: inputValue,
-            })(ChildEle)}
-        </FormItem>
-    );
+        return (
+            <FormItem {...formItem}>
+                {getFieldDecorator(id, {
+                    ...options,
+                    initialValue: inputValue,
+                })(ChildEle)}
+            </FormItem>
+        );
+    }
 }
 
 BaseInputAdd.propTypes = {
     id: propTypes.string.isRequired,
-    rules: propTypes.array,
-    addType: propTypes.string,
-    childGutter: propTypes.number,
-    childSpan: propTypes.object,
-
-    className: propTypes.string,
-    extra: propTypes.string,
-    label: propTypes.string,
-    layout: propTypes.object,
-
-    disabled: propTypes.bool,
     onChange: propTypes.func.isRequired,
-    placeholder: propTypes.string,
-    style: propTypes.object,
-
-    dropdownMatchSelectWidth: propTypes.bool,
-    options: propTypes.array.isRequired,
-    selectWidth: propTypes.number,
+    formItem: propTypes.object,
+    params: propTypes.object,
+    api: propTypes.object,
+    options: propTypes.object,
 };
 
 export default Form.create()(BaseInputAdd);

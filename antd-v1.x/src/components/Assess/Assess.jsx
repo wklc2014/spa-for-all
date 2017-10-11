@@ -3,7 +3,7 @@
  */
 import { connect } from 'dva';
 import React, { Component } from 'react';
-import { Button } from 'antd';
+import { Button, Modal } from 'antd';
 
 import * as CONFIGS from './common/';
 import FormGroup from '../common/BForm/FormGroup.jsx';
@@ -45,7 +45,7 @@ class Assess extends Component {
         const userType = this.getUserType();
         const newConfigs = {};
         Object.keys(configs).forEach((v) => {
-            console.log(userType === 'PERSON', v)
+            // console.log(userType === 'PERSON', v)
             if ((userType === 'PERSON' && v !== 'userId') || (userType !== 'PERSON' && v !== 'userRealName' && v !== 'userCertNo' )) {
                 newConfigs[v] = configs[v];
             }
@@ -63,28 +63,33 @@ class Assess extends Component {
 
         return (
             <section>
-                <div style={commonStyle}>
-                    <FormGroup
-                        ref="FormGroup"
-                        configs={this.getUserConfigs()}
-                        col={3}
-                        onChange={this.onChange}
-                        formProps={{
-                            layout: 'layout_2',
-                            defaultValue: true,
-                        }}
-                        values={this.state.values}
-                        sorted={false}
-                    />
-                </div>
-                <p>
-                    <Button onClick={this.onSubmit} style={{ marginRight: 16 }}>
-                        提交
-                    </Button>
-                    <Button onClick={this.onReset}>
-                        重置
-                    </Button>
-                </p>
+                <Modal
+                    visible
+                    title="222"
+                >
+                    <div style={commonStyle}>
+                        <FormGroup
+                            ref="FormGroup"
+                            configs={this.getUserConfigs()}
+                            col={3}
+                            onChange={this.onChange}
+                            formProps={{
+                                layout: 'layout_2',
+                                defaultValue: true,
+                            }}
+                            values={this.state.values}
+                            sorted={false}
+                        />
+                    </div>
+                    <p>
+                        <Button onClick={this.onSubmit} style={{ marginRight: 16 }}>
+                            提交
+                        </Button>
+                        <Button onClick={this.onReset}>
+                            重置
+                        </Button>
+                    </p>
+                </Modal>
             </section>
         );
     }

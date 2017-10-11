@@ -8,33 +8,48 @@ import FormBox from './FormBox.jsx';
 import getGridLayout from './utils/getGridLayout.js';
 import { getEditorBody, getEditorPlaceholder } from './utils/getEditorDom.js';
 
+const FormItem = Form.Item;
+
 class FormGroup extends Component {
 
     static defaultProps = {
         values: {},
+        isSort: true,
+        col: 1,
+        colSpan: 1,
+        childGutter: 16,
+        layout: 'H2',
+        space: 16,
     }
 
     getInstance = (id) => {
         const refBox = this.refs[`FormBox_${id}`]
-        const inst = refBox.formRef;
         const ref = refBox.refs[`BaseForm_${id}`];
-        if (this.getFieldType(id) === 'editor') {
+        const type = this.getFieldType(id);
+        if (type === 'editor') {
             return ref;
         }
-        return inst;
+        return refBox.formRef;
     }
 
     getConfigsIDs = () => {
         const { configs } = this.props;
-        return Object.keys(configs).map((v) => v);
+        const ids = configs.map((v) => v.id);
+        return ids;
     }
 
     getFieldType = (id) => {
         const { configs } = this.props;
-        if (!id) {
-            return null;
+        let type = null;
+        if (id) {
+            configs.some((v) => {
+                if (v.id === id) {
+                    type = v.type;
+                }
+                return v.id === id;
+            })
         }
-        return configs[id].type;
+        return type;
     }
 
     validateFields = () => {
@@ -55,12 +70,6 @@ class FormGroup extends Component {
                     Object.assign(ret.values, values);
                 })
             } else {
-                // instance.setState({
-                //     hasChanged: true
-                // }, () => {
-                //     const value = instance.getRules();
-                //     console.log('editor>>>', value)
-                // });
                 const validateRet = instance.validateFields();
                 Object.assign(ret.errors, validateRet.errors);
                 Object.assign(ret.values, validateRet.values);
@@ -130,52 +139,108 @@ class FormGroup extends Component {
         });
     }
 
-    render() {
-        const { configs, onChange, values, formProps, col, className } = this.props;
+    sortConfigs = () => {
+        const { isSort, configs } = this.props;
+        if (!isSort) {
+            return configs;
+        }
+        return configs.sort((m, n) => {
+            if (m.order > n.order) {
+                return 1;
+            } else if (m.order < n.order) {
+                return -1;
+            } else {
+                return 0;
+            }
+        })
+    }
 
-        const formEle = Object.keys(configs)
-            .sort((m, n) => {
-                if (configs[m].order > configs[n].order) {
-                    return 1;
-                } else if (configs[m].order < configs[n].order) {
-                    return -1;
-                } else {
-                    return 0;
+    getFormLayout = () => {
+        const { layout } = this.props;
+        let formLayout = 'horizontal';
+        if (layout === 'V') {
+            formLayout = 'vertical';
+        } else if (layout === 'I') {
+            formLayout = 'inline';
+        }
+        return formLayout;
+    }
+
+    getFormBoxProps = () => {
+        const { disabled, values, className, layout, colSpan, childGutter, space, col } = this.props;
+        const configs = this.sortConfigs();
+        return configs.map((val, i) => {
+            const params = val.params || {};
+            const newColSpan = Math.min(params.colSpan || colSpan, col);
+            const newParams = { ...val.params, layout, className, colSpan: newColSpan, childGutter };
+            const newApi = disabled ? {...val.api, disabled} : val.api || {};
+            return {
+                type: val.type,
+                id: val.id,
+                rules: val.rules || [],
+                api: newApi,
+                params: newParams,
+                options: val.options || {},
+                value: values[val.id],
+                ref: `FormBox_${val.id}`,
+                onChange: this.props.onChange,
+                space,
+            }
+        })
+    }
+
+    renderChild = () => {
+        const { col, colSpan } = this.props;
+        const FormBoxProps = this.getFormBoxProps();
+        const formLayout = this.getFormLayout();
+        if (formLayout === 'inline') {
+            return (
+                <div className="clearfix">
+                    {
+                        FormBoxProps.map((val, i) => {
+                            return (
+                                <div key={`FormBox_${i}`} style={{ float: 'left' }}>
+                                    <FormBox key={i} {...val} />
+                                </div>
+                            );
+                        })
+                    }
+                    <div style={{ float: 'left' }}>
+                        <FormItem>
+                            {this.props.children}
+                        </FormItem>
+                    </div>
+                </div>
+            )
+        }
+        return (
+            <Row type="flex">
+                {
+                    FormBoxProps.map((val, i) => {
+                        const colProps = getGridLayout(col, val.params.colSpan);
+                        return <Col key={i} {...colProps}><FormBox {...val} /></Col>;
+                    })
                 }
-            })
-            .map((v, i) => {
-                const val = configs[v];
-                const groupProps = {
-                    ...val,
-                    ...formProps,
-                    onChange,
-                    key: i,
-                    id: v,
-                    value: values[v],
-                    ref: `FormBox_${v}`,
-                };
-                const newColProps = getGridLayout(col, val.colSpan);
-                return (
-                    <Col
-                        key={`FormBox_${i}`}
-                        {...newColProps}
-                    >
-                        <FormBox {...groupProps} />
-                    </Col>
-                );
-            });
+            </Row>
+        )
+    }
 
-        return <Form className={className}><Row type="flex">{formEle}</Row></Form>;
+    render() {
+        const formLayout = this.getFormLayout();
+        const Child = this.renderChild();
+
+        return <Form layout={formLayout}>{Child}</Form>;
     }
 }
 
 FormGroup.propTypes = {
-    configs: propTypes.object.isRequired,
+    configs: propTypes.array.isRequired,
     col: propTypes.number,
-    formProps: propTypes.object,
     onChange: propTypes.func,
     values: propTypes.object,
     className: propTypes.string,
+    isSort: propTypes.bool,
+    isInline: propTypes.bool,
 };
 
 export default FormGroup;
