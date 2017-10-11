@@ -252,7 +252,7 @@ FormGroup.propTypes = {
     values: propTypes.object,
     className: propTypes.string,
     isSort: propTypes.bool,
-    isInline: propTypes.bool,
+    layout: propTypes.string,
 };
 
 export default FormGroup;

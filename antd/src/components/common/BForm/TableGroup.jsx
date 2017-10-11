@@ -4,42 +4,45 @@ import lodash from 'lodash';
 import { Table } from 'antd';
 import FormBox from '../BForm/FormBox.jsx';
 
-class SummaryTable extends Component {
+class TableGroup extends Component {
     static defaultProps = {
 
     }
 
     getConfigs = () => {
-        const { configs } = this.props;
-        return Object.keys(configs).sort((m, n) => {
-            if (configs[m].order > configs[n].order) {
+        const { isSort, configs } = this.props;
+        if (!isSort) {
+            return configs;
+        }
+        return configs.sort((m, n) => {
+            if (m.order > n.order) {
                 return 1;
-            } else if (configs[m].order < configs[n].order) {
+            } else if (m.order < n.order) {
                 return -1;
             } else {
                 return 0;
             }
-        });
+        })
     }
 
     getTableColumns = () => {
         const { configs } = this.props;
         const newColumns = [];
-
-        if (!configs || !Object.keys(configs).length) {
+        if (!configs || !configs.length) {
             return newColumns;
         }
+        const newConfigs = this.getConfigs(configs);
 
-        this.getConfigs(configs).forEach((v, i) => {
-            const val = configs[v];
-            if (val.isHide) {
-                return null;
-            }
+        newConfigs.forEach((val, i) => {
+            if (val.isHide) { return null; }
+            const formItem = val.formItem || {};
+            const params = val.params || {};
+            const api = val.api || {};
             newColumns.push({
-                dataIndex: v,
-                key: v,
+                dataIndex: val.id,
+                key: i,
                 title: val.name,
-                width: val.width,
+                width: params.width,
                 render: (text, record) => {
                     switch (record.key) {
                         case 'ts':
@@ -47,8 +50,8 @@ class SummaryTable extends Component {
                             break;
                         default:
                             const commonProps = {
-                                ...val,
-                                id: v,
+                                type: val.type,
+                                id: val.id,
                                 onChange: ({ id, value, type, addValue }) => {
                                     this.props.onChange({
                                         id,
@@ -58,7 +61,10 @@ class SummaryTable extends Component {
                                         addValue
                                     });
                                 },
-                                placeholder: `请输入${val.name}`,
+                                formItem: {},
+                                options: val.options || {},
+                                params,
+                                api,
                                 space: 0,
                                 value: text,
                             }
@@ -71,27 +77,30 @@ class SummaryTable extends Component {
     }
 
     getTableDataSource = () => {
-        const { dataSource, configs } = this.props;
+        const { dataSource, configs, isTotal } = this.props;
+        if (!isTotal) {
+            return dataSource;
+        }
         const newDataSource = [...dataSource];
-        const sortConfigs = this.getConfigs(configs);
-        const firstKey = sortConfigs[0];
-        const totalData = { [firstKey]: '汇总：' };
-        Object.keys(configs).forEach((v) => {
-            const val = configs[v];
-            if (val.eval) {
+        const newConfigs = this.getConfigs(configs);
+        const totalId = newConfigs[0].id;
+        const totalData = { [totalId]: '汇总：' };
+        newConfigs.forEach((val, i) => {
+            const params = val.params || {};
+            if (params.eval) {
                 newDataSource.forEach((m) => {
-                    const evalText = eval(val.eval.replace(/\$/g, 'm'));
+                    const evalText = eval(params.eval.replace(/\$/g, 'm'));
                     if (!isNaN(evalText)) {
-                        m[v] = parseFloat(evalText).toFixed(2);
+                        m[val.id] = parseFloat(evalText).toFixed(2);
                     }
                 })
             }
-            if (val.total) {
-                totalData[v] = 0;
+            if (params.total) {
+                totalData[val.id] = 0;
             }
         });
         Object.keys(totalData).forEach((m) => {
-            if (m !== firstKey) {
+            if (m !== totalId) {
                 dataSource.forEach((v) => {
                     if (v[m]) {
                         totalData[m] += parseFloat(v[m]);
@@ -101,13 +110,14 @@ class SummaryTable extends Component {
         });
         const newTotalData = {...totalData};
         Object.keys(totalData).forEach((v) => {
-            if (v !== firstKey) {
+            if (v !== totalId) {
                 newTotalData[v] = parseFloat(totalData[v]).toFixed(2);
             } else {
                 newTotalData[v] = totalData[v];
             }
         })
         newDataSource.push({ key: 'ts', ...newTotalData });
+        // console.log('newDataSource>>>', newDataSource)
         return newDataSource;
     }
 
@@ -129,10 +139,12 @@ class SummaryTable extends Component {
 }
 
 
-SummaryTable.propTypes = {
-    configs: propTypes.object.isRequired,
+TableGroup.propTypes = {
+    configs: propTypes.array.isRequired,
     dataSource: propTypes.array.isRequired,
     onChange: propTypes.func,
+    isSort: propTypes.bool,
+    isTotal: propTypes.bool,
 };
 
-export default SummaryTable;
+export default TableGroup;

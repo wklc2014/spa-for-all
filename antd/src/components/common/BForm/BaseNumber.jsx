@@ -34,7 +34,7 @@ class BaseNumber extends Component {
         const defaultProps = {
             ...api,
             onChange: (value) => {
-                props.onChange({ id, value });
+                onChange({ id, value });
             },
         };
 

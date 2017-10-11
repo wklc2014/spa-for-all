@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import moment from 'moment';
 import { Form, Table, Button } from 'antd';
-import SummaryTable from '../common/SummaryTable/SummaryTable.jsx';
+import TableGroup from '../common/BForm/TableGroup.jsx';
 import * as CONFIG_TABLE from './common/';
 
 class Assess extends Component {
@@ -53,11 +53,12 @@ class Assess extends Component {
         const { dataSource } = this.state;
 
         return (
-            <SummaryTable
-                configs={CONFIG_TABLE.CONFIG_TABLE_HEAD}
+            <TableGroup
+                configs={CONFIG_TABLE.Assess}
                 dataSource={dataSource}
                 onChange={this.onChange}
                 getFieldDecorator={getFieldDecorator}
+                isTotal
             />
         )
     }

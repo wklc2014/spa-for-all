@@ -12,7 +12,6 @@ const RadioGroup = Radio.Group;
 class BaseInput extends Component {
 
     render() {
-        console.log('BaseInput>>> render')
         const {
             id,
             onChange,
