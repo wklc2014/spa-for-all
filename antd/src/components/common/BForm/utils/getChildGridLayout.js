@@ -1,3 +1,4 @@
+// 设置表单元素内部分列显示布局
 export default function getChildGridLayout(childSpan) {
     const span = childSpan || 12;
 
@@ -8,7 +9,7 @@ export default function getChildGridLayout(childSpan) {
         lg: span,
         xl: span,
         style: {
-            // marginBottom: '8px',
+            marginBottom: '8px',
         }
     };
 

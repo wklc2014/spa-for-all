@@ -76,19 +76,22 @@ class SurveryContent extends Component {
 
         const { formLayout } = this.props.values;
 
-        let layout = '';
-        switch (formLayout) {
-            case 'horizontal':
-               layout = 'H2';
-               break;
-            case 'vertical':
-               layout = 'V';
-               break;
-            case 'inline':
-            default:
-               layout = 'I';
-               break;
-        }
+        const inlineGroupConfigs = [...CONFIGS.UserRegister, {
+            type: 'button',
+            id: 'button-submit',
+            params: {
+                btnText: '登录',
+            },
+            api: {
+                type: 'primary',
+                onClick: () => {
+                    console.log(23)
+                }
+            },
+            formItem: {
+                wrapperCol: { span: 14, offset: 4 }
+            }
+        }];
 
         return (
             <section>
@@ -96,7 +99,7 @@ class SurveryContent extends Component {
                     <FormGroup
                         ref="FormGroup"
                         configs={CONFIGS.UserSurvery}
-                        col={3}
+                        col={2}
                         onChange={this.onChange}
                         values={this.props.values}
                     />
@@ -112,15 +115,16 @@ class SurveryContent extends Component {
                         重置
                     </Button>
                 </p>
-                {/*<div style={commonStyle}>
+                <div style={commonStyle}>
                     <FormGroup
                         ref="FormGroup2"
-                        configs={CONFIGS.UserRegister}
+                        configs={inlineGroupConfigs}
                         onChange={this.onChange}
-                        layout={layout}
+                        layout={formLayout}
                         values={this.props.values}
+                        labelSpan={2}
                     />
-                </div>*/}
+                </div>
             </section>
         );
     }

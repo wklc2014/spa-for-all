@@ -5,26 +5,15 @@ import React, { Component } from 'react';
 import propTypes from 'prop-types';
 import lodash from 'lodash';
 import moment from 'moment';
-import classnames from 'classnames';
 import { Form } from 'antd';
 
-import formItemLayout from './formItemLayout/';
-
-import BaseCascader from './BaseCascader.jsx';
-import BaseCheckbox from './BaseCheckbox.jsx';
-import BaseDatePicker from './BaseDatePicker.jsx';
 import BaseEditor from './BaseEditor.jsx';
-import BaseInput from './BaseInput.jsx';
-import BaseInputAdd from './BaseInputAdd.jsx';
-import BaseNumber from './BaseNumber.jsx';
-import BaseRadio from './BaseRadio.jsx';
-import BaseSelect from './BaseSelect.jsx';
 import BaseText from './BaseText.jsx';
-import BaseTextArea from './BaseTextArea.jsx';
+import BaseInput from './BaseInput.jsx';
+import BaseForm from './BaseForm.jsx';
 
 import * as CITYS from './utils/ChineseCities.js';
 import * as UTILS from './utils/';
-import getChildGridLayout from './utils/getChildGridLayout.js';
 
 class FormBox extends Component {
 
@@ -37,6 +26,7 @@ class FormBox extends Component {
         return next !== prev;
     }
 
+    // onChange前处理value值处理
     beforeUpdateValue = (value) => {
         const { params } = this.props;
         const { toUpperCase, toLowerCase } = params;
@@ -53,9 +43,9 @@ class FormBox extends Component {
         this.props.onChange({ id, value, type, addValue });
     }
 
-    getNewValue = () => {
+    setValue = () => {
         const { type, value, params } = this.props;
-        const { data, addType } = params;
+        const { data } = params;
         let newValues = this.beforeUpdateValue(value);
         if (!this.props.defaultValue && type !== 'text') {
             return newValues;
@@ -74,6 +64,7 @@ class FormBox extends Component {
                 }
                 break;
             case 'radio':
+            case 'radio-button':
                 if (!value && data) {
                     data.some((v) => {
                         if (v.selected) {
@@ -93,20 +84,17 @@ class FormBox extends Component {
                     })
                 }
                 break;
-          case 'input':
-          case 'inputAdd':
-                const targetType = ['radio', 'before-select'];
-                if (targetType.indexOf(addType) !== -1) {
-                    let inputValue = '';
-                    let addValue = '';
-                    if (!value || (value && typeof value === 'string')) {
-                        inputValue = value;
-                    } else {
-                        inputValue = value.inputValue;
-                        addValue = value.addValue;
-                    }
-                    newValues = { inputValue, addValue };
+          case 'input-before-select':
+          case 'input-radio':
+                let inputValue = '';
+                let addValue = '';
+                if (!value || (value && typeof value === 'string')) {
+                    inputValue = value;
+                } else {
+                    inputValue = value.inputValue;
+                    addValue = value.addValue;
                 }
+                newValues = { inputValue, addValue };
                 break;
           case 'text':
                 if (params.render) {
@@ -117,26 +105,8 @@ class FormBox extends Component {
         return newValues;
     }
 
-    getNewClassName = () => {
-        const { params } = this.props;
-        const { layout, className } = params;
-        const newClassName = classnames({
-            'label-vertical': layout === 'vertical',
-            [className]: !!className,
-        });
-
-        return newClassName;
-    }
-
-    getNewLayout = () => {
-        const { params } = this.props;
-        const { colSpan, layout } = params;
-        const L = formItemLayout[layout] || {};
-        const newLayout = L[`colSpan_${colSpan}`] || L.normal;
-        return newLayout;
-    }
-
-    getNewData = () => {
+    // 设置表单元素 params.data
+    setData = () => {
         const { type, params } = this.props;
         const { data } = params;
         let newData = data || [];
@@ -156,7 +126,8 @@ class FormBox extends Component {
         return newData;
     }
 
-    getNewStyle = () => {
+    // 设置表单元素 style
+    setStyle = () => {
         const { type, params } = this.props;
         const { toUpperCase, toLowerCase } = params;
         const newStyle = {};
@@ -168,6 +139,9 @@ class FormBox extends Component {
         switch (type) {
             case 'cascader':
             case 'date':
+            case 'date-range':
+            case 'date-month':
+            case 'date-time':
             case 'number':
             case 'enum':
             case 'inputAdd':
@@ -178,36 +152,25 @@ class FormBox extends Component {
         return newStyle;
     }
 
-    getNewlabel = () => {
-        const { label } = this.props.formItem;
-        const newLabel = label;
-        return newLabel;
-    }
-
-    getNewPlaceholder = () => {
+    // 设置表单元素 placeholder
+    setPlaceholder = () => {
         const { type, id, params, formItem, api } = this.props;
         const { label } = formItem;
         const { placeholder } = api;
         let newPlaceholder = placeholder || `请输入${label || id}`;
         switch (type) {
-            case 'date':
-                if (params.addType === 'range') {
-                    newPlaceholder = [`开始${newPlaceholder}`, `结束${newPlaceholder}`];
-                }
+            case 'date-range':
+                newPlaceholder = [`开始${newPlaceholder}`, `结束${newPlaceholder}`];
             break;
         }
         return newPlaceholder;
     }
 
     render() {
-        const newPlaceholder = this.getNewPlaceholder();
-        const newLayout = this.getNewLayout();
-        const newValue = this.getNewValue();
-        const newClassName = this.getNewClassName();
-        const newData = this.getNewData();
-        const newStyle = this.getNewStyle();
-        const newLabel = this.getNewlabel();
-        const newChildSpan = getChildGridLayout(this.props.params.childSpan);
+        const newPlaceholder = this.setPlaceholder();
+        const newValue = this.setValue();
+        const newData = this.setData();
+        const newStyle = this.setStyle();
 
         let ChildEle = null;
         // console.log('FormBox>>>', this.props)
@@ -216,10 +179,7 @@ class FormBox extends Component {
             onChange: this.onChange,
             value: newValue,
             formItem: {
-                ...newLayout,
                 ...this.props.formItem,
-                className: newClassName,
-                label: newLabel,
             },
             api: {
                 ...this.props.api,
@@ -229,7 +189,7 @@ class FormBox extends Component {
             options: this.props.options,
             params: {
                 ...this.props.params,
-                childSpan: newChildSpan,
+                type: this.props.type,
                 data: newData,
             },
         }
@@ -244,48 +204,44 @@ class FormBox extends Component {
         }
 
         switch (this.props.type) {
-            case 'cascader':
-                ChildEle = <BaseCascader { ...commonProps } />;
-                break;
-            case 'checkbox':
-                ChildEle = <BaseCheckbox { ...commonProps } />;
-                break;
-            case 'date':
-                ChildEle = <BaseDatePicker { ...commonProps } />;
-                break;
             case 'editor':
                 ChildEle = <BaseEditor { ...commonProps } />;
                 break;
-            case 'input':
-                ChildEle = <BaseInput { ...commonProps } />;
-                break;
-            case 'inputAdd':
-                ChildEle = <BaseInputAdd { ...commonProps } />;
-                break;
-            case 'number':
-                ChildEle = <BaseNumber { ...commonProps } />;
-                break;
-            case 'radio':
-                ChildEle = <BaseRadio { ...commonProps } />;
-                break;
-            case 'enum':
-                ChildEle = <BaseSelect { ...commonProps } />;
-                break;
             case 'text':
+            case 'button':
                 ChildEle = <BaseText { ...commonProps } />;
                 break;
+            case 'input':
+            case 'input-button':
+            case 'input-radio':
+            case 'input-before-select':
             case 'textarea':
-                ChildEle = <BaseTextArea { ...commonProps } />;
+            case 'textarea-button':
+                ChildEle = <BaseInput { ...commonProps } />;
+                break;
+            case 'cascader':
+            case 'checkbox':
+            case 'date':
+            case 'date-month':
+            case 'date-range':
+            case 'date-time':
+            case 'enum':
+            case 'number':
+            case 'radio':
+            case 'radio-button':
+            case 'rate':
+            case 'slider':
+            case 'switch':
+                ChildEle = <BaseForm { ...commonProps } />;
                 break;
         }
 
-        return <div style = { { paddingRight: this.props.space } }> { ChildEle } </div>;
+        return <span> { ChildEle } </span>;
     }
 }
 
 FormBox.propTypes = {
     type: propTypes.string.isRequired,
-    space: propTypes.number,
 };
 
 export default FormBox;

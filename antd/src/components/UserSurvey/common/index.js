@@ -8,7 +8,7 @@ export const UserSurvery = [
         id: 'userName',
         formItem: {
             extra: '最多输入500个字',
-            label: '姓名',
+            label: 'input',
         },
         api: {
             disabled: false,
@@ -26,10 +26,10 @@ export const UserSurvery = [
     },
     {
         order: 2,
-        type: 'input',
+        type: 'input-button',
         id: 'address',
         formItem: {
-            label: '地址',
+            label: 'input',
         },
         api: {
             disabled: false,
@@ -42,7 +42,6 @@ export const UserSurvery = [
             ],
         },
         params: {
-            addType: 'button',
             childSpan: 10,
             data: [
                 { label: '同标的', value: '01' },
@@ -52,17 +51,16 @@ export const UserSurvery = [
     },
     {
         order: 3,
-        type: 'input',
+        type: 'input-radio',
         id: 'contactPhone',
         params: {
-            addType: 'radio',
             data: [
                 { label: '同标的', value: '01' },
                 { label: '同三者', value: '02' },
             ],
         },
         formItem: {
-            label: '联系人电话',
+            label: 'input',
         },
         options: {
             rules: [{
@@ -80,7 +78,7 @@ export const UserSurvery = [
             area: 'quanguo',
         },
         formItem: {
-            label: '城市',
+            label: 'cascader',
         },
         options: {
             rules: [{
@@ -97,7 +95,7 @@ export const UserSurvery = [
         type: 'checkbox',
         id: 'payMoney',
         formItem: {
-            label: '赔付金额',
+            label: 'checkbox',
         },
         params: {
             data: [
@@ -116,44 +114,70 @@ export const UserSurvery = [
         type: 'date',
         id: 'reportDate',
         formItem: {
-            label: '日期',
+            label: 'date',
         },
         api: {
             format: 'YYYY-MM-DD HH:mm:ss',
+            renderExtraFooter: () => 'footer',
         }
     },
     {
         order: 7,
-        type: 'date',
+        type: 'date-range',
         id: 'translateDate',
-        params: {
-            addType: 'range',
-        },
         formItem:{
-            label: '运输',
+            label: 'date-range',
         },
         api: {
             placeholder: '运输日期',
             showTime: true,
+            format: 'YYYY-MM-DD HH:mm:ss',
+            ranges: {
+                '一周内': [moment().subtract(7, 'days'), moment()],
+                '一月内': [moment().subtract(1, 'months'), moment()],
+                '三月内': [moment().subtract(3, 'months'), moment()],
+            }
         },
     },
     {
         order: 8,
+        type: 'date-month',
+        id: 'translateDate1',
+        formItem:{
+            label: 'month',
+        },
+        api: {
+            placeholder: '请选择月份',
+        },
+    },
+    {
+        order: 9,
+        type: 'date-time',
+        id: 'translateDate2',
+        formItem:{
+            label: 'time',
+        },
+        api: {
+            placeholder: '请选择时间',
+        },
+    },
+    {
+        order: 10,
         type: 'input',
         id: 'carNumber',
         formItem: {
-            label: '车牌号',
+            label: 'toUpperCase',
         },
         params: {
             toUpperCase: true,
         }
     },
     {
-        order: 9,
+        order: 11,
         type: 'input',
         id: 'phoneNumber',
         formItem: {
-            label: '手机号',
+            label: 'phone',
         },
         options: {
             rules: [{
@@ -166,11 +190,11 @@ export const UserSurvery = [
         }
     },
     {
-        order: 10,
+        order: 12,
         type: 'number',
         id: 'ploicyMoney',
         formItem: {
-            label: '金额',
+            label: 'number',
         },
         rules: [{
             required: true,
@@ -178,11 +202,11 @@ export const UserSurvery = [
         }],
     },
     {
-        order: 11,
+        order: 13,
         type: 'radio',
         id: 'sex',
         formItem: {
-            label: '被保人性别',
+            label: 'radio',
         },
         params: {
             data: [
@@ -194,26 +218,25 @@ export const UserSurvery = [
         }
     },
     {
-        order: 12,
-        type: 'radio',
+        order: 14,
+        type: 'radio-button',
         id: 'type',
         params: {
-            addType: 'button',
             data: [
                 { label: '车险', value: '01', selected: true },
                 { label: '非车险', value: '02' },
             ]
         },
         formItem: {
-            label: '类别',
+            label: 'radio',
         },
     },
     {
-        order: 13,
+        order: 15,
         type: 'enum',
         id: 'carMarkType',
         formItem: {
-            label: '种类',
+            label: 'enum',
         },
         params: {
             data: [
@@ -236,11 +259,10 @@ export const UserSurvery = [
         }
     },
     {
-        order: 14,
-        type: 'inputAdd',
+        order: 16,
+        type: 'input-before-select',
         id: 'carNoAddress',
         params: {
-            addType: 'before-select',
             data: [
                 { value: '01', label: '+86' },
                 { value: '02', label: '+87', selected: true },
@@ -249,15 +271,15 @@ export const UserSurvery = [
             selectWidth: 60,
         },
         formItem: {
-            label: '归属地',
+            label: 'beforeSelect',
         },
     },
     {
-        order: 15,
+        order: 17,
         type: 'textarea',
         id: 'accidentDescription',
         formItem: {
-            label: '描述',
+            label: 'textarea',
             extra: '最多输入500个字',
         },
         params: {
@@ -271,15 +293,14 @@ export const UserSurvery = [
         }
     },
     {
-        order: 16,
-        type: 'textarea',
+        order: 18,
+        type: 'textarea-button',
         id: 'accidentCreate',
         formItem: {
-            label: '生成描述',
+            label: 'textarea',
             extra: '最多输入500个字',
         },
         params: {
-            addType: 'button',
             colSpan: 2,
             data: [
                 { value: '01', label: '生成描述', type: 'primary' },
@@ -288,11 +309,11 @@ export const UserSurvery = [
         }
     },
     {
-        order: 17,
+        order: 19,
         type: 'editor',
         id: 'emailContent',
         formItem: {
-            label: '内容',
+            label: 'editor',
         },
         params: {
             colSpan: 2,
@@ -305,27 +326,70 @@ export const UserSurvery = [
         }
     },
     {
-        order: 18,
+        order: 20,
         type: 'text',
         id: 'myName',
         formItem: {
-            label: '姓名',
+            label: 'text',
         },
         params: {
             render: (text) => 213,
+        }
+    },
+    {
+        order: 21,
+        type: 'rate',
+        id: 'rate1',
+        formItem: {
+            label: 'rate',
+        },
+        api: {
+            allowHalf: true,
+        },
+        params: {
+            copywriting: (value) => `${value} Stars`,
+        }
+    },
+    {
+        order: 22,
+        type: 'slider',
+        id: 'slider1',
+        formItem: {
+            label: 'slider',
+        },
+        api: {
+            marks: {
+                0: 'A',
+                20: 'AA',
+                40: 'AAA',
+                60: 'AAAA',
+                80: 'AAAAA',
+                100: 'AAAAAA',
+            }
+        }
+    },
+    {
+        order: 23,
+        type: 'switch',
+        id: 'switch1',
+        formItem: {
+            label: 'switch',
+        },
+        api: {
+            checkedChildren: 'OK',
+            unCheckedChildren: 'NO'
         }
     },
 ];
 
 export const UserRegister = [
     {
-        type: 'radio',
+        type: 'radio-button',
         id: 'formLayout',
         formItem: {
             label: 'Username',
         },
         params: {
-            addType: 'button',
             data: [
                 { value: 'horizontal', label: 'Horizontal' },
                 { value: 'vertical', label: 'Vertical' },

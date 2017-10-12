@@ -1,10 +1,11 @@
 /**
- * 文本显示
+ * text
+ * button
  */
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
 import lodash from 'lodash';
-import { Form } from 'antd';
+import { Form, Button } from 'antd';
 import moment from 'moment';
 
 const FormItem = Form.Item;
@@ -20,18 +21,21 @@ const BaseText = (props) => {
     } = props;
 
     const {
-        addType,
+        type,
         childGutter,
         childSpan,
         data,
     } = params;
 
-    const defaultProps = {
-        ...api,
-        className: 'ant-form-text',
-    };
-
-    const ChildEle = <span {...defaultProps}>{value}</span>;
+    let ChildEle = null;
+    switch(type) {
+        case 'text':
+            ChildEle = <span className="ant-form-text" {...api}>{value}</span>;
+            break;
+        case 'button':
+            ChildEle = <Button {...api}>{params.btnText}</Button>
+            break;
+    }
 
     return <FormItem {...formItem}>{ChildEle}</FormItem>;
 }

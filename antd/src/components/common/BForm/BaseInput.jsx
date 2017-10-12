@@ -1,13 +1,20 @@
 /**
- * 单行文本框
+ * input
+ * input-button
+ * input-radio
+ * textarea
+ * textarea-button
+ * input-before-select
  */
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
 import lodash from 'lodash';
-import { Form, Input, Row, Col, Radio, Button } from 'antd';
+import { Form, Input, Row, Col, Radio, Button, Select } from 'antd';
 
 const FormItem = Form.Item;
+const Option = Select.Option;
 const RadioGroup = Radio.Group;
+const { TextArea } = Input;
 
 class BaseInput extends Component {
 
@@ -24,7 +31,7 @@ class BaseInput extends Component {
         } = this.props;
 
         const {
-            addType,
+            type,
             childGutter,
             childSpan,
             data,
@@ -35,21 +42,63 @@ class BaseInput extends Component {
 
         const defaultProps = {
             ...api,
-            size,
             onChange: (e) => {
                 onChange({ id, value: e.target.value });
             },
+            size,
         };
 
         const childSpanLeft = lodash.get(childSpan, 'left', {});
         const childSpanRight = lodash.get(childSpan, 'right', {});
-        const inputEle = <Input {...defaultProps} />;
+        let   inputValue = value;
+        let   addValue = lodash.get(value, 'addValue', undefined);
+        if (type === 'input-radio') {
+            inputValue = lodash.get(value, 'inputValue', undefined);
+        }
+
+        if (type === 'input-before-select') {
+            const selectOptionEle = data.map((v, i) => {
+                if (v.selected && addValue === undefined) {
+                    addValue = v.value;
+                }
+                return <Option key={i} value={v.value}>{v.label}</Option>;
+            });
+            const addonBeforeProps = {
+                disabled: api.disabled,
+                dropdownMatchSelectWidth: api.dropdownMatchSelectWidth,
+                onChange: (e) => {
+                    onChange({
+                        id,
+                        value: { inputValue, addValue: e },
+                    });
+                },
+                style: { width: params.selectWidth },
+                value: addValue,
+            };
+            const addonBeforeEle = <Select {...addonBeforeProps}>{selectOptionEle}</Select>;
+            Object.assign(defaultProps, {
+                addonBefore: addonBeforeEle,
+                onChange: (e) => {
+                    onChange({ id, value: { inputValue: e.target.value, addValue } });
+                },
+
+            });
+        }
+
+        let inputEle = <Input {...defaultProps} />;
+        if (type === 'textarea-button' || type === 'textarea') {
+            inputEle = <TextArea {...defaultProps} rows={api.rows || 4} />;
+        }
+
+
         let ChildEle = getFieldDecorator(id, {
             ...options,
-            initialValue: value,
+            initialValue: inputValue,
         })(inputEle);
-        switch (addType) {
-            case 'button':
+
+        switch (type) {
+            case 'textarea-button':
+            case 'input-button':
                 const btnEle = data.map((v, i) => {
                     const btnStyle = { marginBottom: 8 };
                     if (i < data.length - 1) {
@@ -90,9 +139,7 @@ class BaseInput extends Component {
                     </Row>
                 );
                 break;
-            case 'radio':
-                const inputValue = lodash.get(value, 'inputValue', undefined);
-                const addValue = lodash.get(value, 'addValue', undefined);
+            case 'input-radio':
                 const radioEle = (
                     <RadioGroup
                         disabled={api.disabled}

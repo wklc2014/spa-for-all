@@ -2,10 +2,14 @@
  * 生成一组 <FormItem /> 组件
  */
 import React, { Component } from 'react';
+import classnames from 'classnames';
 import propTypes from 'prop-types';
 import { Form, Row, Col } from 'antd';
+
 import FormBox from './FormBox.jsx';
 import getGridLayout from './utils/getGridLayout.js';
+import getFormItemLayout from './utils/getFormItemLayout.js';
+import getChildGridLayout from './utils/getChildGridLayout.js';
 import { getEditorBody, getEditorPlaceholder } from './utils/getEditorDom.js';
 
 const FormItem = Form.Item;
@@ -14,14 +18,15 @@ class FormGroup extends Component {
 
     static defaultProps = {
         values: {},
-        isSort: true,
         col: 1,
+        space: 16,
         colSpan: 1,
         childGutter: 16,
-        layout: 'H2',
-        space: 16,
+        layout: 'horizontal',
+        isSort: true,
     }
 
+    // 获取表单元素实例
     getInstance = (id) => {
         const refBox = this.refs[`FormBox_${id}`]
         const ref = refBox.refs[`BaseForm_${id}`];
@@ -32,12 +37,14 @@ class FormGroup extends Component {
         return refBox.formRef;
     }
 
+    // 获取所有表单 ID
     getConfigsIDs = () => {
         const { configs } = this.props;
         const ids = configs.map((v) => v.id);
         return ids;
     }
 
+    // 根据id判断表单类型
     getFieldType = (id) => {
         const { configs } = this.props;
         let type = null;
@@ -52,6 +59,7 @@ class FormGroup extends Component {
         return type;
     }
 
+    // 验证表单元素
     validateFields = () => {
         const ids = this.getConfigsIDs();
         const ret = {
@@ -81,6 +89,7 @@ class FormGroup extends Component {
         return ret;
     }
 
+    // 设置表单元素的值
     setFieldsValue = (fields = {}) => {
         const ids = this.getConfigsIDs();
         Object.keys(fields).forEach((id) => {
@@ -98,6 +107,7 @@ class FormGroup extends Component {
         });
     }
 
+    // 获取表单元素值 -> 单个
     getFieldValue = (id = '') => {
         const ids = this.getConfigsIDs();
         const fieldValue = {};
@@ -120,6 +130,7 @@ class FormGroup extends Component {
         return fieldValue;
     }
 
+    // 设置表单元素值 -> 多个
     getFieldsValue = (fields = []) => {
         const ids = this.getConfigsIDs();
         const fieldsValue = {};
@@ -130,6 +141,7 @@ class FormGroup extends Component {
         return fieldsValue;
     }
 
+    // 重置表单
     resetFields = (fields = []) => {
         const ids = this.getConfigsIDs();
         if (!fields || !fields.length) {
@@ -151,6 +163,7 @@ class FormGroup extends Component {
         });
     }
 
+    // 排序配置项
     sortConfigs = () => {
         const { isSort, configs } = this.props;
         if (!isSort) {
@@ -167,70 +180,73 @@ class FormGroup extends Component {
         })
     }
 
-    getFormLayout = () => {
-        const { layout } = this.props;
-        let formLayout = 'horizontal';
-        if (layout === 'V') {
-            formLayout = 'vertical';
-        } else if (layout === 'I') {
-            formLayout = 'inline';
-        }
-        return formLayout;
+    // 设置表单元素 className
+    setClassName = (pClassName) => {
+        const { layout, className } = this.props;
+        const newClassName = classnames({
+            'label-vertical': layout === 'vertical',
+            [className]: !!className,
+            [pClassName]: !!pClassName,
+        });
+
+        return newClassName;
     }
 
-    getFormBoxProps = () => {
-        const { disabled, values, className, layout, colSpan, childGutter, space, col } = this.props;
+    // 设置表单元素 props
+    setFormItemProps = () => {
+        const {
+            disabled,
+            values,
+            colSpan,
+            childGutter,
+            col,
+            layout,
+        } = this.props;
         const configs = this.sortConfigs();
         return configs.map((val, i) => {
             const params = val.params || {};
-            const newColSpan = Math.min(params.colSpan || colSpan, col);
-            const newParams = { ...val.params, layout, className, colSpan: newColSpan, childGutter };
+            const newColSpan = params.colSpan || colSpan;
+            const newLayout = getFormItemLayout(col, newColSpan, layout);
+            const newChildSpan = getChildGridLayout(params.childSpan);
+            const newClassName = this.setClassName(params.className);
+            const newParams = {
+                ...val.params,
+                className: newClassName,
+                childGutter,
+                childSpan: newChildSpan,
+                colSpan: newColSpan,
+            };
             const newApi = disabled ? {...val.api, disabled} : val.api || {};
+            const newFormItem = {
+                ...val.formItem,
+                ...newLayout,
+            };
             return {
                 type: val.type,
                 id: val.id,
-                formItem: val.formItem || {},
+                formItem: newFormItem,
                 api: newApi,
                 params: newParams,
                 options: val.options || {},
                 value: values[val.id],
                 ref: `FormBox_${val.id}`,
                 onChange: this.props.onChange,
-                space,
             }
         })
     }
 
     renderChild = () => {
-        const { col, colSpan } = this.props;
-        const FormBoxProps = this.getFormBoxProps();
-        const formLayout = this.getFormLayout();
-        if (formLayout === 'inline') {
-            return (
-                <div className="clearfix">
-                    {
-                        FormBoxProps.map((val, i) => {
-                            return (
-                                <div key={`FormBox_${i}`} style={{ float: 'left' }}>
-                                    <FormBox key={i} {...val} />
-                                </div>
-                            );
-                        })
-                    }
-                    <div style={{ float: 'left' }}>
-                        <FormItem>
-                            {this.props.children}
-                        </FormItem>
-                    </div>
-                </div>
-            )
+        const { col, colSpan, space, layout } = this.props;
+        const formItemProps = this.setFormItemProps();
+        if (layout === 'inline') {
+            return <div>{formItemProps.map((val, i) => <FormBox key={i} {...val} />)}</div>;
         }
         return (
             <Row type="flex">
                 {
-                    FormBoxProps.map((val, i) => {
+                    formItemProps.map((val, i) => {
                         const colProps = getGridLayout(col, val.params.colSpan);
-                        return <Col key={i} {...colProps}><FormBox {...val} /></Col>;
+                        return <Col key={i} {...colProps}><div style={{paddingRight: space}}><FormBox {...val} /></div></Col>;
                     })
                 }
             </Row>
@@ -238,10 +254,9 @@ class FormGroup extends Component {
     }
 
     render() {
-        const formLayout = this.getFormLayout();
         const Child = this.renderChild();
 
-        return <Form layout={formLayout}>{Child}</Form>;
+        return <Form layout={this.props.layout}>{Child}</Form>;
     }
 }
 
@@ -253,6 +268,7 @@ FormGroup.propTypes = {
     className: propTypes.string,
     isSort: propTypes.bool,
     layout: propTypes.string,
+    space: propTypes.number,
 };
 
 export default FormGroup;
