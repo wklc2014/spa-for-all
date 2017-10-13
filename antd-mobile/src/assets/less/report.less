@@ -1,0 +1,161 @@
+// 步骤进度
+.onlineClaimSteps {
+    @colorActive: #0092ff;
+    @color: #c7c7cc;
+    padding: 40px;
+    .am-steps-custom.am-steps-item {
+        .am-steps-step {
+            .am-steps-icon {
+                width: auto;
+                height: auto;
+            }
+        }
+        &.am-steps-status-finish {
+            .am-steps-tail {
+                background-color: @colorActive;
+                > i {
+                    background-color: @colorActive;
+                }
+            }
+            .am-steps-step {
+                .am-steps-title {
+                    color: @colorActive;
+                }
+                .stepIcon {
+                    background-color: @colorActive;
+                }
+            }
+        }
+        .am-steps-tail {
+            top: 36px;
+            padding: 0 20px;
+            background-color: @color;
+            > i {
+                background-color: transparent;
+            }
+        }
+        .am-steps-step {
+            .am-steps-title {
+                color: @color;
+                font-size: 24px;
+            }
+            .stepIcon{
+                width: 80px;
+                height: 80px;
+                text-align: center;
+                line-height: 80px;
+
+                background-color: @color;
+                border-radius: 50%;
+                color: #fff;
+            }
+        }
+    }
+}
+
+// 第一步- 结果展示
+.onlineClaimResult {
+    @iconSize: 180px;
+    .resultText {
+        font-size: 28px;
+        color: #484848;
+    }
+    .am-result .am-result-pic {
+        width: @iconSize;
+        height: @iconSize;
+    }
+    .icon {
+        width: @iconSize;
+        height: @iconSize;
+    }
+}
+
+// 常用class
+.spanLink {
+    color: #0092ff;
+}
+.fzNormal {
+    font-size: 28px;
+}
+.fzLarge {
+    font-size: 30px;
+}
+.fzSmall {
+    font-size: 24px;
+}
+.tc {
+    text-align: center;
+}
+
+.sub-title {
+    color: #888;
+    .fzNormal;
+    padding: 30px 0 18px 0;
+}
+.main-title {
+    color: #333;
+    .fzLarge;
+    padding: 30px 0 18px 0;
+}
+
+// 第二步- 资料提交
+.onlineClaimSubmit {
+    .submitContent {
+        background-color: #fff;
+    }
+    .idCardPlaceholder {
+        .imgBox {
+            position: relative;
+            overflow: hidden;
+            .bgFront {
+                background-image: url("../img/idCard1.png");
+            }
+            .bgReverse {
+                background-image: url("../img/idCard2.png");
+            }
+            .bgFront,
+            .bgReverse {
+                padding-bottom: 62.71186440677966%;
+                background-size: cover;
+                background-position: center center;
+                background-repeat: no-repeat;
+                position: relative;
+                border-radius: 3px;
+            }
+            .file {
+                position: absolute;
+                z-index: 2;
+                width: 100%;
+                height: 100%;
+                left: 0;
+                right: 0;
+                opacity: 0;
+                font-size: 0;
+                line-height: 0;
+            }
+            .icon-camera,
+            .icon-cross {
+                position: absolute;
+            }
+            .icon-camera {
+                z-index: 1;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                width: 60px;
+                height: 60px;
+            }
+            .icon-cross {
+                z-index: 3;
+                right: 10px;
+                top: 10px;
+                opacity: 0.5;
+            }
+        }
+        .text{
+            .fzNormal;
+            text-align: center;
+            color: #888;
+        }
+    }
+}

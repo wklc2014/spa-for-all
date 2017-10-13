@@ -5,8 +5,10 @@ export const UserSurvery = [
         order: 1,
         id: 'username',
         type: 'input',
-        label: <div>用户姓名</div>,
         params: {
+            label: <div>用户姓名</div>,
+        },
+        api: {
             type: 'money',
             clear: true,
             maxLength: 10,
@@ -18,8 +20,10 @@ export const UserSurvery = [
         order: 2,
         id: 'bankCard',
         type: 'input',
-        label: '银行卡',
         params: {
+            label: '银行卡',
+        },
+        api: {
             type: 'bankCard',
             placeholder: '请输入银行卡号',
         }
@@ -28,8 +32,10 @@ export const UserSurvery = [
         order: 3,
         id: 'userPhone',
         type: 'input',
-        label: '手机号码',
         params: {
+            label: '手机号码',
+        },
+        api: {
             type: 'phone',
             placeholder: '请输入手机号码',
         },
@@ -44,8 +50,10 @@ export const UserSurvery = [
         order: 4,
         id: 'email',
         type: 'input',
-        label: '邮箱',
         params: {
+            label: '邮箱',
+        },
+        api: {
             type: 'text',
         },
         options: {
@@ -58,8 +66,10 @@ export const UserSurvery = [
         order: 5,
         id: 'userAge',
         type: 'input',
-        label: '数字输入',
         params: {
+            label: '数字输入',
+        },
+        api: {
             type: 'number',
         }
     },
@@ -67,8 +77,10 @@ export const UserSurvery = [
         order: 6,
         id: 'userPay',
         type: 'input',
-        label: '人民币',
         params: {
+            label: '人民币',
+        },
+        api: {
             type: 'money',
             extra: '¥',
         }
@@ -77,8 +89,10 @@ export const UserSurvery = [
         order: 7,
         id: 'accidentTime',
         type: 'date',
-        label: '出险时间',
         params: {
+            label: '出险时间',
+        },
+        api: {
             mode: 'date',
             title: '选择出险时间',
         }
@@ -87,13 +101,13 @@ export const UserSurvery = [
         order: 8,
         id: 'interests',
         type: 'checkbox',
-        label: '兴趣爱好',
-        params: {},
-        datas: [
-            { value: 0, label: '足球' },
-            { value: 1, label: '篮球' },
-            { value: 2, label: '乒乓球' },
-        ]
+        params: {
+            data: [
+                { value: 0, label: '足球' },
+                { value: 1, label: '篮球' },
+                { value: 2, label: '乒乓球' },
+            ]
+        },
     },
     {
         order: 9,
@@ -101,6 +115,34 @@ export const UserSurvery = [
         type: 'image',
         params: {
             selectable: 3,
+        },
+    },
+    {
+        order: 10,
+        id: 'picker',
+        type: 'picker',
+        api: {
+            title: 'Picker选择器',
+            cols: 3,
+        },
+        params: {
+            label: '选择季节',
+            data: 'city',
+        },
+        listItem: {
+            wrap: true,
+        }
+    },
+    {
+        order: 11,
+        id: 'radio1',
+        type: 'radio',
+        params: {
+            data: [
+                { value: 0, label: '足球' },
+                { value: 1, label: '篮球' },
+                { value: 2, label: '乒乓球' },
+            ]
         },
     },
 ]

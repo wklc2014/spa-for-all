@@ -12,9 +12,10 @@ class FormGroup extends Component {
         values: {},
     }
 
-    getNewConfigs = () => {
-        const { configs, sorted } = this.props;
-        if (!sorted) {
+    // 排序配置项
+    sortConfigs = () => {
+        const { isSort, configs } = this.props;
+        if (!isSort) {
             return configs;
         }
         return configs.sort((m, n) => {
@@ -28,31 +29,39 @@ class FormGroup extends Component {
         })
     }
 
-    render() {
-        const { className, configs, onChange, values } = this.props;
+    renderChild = () => {
+        const { onChange, values } = this.props;
+        const newConfigs = this.sortConfigs();
+        return newConfigs.map((v, i) => {
+            const props = {
+                type: v.type,
+                id: v.id,
+                params: v.params || {},
+                api: v.api || {},
+                listItem: v.listItem || {},
+                options: v.options || {},
+                onChange,
+                key: i,
+                value: values[v.id],
+            };
+            return <FormBox {...props} />;
+        })
+    }
 
-        const newConfigs = this.getNewConfigs();
+    render() {
+        const ChildEle = this.renderChild();
         return (
             <List>
-                {newConfigs.map((v, i) => {
-                    const groupProps = {
-                        ...v,
-                        onChange,
-                        key: i,
-                        value: values[v.id],
-                    };
-                    return <FormBox {...groupProps} />;
-                })}
+                {ChildEle}
             </List>
         );
     }
 }
 
 FormGroup.propTypes = {
-    className: propTypes.string,
     configs: propTypes.array.isRequired,
     onChange: propTypes.func,
-    sorted: propTypes.bool,
+    isSort: propTypes.bool,
     values: propTypes.object,
 };
 

@@ -1,13 +1,9 @@
 import { Component } from 'react';
 import propTypes from 'prop-types';
 import moment from 'moment';
-
 import utils from './util/';
-
-import BaseCheckbox from './BaseCheckbox.jsx';
-import BaseDate from './BaseDate.jsx';
-import BaseImage from './BaseImage.jsx';
-import BaseInput from './BaseInput.jsx';
+import CITYS from './util/ChineseCities.js';
+import BaseForm from './BaseForm.jsx';
 
 class FormBox extends Component {
 
@@ -21,7 +17,17 @@ class FormBox extends Component {
         return next !== prev;
     }
 
-    getValue = () => {
+    onChange = ({ id, value }) => {
+        const { type } = this.props;
+        switch (type) {
+            case 'date':
+                value = moment(value).format(utils.format);
+                break;
+        }
+        this.props.onChange({ id, value });
+    }
+
+    setValue = () => {
         const { type, value } = this.props;
         let newValue = value;
         switch (type) {
@@ -36,49 +42,41 @@ class FormBox extends Component {
         return newValue;
     }
 
-    onChange = ({ id, value }) => {
-        const { type } = this.props;
+    setData = () => {
+        const { type, params } = this.props;
+        const { data } = params;
+        let newData = data || [];
         switch (type) {
-            case 'date':
-                value = moment(value).format(utils.format);
+            case 'picker':
+                if (data === 'city') {
+                    newData = CITYS;
+                }
                 break;
         }
-        this.props.onChange({ id, value });
+        return newData;
     }
 
     render() {
-        const newValue = this.getValue();
+        const newValue = this.setValue();
+        const newData = this.setData();
 
         let ChildEle = null;
 
         const commonProps = {
             id: this.props.id,
-            label: this.props.label,
             onChange: this.onChange,
             value: newValue,
-            params: this.props.params,
+            params: {
+                ...this.props.params,
+                type: this.props.type,
+                data: newData,
+            },
             options: this.props.options,
-            datas: this.props.datas,
+            listItem: this.props.listItem,
+            api: this.props.api,
         }
 
-        switch (this.props.type) {
-            case 'input':
-                ChildEle = <BaseInput {...commonProps} />;
-                break;
-            case 'date':
-                ChildEle = <BaseDate {...commonProps} />;
-                break;
-            case 'checkbox':
-                ChildEle = <BaseCheckbox {...commonProps} />;
-                break;
-            case 'image':
-                ChildEle = <BaseImage {...commonProps} />;
-                break;
-            default:
-                console.log('The config field type is error...');
-        }
-
-        return ChildEle;
+        return <BaseForm {...commonProps} />;
     }
 
 }
