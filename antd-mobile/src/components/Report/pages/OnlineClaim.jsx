@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Steps, Icon, Result, WingBlank, Button } from 'antd-mobile';
 
+import FillInData from './FillInData.jsx';
 import ClaimStepOne from './ClaimStepOne.jsx';
 import ClaimStepTwo from './ClaimStepTwo.jsx';
 
@@ -18,7 +19,7 @@ class OnlineClaim extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            current: 2,
+            current: 1,
         }
     }
 
@@ -43,7 +44,7 @@ class OnlineClaim extends Component {
         let ChildEle = null;
         switch (current) {
             case 1:
-                ChildEle = <ClaimStepOne onSteps={this.onSteps} />;
+                ChildEle = <FillInData />;
                 break;
             case 2:
                 ChildEle = <ClaimStepTwo onSteps={this.onSteps} />;

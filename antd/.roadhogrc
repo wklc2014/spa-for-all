@@ -23,7 +23,8 @@
     "include": [
       "dva/router",
       "dva/saga",
-      "dva/fetch"
+      "dva/fetch",
+      "jQuery"
     ]
   }
 }

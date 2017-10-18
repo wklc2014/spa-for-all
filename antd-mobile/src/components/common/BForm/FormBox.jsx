@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import propTypes from 'prop-types';
 import moment from 'moment';
+import lodash from 'lodash';
 import utils from './util/';
 import CITYS from './util/ChineseCities.js';
 import BaseForm from './BaseForm.jsx';
@@ -28,13 +29,14 @@ class FormBox extends Component {
     }
 
     setValue = () => {
-        const { type, value } = this.props;
-        let newValue = value;
+        const { type, value, params } = this.props;
+        const { renderValue } = params;
+        let newValue = renderValue ? renderValue(value) : value;
         switch (type) {
             case 'date':
                 newValue = value ? moment(value) : value;
                 break;
-            case 'checkbox':
+            case 'checkboxItem':
             case 'image':
                 newValue = value || [];
                 break;
@@ -56,9 +58,20 @@ class FormBox extends Component {
         return newData;
     }
 
+    setLabel = () => {
+        const { params } = this.props;
+        const { label, labelRender } = params;
+        let newLabel = label;
+        if (labelRender && lodash.isFunction(labelRender)) {
+            newLabel = labelRender(label);
+        }
+        return newLabel;
+    }
+
     render() {
         const newValue = this.setValue();
         const newData = this.setData();
+        const newLabel = this.setLabel();
 
         let ChildEle = null;
 
@@ -66,14 +79,17 @@ class FormBox extends Component {
             id: this.props.id,
             onChange: this.onChange,
             value: newValue,
+            type: this.props.type,
             params: {
                 ...this.props.params,
-                type: this.props.type,
+                label: newLabel,
                 data: newData,
             },
-            options: this.props.options,
-            listItem: this.props.listItem,
-            api: this.props.api,
+            defaultApi: this.props.defaultApi,
+            listItemApi: this.props.listItemApi,
+            optionsApi: this.props.optionsApi,
+            flexApi: this.props.flexApi,
+            flexItemApi: this.props.flexItemApi,
         }
 
         return <BaseForm {...commonProps} />;

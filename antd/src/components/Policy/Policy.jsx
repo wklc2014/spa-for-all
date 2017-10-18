@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import lodash from 'lodash';
 import moment from 'moment';
-import { Form, DatePicker } from 'antd';
-import FormBox from '../common/BForm/FormBox.jsx';
+import { Form, Button } from 'antd';
+import PicEffect from '../common/PicEffect/PicEffect.jsx';
+
+const IMG = require('../../assets/img/pic.jpg');
 
 class Policy extends Component {
 
@@ -12,31 +14,26 @@ class Policy extends Component {
     constructor(props) {
         super(props);
         this.state = {
-
+            visible: true,
         };
     }
 
+    handleClick = () => {
+
+    }
+
     render() {
-
-        const showTime = {
-            hideDisabledOptions: true,
-            defaultValue: moment('00:00:00', 'HH:mm:ss')
-        }
-
-        const disabledTime = function (_, ty) {
-            // body...
-        }
-
         return (
             <section>
-                <DatePicker
-                    format="YYYY-MM-DD HH:mm:ss"
-                    disabledTime={disabledTime}
-                    showTime={showTime}
+                <Button onClick={this.handleClick}>按钮</Button>
+                <PicEffect
+                    visible={this.state.visible}
+                    index={0}
+                    filePath={IMG}
                 />
             </section>
         );
     }
 }
 
-export default Form.create()(Policy);
+export default Policy;

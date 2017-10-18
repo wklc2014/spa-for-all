@@ -76,12 +76,13 @@ class FormBox extends Component {
                 break;
             case 'enum':
                 if (!value && data) {
-                    data.some((v) => {
+                    const arr = [];
+                    data.forEach((v) => {
                         if (v.selected) {
-                            newValues = v.value;
+                            arr.push(v.value);
                         }
-                        return v.selected;
                     })
+                    newValues = arr;
                 }
                 break;
           case 'input-before-select':
@@ -235,8 +236,8 @@ class FormBox extends Component {
                 ChildEle = <BaseForm { ...commonProps } />;
                 break;
         }
-
-        return <span> { ChildEle } </span>;
+        // return <span>{ChildEle}</span>;
+        return <div> { ChildEle } </div>;
     }
 }
 

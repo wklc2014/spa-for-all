@@ -33,13 +33,21 @@ class FormGroup extends Component {
         const { onChange, values } = this.props;
         const newConfigs = this.sortConfigs();
         return newConfigs.map((v, i) => {
+            const newParams = v.params || {};
+            const newDefaultApi = v.defaultApi || {};
+            const newListItemApi = v.listItemApi || {};
+            const newOptionsApi = v.optionsApi || {};
+            const newFlexApi = v.flexApi || {};
+            const newFlexItemApi = v.flexItemApi || {};
             const props = {
-                type: v.type,
                 id: v.id,
-                params: v.params || {},
-                api: v.api || {},
-                listItem: v.listItem || {},
-                options: v.options || {},
+                type: v.type,
+                params: newParams,
+                defaultApi: newDefaultApi,
+                listItemApi: newListItemApi,
+                optionsApi: newOptionsApi,
+                flexApi: newFlexApi,
+                flexItemApi: newFlexItemApi,
                 onChange,
                 key: i,
                 value: values[v.id],

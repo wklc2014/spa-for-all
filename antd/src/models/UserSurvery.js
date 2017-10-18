@@ -18,7 +18,8 @@ export default {
             address: '天府软件园D4',
             contactPhone: '',
             // emailContent: '<p>123</p>',
-            formLayout: 'vertical',
+            formLayout: 'inline',
+            carMarkType: '03'
         },
     },
 

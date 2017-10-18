@@ -239,14 +239,30 @@ class FormGroup extends Component {
         const { col, colSpan, space, layout } = this.props;
         const formItemProps = this.setFormItemProps();
         if (layout === 'inline') {
-            return <div>{formItemProps.map((val, i) => <FormBox key={i} {...val} />)}</div>;
+            return (
+                <div>
+                    {
+                        formItemProps.map((val, i) => (
+                            <div key={i} style={{ display: 'inline-block' }}>
+                                <FormBox {...val} />
+                            </div>
+                        ))
+                    }
+                </div>
+            );
         }
         return (
             <Row type="flex">
                 {
                     formItemProps.map((val, i) => {
                         const colProps = getGridLayout(col, val.params.colSpan);
-                        return <Col key={i} {...colProps}><div style={{paddingRight: space}}><FormBox {...val} /></div></Col>;
+                        return (
+                            <Col key={i} {...colProps}>
+                                <div style={{paddingRight: space}}>
+                                    <FormBox {...val} />
+                                </div>
+                            </Col>
+                        );
                     })
                 }
             </Row>

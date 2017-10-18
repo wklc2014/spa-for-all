@@ -4,9 +4,13 @@ import {
     ImagePicker,
     DatePicker,
     InputItem,
+    TextareaItem,
     Picker,
     Checkbox,
     Radio,
+    Flex,
+    Button,
+    WingBlank,
 } from 'antd-mobile';
 import { createForm } from 'rc-form';
 import propTypes from 'prop-types';
@@ -21,19 +25,21 @@ function BaseForm(props) {
         id,
         onChange,
         value,
+        type,
+        params,
         form,
 
-        params,
-        options,
-        api,
-        listItem,
+        defaultApi,
+        listItemApi,
+        optionsApi,
+        flexApi,
+        flexItemApi,
 
         error,
         onErrorClick,
     } = props;
 
     const {
-        type,
         data,
         label,
     } = params;
@@ -41,48 +47,45 @@ function BaseForm(props) {
     const { getFieldProps } = form;
 
     const defaultProps = {
-        ...api,
+        ...defaultApi,
         ...getFieldProps(id, {
-            ...options,
+            ...optionsApi,
             onChange: (value) => {
                 onChange({ id, value });
             },
         }),
+        value,
         error,
-        onErrorClick
+        onErrorClick,
     };
 
     switch (type) {
         case 'date':
-            const dateArrow = params.arrow || 'horizontal';
             return (
                 <DatePicker
-                    {...defaultProps}
+                    {...defaultApi}
+                    onChange={(value) => onChange({ id, value })}
                     value={value}
                 >
-                    <List.Item
-                        {...listItem}
-                        arrow={`${listItem.arrow || 'horizontal'}`}
-                    >
+                    <List.Item arrow="horizontal" {...listItemApi}>
                         {label}
                     </List.Item>
                 </DatePicker>
             );
-        case 'input':
+            break;
+        case 'inputItem':
             return (
-                <InputItem
-                    {...defaultProps}
-                    value={value}
-                >
+                <InputItem {...defaultProps}>
                     {label}
                 </InputItem>
             );
+            break;
         case 'image':
             return (
                 <ImagePicker
-                    {...defaultProps}
+                    {...defaultApi}
                     files={value}
-                    selectable={value.length < params.selectable}
+                    selectable={value.length < defaultApi.selectable}
                     onChange={(files, type, index) => {
                         if (type === 'add') {
                             onChange({ id, value: [...files] });
@@ -93,30 +96,46 @@ function BaseForm(props) {
                     }}
                 />
             );
+            break;
         case 'picker':
             return (
                 <Picker
-                    {...defaultProps}
+                    {...defaultApi}
                     data={data}
+                    onChange={(value) => onChange({ id, value })}
                     value={value}
                 >
-                    <List.Item
-                        {...listItem}
-                        arrow={`${listItem.arrow || 'horizontal'}`}
-                    >
+                    <List.Item arrow="horizontal" {...listItemApi}>
                         {label}
                     </List.Item>
                 </Picker>
             );
-        case 'checkbox':
+            break;
+        case 'text':
+            let textTypeProps = {...listItemApi};
+            if (value) {
+                textTypeProps = Object.assign({}, listItemApi, {
+                    extra: <div className="fzLarge color-333">{value}</div>
+                })
+            }
+            return (
+                <List.Item
+                    {...textTypeProps}
+                >
+                    {label}
+                    {params.brief && <List.Item.Brief>{params.brief}</List.Item.Brief>}
+                </List.Item>
+            );
+            break;
+        case 'checkboxItem':
             return (
                 <div>
                     {data.map((v) => {
                         const checked = lodash.indexOf(value, v.value) !== -1;
                         const props = {
-                            ...api,
+                            ...defaultApi,
                             key: v.value,
-                            onChange: () => {
+                            onChange: (e) => {
                                 let newValue = [];
                                 if (checked) {
                                     newValue = value.filter((m) => m !== v.value);
@@ -131,13 +150,14 @@ function BaseForm(props) {
                     })}
                 </div>
             );
-        case 'radio':
+            break;
+        case 'radioItem':
             return (
                 <div>
                     {data.map((v) => {
                         const checked = v.value === value;
                         const props = {
-                            ...api,
+                            ...defaultApi,
                             key: v.value,
                             onChange: (e) => {
                                 onChange({ id, value: v.value });
@@ -148,8 +168,57 @@ function BaseForm(props) {
                     })}
                 </div>
             );
+            break;
+        case 'radio':
+            return (
+                <div>
+                    {data.map((v) => {
+                        return (
+                            <List.Item key={v.value} {...listItemApi}>
+                                <Radio
+                                    className="my-radio"
+                                    checked={v.value === value}
+                                    onChange={e => onChange({ id, value: v.value })}
+                                >
+                                    <span>{v.label}</span>
+                                </Radio>
+                                <List.Item.Brief>{v.tips}</List.Item.Brief>
+                            </List.Item>
+                        )
+                    })}
+                </div>
+            );
+            break;
+        case 'textareaItem':
+            if (params.titleAlone) {
+                return (
+                    <div>
+                        <List.Item {...listItemApi}>
+                            {label}
+                        </List.Item>
+                        <TextareaItem {...defaultProps}>
+                            {label}
+                        </TextareaItem>
+                    </div>
+                )
+            }
+            return (
+                 <TextareaItem {...defaultProps}>
+                     {label}
+                 </TextareaItem>
+            );
+            break;
+        case 'button':
+            return (
+                <WingBlank>
+                    <Button {...defaultApi}>
+                        {label}
+                    </Button>
+                </WingBlank>
+            );
+            break;
         default:
-            console.log('type is error...');
+            console.log('type is error>>>', type);
             return null;
     }
 

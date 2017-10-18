@@ -256,6 +256,9 @@ export const UserSurvery = [
                 required: true,
                 message: '号牌种类必填'
             }],
+        },
+        api: {
+            mode: 'multiple',
         }
     },
     {

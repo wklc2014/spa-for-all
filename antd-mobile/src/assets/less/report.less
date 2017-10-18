@@ -86,6 +86,16 @@
 .tc {
     text-align: center;
 }
+// 颜色
+.red {
+    color: #f00;
+}
+.gray {
+    color: #ccc;
+}
+.color-333 {
+    color: #333;
+}
 
 .sub-title {
     color: #888;
@@ -97,8 +107,43 @@
     .fzLarge;
     padding: 30px 0 18px 0;
 }
+.inputItem-right {
+    .am-input-control {
+        input {
+            text-align: right;
+        }
+    }
+}
+.am-list-item.am-list-item-right-all {
+    .am-list-line {
+        .am-list-content {
+            flex-basis: 36%;
+        }
+        .am-list-extra {
+            flex-basis: 64%;
+        }
+    }
+}
+.my-radio .am-radio {
+    padding: 0.05rem;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    margin-right: 0.1rem;
+    top: -4px;
+}
+.am-list-item.am-list-brief-all {
+    .am-list-line {
+        .am-list-brief {
+            overflow: auto;
+            text-overflow: none;
+            white-space: inherit;
+            font-size: 24px;
+        }
+    }
+}
 
-// 第二步- 资料提交
+
+// 第二步 - 资料提交
 .onlineClaimSubmit {
     .submitContent {
         background-color: #fff;

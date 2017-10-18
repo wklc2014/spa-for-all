@@ -76,7 +76,7 @@ class SurveryContent extends Component {
 
         const { formLayout } = this.props.values;
 
-        const inlineGroupConfigs = [...CONFIGS.UserRegister, {
+        const btnConfig = {
             type: 'button',
             id: 'button-submit',
             params: {
@@ -91,11 +91,13 @@ class SurveryContent extends Component {
             formItem: {
                 wrapperCol: { span: 14, offset: 4 }
             }
-        }];
+        };
+
+        const inlineGroupConfigs = [...CONFIGS.UserRegister, btnConfig];
 
         return (
             <section>
-                <div style={commonStyle}>
+                {/*<div style={commonStyle}>
                     <FormGroup
                         ref="FormGroup"
                         configs={CONFIGS.UserSurvery}
@@ -103,7 +105,7 @@ class SurveryContent extends Component {
                         onChange={this.onChange}
                         values={this.props.values}
                     />
-                </div>
+                </div>*/}
                 <p style={{ paddingBottom: 16 }}>
                     <Button onClick={this.onSubmit} style={{ marginRight: 16 }}>
                         提交

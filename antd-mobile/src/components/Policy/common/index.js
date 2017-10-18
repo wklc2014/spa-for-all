@@ -4,11 +4,11 @@ export const UserSurvery = [
     {
         order: 1,
         id: 'username',
-        type: 'input',
+        type: 'inputItem',
         params: {
             label: <div>用户姓名</div>,
         },
-        api: {
+        defaultApi: {
             type: 'money',
             clear: true,
             maxLength: 10,
@@ -19,11 +19,11 @@ export const UserSurvery = [
     {
         order: 2,
         id: 'bankCard',
-        type: 'input',
+        type: 'inputItem',
         params: {
             label: '银行卡',
         },
-        api: {
+        defaultApi: {
             type: 'bankCard',
             placeholder: '请输入银行卡号',
         }
@@ -31,15 +31,15 @@ export const UserSurvery = [
     {
         order: 3,
         id: 'userPhone',
-        type: 'input',
+        type: 'inputItem',
         params: {
             label: '手机号码',
         },
-        api: {
+        defaultApi: {
             type: 'phone',
             placeholder: '请输入手机号码',
         },
-        options: {
+        optionsApi: {
             rules: [
                 { required: true, message: '手机号码必填' },
                 { validator: rules.phone, message: '手机号码不正确' },
@@ -49,14 +49,15 @@ export const UserSurvery = [
     {
         order: 4,
         id: 'email',
-        type: 'input',
+        type: 'inputItem',
         params: {
             label: '邮箱',
         },
-        api: {
+        defaultApi: {
             type: 'text',
+            placeholder: '请输入邮箱地址',
         },
-        options: {
+        optionsApi: {
             rules: [
                 { type: 'email', message: '邮箱地址不合法' },
             ],
@@ -65,24 +66,26 @@ export const UserSurvery = [
     {
         order: 5,
         id: 'userAge',
-        type: 'input',
+        type: 'inputItem',
         params: {
             label: '数字输入',
         },
-        api: {
+        defaultApi: {
             type: 'number',
+            placeholder: '请输入数字',
         }
     },
     {
         order: 6,
         id: 'userPay',
-        type: 'input',
+        type: 'inputItem',
         params: {
             label: '人民币',
         },
-        api: {
+        defaultApi: {
             type: 'money',
             extra: '¥',
+            placeholder: '请输入人民币金额',
         }
     },
     {
@@ -92,7 +95,7 @@ export const UserSurvery = [
         params: {
             label: '出险时间',
         },
-        api: {
+        defaultApi: {
             mode: 'date',
             title: '选择出险时间',
         }
@@ -100,7 +103,7 @@ export const UserSurvery = [
     {
         order: 8,
         id: 'interests',
-        type: 'checkbox',
+        type: 'checkboxItem',
         params: {
             data: [
                 { value: 0, label: '足球' },
@@ -114,14 +117,17 @@ export const UserSurvery = [
         id: 'files',
         type: 'image',
         params: {
-            selectable: 3,
+
         },
+        defaultApi: {
+            selectable: 3,
+        }
     },
     {
         order: 10,
         id: 'picker',
         type: 'picker',
-        api: {
+        defaultApi: {
             title: 'Picker选择器',
             cols: 3,
         },
@@ -129,20 +135,28 @@ export const UserSurvery = [
             label: '选择季节',
             data: 'city',
         },
-        listItem: {
+        listItemApi: {
             wrap: true,
         }
     },
     {
         order: 11,
         id: 'radio1',
-        type: 'radio',
+        type: 'radioItem',
         params: {
             data: [
                 { value: 0, label: '足球' },
                 { value: 1, label: '篮球' },
                 { value: 2, label: '乒乓球' },
             ]
+        },
+    },
+    {
+        order: 12,
+        id: 'textareaItem',
+        type: 'textareaItem1',
+        params: {
+            label: '事故发生过程',
         },
     },
 ]

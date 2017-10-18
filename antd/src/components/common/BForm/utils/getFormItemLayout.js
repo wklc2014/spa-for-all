@@ -8,7 +8,7 @@
 export default function getFormItemLayout(col, colSpan, layout) {
 
     if (layout !== 'horizontal') {
-        return null;
+        return { labelCol: {}, wrapperCol: {} };
     }
 
     colSpan = colSpan === 2 && col !== 1 ? 2 : 1;
