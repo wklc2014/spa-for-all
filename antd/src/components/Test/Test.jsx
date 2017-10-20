@@ -14,7 +14,27 @@ class Assess extends Component {
     }
 
     componentDidMount() {
-
+        const o = {
+            assess: 'aaa',
+            accident: 'bbb',
+            fund: {
+                m: 'er',
+                n: 123
+            },
+            ext: 'ffff',
+        }
+        const keys = Object.keys(o);
+        const b = JSON.stringify(o, (key, value) => {
+            console.log('key>>>', key);
+            console.log('value>>>', value);
+            if (keys.indexOf(key) !== -1) {
+                if (typeof value === 'string') {
+                    return value.toUpperCase();
+                }
+            }
+            return value;
+        }, '    ');
+        console.log(b);
     }
 
     render() {
