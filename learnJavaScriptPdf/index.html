@@ -8,7 +8,19 @@
 <body>
 <script src="06/inherit.js"></script>
 <!-- <script src="09/range.js"></script> -->
-<script src="09/getFunctionName.js"></script>
+<!-- <script src="09/getFunctionName.js"></script> -->
+<script>
+    function F(x) {
+        this.a = x;
+        // return 'fffffffff'
+        // return {
+        //     m: 1,
+        //     n: 2
+        // }
+    }
+    var f = new F(3);
+    console.log(f);
+</script>
 <script>
 </script>
 </body>

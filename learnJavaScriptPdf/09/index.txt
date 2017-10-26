@@ -37,7 +37,7 @@ javascript 弱类型面向对象编程
 
 instanceof 检查对象是否属于某个类
 
-[prototype]是关键
+【 prototype 】是关键
 
 
 9.2.2 constructor 属性
