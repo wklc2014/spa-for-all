@@ -44,9 +44,22 @@ function HFormItem(props) {
     const formItemApi = field.formItemApi || {};
     const optionsApi = field.optionsApi || {};
     const params = field.params || {};
-    const onChange = ({ id, value, addType, addValue }) => {
-        value = getValue(value, params);
-        field.onChange({ id, value, addType, addValue })
+    const onChange = (e, addType) => {
+        if (addType) {
+            const newValue = getValue(value, params);
+            field.onChange({
+                id,
+                value: newValue,
+                addType,
+                addValue: e,
+            });
+        } else {
+            const newValue = getValue(e, params);
+            field.onChange({
+                id,
+                value: newValue,
+            });
+        }
     }
 
     const formItemLayout = getFormItemLayout(layout, params.colSpan, col);
@@ -75,7 +88,6 @@ function HFormItem(props) {
 
     _throwErrors(type);
     const formEle = fieldTypes[type]({
-        id,
         props: {
             ...defaultApi,
             ...placeholder,
@@ -113,7 +125,6 @@ function HFormItem(props) {
                 },
             });
             return fieldTypes[val.type]({
-                id,
                 props: {
                     key: i,
                     ..._defaultApi,
@@ -126,6 +137,7 @@ function HFormItem(props) {
                 },
                 value,
                 onChange,
+                addType: val.type,
             });
         })
         ChildEle = (
@@ -133,7 +145,9 @@ function HFormItem(props) {
                 <Col {...childSpan.left}>
                     {_getFieldDecorator(formEle)}
                 </Col>
-                <Col {...childSpan.right}>{formAdd}</Col>
+                <Col {...childSpan.right}>
+                    {formAdd}
+                </Col>
             </Row>
         )
     } else {
@@ -141,7 +155,10 @@ function HFormItem(props) {
     }
 
     return (
-        <FormItem {...formItemApi} {...formItemLayout}>
+        <FormItem
+            {...formItemApi}
+            {...formItemLayout}
+        >
             {ChildEle}
         </FormItem>
     )

@@ -22,136 +22,127 @@ const RadioGroup = Radio.Group;
 const RadioButton = Radio.Button;
 
 export default {
-    input: ({ id, props, params, value, onChange }) => {
+    input: ({ props, params, value, onChange, addType }) => {
         const newProps = {
             size: 'large',
             ...props,
-            onChange: (e) => {
-                onChange({ id, value: e.target.value })
-            },
+            onChange: (e) => onChange(e.target.value, addType),
         }
+
         return <Input {...newProps} />;
     },
-    textarea: ({ id, props, params, value, onChange }) => {
+    textarea: ({ props, params, value, onChange, addType }) => {
         const newProps = {
             rows: 4,
             ...props,
-            onChange: (e) => {
-                onChange({ id, value: e.target.value })
-            },
+            onChange: (e) => onChange(e.target.value, addType),
         }
         return <TextArea {...newProps} />;
     },
-    rate: ({ id, props, params, value, onChange }) => {
+    rate: ({ props, params, value, onChange, addType }) => {
         const newProps = {
             ...props,
-            onChange: (value) => onChange({ id, value }),
+            onChange: (e) => onChange(e, addType),
         }
         return <Rate {...newProps} />;
     },
-    slider: ({ id, props, params, value, onChange }) => {
+    slider: ({ props, params, value, onChange, addType }) => {
         const newProps = {
             ...props,
-            onChange: (value) => onChange({ id, value }),
+            onChange: (e) => onChange(e, addType),
         }
         return <Slider {...newProps} />;
     },
-    switch: ({ id, props, params, value, onChange }) => {
+    switch: ({ props, params, value, onChange, addType }) => {
         const newProps = {
             ...props,
-            onChange: (value) => onChange({ id, value }),
+            onChange: (e) => onChange(e, addType),
         }
         return <Switch {...newProps} />;
     },
-    number: ({ id, props, params, value, onChange }) => {
+    number: ({ props, params, value, onChange, addType }) => {
         const newProps = {
             ...props,
-            onChange: (value) => onChange({ id, value }),
+            onChange: (e) => onChange(e, addType),
         }
         return <InputNumber {...newProps} />;
     },
-    checkbox: ({ id, props, params, value, onChange }) => {
+    checkbox: ({ props, params, value, onChange, addType }) => {
         const newProps = {
             ...props,
-            onChange: (value) => onChange({ id, value }),
+            onChange: (e) => onChange(e, addType),
         }
         return <CheckboxGroup {...newProps} />;
     },
-    cascader: ({ id, props, params, value, onChange }) => {
-        const newProps = {
-            ...props,
-            options: params.data,
-            onChange: (value) => onChange({ id, value }),
-        }
-        return <Cascader {...newProps} />;
-    },
-    select: ({ id, props, params, value, onChange }) => {
+    cascader: ({ props, params, value, onChange, addType }) => {
         const newProps = {
             size: 'large',
             ...props,
-            onChange: (e) => {
-                onChange({
-                    id,
-                    value,
-                    addType: 'select',
-                    addValue: e,
-                })
-            },
+            options: params.data,
+            onChange: (e) => onChange(e, addType),
+        }
+        return <Cascader {...newProps} />;
+    },
+    select: ({ props, params, value, onChange, addType }) => {
+        const newProps = {
+            size: 'large',
+            ...props,
+            onChange: (e) => onChange(e, addType),
         };
         const ChildEle = params.data.map((v, i) => (
             <Option key={i} value={v.value}>{v.label}</Option>
         ))
         return <Select {...newProps}>{ChildEle}</Select>;
     },
-    date: ({ id, props, params, value, onChange }) => {
+    date: ({ props, params, value, onChange, addType }) => {
         const newProps = {
             ...props,
-            onChange: (_, value) => onChange({ id, value }),
+            onChange: (_, e) => onChange(e, addType),
         };
         return <DatePicker {...newProps} />;
     },
-    dateRange: ({ id, props, params, value, onChange }) => {
+    dateRange: ({ props, params, value, onChange, addType }) => {
         const newProps = {
             ...props,
-            onChange: (_, value) => onChange({ id, value }),
+            onChange: (_, e) => onChange(e, addType),
         };
         return <RangePicker {...newProps} />;
     },
-    dateMonth: ({ id, props, params, value, onChange }) => {
+    dateMonth: ({ props, params, value, onChange, addType }) => {
         const newProps = {
             ...props,
-            onChange: (_, value) => onChange({ id, value }),
+            onChange: (_, e) => onChange(e, addType),
         };
         return <MonthPicker {...newProps} />;
     },
-    time: ({ id, props, params, value, onChange }) => {
+    time: ({ props, params, value, onChange, addType }) => {
         const newProps = {
             ...props,
-            onChange: (_, value) => onChange({ id, value }),
+            onChange: (_, e) => onChange(e, addType),
         };
         return <TimePicker {...newProps} />;
     },
-    radioButton: ({ id, props, params, value, onChange }) => {
+    radioButton: ({ props, params, value, onChange, addType }) => {
         const newProps = {
             ...props,
-            onChange: (e) => onChange({ id, value: e.target.value }),
+            onChange: (e) => onChange(e.target.value, addType),
         };
         const ChildEle = params.data.map((v, i) => (
             <RadioButton key={i} value={v.value}>{v.label}</RadioButton>
         ))
         return <RadioGroup {...newProps}>{ChildEle}</RadioGroup>;
     },
-    radio: ({ id, props, params, value, onChange }) => {
+    radio: ({ props, params, value, onChange, addType }) => {
         const newProps = {
             ...props,
-            onChange: (e) => onChange({ id, value: e.target.value }),
+            onChange: (e) => onChange(e.target.value, addType),
         };
         const ChildEle = params.data.map((v, i) => (
             <Radio key={i} value={v.value}>{v.label}</Radio>
         ))
         return <RadioGroup {...newProps}>{ChildEle}</RadioGroup>;
     },
-    text: ({ id, props, params, value, onChange }) => {
+    text: ({ props, params, value, onChange, addType }) => {
         const newProps = {
             className: 'ant-form-text',
             ...props,
@@ -162,18 +153,11 @@ export default {
         } catch (e) {}
         return <span {...newProps}>{newValue}</span>;
     },
-    button: ({ id, props, params, value, onChange }) => {
+    button: ({ props, params, value, onChange, addType }) => {
         const newProps = {
             size: 'large',
             ...props,
-            onClick: () => {
-                onChange({
-                    id,
-                    value,
-                    addType: 'button',
-                    addValue: params.value,
-                })
-            }
+            onClick: (e) => onChange(params.value, addType),
         };
         return <Button {...newProps}>{params.label}</Button>;
     },

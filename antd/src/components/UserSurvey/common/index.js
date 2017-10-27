@@ -22,6 +22,20 @@ export const UserSurvery = [
         },
         params: {
             toLowerCase: true,
+            addType: [
+                {
+                    type: 'select',
+                    params: {
+                        data: [
+                            { value: '1', label: '成都' },
+                            { value: '2', label: '上海' },
+                        ]
+                    },
+                    defaultApi: {
+                        placeholder: '请选择城市'
+                    }
+                }
+            ]
         }
     },
     {
@@ -94,6 +108,17 @@ export const UserSurvery = [
         id: 'accidentCity',
         params: {
             city: 'quanGuo',
+            addType: [
+                {
+                    type: 'input',
+                    params: {
+
+                    },
+                    defaultApi: {
+                        placeholder: '请输入姓名'
+                    }
+                }
+            ]
         },
         formItemApi: {
             label: 'cascader',
@@ -256,7 +281,7 @@ export const UserSurvery = [
         type: 'select',
         id: 'carMarkType',
         formItemApi: {
-            label: 'enum',
+            label: 'select',
         },
         params: {
             data: [
@@ -281,22 +306,22 @@ export const UserSurvery = [
             mode: 'multiple',
         }
     },
-    // {
-    //     order: 16,
-    //     type: 'input-before-select',
-    //     id: 'carNoAddress',
-    //     params: {
-    //         data: [
-    //             { value: '01', label: '+86' },
-    //             { value: '02', label: '+87', selected: true },
-    //             { value: '03', label: '+88' },
-    //         ],
-    //         selectWidth: 60,
-    //     },
-    //     formItemApi: {
-    //         label: 'beforeSelect',
-    //     },
-    // },
+    {
+        order: 16,
+        type: 'input',
+        id: 'carNoAddress',
+        params: {
+            data: [
+                { value: '01', label: '+86' },
+                { value: '02', label: '+87', selected: true },
+                { value: '03', label: '+88' },
+            ],
+            selectWidth: 60,
+        },
+        formItemApi: {
+            label: 'beforeSelect',
+        },
+    },
     {
         order: 17,
         type: 'textarea',
@@ -307,6 +332,19 @@ export const UserSurvery = [
         },
         params: {
             colSpan: 2,
+            childSpan: 18,
+            addType: [
+                {
+                    type: 'button',
+                    params: {
+                        label: '编辑',
+                        value: 'edit'
+                    },
+                    defaultApi: {
+                        type: 'primary'
+                    }
+                }
+            ]
         },
         optionsApi: {
             rules: [{
