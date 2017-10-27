@@ -4,7 +4,7 @@
  * @param  {number} colSpan 一个表单元素占几列
  * @return {object}         antd栅格布局属性
  */
-export default function getGridLayout(col, colSpan) {
+export default function getGridLayout(col, colSpan = 1) {
     colSpan = colSpan === 2 && col !== 1 ? 2 : 1;
     let ret = {};
     switch (col) {

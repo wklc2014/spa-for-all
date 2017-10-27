@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import moment from 'moment';
 import { Form, Table, Button } from 'antd';
-import TableGroup from '../common/BForm/TableGroup.jsx';
+import HTable from '../common/HForm/HTable.jsx';
 import * as CONFIG_TABLE from './common/';
 
 class Assess extends Component {
@@ -39,7 +39,7 @@ class Assess extends Component {
         })
     }
 
-    onChange = ({ id, value, order, type, addValue }) => {
+    onChange = ({ id, value, order, addType, addValue }) => {
         const { dataSource } = this.state;
         const newDataSource = dataSource.map((v, i) => {
             if (v.key === order) {
@@ -51,15 +51,14 @@ class Assess extends Component {
     }
 
     render() {
-        const { getFieldDecorator } = this.props.form;
         const { dataSource } = this.state;
 
         return (
-            <TableGroup
+            <HTable
                 configs={CONFIG_TABLE.Assess}
+                form={this.props.form}
                 dataSource={dataSource}
                 onChange={this.onChange}
-                getFieldDecorator={getFieldDecorator}
                 isTotal
             />
         )

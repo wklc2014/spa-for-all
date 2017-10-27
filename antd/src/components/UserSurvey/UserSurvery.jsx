@@ -1,3 +1,4 @@
+import { connect } from 'dva';
 import React, { Component } from 'react';
 import SurveryContent from './SurveryContent.jsx';
 
@@ -8,29 +9,33 @@ class UserSurvery extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {};
     }
 
-    onSubmit = () => {
-        console.log(this);
+    onChange = ({ id, value, order, addType, addValue }) => {
+        console.log(id, value, order, addType, addValue)
+        this.props.dispatch({
+            type: 'UserSurvery/update',
+            payload: {
+                modelKey: 'Basic',
+                modelValue: { [id]: value }
+            }
+        })
     }
-
-    onChange = ({ id, value, type, addValue }) => {
-        const newValue = { [id]: value };
-        this.setState(newValue);
-    }
-
-    // values={this.state}
 
     render() {
         return (
             <SurveryContent
-                ref="contents"
+                values={this.props.values}
                 onChange={this.onChange}
-                onSubmit={this.onSubmit}
             />
         )
     }
 }
 
-export default UserSurvery;
+function mapStateToProps(state, ownProps) {
+    return {
+        values: state.UserSurvery.Basic,
+    }
+}
+
+export default connect(mapStateToProps)(UserSurvery);

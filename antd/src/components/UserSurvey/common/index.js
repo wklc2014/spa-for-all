@@ -6,14 +6,14 @@ export const UserSurvery = [
         order: 1,
         type: 'input',
         id: 'userName',
-        formItem: {
+        formItemApi: {
             extra: '最多输入500个字',
             label: 'input',
         },
-        api: {
+        defaultApi: {
             disabled: false,
         },
-        options: {
+        optionsApi: {
             rules: [
                 { required: true, message: '用户姓名必填' },
                 { max: 4, message: '用户姓名最多4位' },
@@ -26,15 +26,15 @@ export const UserSurvery = [
     },
     {
         order: 2,
-        type: 'input-button',
+        type: 'input',
         id: 'address',
-        formItem: {
+        formItemApi: {
             label: 'input',
         },
-        api: {
+        defaultApi: {
             disabled: false,
         },
-        options: {
+        optionsApi: {
             rules: [
                 { required: true, message: '用户姓名必填' },
                 { max: 4, message: '用户姓名最多4位' },
@@ -43,26 +43,44 @@ export const UserSurvery = [
         },
         params: {
             childSpan: 10,
-            data: [
-                { label: '同标的', value: '01' },
-                { label: '同三者', value: '02' },
+            addType: [
+                {
+                    type: 'button',
+                    params: {
+                        label: '同标的',
+                        value: '01',
+                    }
+                },
+                {
+                    type: 'button',
+                    params: {
+                        label: '同三者',
+                        value: '02',
+                    }
+                },
             ]
         },
     },
     {
         order: 3,
-        type: 'input-radio',
+        type: 'input',
         id: 'contactPhone',
         params: {
-            data: [
-                { label: '同标的', value: '01' },
-                { label: '同三者', value: '02' },
-            ],
+            addType: [
+                {
+                    type: 'radio',
+                    params: {
+                        data: [
+                            { label: '同标的', value: '02' }
+                        ]
+                    }
+                },
+            ]
         },
-        formItem: {
+        formItemApi: {
             label: 'input',
         },
-        options: {
+        optionsApi: {
             rules: [{
                 required: true,
                 whitespace: true,
@@ -75,18 +93,18 @@ export const UserSurvery = [
         type: 'cascader',
         id: 'accidentCity',
         params: {
-            area: 'quanguo',
+            city: 'quanGuo',
         },
-        formItem: {
+        formItemApi: {
             label: 'cascader',
         },
-        options: {
+        optionsApi: {
             rules: [{
                 required: true,
                 message: '出险城市不能为空'
             }]
         },
-        api: {
+        defaultApi: {
             placeholder: '这是一个三级联动选择',
         },
     },
@@ -94,41 +112,43 @@ export const UserSurvery = [
         order: 5,
         type: 'checkbox',
         id: 'payMoney',
-        formItem: {
+        formItemApi: {
             label: 'checkbox',
         },
         params: {
-            data: [
+            colSpan: 2,
+        },
+        defaultApi: {
+            options: [
                 { label: '无损', value: '01' },
-                { label: '正前方', value: '02', selected: true },
+                { label: '正前方', value: '02' },
                 { label: '前方左侧', value: '03' },
-                { label: '前方右侧', value: '04', selected: true },
+                { label: '前方右侧', value: '04' },
                 { label: '车身左侧', value: '05' },
                 { label: '车身右侧', value: '06' },
             ],
-            colSpan: 2,
         }
     },
     {
         order: 6,
         type: 'date',
         id: 'reportDate',
-        formItem: {
+        formItemApi: {
             label: 'date',
         },
-        api: {
+        defaultApi: {
             format: 'YYYY-MM-DD HH:mm:ss',
             renderExtraFooter: () => 'footer',
         }
     },
     {
         order: 7,
-        type: 'date-range',
+        type: 'dateRange',
         id: 'translateDate',
-        formItem:{
+        formItemApi:{
             label: 'date-range',
         },
-        api: {
+        defaultApi: {
             placeholder: '运输日期',
             showTime: true,
             format: 'YYYY-MM-DD HH:mm:ss',
@@ -141,23 +161,23 @@ export const UserSurvery = [
     },
     {
         order: 8,
-        type: 'date-month',
+        type: 'dateMonth',
         id: 'translateDate1',
-        formItem:{
+        formItemApi: {
             label: 'month',
         },
-        api: {
+        defaultApi: {
             placeholder: '请选择月份',
         },
     },
     {
         order: 9,
-        type: 'date-time',
+        type: 'time',
         id: 'translateDate2',
-        formItem:{
+        formItemApi: {
             label: 'time',
         },
-        api: {
+        defaultApi: {
             placeholder: '请选择时间',
         },
     },
@@ -165,7 +185,7 @@ export const UserSurvery = [
         order: 10,
         type: 'input',
         id: 'carNumber',
-        formItem: {
+        formItemApi: {
             label: 'toUpperCase',
         },
         params: {
@@ -176,10 +196,10 @@ export const UserSurvery = [
         order: 11,
         type: 'input',
         id: 'phoneNumber',
-        formItem: {
+        formItemApi: {
             label: 'phone',
         },
-        options: {
+        optionsApi: {
             rules: [{
                 required: true,
                 message: '手机号码必填'
@@ -193,7 +213,7 @@ export const UserSurvery = [
         order: 12,
         type: 'number',
         id: 'ploicyMoney',
-        formItem: {
+        formItemApi: {
             label: 'number',
         },
         rules: [{
@@ -205,7 +225,7 @@ export const UserSurvery = [
         order: 13,
         type: 'radio',
         id: 'sex',
-        formItem: {
+        formItemApi: {
             label: 'radio',
         },
         params: {
@@ -219,7 +239,7 @@ export const UserSurvery = [
     },
     {
         order: 14,
-        type: 'radio-button',
+        type: 'radioButton',
         id: 'type',
         params: {
             data: [
@@ -227,15 +247,15 @@ export const UserSurvery = [
                 { label: '非车险', value: '02' },
             ]
         },
-        formItem: {
+        formItemApi: {
             label: 'radio',
         },
     },
     {
         order: 15,
-        type: 'enum',
+        type: 'select',
         id: 'carMarkType',
-        formItem: {
+        formItemApi: {
             label: 'enum',
         },
         params: {
@@ -251,44 +271,44 @@ export const UserSurvery = [
                 { value: '09', label: '使馆摩托车号牌' },
             ],
         },
-        options: {
+        optionsApi: {
             rules: [{
                 required: true,
                 message: '号牌种类必填'
             }],
         },
-        api: {
+        defaultApi: {
             mode: 'multiple',
         }
     },
-    {
-        order: 16,
-        type: 'input-before-select',
-        id: 'carNoAddress',
-        params: {
-            data: [
-                { value: '01', label: '+86' },
-                { value: '02', label: '+87', selected: true },
-                { value: '03', label: '+88' },
-            ],
-            selectWidth: 60,
-        },
-        formItem: {
-            label: 'beforeSelect',
-        },
-    },
+    // {
+    //     order: 16,
+    //     type: 'input-before-select',
+    //     id: 'carNoAddress',
+    //     params: {
+    //         data: [
+    //             { value: '01', label: '+86' },
+    //             { value: '02', label: '+87', selected: true },
+    //             { value: '03', label: '+88' },
+    //         ],
+    //         selectWidth: 60,
+    //     },
+    //     formItemApi: {
+    //         label: 'beforeSelect',
+    //     },
+    // },
     {
         order: 17,
         type: 'textarea',
         id: 'accidentDescription',
-        formItem: {
+        formItemApi: {
             label: 'textarea',
             extra: '最多输入500个字',
         },
         params: {
             colSpan: 2,
         },
-        options: {
+        optionsApi: {
             rules: [{
                 required: true,
                 message: '出险描述必填'
@@ -297,42 +317,51 @@ export const UserSurvery = [
     },
     {
         order: 18,
-        type: 'textarea-button',
+        type: 'textarea',
         id: 'accidentCreate',
-        formItem: {
+        formItemApi: {
             label: 'textarea',
             extra: '最多输入500个字',
         },
         params: {
             colSpan: 2,
             data: [
-                { value: '01', label: '生成描述', type: 'primary' },
+                {
+                    type: 'button',
+                    params: {
+                        label: '生成描述',
+                        value: '01',
+                    },
+                    defaultApi: {
+                        type: 'primary'
+                    }
+                },
             ],
             childSpan: 18,
         }
     },
-    {
-        order: 19,
-        type: 'editor',
-        id: 'emailContent',
-        formItem: {
-            label: 'editor',
-        },
-        params: {
-            colSpan: 2,
-        },
-        options: {
-            rules: [{
-                required: true,
-                message: '内容必填'
-            }],
-        }
-    },
+    // {
+    //     order: 19,
+    //     type: 'editor',
+    //     id: 'emailContent',
+    //     formItemApi: {
+    //         label: 'editor',
+    //     },
+    //     params: {
+    //         colSpan: 2,
+    //     },
+    //     optionsApi: {
+    //         rules: [{
+    //             required: true,
+    //             message: '内容必填'
+    //         }],
+    //     }
+    // },
     {
         order: 20,
         type: 'text',
         id: 'myName',
-        formItem: {
+        formItemApi: {
             label: 'text',
         },
         params: {
@@ -343,24 +372,21 @@ export const UserSurvery = [
         order: 21,
         type: 'rate',
         id: 'rate1',
-        formItem: {
+        formItemApi: {
             label: 'rate',
         },
-        api: {
+        defaultApi: {
             allowHalf: true,
         },
-        params: {
-            copywriting: (value) => `${value} Stars`,
-        }
     },
     {
         order: 22,
         type: 'slider',
         id: 'slider1',
-        formItem: {
+        formItemApi: {
             label: 'slider',
         },
-        api: {
+        defaultApi: {
             marks: {
                 0: 'A',
                 20: 'AA',
@@ -375,10 +401,10 @@ export const UserSurvery = [
         order: 23,
         type: 'switch',
         id: 'switch1',
-        formItem: {
+        formItemApi: {
             label: 'switch',
         },
-        api: {
+        defaultApi: {
             checkedChildren: 'OK',
             unCheckedChildren: 'NO'
         }
@@ -387,9 +413,9 @@ export const UserSurvery = [
 
 export const UserRegister = [
     {
-        type: 'radio-button',
+        type: 'radioButton',
         id: 'formLayout',
-        formItem: {
+        formItemApi: {
             label: 'Username',
         },
         params: {
@@ -403,17 +429,17 @@ export const UserRegister = [
     {
         type: 'input',
         id: 'username',
-        formItem: {
+        formItemApi: {
             label: 'Username',
         },
     },
     {
         type: 'input',
         id: 'password',
-        formItem: {
+        formItemApi: {
             label: 'Password',
         },
-        api: {
+        defaultApi: {
             type: 'password',
         }
     },

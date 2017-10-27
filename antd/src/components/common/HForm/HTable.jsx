@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import propTypes from 'prop-types';
 import lodash from 'lodash';
 import { Table } from 'antd';
-import FormBox from '../BForm/FormBox.jsx';
+import HFormItem from './HFormItem.jsx';
 
-class TableGroup extends Component {
+class HTable extends Component {
     static defaultProps = {
 
     }
@@ -26,7 +26,7 @@ class TableGroup extends Component {
     }
 
     getTableColumns = () => {
-        const { configs } = this.props;
+        const { configs, form } = this.props;
         const newColumns = [];
         if (!configs || !configs.length) {
             return newColumns;
@@ -35,9 +35,10 @@ class TableGroup extends Component {
 
         newConfigs.forEach((val, i) => {
             if (val.isHide) { return null; }
-            const formItem = val.formItem || {};
+            const formItemApi = val.formItemApi || {};
+            const optionsApi = val.optionsApi || {};
+            const defaultApi = val.defaultApi || {};
             const params = val.params || {};
-            const api = val.api || {};
             newColumns.push({
                 dataIndex: val.id,
                 key: i,
@@ -50,25 +51,27 @@ class TableGroup extends Component {
                             break;
                         default:
                             const commonProps = {
-                                type: val.type,
-                                id: val.id,
-                                onChange: ({ id, value, type, addValue }) => {
-                                    this.props.onChange({
-                                        id,
-                                        value,
-                                        order: record.key,
-                                        type,
-                                        addValue
-                                    });
+                                form,
+                                field: {
+                                    type: val.type,
+                                    id: `${val.id}_${record.key}`,
+                                    onChange: ({ id, value, addType, addValue }) => {
+                                        this.props.onChange({
+                                            id: id.split('_')[0],
+                                            value,
+                                            order: record.key,
+                                            addType,
+                                            addValue,
+                                        });
+                                    },
+                                    params,
+                                    formItemApi,
+                                    optionsApi,
+                                    defaultApi,
                                 },
-                                formItem: {},
-                                options: val.options || {},
-                                params,
-                                api,
-                                space: 0,
                                 value: text,
                             }
-                            return <FormBox {...commonProps} />;
+                            return <HFormItem {...commonProps} />;
                     }
                 }
             });
@@ -139,7 +142,8 @@ class TableGroup extends Component {
 }
 
 
-TableGroup.propTypes = {
+HTable.propTypes = {
+    form: propTypes.object.isRequired,
     configs: propTypes.array.isRequired,
     dataSource: propTypes.array.isRequired,
     onChange: propTypes.func,
@@ -147,4 +151,4 @@ TableGroup.propTypes = {
     isTotal: propTypes.bool,
 };
 
-export default TableGroup;
+export default HTable;

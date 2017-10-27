@@ -4699,7 +4699,7 @@ const datas = [
   }
 ]
 
-export const CHINESE_CITYS = datas.map((v) => {
+const quanGuo = datas.map((v) => {
 
     const newChildren = v.city.map((m) => {
 
@@ -4724,7 +4724,7 @@ export const CHINESE_CITYS = datas.map((v) => {
     }
 });
 
-export const CHINESE_SHANGHAI = [datas[1]].map((v) => {
+const shangHai = [datas[1]].map((v) => {
 
     const newChildren = v.city.map((m) => {
 
@@ -4749,7 +4749,7 @@ export const CHINESE_SHANGHAI = [datas[1]].map((v) => {
     }
 });
 
-export const CHINESE_BEIJING = [datas[0]].map((v) => {
+const beiJing = [datas[0]].map((v) => {
 
     const newChildren = v.city.map((m) => {
 
@@ -4773,3 +4773,9 @@ export const CHINESE_BEIJING = [datas[0]].map((v) => {
         children: newChildren,
     }
 });
+
+export default {
+  beiJing,
+  shangHai,
+  quanGuo,
+}

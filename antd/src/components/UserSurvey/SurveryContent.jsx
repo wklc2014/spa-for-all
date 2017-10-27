@@ -1,52 +1,16 @@
 /**
  * 用户调查
  */
-import { connect } from 'dva';
 import React, { Component } from 'react';
-import { Button, Modal } from 'antd';
+import { Button, Modal, Form } from 'antd';
 
 import * as CONFIGS from './common/';
-import FormGroup from '../common/BForm/FormGroup.jsx';
+import HForm from '../common/HForm/HForm.jsx';
 
 class SurveryContent extends Component {
 
     static defaultProps = {
-    }
-
-    getRef = () => {
-        return this.refs.FormGroup;
-    }
-
-    onChange = ({ id, value, type, addValue }) => {
-        // console.log(id, value, type, addValue);
-        const newValue = { [id]: value };
-        const ref = this.getRef();
-        switch (id) {
-            case 'contactPhone':
-                if (type === 'radio') {
-                    const t = { '01': '标的:13591993996', '02': '三者:18111224835' };
-                    newValue[id] = { inputValue: t[value], addValue: value };
-                    ref.setFieldsValue({ [id]: t[value] });
-                }
-                break;
-            case 'address':
-                if (type === 'button') {
-                    const t = { '01': '标的:13591993996', '02': '三者:18111224835' };
-                    newValue[id] = t[value];
-                    ref.setFieldsValue({ [id]: t[value] });
-                }
-            case 'accidentCreate':
-                if (type === 'button' && value === '01') {
-                    const v = '自动生成描述巴拉巴拉小魔仙';
-                    newValue[id] = v;
-                    ref.setFieldsValue({ [id]: v });
-                }
-                break;
-        }
-        this.props.dispatch({
-            type: 'UserSurvery/update',
-            payload: { modelKey: 'Basic', modelValue: newValue },
-        })
+        values: {}
     }
 
     onGetValue = () => {
@@ -80,15 +44,15 @@ class SurveryContent extends Component {
             type: 'button',
             id: 'button-submit',
             params: {
-                btnText: '登录',
+                label: '登录',
             },
-            api: {
+            defaultApi: {
                 type: 'primary',
                 onClick: () => {
                     console.log(23)
                 }
             },
-            formItem: {
+            formItemApi: {
                 wrapperCol: { span: 14, offset: 4 }
             }
         };
@@ -97,15 +61,15 @@ class SurveryContent extends Component {
 
         return (
             <section>
-                {/*<div style={commonStyle}>
-                    <FormGroup
-                        ref="FormGroup"
+                <div style={commonStyle}>
+                    <HForm
                         configs={CONFIGS.UserSurvery}
+                        form={this.props.form}
                         col={2}
-                        onChange={this.onChange}
+                        onChange={this.props.onChange}
                         values={this.props.values}
                     />
-                </div>*/}
+                </div>
                 <p style={{ paddingBottom: 16 }}>
                     <Button onClick={this.onSubmit} style={{ marginRight: 16 }}>
                         提交
@@ -118,10 +82,10 @@ class SurveryContent extends Component {
                     </Button>
                 </p>
                 <div style={commonStyle}>
-                    <FormGroup
-                        ref="FormGroup2"
+                    <HForm
                         configs={inlineGroupConfigs}
-                        onChange={this.onChange}
+                        form={this.props.form}
+                        onChange={this.props.onChange}
                         layout={formLayout}
                         values={this.props.values}
                         labelSpan={2}
@@ -132,11 +96,6 @@ class SurveryContent extends Component {
     }
 }
 
-function mapStateToProps(state, ownProps) {
-    return {
-        values: state.UserSurvery.Basic,
-    }
-}
 
-export default connect(mapStateToProps)(SurveryContent);
-// export default SurveryContent;
+
+export default Form.create()(SurveryContent);
