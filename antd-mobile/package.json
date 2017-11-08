@@ -11,7 +11,7 @@
   },
   "theme": "./theme.config.js",
   "dependencies": {
-    "antd-mobile": "1.x",
+    "antd-mobile": "2.0.1",
     "babel-runtime": "^6.9.2",
     "dva": "^1.2.1",
     "prop-types": "^15.5.10",

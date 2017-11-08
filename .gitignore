@@ -2,3 +2,6 @@
 /antd-v1.x/dist
 /antd-v1.x/.DS_Store
 /antd-v1.x/npm-debug.log*
+/antd/node_modules
+/antd-mobile/node_modules
+/learnWebpack/demo/node_modules

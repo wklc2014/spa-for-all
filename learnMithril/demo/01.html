@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>mithril</title>
+</head>
+<body>
+    <div id="example"></div>
+    <script src="../lib/mithril-v1.1.5.js"></script>
+    <script>
+       //model 模型
+       var Page = {
+           list: function() {
+               return m.request({method: "GET", url: "pages.json"});
+           }
+       };
+
+       var Demo = {
+           //controller 控制器
+           controller: function() {
+               var pages = Page.list();
+               return {
+                   pages: pages,
+                   rotate: function() {
+                       pages().push(pages().shift());
+                   }
+               }
+           },
+
+           //view 视图
+           view: function(ctrl) {
+               return m("div", [
+                   ctrl.pages().map(function(page) {
+                       return m("a", {href: page.url}, page.title);
+                   }),
+                   m("button", {onclick: ctrl.rotate}, "Rotate links")
+               ]);
+           }
+       };
+
+
+       //initialize 初始化
+       m.mount(document.getElementById("example"), Demo);
+
+    </script>
+</body>
+</html>

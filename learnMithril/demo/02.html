@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>mithril.js</title>
+</head>
+<body>
+    <div id="example"></div>
+    <script src="../lib/mithril-v1.1.5.js"></script>
+    <script>
+        var root = document.body;
+        // m.render(root, "Hello world");
+        // m.render(root, "My first app");
+        // m.render(root, m("h1", "My first app"));
+        var h1Ele = m("h1", { class: "title" }, "My first App");
+
+
+        m.render(root, h1Ele);
+    </script>
+</body>
+</html>
