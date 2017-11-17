@@ -4,4 +4,5 @@
 /antd-v1.x/npm-debug.log*
 /antd/node_modules
 /antd-mobile/node_modules
+/templateWebpack/node_modules
 /learnWebpack/demo/node_modules
