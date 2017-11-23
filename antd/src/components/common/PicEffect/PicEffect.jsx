@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Modal, Tooltip, Icon, Button, Alert, message } from 'antd';
-import jQuery from 'jQuery';
+import jquery from 'jquery';
 import lodash from 'lodash';
 import classnames from 'classnames';
 import OperateButton from './OperateButton.jsx';
@@ -14,7 +14,7 @@ import nextIcon from './next.png';
 
 import './picEffect.less';
 
-const MAX_WIDTH = Math.round(jQuery(window).width() * .9);
+const MAX_WIDTH = Math.round(jquery(window).width() * .9);
 
 class PicEffect extends Component {
 
@@ -80,11 +80,11 @@ class PicEffect extends Component {
                         containerHeight: height,
                         errorText: '',
                     }, () => {
-                        jQuery('#ImageContent').on('mousewheel', this.onMouse);
-                        jQuery('#ImageContent').on('dblclick', this.onDblclick);
-                        jQuery("#ImageContent").easydrag();
-                        jQuery("#ImageContent").ondrag(function (e, ele) {
-                            jQuery(ele).removeClass('modalImage');
+                        jquery('#ImageContent').on('mousewheel', this.onMouse);
+                        jquery('#ImageContent').on('dblclick', this.onDblclick);
+                        jquery("#ImageContent").easydrag();
+                        jquery("#ImageContent").ondrag(function (e, ele) {
+                            jquery(ele).removeClass('modalImage');
                         });
                     })
                 })
@@ -157,7 +157,7 @@ class PicEffect extends Component {
             containerHeight: newContainerHeight,
             index: newIndex,
         }, () => {
-            jQuery('#voucherModelImage').addClass('modalImage');
+            jquery('#voucherModelImage').addClass('modalImage');
         })
     }
 
@@ -176,9 +176,9 @@ class PicEffect extends Component {
     }
 
     offEvent() {
-        jQuery('#voucherModelImage').off('dblclick', this.handleDblclick);
-        jQuery('#voucherModelImage').off('mousewheel', this.handleMouse);
-        jQuery("#voucherModelImage").dragOff();
+        jquery('#voucherModelImage').off('dblclick', this.handleDblclick);
+        jquery('#voucherModelImage').off('mousewheel', this.handleMouse);
+        jquery("#voucherModelImage").dragOff();
     }
 
     getArrowIconProps = (type) => {

@@ -13,4 +13,8 @@ const Content = {
     }
 }
 
-m.render(oApp, <Content />);
+var Hero = ".black.bg-dark-blue.br2.pa3";
+
+m.render(oApp, <Hero>Hello</Hero>);
+
+// m.render(oApp, <Content />);
