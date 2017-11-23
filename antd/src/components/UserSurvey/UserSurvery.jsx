@@ -16,13 +16,13 @@ class UserSurvery extends Component {
 
     onChange = ({ id, value, addType, addValue }) => {
         // console.log(id, value, addType, addValue)
-        // this.props.dispatch({
-        //     type: 'UserSurvery/update',
-        //     payload: {
-        //         modelKey: 'Basic',
-        //         modelValue: { [id]: value }
-        //     }
-        // })
+        this.props.dispatch({
+            type: 'UserSurvery/update',
+            payload: {
+                modelKey: 'Basic',
+                modelValue: { [id]: value }
+            }
+        })
         // this.setState({
         //     values: { ...this.state.values, [id]: value }
         // })

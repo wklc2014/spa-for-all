@@ -2,6 +2,7 @@ import React from 'react';
 import propTypes from 'prop-types';
 import lodash from 'lodash';
 import { Form, Row, Col } from 'antd';
+
 import getFormItemLayout from './utils/getFormItemLayout.js';
 import getChildGridLayout from './utils/getChildGridLayout.js';
 import getStyle from './utils/getStyle.js';
@@ -9,6 +10,8 @@ import getData from './utils/getData.js';
 import getPlaceholder from './utils/getPlaceholder.js';
 import getValue from './utils/getValue.js';
 import fieldTypes from './utils/fieldTypes.js';
+
+import HFormItemHOC from './HFormItemHOC.jsx';
 
 const FormItem = Form.Item;
 
@@ -172,4 +175,4 @@ HFormItem.propTypes = {
     col: propTypes.number,
 };
 
-export default HFormItem;
+export default HFormItemHOC(HFormItem);
