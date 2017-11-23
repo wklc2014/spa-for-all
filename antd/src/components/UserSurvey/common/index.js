@@ -8,7 +8,10 @@ export const UserSurvery = [
         type: 'input',
         id: 'userName',
         formItemApi: {
-            extra: '最多输入500个字',
+            extra: (value) => {
+                const num = value ? value.length : 0;
+                return `最多输入${20 - num}个字`;
+            },
             label: 'input',
         },
         defaultApi: {
@@ -17,7 +20,7 @@ export const UserSurvery = [
         optionsApi: {
             rules: [
                 { required: true, message: '用户姓名必填' },
-                { max: 4, message: '用户姓名最多4位' },
+                { max: 20, message: '用户姓名最多20位' },
                 { min: 2, message: '用户姓名至少2位' },
             ],
         },

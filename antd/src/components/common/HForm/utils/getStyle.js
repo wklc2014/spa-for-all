@@ -22,5 +22,10 @@ export default function getStyle({ type, params, style }) {
             Object.assign(newStyle, { width: '100%' });
             break;
     }
-    return { style: newStyle };
+
+    if (Object.keys(newStyle).length) {
+        return { style: newStyle };
+    }
+
+    return null;
 }

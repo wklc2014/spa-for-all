@@ -28,7 +28,6 @@ export default {
             ...props,
             onChange: (e) => onChange(e.target.value, addType),
         }
-
         return <Input {...newProps} />;
     },
     textarea: ({ props, params, value, onChange, addType }) => {

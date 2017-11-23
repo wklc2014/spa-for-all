@@ -6,9 +6,16 @@ export default function HFormItemHOC(Base) {
     return class PP extends Component {
 
         shouldComponentUpdate(nextProps, nextState) {
-            const { form, field } = this.props;
-            const errors = form.getFieldError(field.id);
-            return !lodash.isEqual(nextProps, this.props) || !!errors;
+            const { form: prevForm, field: prevField } = this.props;
+            const { form: nextForm, field: nextField } = nextProps;
+            const prevErrors = prevForm.getFieldError(prevField.id);
+            const nextErrors = nextForm.getFieldError(nextField.id);
+            const isEqualProps = lodash.isEqual(nextProps, this.props);
+            const isEqualErrors = lodash.isEqual(prevErrors, nextErrors);
+            if (isEqualProps && isEqualErrors) {
+                return false;
+            }
+            return true;
         }
 
         render() {

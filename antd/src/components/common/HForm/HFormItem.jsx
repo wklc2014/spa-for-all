@@ -9,6 +9,7 @@ import getStyle from './utils/getStyle.js';
 import getData from './utils/getData.js';
 import getPlaceholder from './utils/getPlaceholder.js';
 import getValue from './utils/getValue.js';
+import getFormItemApi from './utils/getFormItemApi.js';
 import fieldTypes from './utils/fieldTypes.js';
 
 import HFormItemHOC from './HFormItemHOC.jsx';
@@ -44,8 +45,8 @@ function HFormItem(props) {
 
     const { id, type } = field;
     const defaultApi = field.defaultApi || {};
-    const formItemApi = field.formItemApi || {};
     const optionsApi = field.optionsApi || {};
+    const formItemApi = getFormItemApi(field.formItemApi, value);
     const params = field.params || {};
     const onChange = (e, addType) => {
         if (addType) {
@@ -143,6 +144,7 @@ function HFormItem(props) {
                 addType: val.type,
             });
         })
+
         ChildEle = (
             <Row type="flex" gutter={childGutter}>
                 <Col {...childSpan.left}>
@@ -152,7 +154,7 @@ function HFormItem(props) {
                     {formAdd}
                 </Col>
             </Row>
-        )
+        );
     } else {
         ChildEle = _getFieldDecorator(formEle);
     }

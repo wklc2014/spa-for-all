@@ -66,14 +66,20 @@ class HForm extends Component {
             }
             if (layout === 'inline') {
                 return (
-                    <div key={i} style={{ display: 'inline-block' }}>
+                    <div
+                        key={`${layout}_${i}`}
+                        style={{ display: 'inline-block' }}
+                    >
                         <HFormItem {...cProps} />
                     </div>
                 )
             }
             const colProps = getGridLayout(col, params.colSpan);
             return (
-                <Col key={i} {...colProps}>
+                <Col
+                    {...colProps}
+                    key={`${layout}_${i}`}
+                >
                     <div style={{ paddingRight: space }}>
                         <HFormItem {...cProps} />
                     </div>
@@ -83,7 +89,11 @@ class HForm extends Component {
 
         const formLayout = this.getFormLayout();
 
-        return <Form layout={formLayout}><Row type="flex">{formEle}</Row></Form>;
+        return (
+            <Form layout={formLayout}>
+                <Row type="flex">{formEle}</Row>
+            </Form>
+        );
     }
 }
 

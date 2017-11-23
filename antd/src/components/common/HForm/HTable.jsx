@@ -34,48 +34,50 @@ class HTable extends Component {
         const newConfigs = this.getConfigs(configs);
 
         newConfigs.forEach((val, i) => {
-            if (val.isHide) { return null; }
-            const formItemApi = val.formItemApi || {};
-            const optionsApi = val.optionsApi || {};
-            const defaultApi = val.defaultApi || {};
-            const params = val.params || {};
-            newColumns.push({
-                dataIndex: val.id,
-                key: i,
-                title: val.name,
-                width: params.width,
-                render: (text, record) => {
-                    switch (record.key) {
-                        case 'ts':
-                            return text;
-                            break;
-                        default:
-                            const commonProps = {
-                                form,
-                                field: {
-                                    type: val.type,
-                                    id: `${val.id}_${record.key}`,
-                                    onChange: ({ id, value, addType, addValue }) => {
-                                        this.props.onChange({
-                                            id: id.split('_')[0],
-                                            value,
-                                            order: record.key,
-                                            addType,
-                                            addValue,
-                                        });
+            if (!val.isHide) {
+                newColumns.push({
+                    dataIndex: val.id,
+                    key: i,
+                    title: val.name,
+                    width: params.width,
+                    render: (text, record) => {
+                        switch (record.key) {
+                            case 'ts':
+                                return text;
+                                break;
+                            default:
+                                const formItemApi = val.formItemApi || {};
+                                const optionsApi = val.optionsApi || {};
+                                const defaultApi = val.defaultApi || {};
+                                const params = val.params || {};
+                                const commonProps = {
+                                    form,
+                                    field: {
+                                        type: val.type,
+                                        id: `${val.id}__${record.key}`,
+                                        onChange: ({ id, value, addType, addValue }) => {
+                                            this.props.onChange({
+                                                id: id.split('__')[0],
+                                                value,
+                                                order: record.key,
+                                                addType,
+                                                addValue,
+                                            });
+                                        },
+                                        params,
+                                        formItemApi,
+                                        optionsApi,
+                                        defaultApi,
                                     },
-                                    params,
-                                    formItemApi,
-                                    optionsApi,
-                                    defaultApi,
-                                },
-                                value: text,
-                            }
-                            return <HFormItem {...commonProps} />;
+                                    value: text,
+                                }
+                                return <HFormItem {...commonProps} />;
+                        }
                     }
-                }
-            });
+                });
+            }
         })
+
         return newColumns;
     }
 

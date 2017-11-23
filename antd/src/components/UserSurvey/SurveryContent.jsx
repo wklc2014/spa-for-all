@@ -14,7 +14,8 @@ class SurveryContent extends Component {
     }
 
     onGetValue = () => {
-        const values = this.props.form.getFieldsValue();
+        const ids = CONFIGS.UserSurvery.map((v, i) => v.id);
+        const values = this.props.form.getFieldsValue(ids);
         console.log('values>>>', values);
     }
 
@@ -62,7 +63,7 @@ class SurveryContent extends Component {
                     <HForm
                         configs={CONFIGS.UserSurvery}
                         form={this.props.form}
-                        col={2}
+                        col={3}
                         onChange={this.props.onChange}
                         values={this.props.values}
                     />
