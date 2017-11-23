@@ -14,21 +14,18 @@ class SurveryContent extends Component {
     }
 
     onGetValue = () => {
-        const ref = this.getRef();
-        const values = ref.getFieldsValue();
+        const values = this.props.form.getFieldsValue();
         console.log('values>>>', values);
     }
 
     onSubmit = () => {
-        const ref = this.getRef();
-        const ret = ref.validateFields();
+        const ret = this.props.form.validateFields();
         console.log('ret>>>', ret);
     }
 
     onReset = () => {
-        const ref = this.getRef();
         this.props.dispatch({ type: 'UserSurvery/reset' });
-        ref.resetFields();
+        this.props.form.resetFields();
     }
 
     render() {

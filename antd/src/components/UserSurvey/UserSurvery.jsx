@@ -15,7 +15,7 @@ class UserSurvery extends Component {
     }
 
     onChange = ({ id, value, addType, addValue }) => {
-        console.log(id, value, addType, addValue)
+        // console.log(id, value, addType, addValue)
         // this.props.dispatch({
         //     type: 'UserSurvery/update',
         //     payload: {
@@ -23,17 +23,15 @@ class UserSurvery extends Component {
         //         modelValue: { [id]: value }
         //     }
         // })
-        this.setState({
-            values: { ...this.state.values, [id]: value }
-        }, () => {
-            // console.log(1, this.state.values)
-        })
+        // this.setState({
+        //     values: { ...this.state.values, [id]: value }
+        // })
     }
 
     render() {
         return (
             <SurveryContent
-                values={this.state.values}
+                values={this.props.values}
                 onChange={this.onChange}
             />
         )
