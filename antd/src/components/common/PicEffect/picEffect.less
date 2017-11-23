@@ -1,0 +1,54 @@
+:global {
+    .picEffectWraper {
+        .imageContainer {
+            position: relative;
+            z-index: 10;
+        }
+
+        .imageContent {
+            display: inline-block;
+            position: absolute;
+            top: 50% !important;
+            left: 50% !important;
+            z-index: 1;
+            &.rotate_0 {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+
+            &.rotate_180 {
+                transform: translate(-50%, -50%) rotate(180deg);
+            }
+
+            &.rotate_90 {
+                transform: translate(-50%, -50%) rotate(90deg);
+            }
+
+            &.rotate_270 {
+                transform: translate(-50%, -50%) rotate(270deg);
+            }
+        }
+
+        .iconPrev,
+        .iconNext {
+            position: absolute;
+            z-index: 2;
+            top: 50%;
+            font-size: 44px;
+            transform: translate(0, -50%);
+            transition: all 0.3s;
+            cursor: pointer;
+            opacity: 0.4;
+            &:hover {
+                opacity: 0.8;
+            }
+        }
+
+        .iconPrev{
+            left: 8px;
+        }
+
+        .iconNext {
+            right: 8px;
+        }
+    }
+}

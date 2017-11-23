@@ -1,73 +1,26 @@
 import React, { Component } from 'react';
-import { Modal, Tooltip, Icon, Button } from 'antd';
+import { Modal, Tooltip, Icon, Button, Alert, message } from 'antd';
 import jQuery from 'jQuery';
 import lodash from 'lodash';
 import classnames from 'classnames';
-import loadImageAsync from '../utils/loadImageAsync.js';
+import OperateButton from './OperateButton.jsx';
+import loadImageAsync from './loadImageAsync.js';
+
 import '../../../assets/js/jquery.mousewheel.js';
 import '../../../assets/js/jquery.easydrag.js';
 
+import prevIcon from './prev.png';
+import nextIcon from './next.png';
+
+import './picEffect.less';
+
 const MAX_WIDTH = Math.round(jQuery(window).width() * .9);
-const ButtonGroup = Button.Group;
-
-const renderButton = ({ onClick, disabled }) => {
-    const btns = [
-        [
-            { value: 'zoomIn', label: '缩小' },
-            { value: 'zoomOut', label: '放大' }
-        ],
-        [
-            { value: 'rotate', label: '旋转' },
-            { value: 'reset', label: '还原' },
-        ],
-        [
-            { value: 'prev', label: '上一张' },
-            { value: 'next', label: '下一张' },
-        ]
-    ]
-    const btnEle = btns.map((val, i) => {
-        const style = {};
-        if (btns.length === i + 1) {
-            style.marginRight = 8;
-        }
-        const ele = val.map((v, j) => {
-            return (
-                <Button
-                    key={j}
-                    onClick={(e) => {onClick(v.value, e)}}
-                    type="ghost"
-                >
-                    {v.label}
-                </Button>
-            )
-        })
-        return <ButtonGroup disabled={disabled} style={style}>{ele}</ButtonGroup>
-    });
-    return (
-        <ButtonGroup
-            disabled={props.disabled}
-            className={cls}
-        >
-            {btnEle}
-        </ButtonGroup>
-    );
-}
-
-const OperateButton = props => (
-    <div className="operateButtonGroup">
-        <div className="mb8">
-            {renderButton(1, {...props})}
-            {renderButton(2, {...props})}
-            {renderButton(3, {...props})}
-        </div>
-    </div>
-);
 
 class PicEffect extends Component {
 
     static defaultProps = {
-        modalTitle: '对话框',
-        filePath: 'filePath',
+        title: '对话框',
+        filePath: '',
         minWidth: 500,          // 图片最小宽度
         maxWidth: MAX_WIDTH,    // 图片最大宽度
         subWidth: 16 * 2,
@@ -76,14 +29,16 @@ class PicEffect extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            errorText: '',
+            index: props.index,
+            loading: false,
+            errors: '',
             imageInitWidth: 0,
             imageInitHeight: 0,
             imageWidth: 0,
             imageHeight: 0,
             imageRotate: 0,
-            containerWidth: 200,
-            containerHeight: 200,
+            containerWidth: 0,
+            containerHeight: 0,
         }
     }
 
@@ -107,13 +62,16 @@ class PicEffect extends Component {
     }
 
     planRender(props) {
-        const {visible, filePath} = props;
+        const { visible, values } = props;
+        const { index } = this.state;
         if (visible) {
-            loadImageAsync(filePath)
+            this.setState({ loading: true });
+            loadImageAsync(values[index])
                 .then((img) => {
                     const width = this.getClampNumber(img.width);
                     const height = Math.round(img.height / img.width * width);
                     this.setState({
+                        loading: false,
                         imageInitWidth: img.width,
                         imageInitHeight: img.height,
                         imageWidth: width,
@@ -132,14 +90,75 @@ class PicEffect extends Component {
                 })
                 .catch((e) => {
                     console.log(e);
-                    this.setState({ errorText: e.toString() });
+                    this.setState({ errors: e.toString(), loading: false });
                 })
         }
     }
 
     onOperate = (type) => {
-        const { index } = this.props;
-
+        const { index } = this.state;
+        const { imageInitWidth, imageInitHeight } = this.state;
+        const { imageWidth, imageHeight } = this.state;
+        const { containerWidth, containerHeight } = this.state;
+        const { imageRotate } = this.state;
+        let newImageWidth = imageWidth;
+        let newImageRotate = Number(imageRotate);
+        let newContainerWidth = containerWidth;
+        let newContainerHeight = containerHeight;
+        let newIndex = index;
+        switch(type) {
+            case 'zoomIn':
+                newContainerWidth = this.getClampNumber(newContainerWidth * 0.9);
+                break;
+            case 'zoomOut':
+                newContainerWidth = this.getClampNumber(newContainerWidth * 1.1);
+                break;
+            case 'rotate':
+                if (newImageRotate >= 270) {
+                    newImageRotate = 0;
+                } else {
+                    newImageRotate += 90;
+                }
+                newContainerWidth = this.getClampNumber(newContainerHeight);
+                break;
+            case 'reset':
+                newImageRotate = 0;
+                newContainerWidth = imageInitWidth;
+                break;
+            case 'prev':
+                if (newIndex == 0) {
+                    message.info('已经是第一张了');
+                } else {
+                    newIndex --;
+                }
+                break;
+            case 'next':
+                if (newIndex == this.props.values - 1) {
+                    message.info('已经是最后一张了');
+                } else {
+                    newIndex ++;
+                }
+                break;
+        }
+        if (imageInitWidth && imageInitHeight) {
+            if (newImageRotate === 90 || newImageRotate === 270) {
+                newContainerHeight = lodash.round(newContainerWidth *imageInitWidth / imageInitHeight);
+                newImageWidth = newContainerHeight;
+            } else {
+                newContainerHeight = lodash.round(newContainerWidth *imageInitHeight / imageInitWidth);
+                newImageWidth = newContainerWidth;
+            }
+        }
+        console.log(newImageWidth, newContainerWidth)
+        this.setState({
+            imageWidth: newImageWidth,
+            imageRotate: newImageRotate,
+            containerWidth: newContainerWidth,
+            containerHeight: newContainerHeight,
+            index: newIndex,
+        }, () => {
+            jQuery('#voucherModelImage').addClass('modalImage');
+        })
     }
 
     onMouse = (type) => {
@@ -150,6 +169,33 @@ class PicEffect extends Component {
     onDblclick = (type) => {
         const { index } = this.props;
 
+    }
+
+    onCancel = () => {
+        this.props.onCancel(this.offEvent);
+    }
+
+    offEvent() {
+        jQuery('#voucherModelImage').off('dblclick', this.handleDblclick);
+        jQuery('#voucherModelImage').off('mousewheel', this.handleMouse);
+        jQuery("#voucherModelImage").dragOff();
+    }
+
+    getArrowIconProps = (type) => {
+        const altTexts = {
+            prev: '上一张',
+            next: '下一张',
+        };
+        const srcIcons = {
+            prev: prevIcon,
+            next: nextIcon,
+        };
+        return {
+            onClick: e => this.onOperate(type, e),
+            src: srcIcons[type],
+            alt: altTexts[type],
+            className: `icon${lodash.capitalize(type)}`,
+        }
     }
 
     render() {
@@ -174,20 +220,20 @@ class PicEffect extends Component {
 
         const modalTitle = (
             <div>
-                <span style={{ marginRight: 8 }}>{this.props.modalTitle}</span>
+                <span style={{ marginRight: 8 }}>{this.props.title}</span>
                 <Tooltip title={tooltipTitle} placement="top">
                     <Icon type="info-circle-o" className="pointer" />
                 </Tooltip>
             </div>
         );
 
-        // console.log('imageWidth>>>', imageWidth)
-        console.log('imageHeight>>>', imageHeight)
-
         const imageContentClasss = classnames(
             'imageContent',
             `rotate_${imageRotate}`
         );
+
+        const prevProps = this.getArrowIconProps('prev');
+        const nextProps = this.getArrowIconProps('next');
 
         return (
             <Modal
@@ -197,34 +243,31 @@ class PicEffect extends Component {
                 onCancel={this.onCancel}
                 width={containerWidth + subWidth}
             >
-                <div
-                    ref="ImageContainer"
-                    className="imageContainer"
-                    style={{
-                        width: containerWidth,
-                        height: containerHeight
-                    }}
-                >
-                    {!errorText ? (
-                        <img
-                            ref="ImageContent"
-                            id="ImageContent"
-                            className={imageContentClasss}
-                            style={{ width: imageWidth, height: imageHeight }}
-                            src={this.props.filePath}
-                        />
-                    ) : <p className="lineFeed">{errorText}</p>}
-                    <Icon
-                        type="circle-left"
-                        className="iconLeft"
-                        onClick={e => this.onOperate('prev', e)}
-                    />
-                    <Icon
-                        type="circle-right"
-                        className="iconRight"
-                        onClick={e => this.onOperate('next', e)}
-                    />
-                </div>
+                <OperateButton
+                    onClick={this.onOperate}
+                />
+                <section className="picEffectWraper">
+                    <div
+                        ref="ImageContainer"
+                        className="imageContainer"
+                        style={{
+                            width: containerWidth,
+                            height: containerHeight
+                        }}
+                    >
+                        {!errorText ? (
+                            <img
+                                ref="ImageContent"
+                                id="ImageContent"
+                                className={imageContentClasss}
+                                style={{ width: imageWidth }}
+                                src={this.props.values[this.state.index]}
+                            />
+                        ) : <p className="lineFeed">{errorText}</p>}
+                        <img {...prevProps} />
+                        <img {...nextProps} />
+                    </div>
+                </section>
             </Modal>
         )
     }
