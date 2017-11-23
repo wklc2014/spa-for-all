@@ -1,4 +1,5 @@
 import moment from 'moment';
+import { Button } from 'antd';
 
 // 用户调查字段配置
 export const UserSurvery = [
@@ -134,6 +135,26 @@ export const UserSurvery = [
         },
     },
     {
+        order: 4,
+        type: 'cascader',
+        id: 'accidentCity1',
+        params: {
+            city: 'quanGuo',
+        },
+        formItemApi: {
+            label: 'cascader1',
+        },
+        optionsApi: {
+            rules: [{
+                required: true,
+                message: '出险城市不能为空'
+            }]
+        },
+        defaultApi: {
+            placeholder: '这是一个三级联动选择',
+        },
+    },
+    {
         order: 5,
         type: 'checkbox',
         id: 'payMoney',
@@ -232,6 +253,21 @@ export const UserSurvery = [
                 len: 11,
                 message: '手机号码必须为11位'
             }],
+        },
+        params: {
+            addType: [
+                {
+                    type: 'button',
+                    defaultApi: {
+                        type: 'primary'
+                    },
+                    params: {
+                        city: 'quanGuo',
+                        label: '参数',
+                        value: 'edit',
+                    },
+                }
+            ]
         }
     },
     {
@@ -335,14 +371,30 @@ export const UserSurvery = [
             childSpan: 18,
             addType: [
                 {
-                    type: 'button',
-                    params: {
-                        label: '编辑',
-                        value: 'edit'
-                    },
+                    type: 'cascader',
                     defaultApi: {
                         type: 'primary'
-                    }
+                    },
+                    params: {
+                        city: 'quanGuo',
+                        value: 'edit',
+                        render: (value) => {
+                            return <Button type="primary">编辑</Button>;
+                        }
+                    },
+                },
+                {
+                    type: 'cascader',
+                    defaultApi: {
+                        type: 'primary'
+                    },
+                    params: {
+                        city: 'quanGuo',
+                        value: 'edit',
+                        render: (value) => {
+                            return <Button type="primary">参数</Button>;
+                        }
+                    },
                 }
             ]
         },

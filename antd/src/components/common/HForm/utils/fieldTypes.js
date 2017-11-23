@@ -81,6 +81,19 @@ export default {
             options: params.data,
             onChange: (e) => onChange(e, addType),
         }
+        if (params.render) {
+            const newStyle = {
+                ...newProps.style,
+                display: 'inline',
+            }
+            return (
+                <Cascader {...newProps}>
+                    <div style={newStyle}>
+                        { params.render(value) }
+                    </div>
+                </Cascader>
+            );
+        }
         return <Cascader {...newProps} />;
     },
     select: ({ props, params, value, onChange, addType }) => {
