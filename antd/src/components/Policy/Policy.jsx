@@ -19,7 +19,8 @@ class Policy extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            visible: true,
+            index: 0,
+            visible: false,
             values: [IMG_01, IMG_02, IMG_03, IMG_04, IMG_05, IMG_06],
         };
     }
@@ -32,15 +33,26 @@ class Policy extends Component {
         this.setState({ visible: false }, cb);
     }
 
+    onChange = (index) => {
+        this.setState({ index });
+    }
+
     render() {
+        const btns = [
+            'zoomIn',
+            { reset: '重置' },
+        ];
+
         return (
             <section>
                 <Button onClick={this.handleClick}>按钮</Button>
                 <PicEffect
                     visible={this.state.visible}
                     values={this.state.values}
-                    index={0}
+                    index={this.state.index}
                     onCancel={this.onCancel}
+                    onChange={this.onChange}
+                    drag={false}
                 />
             </section>
         );

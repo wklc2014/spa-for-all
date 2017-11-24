@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Modal, Tooltip, Icon, Button, Alert, message } from 'antd';
+import propTypes from 'prop-types';
 import jquery from 'jquery';
 import lodash from 'lodash';
 import classnames from 'classnames';
@@ -15,39 +16,36 @@ import nextIcon from './next.png';
 import './picEffect.less';
 
 const MAX_WIDTH = Math.round(jquery(window).width() * .9);
+const SUB_WIDTH = 16 * 2;
+const IMAGE_ID = 'IAMGE_CONTENT';
 
 class PicEffect extends Component {
 
     static defaultProps = {
         title: '对话框',
-        filePath: '',
-        minWidth: 500,          // 图片最小宽度
+        values: [],
+        index: 0,
+        minWidth: 400,          // 图片最小宽度
         maxWidth: MAX_WIDTH,    // 图片最大宽度
-        subWidth: 16 * 2,
     }
 
     constructor(props) {
         super(props);
         this.state = {
-            index: props.index,
-            loading: false,
-            errors: '',
-            imageInitWidth: 0,
-            imageInitHeight: 0,
-            imageWidth: 0,
-            imageHeight: 0,
-            imageRotate: 0,
             containerWidth: 0,
             containerHeight: 0,
+            originalWidth: 0,
+            originalHeight: 0,
+            width: 0,
+            height: 0,
+            rotate: 0,
+            loading: false,
+            errors: '',
         }
     }
 
-    componentDidMount() {
-        this.planRender(this.props);
-    }
-
     componentWillReceiveProps(nextProps) {
-        this.planRender(nextProps);
+        this.pictureInit(nextProps);
     }
 
     getClampNumber(number) {
@@ -61,9 +59,8 @@ class PicEffect extends Component {
         return resultNumber;
     }
 
-    planRender(props) {
-        const { visible, values } = props;
-        const { index } = this.state;
+    pictureInit(props) {
+        const { visible, values, index } = props;
         if (visible) {
             this.setState({ loading: true });
             loadImageAsync(values[index])
@@ -71,22 +68,16 @@ class PicEffect extends Component {
                     const width = this.getClampNumber(img.width);
                     const height = Math.round(img.height / img.width * width);
                     this.setState({
-                        loading: false,
-                        imageInitWidth: img.width,
-                        imageInitHeight: img.height,
-                        imageWidth: width,
-                        imageHeight: height,
+                        originalWidth: img.width,
+                        originalHeight: img.height,
+                        width: width,
+                        height: height,
                         containerWidth: width,
                         containerHeight: height,
-                        errorText: '',
-                    }, () => {
-                        jquery('#ImageContent').on('mousewheel', this.onMouse);
-                        jquery('#ImageContent').on('dblclick', this.onDblclick);
-                        jquery("#ImageContent").easydrag();
-                        jquery("#ImageContent").ondrag(function (e, ele) {
-                            jquery(ele).removeClass('modalImage');
-                        });
-                    })
+                        rotate: 0,
+                        errors: '',
+                        loading: false,
+                    }, this.pictureBindEvent)
                 })
                 .catch((e) => {
                     console.log(e);
@@ -95,14 +86,39 @@ class PicEffect extends Component {
         }
     }
 
-    onOperate = (type) => {
-        const { index } = this.state;
-        const { imageInitWidth, imageInitHeight } = this.state;
-        const { imageWidth, imageHeight } = this.state;
-        const { containerWidth, containerHeight } = this.state;
-        const { imageRotate } = this.state;
-        let newImageWidth = imageWidth;
-        let newImageRotate = Number(imageRotate);
+    pictureBindEvent = () => {
+        // const d = jquery(`#${IMAGE_ID}`)
+        // d.on('mousewheel', this.onMouse).on('dblclick', this.onDblclick)
+        // if (this.props.drag) {
+        //     d.easydrag().ondrag(function (e, ele) {
+        //         jquery(ele).removeClass('unDraging');
+        //     });
+        // }
+    }
+
+    pictureUnBindEvent = () => {
+        // const d = jquery(`#${IMAGE_ID}`)
+        // d.off('dblclick', this.handleDblclick).off('mousewheel', this.handleMouse);
+        // if (this.props.drag) {
+        //     d.dragOff();
+        // }
+    }
+
+    onAction = (type) => {
+        const { index } = this.props;
+        const {
+            containerWidth,
+            containerHeight,
+            originalWidth,
+            originalHeight,
+            width,
+            height,
+            rotate,
+            loading,
+            errors,
+        } = this.state;
+        let newWidth = width;
+        let newRotate = Number(rotate);
         let newContainerWidth = containerWidth;
         let newContainerHeight = containerHeight;
         let newIndex = index;
@@ -114,16 +130,16 @@ class PicEffect extends Component {
                 newContainerWidth = this.getClampNumber(newContainerWidth * 1.1);
                 break;
             case 'rotate':
-                if (newImageRotate >= 270) {
-                    newImageRotate = 0;
+                if (newRotate >= 270) {
+                    newRotate = 0;
                 } else {
-                    newImageRotate += 90;
+                    newRotate += 90;
                 }
                 newContainerWidth = this.getClampNumber(newContainerHeight);
                 break;
             case 'reset':
-                newImageRotate = 0;
-                newContainerWidth = imageInitWidth;
+                newRotate = 0;
+                newContainerWidth = this.getClampNumber(originalWidth);
                 break;
             case 'prev':
                 if (newIndex == 0) {
@@ -133,52 +149,53 @@ class PicEffect extends Component {
                 }
                 break;
             case 'next':
-                if (newIndex == this.props.values - 1) {
+                if (newIndex == this.props.values.length - 1) {
                     message.info('已经是最后一张了');
                 } else {
                     newIndex ++;
                 }
                 break;
         }
-        if (imageInitWidth && imageInitHeight) {
-            if (newImageRotate === 90 || newImageRotate === 270) {
-                newContainerHeight = lodash.round(newContainerWidth *imageInitWidth / imageInitHeight);
-                newImageWidth = newContainerHeight;
+        if (originalWidth && originalHeight) {
+            if (newRotate === 90 || newRotate === 270) {
+                newContainerHeight = lodash.round(newContainerWidth * originalWidth / originalHeight);
+                newWidth = newContainerHeight;
             } else {
-                newContainerHeight = lodash.round(newContainerWidth *imageInitHeight / imageInitWidth);
-                newImageWidth = newContainerWidth;
+                newContainerHeight = lodash.round(newContainerWidth * originalHeight / originalWidth);
+                newWidth = newContainerWidth;
             }
         }
-        console.log(newImageWidth, newContainerWidth)
-        this.setState({
-            imageWidth: newImageWidth,
-            imageRotate: newImageRotate,
-            containerWidth: newContainerWidth,
-            containerHeight: newContainerHeight,
-            index: newIndex,
-        }, () => {
-            jquery('#voucherModelImage').addClass('modalImage');
-        })
+        if (type === 'prev' || type === 'next') {
+            this.props.onChange(newIndex);
+        } else {
+            this.setState({
+                width: newWidth,
+                rotate: newRotate,
+                containerWidth: newContainerWidth,
+                containerHeight: newContainerHeight,
+            });
+        }
+        jquery(`#${IMAGE_ID}`).addClass('unDraging');
     }
 
-    onMouse = (type) => {
-        const { index } = this.props;
-
+    onMousewheel = (event) => {
+        if (event.shiftKey) {
+            const { deltaX, deltaY } = event;
+            const checkKey = deltaX == -0 ? deltaY : deltaX;
+            if (checkKey > 0) {
+                this.onAction('zoomOut');
+            } else {
+                this.onAction('zoomIn');
+            }
+        }
     }
 
-    onDblclick = (type) => {
-        const { index } = this.props;
-
+    onDblclick = () => {
+        this.onAction('reset');
     }
 
     onCancel = () => {
-        this.props.onCancel(this.offEvent);
-    }
-
-    offEvent() {
-        jquery('#voucherModelImage').off('dblclick', this.handleDblclick);
-        jquery('#voucherModelImage').off('mousewheel', this.handleMouse);
-        jquery("#voucherModelImage").dragOff();
+        this.props.onCancel(() => this.pictureUnBindEvent);
     }
 
     getArrowIconProps = (type) => {
@@ -191,7 +208,7 @@ class PicEffect extends Component {
             next: nextIcon,
         };
         return {
-            onClick: e => this.onOperate(type, e),
+            onClick: e => this.onAction(type, e),
             src: srcIcons[type],
             alt: altTexts[type],
             className: `icon${lodash.capitalize(type)}`,
@@ -199,17 +216,10 @@ class PicEffect extends Component {
     }
 
     render() {
-        const { visible, subWidth } = this.props;
+        const { visible } = this.props;
         if (!visible) return null;
 
-        const {
-            imageWidth,
-            imageHeight,
-            containerWidth,
-            containerHeight,
-            errorText,
-            imageRotate,
-        } = this.state;
+        const { width, containerWidth, containerHeight, errors, rotate } = this.state;
 
         const tooltipTitle = (
             <div>
@@ -229,7 +239,8 @@ class PicEffect extends Component {
 
         const imageContentClasss = classnames(
             'imageContent',
-            `rotate_${imageRotate}`
+            'unDraging',
+            `rotate_${rotate}`,
         );
 
         const prevProps = this.getArrowIconProps('prev');
@@ -241,29 +252,31 @@ class PicEffect extends Component {
                 title={modalTitle}
                 footer={false}
                 onCancel={this.onCancel}
-                width={containerWidth + subWidth}
+                width={containerWidth + SUB_WIDTH}
+                bodyStyle={{ fontSize: 12 }}
             >
-                <OperateButton
-                    onClick={this.onOperate}
-                />
                 <section className="picEffectWraper">
+                    <section className="imageButtons">
+                        <OperateButton
+                            btns={this.props.btns}
+                            onClick={this.onAction}
+                        />
+                    </section>
                     <div
                         ref="ImageContainer"
                         className="imageContainer"
-                        style={{
-                            width: containerWidth,
-                            height: containerHeight
-                        }}
+                        style={{ width: containerWidth, height: containerHeight }}
                     >
-                        {!errorText ? (
+                        {!errors ? (
                             <img
-                                ref="ImageContent"
-                                id="ImageContent"
+                                id={IMAGE_ID}
                                 className={imageContentClasss}
-                                style={{ width: imageWidth }}
-                                src={this.props.values[this.state.index]}
+                                style={{ width: width }}
+                                src={this.props.values[this.props.index]}
+                                onWheel={this.onMousewheel}
+                                onDoubleClick={this.onDblclick}
                             />
-                        ) : <p className="lineFeed">{errorText}</p>}
+                        ) : <Alert message={errors} type="error" />}
                         <img {...prevProps} />
                         <img {...nextProps} />
                     </div>
@@ -272,5 +285,16 @@ class PicEffect extends Component {
         )
     }
 }
+
+PicEffect.propTypes = {
+    onCancel: propTypes.func.isRequired,
+    onChange: propTypes.func.isRequired,
+    values: propTypes.array.isRequired,
+    index: propTypes.number,
+    minWidth: propTypes.number,
+    maxWidth: propTypes.number,
+    title: propTypes.string,
+    visible: propTypes.bool,
+};
 
 export default PicEffect;

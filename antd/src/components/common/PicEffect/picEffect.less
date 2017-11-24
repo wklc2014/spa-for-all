@@ -1,15 +1,17 @@
 :global {
     .picEffectWraper {
+        .imageButtons {
+            position: relative;
+            z-index: 12;
+            background-color: #fff;
+        }
+
         .imageContainer {
             position: relative;
             z-index: 10;
         }
 
         .imageContent {
-            display: inline-block;
-            position: absolute;
-            top: 50% !important;
-            left: 50% !important;
             z-index: 1;
             &.rotate_0 {
                 transform: translate(-50%, -50%) rotate(0deg);
@@ -25,6 +27,12 @@
 
             &.rotate_270 {
                 transform: translate(-50%, -50%) rotate(270deg);
+            }
+
+            &.unDraging {
+                position: absolute;
+                top: 50% !important;
+                left: 50% !important;
             }
         }
 

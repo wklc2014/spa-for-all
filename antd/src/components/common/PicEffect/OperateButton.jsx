@@ -1,47 +1,65 @@
 import { Button } from 'antd';
+import propTypes from 'prop-types';
+
 const ButtonGroup = Button.Group;
 
-export default function OperateButton ({ onClick, disabled }) {
-    const btns = [
-        [
-            { value: 'zoomIn', label: '缩小' },
-            { value: 'zoomOut', label: '放大' }
-        ],
-        [
-            { value: 'rotate', label: '旋转' },
-            { value: 'reset', label: '还原' },
-        ],
-        [
-            { value: 'prev', label: '上一张' },
-            { value: 'next', label: '下一张' },
-        ]
-    ];
+export default function OperateButton ({ onClick, btns }) {
+
+    if (!btns) return false;
+
+    const defaultBtns = {
+        zoomIn: '缩小',
+        zoomOut: '放大',
+        rotate: '旋转',
+        reset: '还原',
+        prev: '上一张',
+        next: '下一张',
+    };
+
+    if (!btns.length) {
+        btns = Object.keys(defaultBtns).map((v, i) => v);
+    }
 
     const btnEle = btns.map((val, i) => {
-        const style = {};
-        if (btns.length === i + 1) {
-            style.marginRight = 8;
-        }
-        const ele = val.map((v, j) => {
+
+        if (typeof val === 'string') {
+
+            if (!defaultBtns[val]) {
+                throw TypeError(`btns is error ${val}`);
+            }
+
             return (
                 <Button
-                    key={j}
-                    onClick={(e) => {onClick(v.value, e)}}
+                    key={i}
+                    onClick={(e) => {onClick(val, e)}}
                     type="ghost"
                 >
-                    {v.label}
+                    {defaultBtns[val]}
                 </Button>
-            )
-        })
-        return (
-            <ButtonGroup
-                key={i}
-                disabled={disabled}
-                style={style}
-            >
-                {ele}
-            </ButtonGroup>
-        );
+            );
+
+        } else if (typeof val === 'object') {
+
+            const btnKey = Object.keys(val)[0];
+            const btnValue = val[btnKey];
+            if (!defaultBtns[btnKey]) {
+                throw TypeError(`btns is error ${btnKey}`);
+            }
+
+            return (
+                <Button
+                    key={i}
+                    onClick={(e) => {onClick(btnKey, e)}}
+                    type="ghost"
+                >
+                    {btnValue}
+                </Button>
+            );
+        }
+
+        if (!defaultBtns[btnKey]) {
+            throw TypeError(`btns is error ${val}`);
+        }
     });
 
     const waperStyle = {
@@ -49,5 +67,14 @@ export default function OperateButton ({ onClick, disabled }) {
         padding: '0 0 16px',
     }
 
-    return <div style={waperStyle}>{ btnEle }</div>;
+    return (
+        <div style={waperStyle}>
+            <ButtonGroup>{btnEle}</ButtonGroup>
+        </div>
+    );
 }
+
+OperateButton.propTypes = {
+    onClick: propTypes.func.isRequired,
+    btns: propTypes.array,
+};
