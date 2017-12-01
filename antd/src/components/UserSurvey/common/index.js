@@ -507,7 +507,7 @@ export const UserSurvery = [
 export const UserRegister = [
     {
         type: 'radioButton',
-        id: 'formLayout',
+        id: 'user-formLayout',
         formItemApi: {
             label: 'Username',
         },
@@ -521,14 +521,14 @@ export const UserRegister = [
     },
     {
         type: 'input',
-        id: 'username',
+        id: 'user-username',
         formItemApi: {
             label: 'Username',
         },
     },
     {
         type: 'input',
-        id: 'password',
+        id: 'user-password',
         formItemApi: {
             label: 'Password',
         },

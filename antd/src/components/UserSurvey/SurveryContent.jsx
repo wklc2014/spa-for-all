@@ -10,23 +10,34 @@ import HForm from '../common/HForm/HForm.jsx';
 class SurveryContent extends Component {
 
     static defaultProps = {
-        values: {}
+        values: {},
+        update: false,
+    }
+
+    getIds = () => {
+        return CONFIGS.UserSurvery.map((v, i) => v.id);
     }
 
     onGetValue = () => {
-        const ids = CONFIGS.UserSurvery.map((v, i) => v.id);
+        const ids = this.getIds();
         const values = this.props.form.getFieldsValue(ids);
         console.log('values>>>', values);
     }
 
     onSubmit = () => {
-        const ret = this.props.form.validateFields();
-        console.log('ret>>>', ret);
+        const ids = this.getIds();
+        this.setState({ update: true });
+        this.props.form.validateFields(ids, function (errors, values) {
+            console.log('errors>>>', errors);
+            console.log('values>>>', values);
+        });
     }
 
     onReset = () => {
-        this.props.dispatch({ type: 'UserSurvery/reset' });
-        this.props.form.resetFields();
+        const ids = this.getIds();
+        this.props.onReset();
+        this.setState({ update: true });
+        this.props.form.resetFields(ids);
     }
 
     render() {
@@ -60,12 +71,16 @@ class SurveryContent extends Component {
         return (
             <section>
                 <div style={commonStyle}>
+                    {
+                    /*
+                    */}
                     <HForm
                         configs={CONFIGS.UserSurvery}
                         form={this.props.form}
                         col={3}
-                        onChange={this.props.onChange}
+                        onChange={this.onChange}
                         values={this.props.values}
+                        update={this.state.update}
                     />
                 </div>
                 <p style={{ paddingBottom: 16 }}>
@@ -81,7 +96,7 @@ class SurveryContent extends Component {
                 </p>
                 <div style={commonStyle}>
                     <HForm
-                        configs={inlineGroupConfigs}
+                        configs={CONFIGS.UserRegister}
                         form={this.props.form}
                         onChange={this.props.onChange}
                         layout={formLayout}

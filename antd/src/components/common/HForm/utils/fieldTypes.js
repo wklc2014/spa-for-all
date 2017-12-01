@@ -137,11 +137,13 @@ export default {
     radioButton: ({ props, params, value, onChange, addType }) => {
         const newProps = {
             ...props,
-            onChange: (e) => onChange(e.target.value, addType),
+            onChange: (e) => {
+                onChange(e.target.value, addType)
+            },
         };
         const ChildEle = params.data.map((v, i) => (
             <RadioButton key={i} value={v.value}>{v.label}</RadioButton>
-        ))
+        ));
         return <RadioGroup {...newProps}>{ChildEle}</RadioGroup>;
     },
     radio: ({ props, params, value, onChange, addType }) => {
@@ -162,7 +164,9 @@ export default {
         let newValue = value;
         try {
             newValue = params.render(value);
-        } catch (e) {}
+        } catch (e) {
+            newValue = value.toString();
+        }
         return <span {...newProps}>{newValue}</span>;
     },
     button: ({ props, params, value, onChange, addType }) => {

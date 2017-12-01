@@ -3,16 +3,12 @@ import lodash from 'lodash';
 
 export default function HFormItemHOC(Base) {
 
-    return class PP extends Component {
+    return class HOC extends Component {
 
         shouldComponentUpdate(nextProps, nextState) {
-            const { form: prevForm, field: prevField } = this.props;
-            const { form: nextForm, field: nextField } = nextProps;
-            const prevErrors = prevForm.getFieldError(prevField.id);
-            const nextErrors = nextForm.getFieldError(nextField.id);
+            const { update } = nextProps;
             const isEqualProps = lodash.isEqual(nextProps, this.props);
-            const isEqualErrors = lodash.isEqual(prevErrors, nextErrors);
-            if (isEqualProps && isEqualErrors) {
+            if (isEqualProps && !update) {
                 return false;
             }
             return true;

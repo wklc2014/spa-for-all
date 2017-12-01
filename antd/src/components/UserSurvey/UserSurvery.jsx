@@ -22,9 +22,15 @@ class UserSurvery extends Component {
         //         modelKey: 'Basic',
         //         modelValue: { [id]: value }
         //     }
-        // })
+        // });
         this.setState({
             values: { ...this.state.values, [id]: value }
+        });
+    }
+
+    onReset = () => {
+        this.setState({
+            values: {},
         })
     }
 
@@ -35,6 +41,7 @@ class UserSurvery extends Component {
             <SurveryContent
                 values={values}
                 onChange={this.onChange}
+                onReset={this.onReset}
             />
         )
     }

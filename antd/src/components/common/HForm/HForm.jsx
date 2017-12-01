@@ -18,7 +18,15 @@ class HForm extends Component {
         values: {},
     }
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            update: false,
+        }
+    }
+
     onChange = ({ id, value, addType, addValue }) => {
+        this.setState({ update: false });
         this.props.onChange({ id, value, addType, addValue });
     }
 
@@ -48,7 +56,7 @@ class HForm extends Component {
     }
 
     render() {
-        const { layout, space, col, values, form } = this.props;
+        const { update, layout, space, col, values, form } = this.props;
         const configs = this.sortConfigs();
 
         const formEle = configs.map((val, i) => {
@@ -63,6 +71,7 @@ class HForm extends Component {
                     onChange: this.onChange,
                 },
                 value: values[val.id],
+                update,
             }
             if (layout === 'inline') {
                 return (
@@ -99,7 +108,6 @@ class HForm extends Component {
 
 HForm.propTypes = {
     configs: propTypes.array.isRequired,
-    form: propTypes.object.isRequired,
     onChange: propTypes.func,
     className: propTypes.string,
     col: propTypes.number,
@@ -109,4 +117,4 @@ HForm.propTypes = {
     values: propTypes.object,
 };
 
-export default HForm;
+export default Form.create()(HForm);
