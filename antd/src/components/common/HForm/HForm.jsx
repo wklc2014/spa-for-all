@@ -9,25 +9,14 @@ import formLayouts from './common/formLayouts.js';
 class HForm extends Component {
 
     static defaultProps = {
-        className: '',
-        col: 1,
-        space: 16,
-        childGutter: 16,
-        isSort: true,
-        layout: 'horizontal',
-        values: {},
-    }
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            update: false,
-        }
-    }
-
-    onChange = ({ id, value, addType, addValue }) => {
-        this.setState({ update: false });
-        this.props.onChange({ id, value, addType, addValue });
+        className       : '',
+        columns         : 1,
+        configs         : [],
+        isSort          : true,
+        layout          : 'horizontal',
+        style           : {},
+        spacing         : 16,
+        values          : {},
     }
 
     // 排序配置项
@@ -56,7 +45,7 @@ class HForm extends Component {
     }
 
     render() {
-        const { update, layout, space, col, values, form } = this.props;
+        const { layout, spacing, columns, values, form } = this.props;
         const configs = this.sortConfigs();
 
         const formEle = configs.map((val, i) => {
@@ -65,31 +54,30 @@ class HForm extends Component {
                 key: i,
                 form,
                 layout,
-                col,
+                columns,
                 field: {
                     ...val,
-                    onChange: this.onChange,
+                    onChange: this.props.onChange,
                 },
                 value: values[val.id],
-                update,
             }
             if (layout === 'inline') {
                 return (
                     <div
-                        key={`${layout}_${i}`}
+                        key={`${layout}-${i}`}
                         style={{ display: 'inline-block' }}
                     >
                         <HFormItem {...cProps} />
                     </div>
                 )
             }
-            const colProps = getGridLayout(col, params.colSpan);
+            const colProps = getGridLayout(columns, params.colSpan);
             return (
                 <Col
                     {...colProps}
-                    key={`${layout}_${i}`}
+                    key={`${layout}-${i}`}
                 >
-                    <div style={{ paddingRight: space }}>
+                    <div style={{ paddingRight: spacing }}>
                         <HFormItem {...cProps} />
                     </div>
                 </Col>
@@ -107,13 +95,14 @@ class HForm extends Component {
 }
 
 HForm.propTypes = {
-    configs: propTypes.array.isRequired,
-    onChange: propTypes.func,
     className: propTypes.string,
-    col: propTypes.number,
+    columns: propTypes.number,
+    configs: propTypes.array.isRequired,
     isSort: propTypes.bool,
     layout: propTypes.string,
-    space: propTypes.number,
+    onChange: propTypes.func,
+    style: propTypes.object,
+    spacing: propTypes.number,
     values: propTypes.object,
 };
 

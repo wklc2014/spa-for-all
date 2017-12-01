@@ -23,6 +23,7 @@ const RadioButton = Radio.Button;
 
 export default {
     input: ({ props, params, value, onChange, addType }) => {
+        // console.log('input render')
         const newProps = {
             size: 'large',
             ...props,

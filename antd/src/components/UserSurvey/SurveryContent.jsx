@@ -11,33 +11,30 @@ class SurveryContent extends Component {
 
     static defaultProps = {
         values: {},
-        update: false,
     }
 
-    getIds = () => {
-        return CONFIGS.UserSurvery.map((v, i) => v.id);
+    getInstance = () => {
+        // console.log(this.instance)
+        return this.instance.props.form;
     }
 
     onGetValue = () => {
-        const ids = this.getIds();
-        const values = this.props.form.getFieldsValue(ids);
+        const instance = this.getInstance();
+        const values = instance.getFieldsValue();
         console.log('values>>>', values);
     }
 
     onSubmit = () => {
-        const ids = this.getIds();
-        this.setState({ update: true });
-        this.props.form.validateFields(ids, function (errors, values) {
-            console.log('errors>>>', errors);
-            console.log('values>>>', values);
+        const instance = this.getInstance();
+        instance.validateFields((errors, values) => {
+            console.log('validateFields>>>', errors, values);
         });
     }
 
     onReset = () => {
-        const ids = this.getIds();
+        const instance = this.getInstance();
         this.props.onReset();
-        this.setState({ update: true });
-        this.props.form.resetFields(ids);
+        instance.resetFields();
     }
 
     render() {
@@ -75,12 +72,12 @@ class SurveryContent extends Component {
                     /*
                     */}
                     <HForm
+                        wrappedComponentRef={(inst) => this.instance = inst}
                         configs={CONFIGS.UserSurvery}
                         form={this.props.form}
-                        col={3}
-                        onChange={this.onChange}
+                        columns={3}
+                        onChange={this.props.onChange}
                         values={this.props.values}
-                        update={this.state.update}
                     />
                 </div>
                 <p style={{ paddingBottom: 16 }}>
@@ -95,14 +92,14 @@ class SurveryContent extends Component {
                     </Button>
                 </p>
                 <div style={commonStyle}>
-                    <HForm
+                    {/*<HForm
                         configs={CONFIGS.UserRegister}
                         form={this.props.form}
                         onChange={this.props.onChange}
                         layout={formLayout}
                         values={this.props.values}
                         labelSpan={2}
-                    />
+                    />*/}
                 </div>
             </section>
         );

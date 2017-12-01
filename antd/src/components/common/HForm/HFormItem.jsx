@@ -39,7 +39,7 @@ function HFormItem(props) {
         form,
         layout,
         field,
-        col,
+        columns,
         value,
     } = props;
 
@@ -66,7 +66,7 @@ function HFormItem(props) {
         }
     }
 
-    const formItemLayout = getFormItemLayout(layout, params.colSpan, col);
+    const formItemLayout = getFormItemLayout(layout, params.colSpan, columns);
     const childSpan = getChildGridLayout(params.childSpan);
     const childGutter = params.childGutter || 16;
 
@@ -174,7 +174,7 @@ HFormItem.propTypes = {
     form: propTypes.object.isRequired,
     field: propTypes.object.isRequired,
     layout: propTypes.string,
-    col: propTypes.number,
+    columns: propTypes.number,
 };
 
 export default HFormItemHOC(HFormItem);
