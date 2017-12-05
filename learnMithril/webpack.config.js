@@ -32,65 +32,57 @@ module.exports = env => {
             symlinks: false,
         },
         module: {
-            rules: [
-                {
-                    test: /\.(js|jsx)$/,
-                    exclude: /node_modules/,
-                    loader: "babel-loader"
-                },
-                {
-                    test: /\.css$/,
-                    use: [
-                       'style-loader',
-                       'css-loader'
-                    ]
-                },
-                {
-                    test: /\.(png|jpg|gif)$/,
-                    use: [
-                        {
-                            loader: 'url-loader',
-                            options: {
-                                name: '[name]-[hash].[ext]',
-                                outputPath: 'images/',
-                                limit: 50 * 1024
-                            }
+            rules: [{
+                test: /\.(js|jsx)$/,
+                exclude: /node_modules/,
+                loader: "babel-loader"
+            }, {
+                test: /\.css$/,
+                use: [
+                   'style-loader',
+                   'css-loader'
+                ]
+            }, {
+                test: /\.(png|jpg|gif)$/,
+                use: [
+                    {
+                        loader: 'url-loader',
+                        options: {
+                            name: '[name]-[hash].[ext]',
+                            outputPath: 'images/',
+                            limit: 50 * 1024
                         }
-                    ]
-                },
-                {
-                    test: /\.(woff|svg|woff2|eot|ttf|otf)$/,
-                    use: [
-                        {
-                            loader: 'file-loader',
-                            options: {
-                                name: '[name]-[hash].[ext]',
-                                outputPath: 'fonts/'
-                            }
+                    }
+                ]
+            }, {
+                test: /\.(woff|svg|woff2|eot|ttf|otf)$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: '[name]-[hash].[ext]',
+                            outputPath: 'fonts/'
                         }
-                    ]
-                },
-                {
-                    test: /\.(csv|tsv)$/,
-                    use: [
-                        'csv-loader'
-                    ]
-                },
-                {
-                    test: /\.xml$/,
-                    use: [
-                        'xml-loader'
-                    ]
-                },
-                {
-                    test: /\.less$/,
-                    use: [
-                        'style-loader',
-                        'css-loader',
-                        'less-loader',
-                    ]
-                }
-            ]
+                    }
+                ]
+            }, {
+                test: /\.(csv|tsv)$/,
+                use: [
+                    'csv-loader'
+                ]
+            }, {
+                test: /\.xml$/,
+                use: [
+                    'xml-loader'
+                ]
+            }, {
+                test: /\.less$/,
+                use: [
+                    'style-loader',
+                    'css-loader',
+                    'less-loader',
+                ]
+            }]
         },
         plugins: [
             new ExtractTextPlugin({
