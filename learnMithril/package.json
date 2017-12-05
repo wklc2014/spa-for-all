@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --env.NODE_ENV=dev --progress --color --watch",
+    "server": "node server.js",
     "build": "webpack --env.production -p",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -20,11 +21,13 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
+    "body-parser": "^1.18.2",
     "clean-webpack-plugin": "^0.1.17",
     "copy-webpack-plugin": "^4.2.0",
     "cross-env": "^5.1.1",
     "css-loader": "^0.28.7",
     "csv-loader": "^2.1.1",
+    "express": "^4.16.2",
     "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^1.1.5",
     "html-webpack-plugin": "^2.30.1",
