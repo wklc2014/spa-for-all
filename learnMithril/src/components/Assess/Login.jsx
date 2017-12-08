@@ -31,7 +31,6 @@ const Login = {
                     />
                 </div>
                 <button
-                    type="submit"
                     class="btn btn-primary"
                     onclick={Auth.login}
                 >

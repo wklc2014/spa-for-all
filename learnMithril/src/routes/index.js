@@ -12,17 +12,26 @@ export default {
             return m(Layout, m(Assess));
         },
     },
-    "/login": Login,
+    // "/login": Login,
+    "/login": {
+        render: () => {
+            return m(Layout, m(Login));
+        }
+    },
     "/secret": {
         onmatch: function() {
-            if (!localStorage.getItem("auth-token")) {
+            if (!sessionStorage.getItem("auth-token")) {
                 m.route.set("/login");
+            } else {
+
             }
-            else return Home
+        },
+        render: function () {
+            return m(Layout, m(Secret));
         }
     },
     "/hello": {
-        render: () => {
+        render: (vnode) => {
             return m(Layout, m(Hello));
         },
     },

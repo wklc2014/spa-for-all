@@ -24,6 +24,7 @@
     "body-parser": "^1.18.2",
     "clean-webpack-plugin": "^0.1.17",
     "copy-webpack-plugin": "^4.2.0",
+    "cors": "^2.8.4",
     "cross-env": "^5.1.1",
     "css-loader": "^0.28.7",
     "csv-loader": "^2.1.1",
