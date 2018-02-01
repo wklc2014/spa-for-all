@@ -4,7 +4,7 @@ module.exports = {
         pages: [
             {
                 order: 1,
-                pageName: 'basic',
+                name: 'basic',
                 data: [
                     {
                         order: 1,
@@ -12,7 +12,14 @@ module.exports = {
                         type: 'text',
                         params: {
                             label: '出险人',
+                            extraProps: {
+
+                            }
                         },
+                        defaultApi: {
+                            className: 'inputItem-right',
+                        },
+                        defaultValue: '默认张三文字比较长比较多，可能超出了',
                     },
                     {
                         order: 2,
@@ -25,6 +32,7 @@ module.exports = {
                             className: 'inputItem-right',
                             placeholder: '请填写报案人姓名',
                         },
+                        defaultValue: '默认李四',
                     },
                     {
                         order: 3,
@@ -33,10 +41,13 @@ module.exports = {
                         params: {
                             label: '联系电话',
                         },
+                        defaultApi: {
+                            className: 'inputItem-right',
+                            placeholder: '请填写联系电话',
+                        },
                         optionsApi: {
                             rules: [
                                 { required: true, message: '手机号码必填' },
-                                // { validator: rules.phone, message: '手机号码不正确' },
                             ]
                         }
                     },
@@ -62,6 +73,10 @@ module.exports = {
                         order: 5,
                         id: 'accidentDescription',
                         type: 'textarea',
+                        params: {
+                            label: '事故发生经过',
+                            titleAlone: true,
+                        },
                         defaultApi: {
                             placeholder: '请描述意外事故发生的过程，包括但不限于意外事故发生的时间、过程、人员伤亡情况等信息，最少30个字',
                             autoHeight: true,

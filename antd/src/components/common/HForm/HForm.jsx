@@ -9,12 +9,10 @@ import formLayouts from './common/formLayouts.js';
 class HForm extends Component {
 
     static defaultProps = {
-        className       : '',
         columns         : 1,
         configs         : [],
         isSort          : true,
         layout          : 'horizontal',
-        style           : {},
         spacing         : 16,
         values          : {},
     }
@@ -45,7 +43,7 @@ class HForm extends Component {
     }
 
     render() {
-        const { layout, spacing, columns, values, form } = this.props;
+        const { columns, layout, spacing, values, form } = this.props;
         const configs = this.sortConfigs();
 
         const formEle = configs.map((val, i) => {
@@ -95,13 +93,11 @@ class HForm extends Component {
 }
 
 HForm.propTypes = {
-    className: propTypes.string,
     columns: propTypes.number,
     configs: propTypes.array.isRequired,
     isSort: propTypes.bool,
     layout: propTypes.string,
     onChange: propTypes.func,
-    style: propTypes.object,
     spacing: propTypes.number,
     values: propTypes.object,
 };

@@ -1,32 +1,32 @@
 /**
  * 中国城市数据
  */
-const datas = [
+const CITYS = [
   {
     "city": [
       {
         "area": [
-          "昌平区",
-          "朝阳区",
-          "崇文区",
-          "大兴区",
-          "东城区",
-          "房山区",
-          "丰台区",
-          "海淀区",
-          "怀柔区",
-          "机场",
-          "开发区",
-          "门头沟区",
-          "密云县",
-          "平谷区",
-          "石景山区",
-          "顺义区",
-          "通州区",
-          "外地",
-          "西城区",
-          "宣武区",
-          "延庆县"
+            "昌平区",
+            "朝阳区",
+            "崇文区",
+            "大兴区",
+            "东城区",
+            "房山区",
+            "丰台区",
+            "海淀区",
+            "怀柔区",
+            "机场",
+            "开发区",
+            "门头沟区",
+            "密云县",
+            "平谷区",
+            "石景山区",
+            "顺义区",
+            "通州区",
+            "外地",
+            "西城区",
+            "宣武区",
+            "延庆县"
         ],
         "name": "北京市"
       }
@@ -4699,7 +4699,7 @@ const datas = [
   }
 ]
 
-const quanGuo = datas.map((v) => {
+const quanGuo = CITYS.map((v) => {
 
     const newChildren = v.city.map((m) => {
 
@@ -4724,7 +4724,7 @@ const quanGuo = datas.map((v) => {
     }
 });
 
-const shangHai = [datas[1]].map((v) => {
+const shangHai = [CITYS[1]].map((v) => {
 
     const newChildren = v.city.map((m) => {
 
@@ -4749,7 +4749,7 @@ const shangHai = [datas[1]].map((v) => {
     }
 });
 
-const beiJing = [datas[0]].map((v) => {
+const beiJing = [CITYS[0]].map((v) => {
 
     const newChildren = v.city.map((m) => {
 
