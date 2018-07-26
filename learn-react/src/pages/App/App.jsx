@@ -20,12 +20,12 @@ const App = (props) => {
       <div>
         <Switch>
           <Route exact path="/login" component={Login} />
+          <Route path="/about" component={About} />
+          <Route component={NoMatch} />
           <AuthRoute to="/login" auth={!isLogin}>
             <Route exact path="/" component={Home} />
-            <Route path="/about" component={About} />
             <Route path="/news" component={News} />
           </AuthRoute>
-          <Route component={NoMatch} />
         </Switch>
       </div>
     </div>
