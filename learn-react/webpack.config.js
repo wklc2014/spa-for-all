@@ -32,9 +32,16 @@ module.exports = env => {
         {
           test: /\.(js|jsx)$/,
           exclude: /node_modules/,
-          use: {
-            loader: "babel-loader"
-          }
+          use: [
+            { loader: "babel-loader" },
+          ]
+        },
+        {
+          test: /\.(js|jsx)$/,
+          issuer: /\.less$/,
+          use: [
+            { loader: 'js-to-less-loader' }
+          ]
         },
         {
           test: /\.html$/,
@@ -57,14 +64,14 @@ module.exports = env => {
           use: [
             'style-loader',
             'css-loader',
-            'less-loader',
+            'less-loader'
           ]
         },
         {
           test: /\.(png|jpg|gif)$/,
           use: [
             {
-              loader: 'url-loader',
+              loader: 'file-loader',
               options: {
                 name: '[name]-[hash].[ext]',
                 outputPath: 'images/',
@@ -72,6 +79,10 @@ module.exports = env => {
               }
             }
           ]
+        },
+        {
+          test: /\.json$/,
+          use: 'json-loader'
         }
       ]
     },
