@@ -19,13 +19,11 @@ const App = (props) => {
       <Nav />
       <div>
         <Switch>
-          <Route exact path="/login" component={Login} />
+          <Route path="/login" component={Login} />
           <Route path="/about" component={About} />
+          <AuthRoute to="/login" auth={isLogin} exact path="/" component={Home} />
+          <AuthRoute to="/login" auth={isLogin} path="/news" component={News} />
           <Route component={NoMatch} />
-          <AuthRoute to="/login" auth={!isLogin}>
-            <Route exact path="/" component={Home} />
-            <Route path="/news" component={News} />
-          </AuthRoute>
         </Switch>
       </div>
     </div>

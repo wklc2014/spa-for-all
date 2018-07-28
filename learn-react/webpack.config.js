@@ -37,13 +37,6 @@ module.exports = env => {
           ]
         },
         {
-          test: /\.(js|jsx)$/,
-          issuer: /\.less$/,
-          use: [
-            { loader: 'js-to-less-loader' }
-          ]
-        },
-        {
           test: /\.html$/,
           use: [
             {
