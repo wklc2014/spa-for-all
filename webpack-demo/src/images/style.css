@@ -1,0 +1,9 @@
+.hello {
+  width: 381px;
+  height: 256px;
+  color: red;
+  background: url('./2.png');
+  span {
+    color: #ff0;
+  }
+}

@@ -1,5 +1,7 @@
+const isLogin = window.sessionStorage.getItem('isLogin');
+
 export default {
-  isLogin: false,
+  isLogin,
   username: '',
   password: '',
 }

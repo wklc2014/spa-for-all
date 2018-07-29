@@ -1,0 +1,11 @@
+1. 使用 source map
+devtool: 'inline-source-map',
+
+2. 使用观察模式
+"watch": "webpack --watch",
+
+3. webpack-dev-server
+yarn add webpack-dev-server -D
+
+4. 使用 webpack-dev-middleware
+yarn add express webpack-dev-middleware -D
