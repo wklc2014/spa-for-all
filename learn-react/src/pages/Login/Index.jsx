@@ -1,30 +1,21 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 
 import Login from './Login.jsx';
 import Logout from './Logout.jsx';
-import actions from '../../redux/actions/index.js';
 
 class Index extends Component {
 
   onLogout = () => {
-    this.props.dispatch({
-      type: actions.LOGOUT,
-    });
+    this.props.onLogout();
   }
 
   onLogin = () => {
-    this.props.dispatch({
-      type: actions.LOGIN,
-    });
+    this.props.onLogin();
   }
 
   onChange = (e) => {
     const { id, value } = e.target;
-    this.props.dispatch({
-      type: actions.LOGIN_UPDATE,
-      payload: { [id]: value },
-    });
+    this.props.onUpdate({ id, value });
   }
 
   render() {
@@ -51,12 +42,4 @@ class Index extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    isLogin: state.login.isLogin,
-    username: state.login.username,
-    password: state.login.password,
-  };
-}
-
-export default connect(mapStateToProps)(Index);
+export default Index;

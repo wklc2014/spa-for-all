@@ -9,3 +9,6 @@ yarn add webpack-dev-server -D
 
 4. 使用 webpack-dev-middleware
 yarn add express webpack-dev-middleware -D
+
+webpack-merge 合并 webpack 配置
+yarn add webpack-merge -D

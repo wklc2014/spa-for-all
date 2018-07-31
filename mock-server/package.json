@@ -1,0 +1,26 @@
+{
+  "name": "mock-server",
+  "version": "1.0.0",
+  "description": "use gulp-mock-server for mock api",
+  "main": "gulpfile.js",
+  "scripts": {
+    "start": "gulp mock"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wklc2014/mock-server.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wklc2014/mock-server/issues"
+  },
+  "homepage": "https://github.com/wklc2014/mock-server#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-mock-server": "^1.1.4",
+    "mockjs": "^1.0.1-beta3"
+  },
+  "dependencies": {}
+}

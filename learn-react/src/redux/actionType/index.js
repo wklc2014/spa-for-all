@@ -1,10 +1,12 @@
 /**
  * 定义 actionTypes
  */
-
 export default {
   LOGIN: 'LOGIN',
   LOGOUT: 'LOGOUT',
   LOGIN_UPDATE: 'LOGIN_UPDATE',
   SORT_REVERSE: 'SORT_REVERSE',
+
+  COUNT_ADD: 'COUNT_ADD',
+  COUNT_REDUCE: 'COUNT_REDUCE',
 }

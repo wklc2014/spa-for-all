@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import propTypes from 'prop-types';
 
 class News extends Component {
@@ -33,10 +32,4 @@ News.propTypes = {
 
 }
 
-function mapStateToProps(state) {
-  return {
-    list: state.news.list,
-  };
-}
-
-export default connect(mapStateToProps)(News);
+export default News;

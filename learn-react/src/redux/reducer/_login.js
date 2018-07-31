@@ -1,20 +1,20 @@
-import actions from '../actions/index.js';
-import init_login from '../initstate/init_login.js';
+import actionType from '../actionType/index.js';
+import _login from '../initstate/_login.js';
 
-export default function(state = init_login, action) {
+export default function(state = _login, action) {
   const { type, payload } = action;
   switch (type) {
-    case actions.LOGIN:
+    case actionType.LOGIN:
       window.sessionStorage.setItem('isLogin', true);
       return {...state, isLogin: true};
-    case actions.LOGOUT:
+    case actionType.LOGOUT:
       window.sessionStorage.setItem('isLogin', false);
       return {...state,
         isLogin: false,
         username: '',
         password: '',
       };
-    case actions.LOGIN_UPDATE:
+    case actionType.LOGIN_UPDATE:
       return {...state, ...payload};
     default:
       return state;

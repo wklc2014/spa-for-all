@@ -1,23 +1,38 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { hot } from 'react-hot-loader';
 import propTypes from 'prop-types';
+import Paren from './Paren.jsx';
+import CountContext from '../../context/_count.js';
 
-function Home() {
+class Home extends Component {
 
-  return (
-    <div>
-      <h3>主页</h3>
-      <p>成都</p>
-    </div>
-  )
+  static defaultProps = {
+    amount: 0,
+  }
+
+  render() {
+    const { amount, onAdd, onReduce } = this.props;
+    const CountContextValue = {
+      amount,
+      onAdd,
+      onReduce,
+    }
+
+    return (
+      <CountContext.Provider value={CountContextValue}>
+        <div>
+          <h3>主页</h3>
+          <p>这是主页内容。。。</p>
+          <Paren />
+        </div>
+      </CountContext.Provider>
+    )
+  }
+
 }
 
 Home.propTypes = {
-
-}
-
-Home.defaultProps = {
-
+  amount: propTypes.number,
 }
 
 export default hot(module)(Home);
