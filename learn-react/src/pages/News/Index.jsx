@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import propTypes from 'prop-types';
 import { Card } from 'antd';
 
+import styles from './styles.less';
+
 class News extends Component {
 
   render() {
@@ -20,10 +22,11 @@ class News extends Component {
     })
 
     return (
-      <Card>
-        <h3>新闻页面</h3>
-        <ul>{Children}</ul>
-      </Card>
+      <div className={styles.mainBox}>
+        <Card title="新闻页面">
+          <ul className={styles.list}>{Children}</ul>
+        </Card>
+      </div>
     )
   }
 

@@ -24,7 +24,7 @@ module.exports = merge(common, {
             options: {
               camelCase: true,
               modules: true,
-              importLoaders: 2,
+              importLoaders: 1,
               localIdentName: '[name]--[local]--[hash:base64]'
             }
           },

@@ -16,6 +16,7 @@ module.exports = merge(common, {
     rules: [
       {
         test: /\.(less|css)$/,
+        include: path.resolve(__dirname, 'src'),
         use: [
           'style-loader',
           {
@@ -23,7 +24,7 @@ module.exports = merge(common, {
             options: {
               camelCase: true,
               modules: true,
-              importLoaders: 2,
+              importLoaders: 1,
               localIdentName: '[name]--[local]--[hash:base64]'
             }
           },
@@ -35,7 +36,27 @@ module.exports = merge(common, {
               }
             }
           },
-          'less-loader'
+          {
+            loader: "less-loader",
+            options: {
+              javascriptEnabled: true
+            }
+          }
+        ]
+      },
+      // 单独给 antd 样式处理
+      {
+        test: /\.(less|css)$/,
+        include: path.resolve(__dirname, 'node_modules'),
+        use: [
+          'style-loader',
+          'css-loader',
+          {
+            loader: "less-loader",
+            options: {
+              javascriptEnabled: true
+            }
+          }
         ]
       },
     ]
