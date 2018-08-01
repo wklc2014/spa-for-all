@@ -1,6 +1,6 @@
 const webpack = require('webpack');
-const merge = require('webpack-merge');
 const path = require('path');
+const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
 
 module.exports = merge(common, {
@@ -36,7 +36,27 @@ module.exports = merge(common, {
               }
             }
           },
-          'less-loader'
+          {
+            loader: "less-loader",
+            options: {
+              javascriptEnabled: true
+            }
+          }
+        ]
+      },
+      // 单独给 antd 样式处理
+      {
+        test: /\.(less|css)$/,
+        include: path.resolve(__dirname, 'node_modules'),
+        use: [
+          'style-loader',
+          'css-loader',
+          {
+            loader: "less-loader",
+            options: {
+              javascriptEnabled: true
+            }
+          }
         ]
       },
     ]

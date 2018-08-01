@@ -12,10 +12,10 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'learn-react',
+      title: 'learn-mithril',
       template: path.resolve(__dirname, 'src/entries/index.html'),
       favicon: path.resolve(__dirname, 'src/entries/favicon.ico'),
-    })
+    }),
   ],
   module: {
     rules: [

@@ -1,5 +1,5 @@
 {
-  "name": "webpack-demo",
+  "name": "learn-mithril",
   "version": "1.0.0",
   "description": "",
   "private": true,
@@ -15,7 +15,6 @@
     "autoprefixer": "^9.0.2",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",
-    "babel-plugin-import": "^1.8.0",
     "babel-plugin-transform-react-jsx": "^6.24.1",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
@@ -46,9 +45,7 @@
     "xml-loader": "^1.2.1"
   },
   "dependencies": {
-    "antd": "^3.7.3",
     "babel-polyfill": "^6.26.0",
-    "classnames": "^2.2.6",
     "is_js": "^0.9.0",
     "lodash": "^4.17.10",
     "mithril": "^1.1.6",

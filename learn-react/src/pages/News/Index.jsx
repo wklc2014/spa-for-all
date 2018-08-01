@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
+import { Card } from 'antd';
 
 class News extends Component {
 
@@ -19,10 +20,10 @@ class News extends Component {
     })
 
     return (
-      <div>
+      <Card>
         <h3>新闻页面</h3>
         <ul>{Children}</ul>
-      </div>
+      </Card>
     )
   }
 

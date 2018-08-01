@@ -1,24 +1,21 @@
 const webpack = require('webpack');
 const path = require('path');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: {
-    app: './src/index.js',
+    app: './src/entries/index.js',
   },
   output: {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
   },
   plugins: [
-    new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
-      title: 'Production'
+      title: 'webpack-demo',
+      template: path.resolve(__dirname, 'src/entries/index.html'),
+      favicon: path.resolve(__dirname, 'src/entries/favicon.ico'),
     }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'common'
-    })
   ],
   module: {
     rules: [
@@ -30,44 +27,29 @@ module.exports = {
         ]
       },
       {
-        test: /\.html$/,
-        include: path.resolve(__dirname, 'src'),
-        use: [
-          {
-            loader: 'html-loader',
-            options: { minimize: true }
-          }
-        ]
-      },
-      {
-        test: /\.css$/,
-        include: path.resolve(__dirname, 'src'),
-        use: [
-          MiniCssExtractPlugin.loader,
-          'css-loader'
-        ]
-      },
-      {
-        test: /\.less$/,
-        include: path.resolve(__dirname, 'src'),
-        use: [
-          'style-loader',
-          'css-loader',
-          'less-loader'
-        ]
-      },
-      {
         test: /\.(png|svg|jpg|gif)$/,
         include: path.resolve(__dirname, 'src'),
         use: [
-          'file-loader'
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name]-[hash:7].[ext]',
+              outputPath: 'images/'
+            }
+          }
         ]
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
         include: path.resolve(__dirname, 'src'),
         use: [
-          'file-loader'
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name]-[hash:7].[ext]',
+              outputPath: 'font/'
+            }
+          }
         ]
       },
       {

@@ -1,27 +1,30 @@
+const webpack = require('webpack');
 const path = require('path');
 const merge = require('webpack-merge');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const common = require('./webpack.common.js');
 
 module.exports = merge(common, {
-  mode: 'production',
-  devtool: 'source-map',
+  mode: 'development',
+  devtool: 'inline-source-map',
+  devServer: {
+    contentBase: path.join(__dirname, "dist"),
+    compress: true,
+    port: 12000,
+    hot: true,
+  },
   module: {
     rules: [
       {
-        test: /\.(less$|css)/,
+        test: /\.(less|css)$/,
         include: path.resolve(__dirname, 'src'),
         use: [
-          MiniCssExtractPlugin.loader,
+          'style-loader',
           {
             loader: 'css-loader',
             options: {
               camelCase: true,
-              minimize: true,
-              importLoaders: 2,
               modules: true,
+              importLoaders: 2,
               localIdentName: '[name]--[local]--[hash:base64]'
             }
           },
@@ -39,18 +42,6 @@ module.exports = merge(common, {
     ]
   },
   plugins: [
-    new CleanWebpackPlugin(['dist']),
-    new UglifyJSPlugin({
-      sourceMap: true,
-      uglifyOptions: {
-        output: {
-          comments: false,
-       },
-      }
-    }),
-    new MiniCssExtractPlugin({
-      filename: "[name].css",
-      chunkFilename: "[id].css"
-    })
-  ]
+    new webpack.HotModuleReplacementPlugin()
+  ],
 });
