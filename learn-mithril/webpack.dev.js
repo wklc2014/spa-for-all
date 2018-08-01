@@ -9,7 +9,7 @@ module.exports = merge(common, {
   devServer: {
     contentBase: path.join(__dirname, "dist"),
     compress: true,
-    port: 12000,
+    port: 13000,
     hot: true,
   },
   module: {
@@ -37,6 +37,14 @@ module.exports = merge(common, {
             }
           },
           'less-loader'
+        ]
+      },
+      {
+        test: /\.css$/,
+        include: path.resolve(__dirname, 'node_modules/bootstrap'),
+        use: [
+          'style-loader',
+          'css-loader',
         ]
       },
     ]

@@ -2,7 +2,6 @@ import React from 'react';
 import { render } from 'react-dom';
 import { HashRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import 'babel-polyfill';
 import store from '../redux/store/index.js';
 import App from '../pages/App/AppContainer.jsx';
 

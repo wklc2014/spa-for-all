@@ -36,6 +36,14 @@ module.exports = merge(common, {
           'less-loader'
         ]
       },
+      {
+        test: /\.css$/,
+        include: path.resolve(__dirname, 'node_modules/bootstrap'),
+        use: [
+          'style-loader',
+          'css-loader',
+        ]
+      },
     ]
   },
   plugins: [

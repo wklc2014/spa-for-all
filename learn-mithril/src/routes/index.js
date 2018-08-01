@@ -9,10 +9,13 @@ import Hello from '../pages/Hello/Hello.jsx';
 export default {
   "/assess": {
     render: () => {
-      return m(Layout, m(Assess));
+      return (
+        <Layout>
+          <Assess />
+        </Layout>
+      )
     },
   },
-  // "/login": Login,
   "/login": {
     render: () => {
       return m(Layout, m(Login));
