@@ -5,15 +5,12 @@ import Assess from '../pages/Assess/Assess.jsx';
 import Secret from '../pages/Assess/Secret.jsx';
 import Login from '../pages/Assess/Login.jsx';
 import Hello from '../pages/Hello/Hello.jsx';
+import Home from '../pages/Home/Home.jsx';
 
 export default {
   "/assess": {
     render: () => {
-      return (
-        <Layout>
-          <Assess />
-        </Layout>
-      )
+      return m(Layout, m(Assess));
     },
   },
   "/login": {
@@ -36,6 +33,11 @@ export default {
   "/hello": {
     render: (vnode) => {
       return m(Layout, m(Hello));
+    },
+  },
+  "/home": {
+    render: (vnode) => {
+      return m(Layout, m(Home, 'ddd'));
     },
   },
 }

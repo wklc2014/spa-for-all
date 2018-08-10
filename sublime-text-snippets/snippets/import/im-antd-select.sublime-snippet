@@ -1,0 +1,9 @@
+<snippet>
+    <content><![CDATA[
+import { Select } from 'antd';
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>im-antd-select</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <!-- <scope>source.python</scope> -->
+</snippet>

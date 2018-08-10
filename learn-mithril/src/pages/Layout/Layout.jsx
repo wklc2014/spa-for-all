@@ -11,7 +11,7 @@ const Layout = {
     return (
       <section class="container">
         <MyNav {...MyNavProps} />
-        <div style={{ padding: 20 }}>
+        <div style={{ padding: '20px' }}>
           {vnode.children}
         </div>
       </section>
