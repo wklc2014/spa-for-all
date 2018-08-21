@@ -3,17 +3,14 @@ import path from './images/5.png';
 import path_1 from './images/1.png';
 import path_2 from './images/2.png';
 import path_3 from './images/3.png';
+import styles from './styles.less';
 
 const Home = {
   view: (vnode) => {
     return (
-      <div class="ui inverted segment">
-  <div class="ui active inverted loader"></div>
-  <br />
-  <br />
-  <br />
-  <br />
-</div>
+      <div>
+        <h2>Home</h2>
+      </div>
     )
   }
 }

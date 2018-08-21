@@ -13,7 +13,7 @@ const App = (props) => {
   const { isLogin } = props;
 
   return (
-    <div>
+    <div style={{ padding: 16 }}>
       <Nav />
       <div>
         <Switch>

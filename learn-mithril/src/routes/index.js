@@ -8,36 +8,28 @@ import Hello from '../pages/Hello/Hello.jsx';
 import Home from '../pages/Home/Home.jsx';
 
 export default {
-  "/assess": {
-    render: () => {
-      return m(Layout, m(Assess));
+  '/': {
+    render: (vnode) => {
+      return m(Layout, m(Home));
     },
   },
-  "/login": {
+  '/login': {
     render: () => {
       return m(Layout, m(Login));
     }
   },
-  "/secret": {
-    onmatch: function() {
-      if (!sessionStorage.getItem("auth-token")) {
-        m.route.set("/login");
+  '/assess': {
+    onmatch: function(args, requestedPath) {
+      if (!sessionStorage.getItem('auth-token')) {
+        m.route.set('/login');
       } else {
-
+        return m(Layout, m(Secret));
       }
     },
-    render: function () {
-      return m(Layout, m(Secret));
-    }
   },
-  "/hello": {
+  '/help': {
     render: (vnode) => {
       return m(Layout, m(Hello));
-    },
-  },
-  "/home": {
-    render: (vnode) => {
-      return m(Layout, m(Home, 'ddd'));
     },
   },
 }

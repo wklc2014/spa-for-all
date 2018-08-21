@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
+import { Button } from 'antd';
+
 import CountContext from '../../context/_count.js';
 
 export default class Star extends Component {
@@ -16,10 +18,10 @@ export default class Star extends Component {
             <div>
               <p>amount: {ctx.amount}</p>
               <p>
-                <button onClick={ctx.onAdd}>增加</button>
+                <Button type="primary" onClick={ctx.onAdd}>增加</Button>
               </p>
               <p>
-                <button onClick={ctx.onReduce}>减少</button>
+                <Button type="primary" onClick={ctx.onReduce}>减少</Button>
               </p>
             </div>
           )
