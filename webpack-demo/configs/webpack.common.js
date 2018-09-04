@@ -13,7 +13,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'learn-react',
+      title: 'webpack-demo',
       template: path.join(__dirname, '../src/entries/index.html'),
       favicon: path.join(__dirname, '../src/entries/favicon.ico'),
     }),

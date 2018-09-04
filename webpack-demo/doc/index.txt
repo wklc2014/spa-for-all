@@ -1,10 +1,8 @@
 1. 项目初始化
-npm init --yes
+yarn init --yes
 
 2. 安装必备依赖
-yarn add webpack webpack-cli webpack-merge webpack-dev-server cross-env -D
-
-yarn add babel-core babel-loader babel-plugin-import babel-plugin-transform-react-jsx babel-preset-env babel-preset-react babel-preset-stage-0 babel-plugin-transform-decorators-legacy babel-plugin-transform-runtime file-loader csv-loader xml-loader style-loader css-loader postcss-loader postcss-load-config less-loader less json-loader html-loader url-loader html-webpack-plugin uglifyjs-webpack-plugin clean-webpack-plugin mini-css-extract-plugin copy-webpack-plugin autoprefixer cssnano -D
+yarn add webpack webpack-cli webpack-merge webpack-dev-server cross-env babel-core babel-loader@7.1.5 babel-plugin-import babel-plugin-transform-react-jsx babel-preset-env babel-preset-react babel-preset-stage-0 babel-plugin-transform-decorators-legacy babel-plugin-transform-runtime file-loader csv-loader xml-loader style-loader css-loader postcss-loader postcss-load-config less-loader less json-loader html-loader url-loader html-webpack-plugin uglifyjs-webpack-plugin clean-webpack-plugin mini-css-extract-plugin copy-webpack-plugin autoprefixer cssnano redux-logger -D
 
 3. 添加配置文件
 webpack.common.js
@@ -16,7 +14,12 @@ postcss.config.js
 4. 安装开发环境依赖
 yarn add react react-dom react-redux react-router react-router-dom redux redux-thunk reflux flux prop-types moment lodash is_js classnames antd mithril axios react-draggable bootstrap babel-polyfill -S
 
-yarn add redux-logger -D
-
 5. 添加 npm scripts
+"scripts": {
+  "start": "cross-env NODE_ENV=development webpack-dev-server --config ./configs/webpack.dev.js",
+  "build": "cross-env NODE_ENV=production webpack --config ./configs/webpack.prod.js"
+},
+
+6. 清理缓存
+yarn cache clean
 

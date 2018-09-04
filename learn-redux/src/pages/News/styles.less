@@ -1,0 +1,28 @@
+.main-box {
+}
+
+.list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  > li {
+    display: flex;
+    padding: 5px 0;
+    > span {
+      &:nth-child(1),
+      &:nth-child(2) {
+        flex: 0 0 auto;
+      }
+      &:nth-child(3) {
+        flex: 1 1 auto;
+      }
+      &:nth-child(1) {
+        color: #f33;
+        padding-right: 5px;
+      }
+      &:nth-child(2) {
+        font-weight: bold;
+      }
+    }
+  }
+}

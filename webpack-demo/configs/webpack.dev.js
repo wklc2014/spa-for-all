@@ -9,7 +9,7 @@ module.exports = merge(common, {
   devServer: {
     contentBase: path.join(__dirname, '../dist/'),
     compress: true,
-    port: 12000,
+    port: 19000,
     hot: true,
   },
   module: {
@@ -17,6 +17,7 @@ module.exports = merge(common, {
       {
         test: /\.(less|css)$/,
         include: path.join(__dirname, '../src/'),
+        exclude: path.join(__dirname, '../src/assets/'),
         use: [
           'style-loader',
           {
@@ -44,10 +45,13 @@ module.exports = merge(common, {
           }
         ]
       },
-      // 单独给 antd 样式处理
+      // 单独给 antd 等第三方样式做处理
       {
         test: /\.(less|css)$/,
-        include: path.join(__dirname, '../node_modules/'),
+        include: [
+          path.join(__dirname, '../node_modules/'),
+          path.join(__dirname, '../src/assets/'),
+        ],
         use: [
           'style-loader',
           'css-loader',
