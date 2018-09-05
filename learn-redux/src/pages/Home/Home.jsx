@@ -1,8 +1,9 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { Button } from 'antd';
-import CountContext from '../../models/context/_count.js';
+import CountContext from '../../models/context/count_context.js';
 import Parent from './Paren.jsx';
+import count_action from '../../models/action/count_action.js';
 
 function Home (props) {
 
@@ -10,15 +11,21 @@ function Home (props) {
     amount,
     citys,
     loading,
-    onAdd,
-    onReduce,
-    onLoad,
+    dispatch,
   } = props;
 
   const CountContextValue = {
     amount,
-    onAdd,
-    onReduce,
+    onAdd: (number) => {
+      dispatch(count_action.onAdd(number));
+    },
+    onReduce: (number) => {
+      dispatch(count_action.onReduce(number));
+    },
+  }
+
+  const onLoad = () => {
+    dispatch(count_action.onLoad());
   }
 
   return (
@@ -50,9 +57,6 @@ Home.propTypes = {
   amount: propTypes.number,
   citys: propTypes.array,
   loading: propTypes.bool,
-  onAdd: propTypes.func.isRequired,
-  onReduce: propTypes.func.isRequired,
-  onLoad: propTypes.func.isRequired,
 }
 
 Home.defaultProps = {

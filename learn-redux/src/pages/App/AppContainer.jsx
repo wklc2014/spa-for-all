@@ -4,8 +4,9 @@ import { bindActionCreators } from 'redux';
 import App from './App.jsx';
 
 function mapStateToProps(state) {
+  const login = state.get('login');
   return {
-    isLogin: state._login.isLogin,
+    isLogin: login.get('isLogin'),
   };
 }
 

@@ -1,19 +1,21 @@
 import React, { Component } from 'react';
 
+import login_action from '../../models/action/login_action.js';
+
 import GoLogin from './GoLogin.jsx';
 import GoLogout from './GoLogout.jsx';
 
 class Login extends Component {
 
   onLogout = () => {
-    this.props.onLogout();
+    this.props.dispatch(login_action.logout());
   }
 
   onChange = ({ id, value }) => {
     if (id === 'login') {
-      this.props.onLogin();
+      this.props.dispatch(login_action.login());
     } else {
-      this.props.onUpdate({ id, value });
+      this.props.dispatch(login_action.update({ id, value }));
     }
   }
 

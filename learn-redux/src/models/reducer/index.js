@@ -1,14 +1,14 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from 'redux-immutable';
 
-import _login from './_login.js'
-import _news from './_news.js'
-import _count from './_count.js'
+import login from './login_reducer.js'
+import news from './news_reducer.js'
+import count from './count_reducer.js'
 
 //合并 reducer
 const rootRedux = combineReducers({
-  _login,
-  _news,
-  _count,
+  login,
+  news,
+  count,
 })
 
 export default rootRedux;

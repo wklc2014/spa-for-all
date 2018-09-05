@@ -1,22 +1,24 @@
 import actionType from '../actionType/index.js';
-import * as CountServices from '../service/_count.js';
+import count_service from '../service/count_service.js';
 
-export function onAdd() {
+const onAdd = (number = 1) => {
   return {
     type: actionType.COUNT_ADD,
+    payload: number,
   }
 }
 
-export function onReduce() {
+const onReduce = (number = 1) => {
   return {
     type: actionType.COUNT_REDUCE,
+    payload: number,
   }
 }
 
-export function onLoad() {
+const onLoad = () => {
   return (dispatch, getState) => {
     dispatch({ type: actionType.LOADING });
-    CountServices.getAllCitys()
+    count_service.getAllCitys()
       .then((resp) => {
         dispatch({
           type: actionType.SHOW_CITYS,
@@ -25,4 +27,10 @@ export function onLoad() {
         dispatch({ type: actionType.LOADING });
       })
   }
+}
+
+export default {
+  onAdd,
+  onReduce,
+  onLoad,
 }

@@ -1,21 +1,27 @@
 import actionType from '../actionType/index.js';
 
-export function onLogin() {
+const login = () => {
   return {
     type: actionType.LOGIN,
   }
 }
 
-export function onLogout() {
+const logout = () => {
   return {
     type: actionType.LOGOUT,
   }
 }
 
-export function onUpdate({ id, value }) {
+const update = ({ id, value }) => {
   return {
     type: actionType.LOGIN_UPDATE,
     payload: { [id]: value },
   }
+}
+
+export default {
+  login,
+  logout,
+  update,
 }
 

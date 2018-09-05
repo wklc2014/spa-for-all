@@ -1,22 +1,14 @@
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import Home from './Home.jsx';
-import * as actions from '../../models/action/_count.js';
 
-function mapStateToProps(state) {
+import Home from './Home.jsx';
+
+const mapStateToProps = (state) => {
+  const count = state.get('count');
   return {
-    amount: state._count.amount,
-    loading: state._count.loading,
-    citys: state._count.citys,
+    amount: count.get('amount'),
+    loading: count.get('loading'),
+    citys: count.get('citys'),
   };
 }
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({
-    onAdd: actions.onAdd,
-    onReduce: actions.onReduce,
-    onLoad: actions.onLoad,
-  }, dispatch)
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps)(Home);

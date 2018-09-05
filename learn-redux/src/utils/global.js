@@ -1,25 +1,25 @@
-import Immutable, { List } from 'immutable';
+import Immutable, {
+  List,
+  Map,
+  fromJS,
+} from 'immutable';
 
-const list = List([ 'a', 'b', 'c' ]);
-// const result = list.update(7, 'mm_11_', val => `_${val}`)
+const log = (value) => {
+  console.log('value>>>', value.toJS());
+}
 
-// const result = list
-//   .set(2, '___CCC___')
-//   .set(1, 'AAA')
-//   .set(0, 'BBB')
-//   .set(3, '___BBB___')
-//   ;
+const obj = {
+  a: 1,
+  b: 2,
+  c: {
+    m: 'mm',
+    n: 'nn',
+    d: ['a', 'b', 'c']
+  }
+}
 
-// const result = list.map((v, i, t) => {
-//   console.log('v>>>', v);
-//   console.log('i>>>', i);
-//   console.log('t>>>', t);
-//   return `${v}%%%${v}`;
-// })
+const old = Map(obj);
+const old1 = fromJS(obj);
 
-// const first = result.first();
-// const last = result.last();
-
-// console.log('result>>>', result.toJS());
-// console.log('first>>>', first);
-// console.log('last>>>', last);
+console.log('old>>>', old);
+console.log('old1>>>', old1);

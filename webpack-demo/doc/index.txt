@@ -2,7 +2,52 @@
 yarn init --yes
 
 2. 安装必备依赖
-yarn add webpack webpack-cli webpack-merge webpack-dev-server cross-env babel-core babel-loader@7.1.5 babel-plugin-import babel-plugin-transform-react-jsx babel-preset-env babel-preset-react babel-preset-stage-0 babel-plugin-transform-decorators-legacy babel-plugin-transform-runtime file-loader csv-loader xml-loader style-loader css-loader postcss-loader postcss-load-config less-loader less json-loader html-loader url-loader html-webpack-plugin uglifyjs-webpack-plugin clean-webpack-plugin mini-css-extract-plugin copy-webpack-plugin autoprefixer cssnano redux-logger -D
+--- webpack 工具
+webpack
+webpack-cli
+webpack-dev-server
+webpack-merge
+
+--- webpack 插件
+clean-webpack-plugin
+copy-webpack-plugin
+html-webpack-plugin
+mini-css-extract-plugin
+uglifyjs-webpack-plugin
+
+--- webpack 加载器
+autoprefixer
+css-loader
+csv-loader
+cssnano
+file-loader
+html-loader
+json-loader
+less
+less-loader
+postcss-loader
+postcss-load-config
+style-loader
+url-loader
+xml-loader
+
+--- 环境相关
+cross-env
+redux-logger
+
+--- babel 相关
+babel-core
+babel-loader@7.1.5
+babel-plugin-import
+babel-plugin-transform-decorators-legacy
+babel-plugin-transform-react-jsx
+babel-plugin-transform-runtime
+babel-preset-env
+babel-preset-react
+babel-preset-stage-0
+
+--- 安装命令
+tnpm i webpack webpack-cli webpack-dev-server webpack-merge clean-webpack-plugin copy-webpack-plugin html-webpack-plugin mini-css-extract-plugin uglifyjs-webpack-plugin autoprefixer css-loader csv-loader cssnano file-loader html-loader json-loader less less-loader postcss-loader postcss-load-config style-loader url-loader xml-loader cross-env redux-logger babel-core babel-loader@7.1.5 babel-plugin-import babel-plugin-transform-decorators-legacy babel-plugin-transform-react-jsx babel-plugin-transform-runtime babel-preset-env babel-preset-react babel-preset-stage-0 -D
 
 3. 添加配置文件
 webpack.common.js
@@ -12,7 +57,45 @@ postcss.config.js
 .babelrc
 
 4. 安装开发环境依赖
-yarn add react react-dom react-redux react-router react-router-dom redux redux-thunk reflux flux prop-types moment lodash is_js classnames antd mithril axios react-draggable bootstrap babel-polyfill -S
+--- react 相关
+flux
+react
+react-dom
+reflux
+redux
+react-redux
+redux-thunk
+redux-create-reducer
+redux-immutable
+react-router
+react-router-dom
+react-draggable
+prop-types
+
+--- mithril 相关
+mithril
+
+--- 公共工具
+classnames
+is_js
+lodash
+moment
+immutable
+axios
+dayjs
+
+--- antd 相关
+antd
+
+--- 样式
+bootstrap
+
+
+--- 安装命令
+tnpm i react react-dom reflux flux redux react-redux redux-thunk redux-immutable react-router react-router-dom prop-types react-draggable mithril classnames is_js lodash moment immutable axios antd bootstrap -S
+
+
+npm i react-immutable-proptypes -S
 
 5. 添加 npm scripts
 "scripts": {

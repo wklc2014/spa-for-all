@@ -3,8 +3,9 @@ import { bindActionCreators } from 'redux';
 import News from './News.jsx';
 
 function mapStateToProps(state) {
+  const news = state.get('news');
   return {
-    list: state._news.list,
+    list: news.get('list'),
   };
 }
 

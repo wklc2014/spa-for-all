@@ -1,22 +1,14 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Login from './Login.jsx';
-import * as actions from '../../models/action/_login.js';
 
 function mapStateToProps(state) {
+  const login = state.get('login');
   return {
-    isLogin: state._login.isLogin,
-    username: state._login.username,
-    password: state._login.password,
+    isLogin: login.get('isLogin'),
+    username: login.get('username'),
+    password: login.get('password'),
   };
 }
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({
-    onLogin: actions.onLogin,
-    onLogout: actions.onLogout,
-    onUpdate: actions.onUpdate,
-  }, dispatch)
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(mapStateToProps)(Login);
