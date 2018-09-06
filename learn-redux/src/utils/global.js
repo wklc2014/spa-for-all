@@ -2,24 +2,16 @@ import Immutable, {
   List,
   Map,
   fromJS,
+  Repeat,
+  Range,
 } from 'immutable';
 
-const log = (value) => {
-  console.log('value>>>', value.toJS());
-}
+const a = Repeat('AAA_', 4);
 
-const obj = {
-  a: 1,
-  b: 2,
-  c: {
-    m: 'mm',
-    n: 'nn',
-    d: ['a', 'b', 'c']
-  }
-}
+console.log('a>>>', a.toJS());
 
-const old = Map(obj);
-const old1 = fromJS(obj);
+const b = Range(10, 21);
+console.log('b>>>', b.toJS());
 
-console.log('old>>>', old);
-console.log('old1>>>', old1);
+// https://www.w3cplus.com/javascript/immutable-js.html
+
