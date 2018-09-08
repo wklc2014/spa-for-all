@@ -1,25 +1,18 @@
-import Immutable, {
-  List,
-  Map,
-  fromJS,
-} from 'immutable';
+import _ from 'underscore';
+import Immutable, { List, Map, fromJS, Repeat, Range, } from 'immutable';
 
-const log = (value) => {
-  console.log('value>>>', value.toJS());
-}
+// https://www.w3cplus.com/javascript/immutable-js.html
 
-const obj = {
-  a: 1,
-  b: 2,
-  c: {
-    m: 'mm',
-    n: 'nn',
-    d: ['a', 'b', 'c']
-  }
-}
+// const arr = ['a', 'b', 'c', 'd', 'e', 'f', 'g'];
+// const arr = [1, 2, 'false', false, true, 0, '0', null, 'null', -1];
+const arr = [
+  { a: 1, b: 2 },
+  { a: 4, b: 2 },
+  { a: 1, b: 5 },
+]
+const a = _.unzip([['moe', 'larry', 'curly'], [30, 40, 50], [true, false, false]])
+const b = _.zip(['moe', 'larry', 'curly'], [30, 40, 50], [true, false, false]);
+console.log('a>>>', a);
+console.log('b>>>', b);
 
-const old = Map(obj);
-const old1 = fromJS(obj);
 
-console.log('old>>>', old);
-console.log('old1>>>', old1);

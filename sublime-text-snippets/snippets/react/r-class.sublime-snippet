@@ -3,13 +3,17 @@
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
 
-export default class ${1} extends Component {
+class ${1} extends Component {
 
   static defaultProps = {
 
   }
 
   render() {
+    const {
+
+    } = this.props;
+
     return (
       <div>
         ${2}
@@ -22,6 +26,8 @@ export default class ${1} extends Component {
 ${1}.propTypes = {
 
 }
+
+export default ${1};
 
 ]]></content>
   <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
