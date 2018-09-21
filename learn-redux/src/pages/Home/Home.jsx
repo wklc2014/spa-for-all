@@ -4,6 +4,7 @@ import { Button } from 'antd';
 import CountContext from '../../models/context/count_context.js';
 import Parent from './Paren.jsx';
 import count_action from '../../models/action/count_action.js';
+import getDataBase64ByCanvas from '../../utils/getDataBase64ByCanvas.js';
 
 function Home (props) {
 
@@ -28,11 +29,24 @@ function Home (props) {
     dispatch(count_action.onLoad());
   }
 
+  const imgSrc = getDataBase64ByCanvas({
+    text: '大成都',
+    font: {
+      family: 'Microsoft YaHei',
+    },
+    mask: {
+      opacity: 0.5
+    },
+  });
+
   return (
     <CountContext.Provider value={CountContextValue}>
       <div>
         <h2>主页</h2>
         <p>这是主页内容。。。</p>
+        <div>
+          <img src={imgSrc} alt=""/>
+        </div>
         <Parent />
       </div>
       <div style={{ padding: '16px 0' }}>
