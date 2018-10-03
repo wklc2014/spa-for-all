@@ -11,6 +11,7 @@
         "style": true
       }
     ],
-    ["transform-decorators-legacy"]
+    ["transform-decorators-legacy"],
+    ["transform-runtime"]
   ]
 }
