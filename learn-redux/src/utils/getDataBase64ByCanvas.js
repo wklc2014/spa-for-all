@@ -15,6 +15,17 @@ function getDataBase64ByCanvas(params = {}) {
     fontFamily: 'Arial',
     // 文本大小
     fontSize: 20,
+    // 文本阴影
+    fontShadow: {
+      // 文本阴影颜色
+      shadowColor: 'rgba(0, 0, 0, 0.5)',
+      // 文本阴影 x 偏移
+      shadowOffsetX: 3,
+      // 文本阴影 y 偏移
+      shadowOffsetY: 3,
+      // 轻微模糊阴影
+      shadowBlur: 3,
+    },
     // 背景颜色
     backgroundColor: '#fff',
     // 背景图像
@@ -54,6 +65,12 @@ function getDataBase64ByCanvas(params = {}) {
 
   // 绘制文本
   context.fillStyle = settings.fontColor;
+  if (settings.fontShadow) {
+    context.shadowColor = settings.fontShadow.shadowColor;
+    context.shadowOffsetX = settings.fontShadow.shadowOffsetX;
+    context.shadowOffsetY = settings.fontShadow.shadowOffsetY;
+    context.shadowBlur = settings.fontShadow.shadowBlur;
+  }
   context.font = `${settings.fontSize}px ${settings.fontFamily}`;
   const textWidth = context.measureText(settings.text).width;
   context.fillText(settings.text, - textWidth / 2, 0);

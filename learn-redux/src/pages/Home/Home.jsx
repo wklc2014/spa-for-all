@@ -23,16 +23,24 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    const imgInstantce = new Image();
-    imgInstantce.src = picture;
-    imgInstantce.onload = () => {
-      const imgSrc = getDataBase64ByCanvas({
-        text: '大成都',
-        // maskOpacity: 0.5,
-        backgroundImage: imgInstantce,
-      });
-      this.setState({ imgSrc });
-    }
+    // const imgInstantce = new Image();
+    // imgInstantce.src = picture;
+    // imgInstantce.onload = () => {
+    //   const imgSrc = getDataBase64ByCanvas({
+    //     text: '大成都',
+    //     // maskOpacity: 0.5,
+    //     backgroundImage: imgInstantce,
+    //   });
+    //   this.setState({ imgSrc });
+    // }
+    const imgSrc = getDataBase64ByCanvas({
+      text: '大成都',
+      // maskOpacity: 0.5,
+      fontColor: '#fff',
+      backgroundColor: '#000',
+      // backgroundImage: imgInstantce,
+    });
+    this.setState({ imgSrc });
   }
 
   onAdd = (number) => {

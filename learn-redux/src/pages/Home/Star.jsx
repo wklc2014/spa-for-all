@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
+import url from 'url';
 import { Button } from 'antd';
 
 import CountContext from '../../models/context/count_context.js';
@@ -8,6 +9,13 @@ export default class Star extends Component {
 
   static defaultProps = {
 
+  }
+
+  componentDidMount() {
+    const href = window.location.href;
+    // console.log('url>>>', url);
+    const myUrl = url.parse(href);
+    console.log('myUrl>>>', myUrl);
   }
 
   render() {
