@@ -1,0 +1,98 @@
+.header-wraper {
+  height: @header-height;
+
+  > header {
+    width: @web-page-width;
+    .h-center;
+    height: @header-height;
+    display: flex;
+    align-items: center;
+
+    > .logo,
+    > .search {
+      padding: 0 @header-padding-top;
+      height: @header-children-height;
+      line-height: @header-children-height;
+    }
+  }
+
+  .logo {
+    span {
+      font-weight: bold;
+      font-size: 28px;
+      color: rgb(7, 108, 224);
+      &:last-child {
+        color: rgb(204, 204, 204);
+      }
+    }
+  }
+
+  .search {
+    flex: @header-search-width 0 0;
+    display: flex;
+
+    input {
+      width: @header-search-width - @header-search-btn-width;
+      height: @header-children-height;
+      border: 1px solid @web-color-line;
+      padding: 8px;
+      color: @web-color-main;
+    }
+    button {
+      width: @header-search-btn-width;
+      background-color: @web-color-active;
+      border: none;
+      .pointer;
+    }
+  }
+
+  .shopping-cart {
+    border: 1px solid @web-color-line;
+    border-radius: @header-children-height / 2;
+    height: @header-children-height + 2px;
+    line-height: @header-children-height + 2px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    .pointer;
+
+    > span {
+      &.icon-triangle-down {
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+    }
+
+    > .shopping-cart-empty {
+      display: none;
+      width: 300px;
+      min-height: 140px;
+      position: absolute;
+      top: 100%;
+      right: 0;
+      border: 1px solid @web-color-line;
+      border-radius: @web-radius;
+      background-color: #fff;
+      padding: 40px 25px;
+      line-height: 1.8;
+
+      > div {
+        float: left;
+      }
+
+      > .text {
+        width: 136px;
+        color: @web-color-gray;
+        padding-top: 10px;
+      }
+    }
+
+    &:hover {
+      border-radius: @web-radius @web-radius 0 0;
+      > .shopping-cart-empty {
+        display: block;
+        border-radius: @web-radius 0 @web-radius @web-radius;
+      }
+    }
+  }
+}

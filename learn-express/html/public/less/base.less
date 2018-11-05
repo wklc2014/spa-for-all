@@ -5,8 +5,8 @@
 }
 
 body {
-  font-family: @web-page-font-family;
-  font-size: @web-page-font-size;
+  font-family: @web-font-family;
+  font-size: @web-font-size;
 }
 
 ul,
@@ -21,8 +21,21 @@ a:hover {
   text-decoration: none;
 }
 
-.h-center {
-  margin-left: auto;
-  margin-right: auto;
+input,
+button {
+  outline: none;
+}
+
+input::-webkit-input-placeholder {
+  color: @web-color-gray;
+}
+input::-moz-placeholder {
+  color: @web-color-gray;
+}
+input:-moz-placeholder {
+  color: @web-color-gray;
+}
+input:-ms-input-placeholder {
+  color: @web-color-gray;
 }
 

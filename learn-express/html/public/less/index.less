@@ -1,44 +1,118 @@
 @import 'var.less';
+@import 'cls.less';
 @import 'base.less';
 @import 'nav.less';
+@import 'icon.less';
+@import 'header.less';
+@import 'banner.less';
 
-.header-wraper {
 
-  > header {
+.nav-wraper {
+  height: @nav-height;
+  background-color: @nav-bg-color;
+
+  > nav {
+    width: @web-page-width;
+    height: 100%;
     .h-center;
   }
 
-  .logo {
-
+  .nav-box {
+    width: @web-page-width - @nav-first-width;
+    float: left;
+    display: flex;
+    justify-content: space-between;
   }
 
-  .search {
+  .nav-item {
+    flex: 0 0 @nav-item-width;
+    line-height: @nav-height;
+    text-align: center;
+    color: @nav-text-color;
+    font-size: @nav-text-font-size;
 
+    &:hover,
+    &.active {
+      background-color: @nav-bg-active-color;
+    }
+
+    > a {
+      display: block;
+    }
   }
 
-  .shopping-cart {
+  .nav-global {
+    position: relative;
+    width: @nav-first-width;
+    float: left;
+    font-size: @nav-text-font-size;
+    line-height: @nav-height;
+    text-align: center;
 
+    > .text {
+      color: @nav-text-color;
+    }
+
+    > ul {
+      width: @nav-first-width;
+      height: @banner-height;
+      background-color: #fff;
+      border-left: 1px solid @web-color-line;
+      border-bottom: 1px solid @web-color-line;
+      position: absolute;
+      text-align: left;
+      z-index: 100;
+      top: 100%;
+      left: 0;
+    }
+
+    .item {
+      height: 20%;
+      border-right: 1px solid @web-color-line;
+      border-bottom: 1px dashed @web-color-line;
+      .pointer;
+      &:last-child {
+        border-bottom: none;
+      }
+      &:hover {
+        border-right: none;
+        > .item-content {
+          opacity: 1;
+        }
+      }
+    }
+
+    .item-icon {
+
+    }
+
+    .item-title {
+      > h2 {
+        font-size: 16px;
+        font-weight: normal;
+        color: @web-color-sub;
+      }
+      > p {
+        font-size: 12px;
+        color: @web-color-gray;
+      }
+    }
+
+    .item-content {
+      // opacity: 0;
+      width: @nav-first-width;
+      height: @banner-height;
+      background-color: #fff;
+      position: absolute;
+      top: 0;
+      left: @nav-first-width - 1px;
+      transition: opacity 0.2s;
+    }
   }
 }
 
 
 
 
-.icon {
-  display: inline-block;
-  background-repeat: no-repeat;
-  background-position: center;
-}
 
-.icon-search {
-  width: 17px;
-  height: 16px;
-  background-image: url('../img/search.png');
-}
-
-.icon-shopping-cart {
-  width: 18px;
-  height: 15px;
-  background-image: url('../img/shopping-cart-small.png');
-}
 
