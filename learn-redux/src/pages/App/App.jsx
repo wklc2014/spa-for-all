@@ -7,9 +7,8 @@ import Help from '../Help/Help.jsx';
 import News from '../News/NewsContainer.jsx';
 import Secret from '../Secret/Secret.jsx';
 
-import NoMatch from './NoMatch.jsx';
 import AuthRoute from '../../components/AuthRoute/AuthRoute.jsx';
-import MainLayout from '../../components/MainLayout/MainLayout.jsx';
+import MainLayout from '../../lib/MainLayout/MainLayout.jsx';
 
 import sidebarConfig from './common/sidebarConfig.js';
 
@@ -18,14 +17,14 @@ const App = (props) => {
   const hasLogin = isLogin === 'yes';
 
   return (
-    <MainLayout sideMenus={sidebarConfig}>
+    <MainLayout configs={sidebarConfig}>
       <Switch>
         <Route path="/" exact component={Home} />
         <Route path="/login" component={Login} />
         <Route path="/help" component={Help} />
         <Route path="/news" component={News} />
         <AuthRoute to="/login" auth={hasLogin} path="/secret" component={Secret} />
-        <Route component={NoMatch} />
+        <Route render={() => <h3>Not Found</h3>} />
       </Switch>
     </MainLayout>
   );

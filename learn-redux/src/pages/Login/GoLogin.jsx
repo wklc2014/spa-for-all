@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import HForm from '../../components/HForm/HForm.jsx';
+import HForm from '../../lib/HForm/HForm.jsx';
 
 class Login extends Component {
 
@@ -13,14 +13,18 @@ class Login extends Component {
 
     const configs = [
       {
-        label: '用户名',
+        extMap: {
+          label: '用户名',
+        },
         config: {
           id: 'username',
           type: 'input',
         }
       },
       {
-        label: '密码',
+        extMap: {
+          label: '密码',
+        },
         config: {
           id: 'password',
           type: 'input',
@@ -40,7 +44,7 @@ class Login extends Component {
           },
         },
         extMap: {
-          offset: true,
+          label: false,
         },
       }
     ]
