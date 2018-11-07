@@ -4,7 +4,6 @@ import { Button } from 'antd';
 import CountContext from '../../models/context/count_context.js';
 import Parent from './Paren.jsx';
 import count_action from '../../models/action/count_action.js';
-import getDataBase64ByCanvas from '../../utils/getDataBase64ByCanvas.js';
 import picture from './common/6.jpg';
 
 class Home extends Component {
@@ -23,24 +22,7 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    // const imgInstantce = new Image();
-    // imgInstantce.src = picture;
-    // imgInstantce.onload = () => {
-    //   const imgSrc = getDataBase64ByCanvas({
-    //     text: '大成都',
-    //     // maskOpacity: 0.5,
-    //     backgroundImage: imgInstantce,
-    //   });
-    //   this.setState({ imgSrc });
-    // }
-    const imgSrc = getDataBase64ByCanvas({
-      text: '大成都',
-      // maskOpacity: 0.5,
-      fontColor: '#fff',
-      backgroundColor: '#000',
-      // backgroundImage: imgInstantce,
-    });
-    this.setState({ imgSrc });
+
   }
 
   onAdd = (number) => {
@@ -62,10 +44,6 @@ class Home extends Component {
       loading,
     } = this.props;
 
-    const {
-      imgSrc,
-    } = this.state;
-
     const CountContextValue = {
       amount,
       onAdd: this.onAdd,
@@ -82,9 +60,6 @@ class Home extends Component {
         <div>
           <h2>主页</h2>
           <p>这是主页内容。。。</p>
-          <div style={divStyle}>
-            <img src={imgSrc} alt=""/>
-          </div>
           <Parent />
         </div>
         <div style={{ padding: '16px 0' }}>
