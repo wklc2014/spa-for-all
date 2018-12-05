@@ -18,7 +18,7 @@ export default {
       return m(Layout, m(Login));
     }
   },
-  '/assess': {
+  '/secret': {
     onmatch: function(args, requestedPath) {
       if (!sessionStorage.getItem('auth-token')) {
         m.route.set('/login');

@@ -5,10 +5,10 @@ import React from 'react';
 import propTypes from 'prop-types';
 import { Route, Redirect } from 'react-router-dom';
 
-const AuthRoute = ({ component: Component, auth, to, ...rest }) => {
+const AuthRoute = ({ auth, to, ...rest }) => {
   const render = (props) => {
     if (auth) {
-      return <Component {...props} />;
+      return <Route {...rest} />;
     }
     return <Redirect to={to} />;
   }

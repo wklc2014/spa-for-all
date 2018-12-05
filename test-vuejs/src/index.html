@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Vue.js</title>
+</head>
+
+<body>
+  <div id="app">
+    <p>{{message}}</p>
+    <p>a: {{obj.a}}</p>
+    <p>b: {{obj.b}}</p>
+    <p>last: {{obj.last}}</p>
+  </div>
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script>
+    var vm = new Vue({
+      el: "#app",
+      data: {
+        message: 'hello World',
+        obj: {
+          a: 1,
+        },
+        _m: '123',
+      }
+    })
+
+    // Object.assign(vm.obj, { b: 2 });
+    vm.obj = Object.assign({}, vm.obj, { b: 2 });
+  </script>
+</body>
+</html>

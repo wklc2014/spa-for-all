@@ -2,6 +2,9 @@ const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
+const env = process.env.NODE_ENV;
 
 module.exports = {
   entry: {
@@ -13,7 +16,6 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'webpack-demo',
       template: path.join(__dirname, '../src/entries/index.html'),
       favicon: path.join(__dirname, '../src/entries/favicon.ico'),
     }),
@@ -41,7 +43,8 @@ module.exports = {
             loader: 'file-loader',
             options: {
               name: '[name]-[hash:7].[ext]',
-              outputPath: 'assets/images/'
+              outputPath: 'assets/img/',
+              publicPath: 'assets/img/',
             }
           }
         ]
@@ -72,7 +75,51 @@ module.exports = {
         use: [
           'xml-loader'
         ]
+      },
+      // 单独给 antd 等第三方样式做处理
+      {
+        test: /\.(less|css)$/,
+        include: path.join(__dirname, '../node_modules/'),
+        use: [
+          env === 'production' ? MiniCssExtractPlugin.loader : 'style-loader',
+          'css-loader',
+          {
+            loader: 'less-loader',
+            options: {
+              javascriptEnabled: true
+            }
+          }
+        ]
+      },
+      // 普通样式处理
+      {
+        test: /\.(less|css)$/,
+        include: path.join(__dirname, '../src/'),
+        use: [
+          env === 'production' ? MiniCssExtractPlugin.loader : 'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              camelCase: true,
+              modules: true,
+            }
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              config: {
+                path: path.join(__dirname, 'postcss.config.js')
+              }
+            }
+          },
+          {
+            loader: 'less-loader',
+            options: {
+              javascriptEnabled: true
+            }
+          }
+        ]
       }
     ]
-  },
+  }
 };

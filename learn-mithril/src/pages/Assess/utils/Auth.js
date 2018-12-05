@@ -12,9 +12,11 @@ var Auth = {
   login: function(e) {
     e.preventDefault();
     m.request({
-      url: "http://localhost:18888/api/login.json",
+      url: "/user",
+      method: 'post',
       data: {username: Auth.username, password: Auth.password}
     }).then(function(data) {
+      console.log('data>>>', data);
       sessionStorage.setItem("auth-token", data.token);
       Auth.setUsername('');
       Auth.setPassword('');

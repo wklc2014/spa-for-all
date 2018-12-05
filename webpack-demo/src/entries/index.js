@@ -1,3 +1,14 @@
+import React from 'react';
+import { render } from 'react-dom';
+
+import App from '../pages/App/App.jsx';
 import '../assets/less/index.less';
 
-console.log('123>>>', 123);
+const env = process.env.NODE_ENV;
+
+render(
+  <App env={env} />,
+  document.getElementById("root")
+);
+
+console.log('2>>>', 2);

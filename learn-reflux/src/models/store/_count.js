@@ -29,7 +29,7 @@ class CountStore extends Reflux.Store {
     CountServices.getKuaiDi()
       .then((resp) => {
         this.onLoadCompleted();
-        if (resp.success) {
+        if (resp.stat === 'ok') {
           this.setState({
             citys: resp.data,
           })

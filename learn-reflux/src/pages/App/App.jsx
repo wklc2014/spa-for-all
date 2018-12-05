@@ -3,11 +3,8 @@ import { Route, Switch } from 'react-router-dom';
 
 import Login from '../Login/LoginContainer.jsx';
 import Home from '../Home/HomeContainer.jsx';
-import Help from '../Help/Help.jsx';
 import News from '../News/NewsContainer.jsx';
-import Secret from '../Secret/Secret.jsx';
 
-import NoMatch from './NoMatch.jsx';
 import AuthRoute from '../../components/AuthRoute/AuthRoute.jsx';
 import MainLayout from '../../components/MainLayout/MainLayout.jsx';
 
@@ -22,10 +19,15 @@ const App = (props) => {
       <Switch>
         <Route path="/" exact component={Home} />
         <Route path="/login" component={Login} />
-        <Route path="/help" component={Help} />
+        <Route path="/help" render={() => <h2>帮助我们</h2>} />
         <Route path="/news" component={News} />
-        <AuthRoute to="/login" auth={hasLogin} path="/secret" component={Secret} />
-        <Route component={NoMatch} />
+        <AuthRoute
+          to="/login"
+          auth={hasLogin}
+          path="/secret"
+          render={() => <h2>只有登录了才能看到这个页面</h2>}
+        />
+        <Route render={() => <h2>Not Found</h2>} />
       </Switch>
     </MainLayout>
   );

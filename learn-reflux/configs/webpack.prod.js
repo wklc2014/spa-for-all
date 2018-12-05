@@ -9,39 +9,14 @@ module.exports = merge(common, {
   mode: 'production',
   devtool: 'source-map',
   module: {
-    rules: [
-      {
-        test: /\.(less$|css)/,
-        include: path.join(__dirname, '../src/'),
-        use: [
-          MiniCssExtractPlugin.loader,
-          {
-            loader: 'css-loader',
-            options: {
-              camelCase: true,
-              minimize: true,
-              importLoaders: 2,
-              modules: true,
-              localIdentName: '[name]--[local]--[hash:base64]'
-            }
-          },
-          {
-            loader: 'postcss-loader',
-            options: {
-              config: {
-                path: path.resolve(__dirname, 'postcss.config.js')
-              }
-            }
-          },
-          'less-loader'
-        ]
-      },
-    ]
+    rules: []
   },
   plugins: [
     new CleanWebpackPlugin([
-      include: path.join(__dirname, '../dist/'),
-    ]),
+      'dist/*'
+    ], {
+      root: path.join(__dirname, '../'),
+    }),
     new UglifyJSPlugin({
       sourceMap: true,
       uglifyOptions: {
@@ -52,7 +27,8 @@ module.exports = merge(common, {
     }),
     new MiniCssExtractPlugin({
       filename: "[name].css",
-      chunkFilename: "[id].css"
+      chunkFilename: "[id].css",
+      outputPath: path.join(__dirname, '../dist/assets/css/')
     })
   ]
 });

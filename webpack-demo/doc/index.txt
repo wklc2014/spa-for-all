@@ -1,43 +1,44 @@
 1. 项目初始化
 yarn init --yes
 
-2. 安装必备依赖
+2. 安装工具依赖
 --- webpack 工具
 webpack
 webpack-cli
-webpack-dev-server
-webpack-merge
+webpack-dev-server: 本地开发服务器
+webpack-merge: 合并不同的 webpack 配置文件
 
---- webpack 插件
-clean-webpack-plugin
-copy-webpack-plugin
-html-webpack-plugin
-mini-css-extract-plugin
-uglifyjs-webpack-plugin
+--- webpack plugin
+clean-webpack-plugin: 清理文件/文件夹
+copy-webpack-plugin: 复制文件/文件夹
+html-webpack-plugin: 生成 HTML 文件
+mini-css-extract-plugin: 合并 css 样式
+uglifyjs-webpack-plugin: 压缩 js 代码
 
---- webpack 加载器
-autoprefixer
+--- webpack loader
+babel-core
+babel-loader@7.1.5
+style-loader
 css-loader
-csv-loader
-cssnano
-file-loader
-html-loader
-json-loader
-less
 less-loader
+less
+file-loader
+xml-loader
+papaparse
+csv-loader
+json-loader
+url-loader
+
+--- 处理 css 兼容性
 postcss-loader
 postcss-load-config
-style-loader
-url-loader
-xml-loader
+autoprefixer
+cssnano
 
 --- 环境相关
 cross-env
-redux-logger
 
---- babel 相关
-babel-core
-babel-loader@7.1.5
+--- babel 插件
 babel-plugin-import
 babel-plugin-transform-decorators-legacy
 babel-plugin-transform-react-jsx
@@ -46,8 +47,6 @@ babel-preset-env
 babel-preset-react
 babel-preset-stage-0
 
---- 安装命令
-tnpm i webpack webpack-cli webpack-dev-server webpack-merge clean-webpack-plugin copy-webpack-plugin html-webpack-plugin mini-css-extract-plugin uglifyjs-webpack-plugin autoprefixer css-loader csv-loader cssnano file-loader html-loader json-loader less less-loader postcss-loader postcss-load-config style-loader url-loader xml-loader cross-env redux-logger babel-core babel-loader@7.1.5 babel-plugin-import babel-plugin-transform-decorators-legacy babel-plugin-transform-react-jsx babel-plugin-transform-runtime babel-preset-env babel-preset-react babel-preset-stage-0 -D
 
 3. 添加配置文件
 webpack.common.js
@@ -56,48 +55,46 @@ webpack.prod.js
 postcss.config.js
 .babelrc
 
+
 4. 安装开发环境依赖
 --- react 相关
-flux
 react
 react-dom
-reflux
+react-router
+react-router-dom
+reflux: react@^15.0.2
 redux
 react-redux
 redux-thunk
-redux-create-reducer
+redux-logger
 redux-immutable
-react-router
-react-router-dom
+redux-create-reducer
 react-draggable
 prop-types
+flux
 
 --- mithril 相关
 mithril
+babel-plugin-transform-react-jsx
 
---- 公共工具
+--- 公共模块
 classnames
 is_js
 lodash
 underscore
 moment
-immutable
 axios
-dayjs
 mockjs
 
 --- antd 相关
 antd
-
---- 样式
-bootstrap
-
+babel-plugin-import
 
 --- 安装命令
-tnpm i react react-dom reflux flux redux react-redux redux-thunk redux-immutable react-router react-router-dom prop-types react-draggable mithril classnames is_js lodash moment immutable axios antd bootstrap -S
+tnpm i webpack webpack-cli webpack-dev-server webpack-merge clean-webpack-plugin copy-webpack-plugin html-webpack-plugin mini-css-extract-plugin uglifyjs-webpack-plugin babel-core babel-loader@7.1.5 style-loader css-loader less less-loader file-loader xml-loader csv-loader papaparse json-loader url-loader postcss-loader postcss-load-config autoprefixer cssnano cross-env babel-plugin-import babel-plugin-transform-decorators-legacy babel-plugin-transform-react-jsx babel-plugin-transform-runtime babel-preset-env babel-preset-react babel-preset-stage-0 redux-logger -D
 
-
-npm i react-immutable-proptypes -S
+--- 安装命令
+tnpm i react react-dom react-router react-router-dom reflux redux react-redux redux-thunk redux-create-reducer react-draggable prop-types flux mithril classnames is_js lodash underscore moment axios mockjs antd -S
 
 5. 添加 npm scripts
 "scripts": {
