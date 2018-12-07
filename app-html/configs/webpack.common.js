@@ -81,7 +81,7 @@ module.exports = {
         test: /\.(less|css)$/,
         include: path.join(__dirname, '../node_modules/'),
         use: [
-          env === 'production' ? MiniCssExtractPlugin.loader : 'style-loader',
+          env === 'production' ? MiniCssExtractPlugin.loader : 'vue-style-loader',
           'css-loader',
           {
             loader: 'less-loader',
@@ -96,7 +96,7 @@ module.exports = {
         test: /\.(less|css)$/,
         include: path.join(__dirname, '../src/'),
         use: [
-          env === 'production' ? MiniCssExtractPlugin.loader : 'vue-style-loader',
+          env === 'production' ? MiniCssExtractPlugin.loader : 'style-loader',
           {
             loader: 'css-loader',
             options: {
@@ -119,11 +119,7 @@ module.exports = {
             }
           }
         ]
-      },
-      {
-        test: /\.vue$/,
-        loader: 'vue-loader'
-      },
+      }
     ]
   }
 };
