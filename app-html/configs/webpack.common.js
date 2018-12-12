@@ -81,7 +81,7 @@ module.exports = {
         test: /\.(less|css)$/,
         include: path.join(__dirname, '../node_modules/'),
         use: [
-          env === 'production' ? MiniCssExtractPlugin.loader : 'vue-style-loader',
+          env === 'production' ? MiniCssExtractPlugin.loader : 'style-loader',
           'css-loader',
           {
             loader: 'less-loader',

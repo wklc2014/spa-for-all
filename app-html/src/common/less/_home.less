@@ -1,0 +1,208 @@
+.lou-shi-zi-xun-wraper,
+.fu-wu-zong-zhi-wraper,
+.shang-ye-an-li-wraper,
+.xin-wen-dong-tai-wraper {
+  .center(@web-page-width);
+}
+
+.lou-shi-zi-xun {
+  padding: @web-page-space-big 0;
+  display: flex;
+  justify-content: space-between;
+
+  > .list {
+    flex: 100% 1 1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-right: -@web-page-space-big;
+    padding-left: @web-page-space-big;
+
+    > .item {
+      flex: 50% 1 1;
+      overflow: hidden;
+      padding-right: @web-page-space-big;
+      &:nth-child(1),
+      &:nth-child(2) {
+        margin-bottom: @web-page-space-big;
+
+        > .detail {
+          border-bottom: 1px dashed @web-page-border-color;
+        }
+      }
+    }
+  }
+
+  > .list-bg {
+    flex: 250px 0 0;
+
+    .bg {
+      height: 140px;
+      background: url("../images/lou-shi-zi-xun.jpg") no-repeat center;
+      overflow: hidden;
+      margin-bottom: @web-page-space-big;
+    }
+  }
+
+  .detail {
+    height: 140px;
+    overflow: hidden;
+
+    > h2 {
+      height: 28px;
+      line-height: 28px;
+      font-weight: normal;
+      font-size: 14px;
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+
+    > p {
+      color: @web-page-text-sub-color;
+      line-height: 26px;
+    }
+  }
+}
+
+.fu-wu-zong-zhi {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  > .item {
+    flex: 50% 1 1;
+    height: 250px;
+
+    &:last-child {
+      flex: 100% 1 1;
+      height: 150px;
+    }
+
+    &:nth-child(1) {
+      background: url("../images/fu-wu-zong-zhi-1.jpg")  no-repeat center;
+    }
+
+    &:nth-child(3) {
+      background: url("../images/fu-wu-zong-zhi-3.jpg")  no-repeat center;
+    }
+
+    &:nth-child(2) {
+      background-color: @web-page-main-color;
+    }
+  }
+
+  .detail {
+    padding: 30px 40px;
+    color: #fff;
+    line-height: 28px;
+
+    > h2 {
+      font-size: 16px;
+      font-weight: normal;
+      padding-bottom: @web-page-space-small;
+    }
+
+    > h3 {
+      font-size: 14px;
+      font-weight: normal;
+      padding-bottom: @web-page-space-small;
+    }
+
+    > p {
+
+    }
+  }
+}
+
+.xin-wen-dong-tai {
+  display: flex;
+  overflow: hidden;
+  padding: @web-page-space-big 0;
+
+  > .list {
+    flex: 240px 0 0;
+    height: 280px;
+    background-color: #f8f8f8;
+
+    ul {
+      padding: 10px 0 5px;
+    }
+
+    li {
+      height: 40px;
+      line-height: 40px;
+      overflow: hidden;
+      padding: 0 @web-page-space;
+      border-bottom: 1px dashed @web-page-border-color;
+      margin-bottom: @web-page-space-small;
+    }
+  }
+
+  > .list-bg {
+    flex: 100% 1 1;
+    height: 280px;
+    padding-left: 30px;
+    display: flex;
+    justify-content: space-between;
+
+    > .bg {
+      flex: 240px 1 1;
+      height: 280px;
+      background: url("../images/xin-wen-dong-tai.jpg") no-repeat center;
+    }
+
+    > .detail {
+      flex: 100% 1 1;
+      height: 280px;
+      padding: 20px 40px 0;
+
+      > h2 {
+        font-size: 16px;
+        font-weight: normal;
+        margin-bottom: 20px;
+      }
+
+      > p {
+        font-size: 14px;
+        color: @web-page-text-sub-color;
+        line-height: 2;
+      }
+
+      > button {
+        height: 40px;
+        line-height: 40px;
+        padding: 0 30px;
+        border: 1px solid @web-page-main-color;
+        color: @web-page-main-color;
+        background-color: #fff;
+        font-size: 14px;
+        margin-top: 30px;
+      }
+    }
+  }
+}
+
+.shang-ye-an-li {
+  display: flex;
+  overflow: hidden;
+  padding: @web-page-space-big 0;
+
+  > .item {
+    flex: 25% 1 1;
+    padding: @web-page-space-small;
+    height: 160px;
+
+    > a {
+      display: inline-block;
+      width: 100%;
+      height: 150px;
+
+      > img {
+        display: inline-block;
+        width: 230px;
+        height: 150px;
+        vertical-align: middle;
+      }
+    }
+  }
+}
