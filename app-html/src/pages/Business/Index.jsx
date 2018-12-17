@@ -11,6 +11,7 @@ import BackToTop from '../../components/BackToTop/BackToTop.jsx';
 import Footer from '../../components/Footer/Footer.jsx';
 import ThumbList from '../../components/ThumbList/ThumbList.jsx';
 import PageCenter from '../../components/PageCenter/PageCenter.jsx';
+import Space from '../../components/Space/Space.jsx';
 
 class Business extends Component {
 
@@ -27,6 +28,7 @@ class Business extends Component {
         <Nav />
         <Banner />
         <PageCenter>
+          <Space />
           <ThumbList title="商业招租" list={business.businessLet} />
           <ThumbList title="二手房" list={business.secondHouse} />
           <ThumbList title="新房" list={business.newHouse} />

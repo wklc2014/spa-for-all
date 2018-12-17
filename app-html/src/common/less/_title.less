@@ -1,18 +1,17 @@
 .main-title {
   margin: 0;
-  padding-top: @web-page-space;
   display: flex;
   align-items: center;
-  height: @main-title-height + @web-page-space;
+  height: @main-title-height;
   font-size: @main-title-font-size;
   font-weight: normal;
   color: @main-title-color;
   border-bottom: 1px solid @web-page-border-color;
 
   > span {
-    display: inline-block;
-    height: @main-title-height;
-    line-height: @main-title-height;
+    display: inline-flex;
+    align-items: center;
+    height: 100%;
     padding: 0 10px;
     border-bottom: 1px solid @web-page-main-color;
   }

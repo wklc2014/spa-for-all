@@ -11,6 +11,7 @@ import BackToTop from '../../components/BackToTop/BackToTop.jsx';
 import Footer from '../../components/Footer/Footer.jsx';
 import ThumbList from '../../components/ThumbList/ThumbList.jsx';
 import PageCenter from '../../components/PageCenter/PageCenter.jsx';
+import Space from '../../components/Space/Space.jsx';
 
 class Project extends Component {
 
@@ -27,6 +28,7 @@ class Project extends Component {
         <Nav />
         <Banner />
         <PageCenter>
+          <Space />
           <ThumbList title="项目案例" list={project} />
         </PageCenter>
         <Footer />

@@ -5,6 +5,7 @@ import React, { Component, Fragment } from 'react';
 import propTypes from 'prop-types';
 
 import Header from '../../components/Header/Header.jsx';
+import Space from '../../components/Space/Space.jsx';
 import Footer from '../../components/Footer/Footer.jsx';
 import Nav from '../../components/Nav/Nav.jsx';
 import Banner from '../../components/Banner/Banner.jsx';
@@ -33,6 +34,7 @@ class Home extends Component {
         <Nav />
         <Banner />
         <div className="lou-shi-zi-xun-wraper">
+          <Space />
           <MainTitle text="楼市资讯" />
           <div className="lou-shi-zi-xun">
             <div className="list-bg">
@@ -96,6 +98,7 @@ class Home extends Component {
           </div>
         </div>
         <div className="xin-wen-dong-tai-wraper">
+          <Space />
           <MainTitle text="新闻动态" />
           <div className="xin-wen-dong-tai">
             <div className="list">
@@ -105,7 +108,6 @@ class Home extends Component {
                 <li><a href="#">房企当下如果拿地 到底是"馅饼"还是"陷阱"？</a></li>
                 <li><a href="#">房企当下拿地 到底是"馅饼"还是"陷阱"？</a></li>
                 <li><a href="#">高端产业及其产业链迅速涌入</a></li>
-                <li><a href="#">2016城市卖地收入排行榜 多城土地收入创纪录</a></li>
               </ul>
             </div>
             <div className="list-bg">
