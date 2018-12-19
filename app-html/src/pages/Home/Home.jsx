@@ -137,7 +137,7 @@ class Home extends Component {
                 <div className="detail">
                   <h2>广州/珠江新城地块项目</h2>
                   <p>中山东区自07年确立中心商务区（CBD）地位以来，政府不断投入，高端产业及其产业链迅速涌入，形成大量的居住需求，周边租金一路看涨！东区中心价值快速飙升，住宅和写字楼的售价、租价均跃升4-5倍，稳占中山价值之首，“钱途看涨”</p>
-                  <Link to="/project" className="btn">查看详情</Link>
+                  <Link to="/business" className="btn">查看详情</Link>
                 </div>
               </div>
             </div>
