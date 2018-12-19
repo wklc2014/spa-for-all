@@ -48,30 +48,32 @@ class BusinessDetail extends Component {
       <Fragment>
         <Header />
         <Nav />
-        <Banner />
         <PageCenter className="business-container">
-          <MainTitle text="产品详情" />
+          <div className="banner-bg"></div>
           <div className="business-wraper">
-            <div className="detail-box">
-              <div className="business-detail">
-                <div className="detail-img">
-                  <img src={detail.filePath} alt={detail.title} />
-                </div>
-                <div className="detail-content">
-                  <h3>{detail.title}</h3>
-                  <div className="price">
-                    <span className="text-1">价格：</span>
-                    <span className="text-2">￥</span>
-                    <span className="text-3">{detail.price}</span>
+            <MainTitle text="产品详情" />
+            <div className="business-wraper">
+              <div className="detail-box">
+                <div className="business-detail">
+                  <div className="detail-img">
+                    <img src={detail.filePath} alt={detail.title} />
                   </div>
-                  <div className="btn">预约</div>
+                  <div className="detail-content">
+                    <h3>{detail.title}</h3>
+                    <div className="price">
+                      <span className="text-1">价格：</span>
+                      <span className="text-2">￥</span>
+                      <span className="text-3">{detail.price}</span>
+                    </div>
+                    <div className="btn">预约</div>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="detail-box">
-              <PrimaryTitle text="产品参数" />
-              <div className="detail-data">
-                {this.renderDetailDatas(detail.datas)}
+              <div className="detail-box">
+                <PrimaryTitle text="产品参数" />
+                <div className="detail-data">
+                  {this.renderDetailDatas(detail.datas)}
+                </div>
               </div>
             </div>
           </div>
