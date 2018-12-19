@@ -1,10 +1,10 @@
 import { createReducer } from 'redux-create-reducer';
 
 import actionType from '../actionType/index.js';
-import project_init from '../initState/project_init.js';
+import news_init from '../initState/news_init.js';
 
 
-const reducers = createReducer(project_init, {
+const reducers = createReducer(news_init, {
 
 });
 

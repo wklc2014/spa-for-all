@@ -1,18 +1,37 @@
-.main-title {
+.main-title,
+.primary-title {
   margin: 0;
   display: flex;
   align-items: center;
-  height: @main-title-height;
-  font-size: @main-title-font-size;
-  font-weight: normal;
   color: @main-title-color;
-  border-bottom: 1px solid @web-page-border-color;
+  font-weight: normal;
 
   > span {
     display: inline-flex;
     align-items: center;
     height: 100%;
-    padding: 0 10px;
+  }
+}
+
+.main-title {
+  font-size: @main-title-font-size;
+  border-bottom: 1px solid @web-page-border-color;
+  height: @main-title-height;
+
+  > span {
     border-bottom: 1px solid @web-page-main-color;
+    padding: 0 @web-page-space-small;
+  }
+}
+
+.primary-title {
+  height: @primary-title-height;
+  font-size: @web-page-font-size-base;
+  border: 1px solid @web-page-border-color;
+
+  > span {
+    border-top: 3px solid @web-page-main-color;
+    border-right: 1px solid @web-page-border-color;
+    padding: 0 @web-page-space-large;
   }
 }

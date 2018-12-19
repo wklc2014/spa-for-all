@@ -4,6 +4,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import propTypes from 'prop-types';
+import { withRouter } from 'react-router';
+
+import PageCenter from '../PageCenter/PageCenter.jsx';
+import navConfig from '../../common/js/nav.js';
 
 class Nav extends Component {
 
@@ -11,33 +15,30 @@ class Nav extends Component {
 
   }
 
-  render() {
-    const {
+  renderNavItem = () => {
+    const { location = {} } = this.props;
+    const { pathname } = location;
 
-    } = this.props;
+    return navConfig.map((val, i) => {
+      const active = pathname === val.path || (pathname.startsWith(val.path) && val.path !== '/') ? 'active' : '';
+      return (
+        <li className={active} key={i}>
+          <Link to={val.path}>{val.label}</Link>
+        </li>
+      )
+    })
+  }
+
+  render() {
 
     return (
-      <div className="nav-container">
+      <PageCenter className="nav-container">
         <div className="nav-wraper">
           <ul className="nav">
-            <li className="active">
-              <Link to="/">首页</Link>
-            </li>
-            <li>
-              <Link to="/business">商业招租</Link>
-            </li>
-            <li>
-              <Link to="/project">项目案例</Link>
-            </li>
-            <li>
-              <Link to="/news">新闻动态</Link>
-            </li>
-            <li>
-              <Link to="/contact">联系我们</Link>
-            </li>
+            {this.renderNavItem()}
           </ul>
         </div>
-      </div>
+      </PageCenter>
     )
   }
 
@@ -47,4 +48,4 @@ Nav.propTypes = {
 
 }
 
-export default Nav;
+export default withRouter(Nav);

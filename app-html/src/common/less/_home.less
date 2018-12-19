@@ -2,11 +2,11 @@
 .fu-wu-zong-zhi-wraper,
 .shang-ye-an-li-wraper,
 .xin-wen-dong-tai-wraper {
-  .center(@web-page-width);
+  padding-top: @web-page-space;
 }
 
 .lou-shi-zi-xun {
-  padding: @web-page-space 0;
+  padding-top: @web-page-space;
   display: flex;
   justify-content: space-between;
 
@@ -34,11 +34,12 @@
   }
 
   > .list-bg {
-    flex: 250px 0 0;
+    flex: 300px 0 0;
 
     .bg {
       height: 140px;
       background: url("../images/lou-shi-zi-xun.jpg") no-repeat center;
+      background-size: cover;
       overflow: hidden;
       margin-bottom: @web-page-space;
     }
@@ -52,12 +53,12 @@
       height: 28px;
       line-height: 28px;
       font-weight: normal;
-      font-size: 14px;
+      font-size: 16px;
       overflow: hidden;
       margin-bottom: 10px;
     }
 
-    > p {
+    > .text {
       color: @web-page-sub-color;
       line-height: 26px;
     }
@@ -92,7 +93,7 @@
   }
 
   .detail {
-    padding: 30px 40px;
+    padding: 30px 40px 0;
     color: #fff;
     line-height: 28px;
 
@@ -109,7 +110,7 @@
     }
 
     > p {
-
+      font-size: 12px;
     }
   }
 }
@@ -117,7 +118,7 @@
 .xin-wen-dong-tai {
   display: flex;
   overflow: hidden;
-  padding: @web-page-space 0;
+  padding-top: @web-page-space;
 
   > .list {
     flex: 240px 0 0;
@@ -126,10 +127,10 @@
 
     ul {
       height: 100%;
-      padding: 10px 0;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      padding: 10px @web-page-space;
     }
 
     li {
@@ -138,14 +139,11 @@
       border-bottom: 1px dashed @web-page-border-color;
       display: flex;
       align-items: center;
-      padding: 0 @web-page-space;
 
       a {
+        font-size: 12px;
         display: block;
         width: 240px - 2 * @web-page-space;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
       }
     }
   }
@@ -180,7 +178,8 @@
         line-height: 2;
       }
 
-      > button {
+      > .btn {
+        display: inline-block;
         height: 40px;
         line-height: 40px;
         padding: 0 30px;
@@ -197,7 +196,7 @@
 .shang-ye-an-li {
   display: flex;
   overflow: hidden;
-  padding: @web-page-space 0;
+  padding: @web-page-space 0 @web-page-space-big;
 
   > .item {
     flex: 25% 1 1;

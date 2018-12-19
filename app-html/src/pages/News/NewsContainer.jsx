@@ -1,12 +1,12 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { bindActionCreators } from 'redux';
-import Index from './Index.jsx';
+import News from './News.jsx';
 
 function mapStateToProps(state) {
   return {
-    project: state.project,
+    news: state.news,
   };
 }
 
-export default connect(mapStateToProps)(Index);
+export default connect(mapStateToProps)(News);

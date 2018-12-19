@@ -19,19 +19,24 @@ class Business extends Component {
 
   }
 
-  render() {
+  getList = (type) => {
     const { business } = this.props;
+    return business.filter(v => v.type === type);
+  }
+
+  render() {
 
     return (
       <Fragment>
         <Header />
         <Nav />
-        <Banner />
-        <PageCenter>
-          <Space />
-          <ThumbList title="商业招租" list={business.businessLet} />
-          <ThumbList title="二手房" list={business.secondHouse} />
-          <ThumbList title="新房" list={business.newHouse} />
+        <PageCenter className="business-container">
+          <div className="banner-bg"></div>
+          <div className="business-wraper">
+            <ThumbList title="商业招租" list={this.getList('shop')} />
+            <ThumbList title="二手房" list={this.getList('secondHouse')} />
+            <ThumbList title="新房" list={this.getList('newHouse')} />
+          </div>
         </PageCenter>
         <Footer />
         <BackToTop />

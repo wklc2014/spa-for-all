@@ -5,21 +5,21 @@ import React from 'react';
 import propTypes from 'prop-types';
 import classnames from 'classnames';
 
-const Space = ({ value }) => {
+const Space = ({ size }) => {
 
   const cls = classnames({
-    [`space-${value}`]: !!value,
+    [`space-${size}`]: !!size,
   })
 
   return <div className={cls} />;
 }
 
 Space.propTypes = {
-  value: propTypes.string,
+  size: propTypes.string,
 }
 
 Space.defaultProps = {
-  value: 'normal',
+  size: 'normal',
 }
 
 export default Space;

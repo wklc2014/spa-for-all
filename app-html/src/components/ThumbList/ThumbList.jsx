@@ -3,6 +3,7 @@
  */
 import React, { Component, Fragment } from 'react';
 import propTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import MainTitle from '../Title/MainTitle.jsx'
 
@@ -17,15 +18,16 @@ class ThumbList extends Component {
     const { list } = this.props;
     return list.map((val, i) => {
       const key = i;
+      const to = `/business/${val.id}`;
       return (
         <div className="item" key={key}>
           <div className="detail">
-            <a href="#" className="link-img">
+            <Link to={to} className="link-img">
               <img src={val.filePath} alt={val.title} />
-            </a>
-            <a href="#">
+            </Link>
+            <Link to={to}>
               <h2>{val.title}</h2>
-            </a>
+            </Link>
           </div>
         </div>
       )
