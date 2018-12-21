@@ -1,0 +1,140 @@
+.news-container {
+
+  .banner-bg {
+    width: 100%;
+    height: 380px;
+    background: url("../images/banner/banner-news.png") no-repeat center;
+  }
+}
+
+.news-wraper {
+  padding: @web-page-space 0 @web-page-space-large;
+
+  > .news-thumb {
+    display: flex;
+    padding-top: @web-page-space-big;
+
+    > .item-bg {
+      flex: 530px 0 0;
+      height: 280px;
+      background: url("../images/news-thumb-bg.png") no-repeat no-repeat 0 0;
+      overflow: hidden;
+    }
+
+    > .item-list {
+      height: 280px;
+      padding: 0 @web-page-space-big;
+      overflow: hidden;
+    }
+  }
+
+  > .news-list {
+    padding-top: @web-page-space-big;
+
+    .item {
+      display: flex;
+      padding: @web-page-space-small 0;
+    }
+  }
+
+  .item-list {
+    flex: 100% 1 1;
+    display: flex;
+    flex-direction: column;
+
+    .item {
+      flex: 33.33% 0 0;
+      border-bottom: 1px dashed @web-page-border-color;
+
+      .time {
+        flex: 100px 0 0;
+        display: flex;
+        flex-direction: column;
+
+        > span {
+          display: block;
+          color: @web-page-sub-color;
+
+          &:first-child {
+            font-size: 26px;
+          }
+
+          &:last-child {
+            font-size: 14px;
+          }
+        }
+      }
+    }
+
+  }
+
+  .detail {
+    flex: 100% 1 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .title {
+      line-height: 30px;
+      color: @web-page-text-color;
+      .clearfix();
+
+      span {
+        float: right;
+        font-size: 12px;
+        color: @web-page-sub-color;
+        font-weight: normal;
+      }
+
+      a {
+        font-size: 14px;
+      }
+
+    }
+
+    .text {
+      font-size: @web-page-font-size-small;
+      padding: @web-page-space-small / 2 0;
+      line-height: 22px;
+    }
+  }
+
+}
+
+.news-detail-wraper {
+  padding-top: @web-page-space;
+  border-bottom: 1px dashed @web-page-border-color;
+  margin-bottom: @web-page-space-large;
+
+  > h2 {
+    font-size: 22px;
+    text-align: center;
+    font-weight: normal;
+    height: 50px;
+    line-height: 50px;
+    color: @web-page-main-color;
+  }
+
+  > .time {
+    text-align: center;
+    color: @web-page-sub-color;
+    height: 50px;
+    line-height: 50px;
+    border-bottom: 1px dashed @web-page-border-color;
+  }
+
+  > .content {
+    padding: @web-page-space 0;
+
+    p {
+      text-indent: 2em;
+      padding: @web-page-space-small 0;
+    }
+
+    h3 {
+      line-height: 40px;
+      padding: @web-page-space-small 0;
+    }
+  }
+}

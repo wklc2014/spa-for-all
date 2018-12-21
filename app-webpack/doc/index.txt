@@ -93,6 +93,7 @@ moment
 axios
 mockjs
 babel-polyfill
+swiper
 
 --- antd 相关
 antd
@@ -102,7 +103,7 @@ babel-plugin-import
 tnpm i webpack webpack-cli webpack-dev-server webpack-merge clean-webpack-plugin copy-webpack-plugin html-webpack-plugin mini-css-extract-plugin uglifyjs-webpack-plugin babel-core babel-loader@7.1.5 style-loader css-loader less less-loader file-loader xml-loader csv-loader papaparse json-loader url-loader postcss-loader postcss-load-config autoprefixer cssnano cross-env babel-plugin-import babel-plugin-transform-decorators-legacy babel-plugin-transform-react-jsx babel-plugin-transform-runtime babel-preset-env babel-preset-react babel-preset-stage-0 redux-logger vue-loader vue-style-loader vue-template-compiler -D
 
 --- 安装命令
-tnpm i react react-dom react-router react-router-dom reflux redux react-redux redux-thunk redux-create-reducer react-draggable prop-types flux mithril classnames is_js lodash underscore moment axios mockjs antd vue -S
+tnpm i react react-dom react-router react-router-dom reflux redux react-redux redux-thunk redux-create-reducer react-draggable prop-types flux mithril classnames is_js lodash underscore moment axios mockjs antd vue swiper -S
 
 5. 添加 npm scripts
 "scripts": {

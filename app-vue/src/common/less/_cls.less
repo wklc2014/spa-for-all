@@ -1,0 +1,69 @@
+.center (@width) {
+  width: @width;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.page-container {
+  width: 100%;
+}
+
+.page-wraper {
+  .center(@web-page-width);
+  height: 100%;
+}
+
+.clearfix:before,
+.clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  visibility: hidden;
+}
+.clearfix:after {
+  clear: both;
+}
+.clearfix {
+  zoom: 1;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: @body-bg-color;
+  font-family: @body-font-family;
+  font-size: @body-font-size;
+  line-height: @body-line-height;
+  color: @body-text-color;
+}
+
+ul,
+ol,
+li {
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+
+  &:hover {
+    color: @web-page-main-color;
+  }
+}
+
+

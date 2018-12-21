@@ -1,0 +1,38 @@
+.nav-container {
+  background: @nav-bg-color;
+  height: @nav-height;
+}
+
+.nav-wraper {
+  height: 100%;
+  display: flex;
+  align-items: center;
+
+  .nav {
+    display: flex;
+    height: @nav-item-height;
+    line-height: @nav-item-height;
+    font-size: @nav-item-font-size;
+
+    > li {
+      width: @nav-item-width;
+      border-radius: @nav-item-border-radius;
+      margin-right: @nav-item-space;
+      text-align: center;
+      color: @nav-item-text-color;
+
+      &.active,
+      &:hover {
+        background-color: @nav-item-active-bg-color;
+        color: @nav-item-active-text-color;
+
+        > a {
+          display: block;
+          color: inherit;
+          transition: all 0.2s;
+        }
+      }
+    }
+  }
+}
+
