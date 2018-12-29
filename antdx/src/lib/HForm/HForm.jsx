@@ -8,12 +8,11 @@ import propTypes from 'prop-types';
 import lodash from 'lodash';
 import is from 'is_js';
 import { Form, Row, Col } from 'antd';
-
+import HFormItem from './HFormItem.jsx';
+import hocFormValidate from './hoc/hocFormValidate.js';
 import styles from './styles.less';
 
-import HFormItem from './HFormItem.jsx';
-
-class FormGroup extends Component {
+class HForm extends Component {
 
   static defaultProps = {
     cols: 1,
@@ -24,24 +23,20 @@ class FormGroup extends Component {
     values: {},
   }
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      /**
-       * 记录表单元素是否首次输入
-       * @type {Object}
-       */
-      touches: {},
-    }
-  }
-
-  onChange = ({ id, value }) => {
-    this.props.onChange({ id, value });
+  /**
+   * 根据表单元素横向所占列数
+   * 设置 Col 组件 span 参数值
+   * @param  {Number} colspan 表单元素横向所占列数
+   * @return {Number}         [description]
+   */
+  getColSpanProps = (colspan = 1) => {
+    const { cols } = this.props;
+    const span = parseInt(24 / cols, 10) * colspan;
+    return Math.min(span, 24);
   }
 
   render() {
-    const { cols, configs, extMap, layout, values } = this.props;
-    const { touches } = this.state;
+    const { configs, extMap, layout, onChange, touches, values } = this.props;
 
     const Children = configs.filter((val) => {
       const { extMap = {} } = val;
@@ -58,7 +53,7 @@ class FormGroup extends Component {
           pLayout: layout,
         },
         touches,
-        onChange: this.onChange,
+        onChange,
         values,
       };
 
@@ -66,8 +61,9 @@ class FormGroup extends Component {
         return <HFormItem key={key} {...HFormItemProps} />;
       }
 
+      const colspan = lodash.get(val, 'extMap.colspan', 1);
       return (
-        <Col key={key} span={6}>
+        <Col key={key} span={this.getColSpanProps(colspan)}>
           <HFormItem {...HFormItemProps} />
         </Col>
       );
@@ -86,7 +82,7 @@ class FormGroup extends Component {
 
 }
 
-FormGroup.propTypes = {
+HForm.propTypes = {
   /**
    * 表单组列数
    * 即: 表单组一行显示表单元素的个数
@@ -133,4 +129,4 @@ FormGroup.propTypes = {
   values: propTypes.object,
 };
 
-export default FormGroup;
+export default hocFormValidate(HForm);

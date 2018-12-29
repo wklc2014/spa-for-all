@@ -3,8 +3,11 @@ import { Route, Switch } from 'react-router-dom';
 
 import Home from '../Home/Home.jsx';
 import ExampleHForm from '../Example/ExampleHForm.jsx';
+import ExampleHPicture from '../Example/ExampleHPicture.jsx';
+import ExampleWarterMark from '../Example/ExampleWarterMark.jsx';
+import Api from '../Api/Index.jsx';
 import MainLayout from '../../lib/MainLayout/MainLayout.jsx';
-import exampleConfig from '../../lib/MainLayout/exampleConfig/exampleConfig.js';
+import exampleConfig from './common/index.js';
 
 const App = (props) => {
 
@@ -13,6 +16,9 @@ const App = (props) => {
       <Switch>
         <Route path="/" exact component={Home} />
         <Route path="/example/hform" component={ExampleHForm} />
+        <Route path="/example/hpicture" component={ExampleHPicture} />
+        <Route path="/example/wartermark" component={ExampleWarterMark} />
+        <Route path="/api" component={Api} />
         <Route path="/help" render={() => <h2>帮助我们</h2>} />
         <Route path="/b" render={() => <h2>Page B</h2>} />
         <Route path="/c" render={() => <h2>Page C</h2>} />

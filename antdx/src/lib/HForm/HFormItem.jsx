@@ -7,20 +7,64 @@ import propTypes from 'prop-types';
 import { Form, Row, Col } from 'antd';
 
 import HFormItemContent from './HFormItemContent.jsx';
+import getValidateByRules from './utils/getValidateByRules.js';
+import getfilterConfig from './utils/getfilterConfig.js';
 
 const FormItem = Form.Item;
 
 class HFormItem extends Component {
 
   static defaultProps = {
-
+    extMap: {},
+    onChange: () => {},
+    touches: {},
+    values: {},
   }
 
-  getFormItemLayoutProps = (extMap = {}) => {
-    const {
-      layout = '100px',
-      pLayout = '',
-    } = extMap;
+  /**
+   * 验证表单元素
+   * @return {Object} 表单元素验证结果
+   */
+  getFormItemValidate = () => {
+    const { config, touches, values } = this.props;
+    const filterConfig = getfilterConfig(config);
+    const validates = {};
+
+    filterConfig.some((val) => {
+      const { id, ext = {} } = val;
+      const { rules = [] } = ext;
+
+      // 如果
+      if (!rules) return {};
+
+      // 错误标识
+      let isError = false;
+
+      // 待验证的值
+      const value = values[id];
+
+      // 验证是否必填
+      validates.required = rules.some(rule => rule.required);
+
+      if (touches[id]) {
+        const validate = getValidateByRules({ rules, value });
+        Object.assign(validates, validate);
+        isError = is.not.empty(validate);
+      }
+
+      return isError;
+    })
+
+    return validates;
+  }
+
+  /**
+   * 获取表单元素布局属性
+   * @return {Object} 表单元素布局属性
+   */
+  getFormItemLayoutProps = () => {
+    const { extMap } = this.props;
+    const { layout = '80px', pLayout = '' } = extMap;
 
     // 只有 horizontal Form 布局, 才需要设置布局属性
     if (pLayout !== 'horizontal') {
@@ -41,30 +85,33 @@ class HFormItem extends Component {
 
     return {
       labelCol: {
-        style: {
-          flex: `0 0 ${newLayout}`,
-        }
+        style: { flex: `0 0 ${newLayout}` },
       },
       wrapperCol: {
-        style: {
-          flex: '1 1 100%',
-        }
+        style: { flex: '1 1 100%' },
       }
     };
   }
 
-  getFormItemLabelProps = (extMap = {}) => {
-    const {
-      label,
-      pLayout,
-      colon = true,
-    } = extMap;
+  /**
+   * 获取表单元素 label 属性
+   * @return {Object} 表单元素 label 属性
+   */
+  getFormItemLabelProps = () => {
+    const { extMap } = this.props;
+    const { label, pLayout, colon = true } = extMap;
 
     // 如果设置 label === false
     // 设置一个隐藏的占位元素, 且冒号不显示
     if (is.boolean(label) && !label) {
+      if (pLayout !== 'vertical') {
+        return {
+          label: <span style={{ display: 'none' }} />,
+          colon: false,
+        };
+      }
       return {
-        label: <span style={{ display: 'none' }} />,
+        label: <span style={{ visibility: 'hidden' }}>&nbsp;</span>,
         colon: false,
       };
     }
@@ -79,25 +126,26 @@ class HFormItem extends Component {
     return { label };
   }
 
-  getFormItemStyleProps = (extMap = {}) => {
-    const {
-      style = {},
-      pLayout = '',
-    } = extMap;
+  /**
+   * 获取表单元素 style 属性
+   * @return {Object} 表单元素 style 属性
+   */
+  getFormItemStyleProps = () => {
+    const { extMap } = this.props;
+    const { style = {}, pLayout = '' } = extMap;
 
     // 如果表单不是 horizontal 布局, 返回原始 style 属性
     if (pLayout !== 'horizontal') {
-      return { style };
+      return style;
     }
 
-    return {
-      style: {
-        ...style,
-        display: 'flex',
-      }
-    }
+    return { ...style, display: 'flex' };
   }
 
+  /**
+   * 获取 Row 组件 style 属性
+   * @return {Object} Row 组件 style 属性
+   */
   getRowStyleProps(extMap = {}) {
     const { pLayout, space = 0, minWidth = 160, maxWidth } = extMap;
     const RowStyle = {};
@@ -116,19 +164,15 @@ class HFormItem extends Component {
     return RowStyle;
   }
 
+  /**
+   * 渲染表单元素
+   * @return {ReactDom} 表单元素
+   */
   renderColElements = () => {
-    const { config } = this.props;
+    const { config, extMap, onChange, values } = this.props;
+    const filterConfig = getfilterConfig(config);
 
-    // 如果 config 是对象, 则转换成数组, 统一处理
-    const newConfig = is.array(config) ? config : [config];
-
-    // 过滤隐藏的表单输入元素
-    const newFilterConfig = newConfig.filter((val) => {
-      const { ext = {} } = val;
-      return !ext.hide;
-    })
-
-    return newFilterConfig.map((val, i) => {
+    return filterConfig.map((val, i) => {
       const key = `formItem-${i}`;
       const { ext = {} } = val;
       const { span = 24 } = ext;
@@ -163,9 +207,13 @@ class HFormItem extends Component {
     if (extMap.hide) return null;
 
     const FormItemProps = {
-      ...this.getFormItemLayoutProps(extMap),
-      ...this.getFormItemLabelProps(extMap),
-      ...this.getFormItemStyleProps(extMap),
+      className: extMap.className,
+      colon: extMap.colon,
+      extra: extMap.extra,
+      style: this.getFormItemStyleProps(),
+      ...this.getFormItemValidate(),
+      ...this.getFormItemLayoutProps(),
+      ...this.getFormItemLabelProps(),
     }
 
     const RowProps = {
