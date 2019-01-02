@@ -43,7 +43,7 @@ class HPictureWraper extends Component {
     } else {
       this.setState({
         index: index - 1
-      })
+      }, this.props.onPrev)
     }
   }
 
@@ -57,7 +57,7 @@ class HPictureWraper extends Component {
     } else {
       this.setState({
         index: index + 1,
-      });
+      }, this.props.onNext);
     }
   }
 
@@ -92,6 +92,18 @@ HPictureWraper.propTypes = {
    * @type {Number}
    */
   index: propTypes.number,
+
+  /**
+   * 图片上一张
+   * @type {Number}
+   */
+  onPrev: propTypes.func,
+
+  /**
+   * 图片下一张
+   * @type {Number}
+   */
+  onNext: propTypes.func,
 }
 
 export default HPictureWraper;

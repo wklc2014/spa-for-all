@@ -17,6 +17,7 @@ export default [
       { icon: 'user', title: 'HForm', path: '/example/hform' },
       { icon: 'user', title: 'HPicture', path: '/example/hpicture' },
       { icon: 'user', title: 'WarterMark', path: '/example/wartermark' },
+      { icon: 'user', title: 'HTagGroup', path: '/example/taggroup' },
     ]
   },
   {
