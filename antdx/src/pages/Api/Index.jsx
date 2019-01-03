@@ -7,6 +7,7 @@ import ApiHFormItemContent from './ApiHFormItemContent.jsx';
 import ApiHPicture from './ApiHPicture.jsx';
 import ApiHPictureWraper from './ApiHPictureWraper.jsx';
 import ApiWarterMark from './ApiWarterMark.jsx';
+import ApiHTagGroup from './ApiHTagGroup.jsx';
 
 const { Panel } = Collapse;
 
@@ -44,6 +45,9 @@ class Api extends Component {
           </Panel>
           <Panel header="<WarterMark />" key="6">
             <ApiWarterMark />
+          </Panel>
+          <Panel header="<HTagGroup />" key="7">
+            <ApiHTagGroup />
           </Panel>
         </Collapse>
       </div>

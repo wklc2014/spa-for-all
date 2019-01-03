@@ -20,20 +20,24 @@ const HTagEdit = (props) => {
     ...tagApi,
   }
 
-  const TagSpanProps = {
+  const WraperProps = {
     onClick: () => {
       if (editable) {
         onVisible(tag);
       }
     },
+    style: {
+      display: 'inline-block',
+      marginBottom: 8,
+    },
   }
 
   const tagElement = (
-    <Tag {...TagProps}>
-      <span {...TagSpanProps}>
+    <div {...WraperProps}>
+      <Tag {...TagProps}>
         {tagText}
-      </span>
-    </Tag>
+      </Tag>
+    </div>
   );
 
   if (isLongTag) {
