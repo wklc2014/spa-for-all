@@ -30,7 +30,7 @@ module.exports = {
     rules: [
       {
         test: /\.(js|jsx)$/,
-        include: path.join(__dirname, '../src/'),
+        exclude: path.join(__dirname, '../node_modules/'),
         use: [
           { loader: 'babel-loader' },
         ]
@@ -51,7 +51,7 @@ module.exports = {
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
-        include: path.join(__dirname, '../src/'),
+        exclude: path.join(__dirname, '../node_modules/'),
         use: [
           {
             loader: 'file-loader',
@@ -64,7 +64,7 @@ module.exports = {
       },
       {
         test: /\.(csv|tsv)$/,
-        include: path.join(__dirname, '../src/'),
+        exclude: path.join(__dirname, '../node_modules/'),
         use: [
           'csv-loader'
         ]
@@ -98,7 +98,7 @@ module.exports = {
       // 普通样式处理
       {
         test: /\.(less|css)$/,
-        include: path.join(__dirname, '../src/'),
+        exclude: path.join(__dirname, '../node_modules/'),
         use: [
           env === 'production' ? MiniCssExtractPlugin.loader : 'style-loader',
           {
@@ -126,6 +126,7 @@ module.exports = {
       },
       {
         test: /\.vue$/,
+        exclude: path.join(__dirname, '../node_modules/'),
         loader: 'vue-loader'
       },
     ]

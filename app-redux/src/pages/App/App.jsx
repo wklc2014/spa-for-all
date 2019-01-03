@@ -7,7 +7,10 @@ import News from '../News/NewsContainer.jsx';
 import Secret from '../Secret/Secret.jsx';
 
 import AuthRoute from '../../components/AuthRoute/AuthRoute.jsx';
-import MainLayout from '../../lib/MainLayout/MainLayout.jsx';
+// import MainLayout from '../../lib/MainLayout/MainLayout.jsx';
+import Antdx from '../../lib/antdx.js';
+console.log('Antdx>>>', Antdx);
+const { MainLayout } = Antdx;
 
 import sidebarConfig from './common/sidebarConfig.js';
 

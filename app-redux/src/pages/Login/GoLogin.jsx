@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import HForm from '../../lib/HForm/HForm.jsx';
+import Antdx from '../../lib/antdx.js';
+
+const { HForm } = Antdx;
 
 class Login extends Component {
 
