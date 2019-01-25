@@ -8,9 +8,11 @@ import Secret from '../Secret/Secret.jsx';
 
 import NoMatch from './NoMatch.jsx';
 import AuthRoute from '../../components/AuthRoute/AuthRoute.jsx';
-import MainLayout from '../../components/MainLayout/MainLayout.jsx';
+import antdx from '../../components/lib-antdx/index.js';
 
 import sidebarConfig from './common/sidebarConfig.js';
+
+const { MainLayout } = antdx;
 
 const App = (props) => {
   const { isLogin } = props;
