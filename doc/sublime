@@ -90,6 +90,23 @@ f9 行排序
 
 
 
+{
+	"caret_style": "phase",
+	"color_scheme": "Packages/Monokai Extended/Monokai Extended Bright.tmTheme",
+	"font_face": "YaHei Consolas Hybrid",
+	"font_size": 10,
+	"highlight_modified_tabs": true,
+	"https_proxy": "127.0.0.1:1080",
+	"ignored_packages":
+	[
+		"Pretty JSON",
+		"Vintage"
+	],
+	"line_padding_bottom": 2,
+	"line_padding_top": 2,
+	"tab_size": 2,
+	"theme": "Flatland Dark.sublime-theme"
+}
 
 
 
