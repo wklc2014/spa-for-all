@@ -7,13 +7,13 @@ import MainLayout from './MainLayout/MainLayout.jsx';
 import WarterMark from './WarterMark/WarterMark.jsx';
 
 const antdx = {
-  HForm,
-  getConfigInitValues,
-  HPicture,
-  HPictureWraper,
-  HTagGroup,
-  MainLayout,
-  WarterMark,
+    HForm,
+    getConfigInitValues,
+    HPicture,
+    HPictureWraper,
+    HTagGroup,
+    MainLayout,
+    WarterMark,
 }
 
 export default antdx;
