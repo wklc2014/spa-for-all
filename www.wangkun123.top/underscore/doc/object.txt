@@ -1,0 +1,22 @@
+_.keys(obj);
+_.allKeys(obj);
+_.values(obj);
+_.mapObject(obj, (val, key, obj) => {
+  return val;
+})
+
+_.pairs(obj)
+_.invert(obj)
+_.create(prototype, props)
+_.functions(obj)
+
+_.findKey(obj, (val, key, obj) => {
+  return true;
+})
+
+_.extend(sourceObj, targetObj, ...)
+_.extendOwn(sourceObj, targetObj, ...)
+
+_.pick(object, *keys)
+
+
