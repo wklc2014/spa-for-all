@@ -1,0 +1,298 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><meta http-equiv=Content-Type content='text/html; charset=utf-8'>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Crafty - JavaScript Game Engine, HTML5 Game Engine</title>
+	<link type="text/css" rel="stylesheet" href="craftyjs-site.css"  />
+
+
+
+	<link rel="shortcut icon" href="/favicon.ico">
+	<script src="jquery.min.js"  type="text/javascript"></script>
+	<link rel="stylesheet" href="github.css" />
+
+</head>
+<body>
+	<div id = "header-background"> </div>
+	<div id = "page-frame">
+	<div id="header">
+		<nav class="navbar">
+  			<div class="container-fluid">
+  				<div class="navbar-header">
+  					<a class="navbar-brand" href="index.htm" > <img class="logo" src="images/text-logo.png"  /> </a>
+
+				</div>
+				<div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li><a href="index.htm" >Home</a></li>
+						<li><a href="getting-started/index.htm" >Getting started</a></li>
+						<li><a href="documentation/index.htm" >Documentation</a></li>
+						<li><a href="api/index.htm" >API</a></li>
+						<li><a href="javascript:if(confirm('https://groups.google.com/forum/  \n\n该文件无法用 Teleport Ultra 下载, 因为 它是一个域或路径外部被设置为它的启始地址的地址。  \n\n你想在服务器上打开它?'))window.location='https://groups.google.com/forum/#!forum/craftyjs'" >Forum</a></li>
+						<li><a href="components/index.htm" >Components</a></li>
+						<li class="emph"><a href="index.htm#install" >Download</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</div>
+
+
+	<div id="main">
+		<div id="content" class="container">
+
+
+
+
+
+<div class="row splash">
+
+	<div id = "splash-right">
+<pre><code class="language-javascript"><span class="hljs-built_in">window</span>.onload = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    Crafty.init();
+    <span class="hljs-comment">// A blue block, controlled by arrow keys</span>
+    <span class="hljs-keyword">var</span> player = Crafty.e(<span class="hljs-string">"2D, Canvas, Color, Fourway"</span>)
+        .attr({<span class="hljs-attr">x</span>:<span class="hljs-number">100</span>, <span class="hljs-attr">y</span>:<span class="hljs-number">100</span>, <span class="hljs-attr">w</span>:<span class="hljs-number">50</span>, <span class="hljs-attr">h</span>:<span class="hljs-number">50</span>})
+        .color(<span class="hljs-string">"blue"</span>)
+        .fourway(<span class="hljs-number">3</span>);
+};</code></pre>
+	</div>
+	<div id="splash-left">
+		<div id="splash-text">
+			<div class="row" id="blurb">
+				<!-- <div class="blurb-title">CraftyJS</div> -->
+				<div class="col-md-12" class="title-text">A flexible framework <br/> for Javascript games</div>
+
+			</div>
+
+
+		</div>
+		<div id="splash-download">
+			<div class="download-link">
+				<a href="#install" class="download" id="download">
+					<div>Download Crafty</div>
+					<div class="version">v. 0.9.0</div>
+				</a>
+				<div class="install-options">
+					<a href="#direct-install">minified</a> &#8226; <a href="#bower-install">bower</a> &#8226; <a href="#npm-install">npm</a> &#8226; <a href="#nightly-install">nightly</a>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+
+
+
+
+
+
+<div id="grid">
+
+	<div class="outer-box"><div class="box "><div class="inner-box">
+		<h2>Open Source</h2>
+
+		<p>Crafty is actively developed on <a href="javascript:if(confirm('https://github.com/craftyjs/Crafty  \n\n该文件无法用 Teleport Ultra 下载, 因为 它是一个域或路径外部被设置为它的启始地址的地址。  \n\n你想在服务器上打开它?'))window.location='https://github.com/craftyjs/Crafty'" >Github</a>, and we welcome contributions! See <a href="javascript:if(confirm('https://github.com/craftyjs/Crafty/releases/tag/0.9.0  \n\n该文件无法用 Teleport Ultra 下载, 因为 它是一个域或路径外部被设置为它的启始地址的地址。  \n\n你想在服务器上打开它?'))window.location='https://github.com/craftyjs/Crafty/releases/tag/0.9.0'" >release notes.</a></p>
+	</div></div></div>
+
+	<div class="outer-box"><div class="box"><div class="inner-box browser">
+		<h2>Cross Browser compatible</h2>
+		<p>Your games will work on all modern browsers, including IE9.</p>
+	</div></div></div>
+
+	<div class="outer-box"><div class="box"><div class="inner-box canvas">
+		<h2>Canvas or DOM</h2>
+		<p>Choose the technology to render your entities, it will look exactly the same.</p>
+	</div></div></div>
+
+	<div class="outer-box"><div class="box"><div class="inner-box">
+		<h2>Small file size</h2>
+		<p>Small enough that you don't need to wory about it delaying your game.</p>
+	</div></div></div>
+
+	<div class="outer-box"><div class="box "><div class="inner-box">
+		<h2>Entity Component System</h2>
+		<p>A better way to approach game development without long chains of inheritance.</p>
+	</div></div></div>
+
+	<div class="outer-box"><div class="box"><div class="inner-box sprite">
+		<h2>Sprite Map support</h2>
+		<p>Splice and dice a sprite map to easily draw game entities.</p>
+	</div></div></div>
+
+	<div class="outer-box"><div class="box"><div class="inner-box collide">
+		<h2>Collision Detection</h2>
+		<p>Advanced SAT collision detection with more information than just true or false.</p>
+	</div></div></div>
+
+	<div class="outer-box"><div class="box"><div class="inner-box">
+		<h2>Fire &amp; Forget Events</h2>
+		<p>Event system for custom events that can be triggered whenever, on whatever, and bound just as easily.</p>
+	</div></div></div>
+
+	<div class="outer-box"><div class="box"><div class="inner-box">
+		<h2>Lots 'o Goodies</h2>
+		<p>Heaps of native components for sound, animation, effects and input to make your game pop!</p>
+	</div></div>
+	<div class="clearer"></div></div>
+</div>
+
+
+<div id="install-div">
+	<h2 id="install">Installation</h2>
+	<div id="direct-install">
+		<h3>Direct download</h3>
+
+		<p>You can download a regular or minified version of Crafty:</p>
+		<a class="bullet-point" href="javascript:if(confirm('https://github.com/craftyjs/Crafty/releases/download/0.9.0/crafty.js  \n\n该文件无法用 Teleport Ultra 下载, 因为 它是一个域或路径外部被设置为它的启始地址的地址。  \n\n你想在服务器上打开它?'))window.location='https://github.com/craftyjs/Crafty/releases/download/0.9.0/crafty.js'" >crafty.js</a>
+		<a class="bullet-point"href="javascript:if(confirm('https://github.com/craftyjs/Crafty/releases/download/0.9.0/crafty-min.js  \n\n该文件无法用 Teleport Ultra 下载, 因为 它是一个域或路径外部被设置为它的启始地址的地址。  \n\n你想在服务器上打开它?'))window.location='https://github.com/craftyjs/Crafty/releases/download/0.9.0/crafty-min.js'" >crafty-min.js</a>
+	</div>
+	<div id="npm-install">
+		<h3>npm module</h3>
+		<p>Crafty is available as an <a href="javascript:if(confirm('https://www.npmjs.org/  \n\n该文件无法用 Teleport Ultra 下载, 因为 它是一个域或路径外部被设置为它的启始地址的地址。  \n\n你想在服务器上打开它?'))window.location='https://www.npmjs.org/'" >npm</a> module.</p>
+		<code class="grey">$ npm install craftyjs</code>
+		<p>You can see an example on how to get started:</p>
+		<a class="bullet-point" href="javascript:if(confirm('https://github.com/kevinsimper/craftyjs-npm-example  \n\n该文件无法用 Teleport Ultra 下载, 因为 它是一个域或路径外部被设置为它的启始地址的地址。  \n\n你想在服务器上打开它?'))window.location='https://github.com/kevinsimper/craftyjs-npm-example'" >npm example</a>
+	</div>
+	<div id="bower-install">
+		<h3>Bower installation</h3>
+		<p>With <a href="javascript:if(confirm('http://bower.io/  \n\n该文件无法用 Teleport Ultra 下载, 因为 它是一个域或路径外部被设置为它的启始地址的地址。  \n\n你想在服务器上打开它?'))window.location='http://bower.io/'" >bower</a> installed, the command</p>
+		<code class="grey">$ bower install crafty</code>
+		<p>will fetch the lastest version of crafty and install it in your project's bower directory.</p>
+	</div>
+	<div id="nightly-install">
+		<h3>Bleeding edge</h3>
+
+		<p>Fresh builds are uploaded by Travis after every successful merge:</p>
+		<a class="bullet-point" href="javascript:if(confirm('https://github.com/craftyjs/Crafty-Distro/tree/nightlies  \n\n该文件无法用 Teleport Ultra 下载, 因为 它是一个域或路径外部被设置为它的启始地址的地址。  \n\n你想在服务器上打开它?'))window.location='https://github.com/craftyjs/Crafty-Distro/tree/nightlies'" >Nightly distribution</a>
+	</div>
+</div>
+
+
+<div id="demos-div">
+	<h2 id="demos-title">Demos</h2>
+	<ul id="demos" class="gridlist">
+		<!-- external demos -->
+		<li>
+			<a href="javascript:if(confirm('http://hugeen.github.com/Defend-The-Den/  \n\n该文件无法用 Teleport Ultra 下载, 因为 它是一个域或路径外部被设置为它的启始地址的地址。  \n\n你想在服务器上打开它?'))window.location='http://hugeen.github.com/Defend-The-Den/'" >
+				<img src="demos/thumbs/defendtheden.png" />
+				<span>Defend the Den</span>
+			</a>
+		</li>
+		<li>
+			<a href="javascript:if(confirm('http://blackscorp.github.com/cron/  \n\n该文件无法用 Teleport Ultra 下载, 因为 它是一个域或路径外部被设置为它的启始地址的地址。  \n\n你想在服务器上打开它?'))window.location='http://blackscorp.github.com/cron/'" >
+				<img src="demos/thumbs/cron.png" />
+				<span>Cron</span></a>
+		</li>
+		<li>
+			<a href="javascript:if(confirm('http://morrisgames.info/  \n\n该文件无法用 Teleport Ultra 下载, 因为 它是一个域或路径外部被设置为它的启始地址的地址。  \n\n你想在服务器上打开它?'))window.location='http://morrisgames.info/'" >
+				<img src="demos/thumbs/code-commander.png" />
+				<span>Code Commander</span></a>
+		</li>
+		<li>
+			<a href="javascript:if(confirm('http://planktongames.com/wordy/  \n\n该文件无法用 Teleport Ultra 下载, 因为 它是一个域或路径外部被设置为它的启始地址的地址。  \n\n你想在服务器上打开它?'))window.location='http://planktongames.com/wordy/'" >
+				<img src="demos/thumbs/wordy.png" />
+				<span>Wordy</span></a>
+		</li>
+		<li>
+			<a href="javascript:if(confirm('http://lapiroff.name/orderlies/Q/  \n\n该文件无法用 Teleport Ultra 下载, 因为 它是一个域或路径外部被设置为它的启始地址的地址。  \n\n你想在服务器上打开它?'))window.location='http://lapiroff.name/orderlies/Q/'" >
+				<img src="demos/thumbs/Q.png" />
+				<span>Q</span></a>
+		</li>
+		<li>
+			<a href="javascript:if(confirm('http://projects.edillingham.com/senet/  \n\n该文件无法用 Teleport Ultra 下载, 因为 它是一个域或路径外部被设置为它的启始地址的地址。  \n\n你想在服务器上打开它?'))window.location='http://projects.edillingham.com/senet/'" >
+				<img src="demos/thumbs/senet.png"  />
+				<span>Senet</span></a>
+		</li>
+		<li>
+			<a href="javascript:if(confirm('https://twohundredscythes.itch.io/flower-son  \n\n该文件无法用 Teleport Ultra 下载, 因为 它是一个域或路径外部被设置为它的启始地址的地址。  \n\n你想在服务器上打开它?'))window.location='https://twohundredscythes.itch.io/flower-son'" >
+				<img src="demos/thumbs/flower-son.png"  />
+				<span>Flower Son</span></a>
+		</li>
+		<li>
+			<a href="javascript:if(confirm('https://grimmsbattlefield.firebaseapp.com/  \n\n该文件无法用 Teleport Ultra 下载, 因为 它是一个域或路径外部被设置为它的启始地址的地址。  \n\n你想在服务器上打开它?'))window.location='https://grimmsbattlefield.firebaseapp.com/'" >
+				<img src="demos/thumbs/grimms-battlefield.png"  />
+				<span>Grimm's Battlefield</span></a>
+		</li>
+		<!-- local demos -->
+		<li>
+			<a href="demos/fruitassassin/index.htm" >
+				<img src="demos/thumbs/fruit.png" />
+				<span>Fruit Assassin</span></a>
+		</li>
+		<li>
+			<a href="demos/connect4/index.htm" >
+				<img src="demos/thumbs/connect4.png" />
+				<span>Connect 4</span></a>
+		</li>
+		<li>
+			<a href="demos/asteroids/index.htm" >
+				<img src="demos/thumbs/asteroids.png" />
+				<span>Asteroids</span></a>
+		</li>
+		<li>
+			<a href="demos/rpg/index.htm" >
+				<img src="demos/thumbs/rpg.png" />
+				<span>RPG</span></a>
+		</li>
+		<li>
+			<a href="demos/isometric/index.htm" >
+				<img src="demos/thumbs/isometric.png" />
+				<span>Isometric</span></a>
+		</li>
+	</ul>
+	<div class="clearer" />
+</div>
+<div class="clearer"></div>
+<div id="contributors" class="half">
+	<h2>Development team
+	</h2>
+	<p>Active team members:
+		<ul>
+			<li><a href="javascript:if(confirm('https://github.com/starwed  \n\n该文件无法用 Teleport Ultra 下载, 因为 它是一个域或路径外部被设置为它的启始地址的地址。  \n\n你想在服务器上打开它?'))window.location='https://github.com/starwed'" >starwed</a> (maintainer)</li>
+			<li><a href="javascript:if(confirm('https://github.com/kevinsimper  \n\n该文件无法用 Teleport Ultra 下载, 因为 它是一个域或路径外部被设置为它的启始地址的地址。  \n\n你想在服务器上打开它?'))window.location='https://github.com/kevinsimper'" >Kevin Simper</a></li>
+			<li><a href="javascript:if(confirm('https://github.com/mucaho  \n\n该文件无法用 Teleport Ultra 下载, 因为 它是一个域或路径外部被设置为它的启始地址的地址。  \n\n你想在服务器上打开它?'))window.location='https://github.com/mucaho'" >mucaho</a></li>
+		</ul>
+	</p>
+	<p>Original author: Louis Stowasser</p>
+
+</div>
+
+<div class="clearer"></div>
+</div>
+
+
+		</div>
+	</div>
+	<div class="clearer"></div>
+	<div id="footer">
+		<div id="contact">
+			<a href="javascript:if(confirm('https://groups.google.com/forum/  \n\n该文件无法用 Teleport Ultra 下载, 因为 它是一个域或路径外部被设置为它的启始地址的地址。  \n\n你想在服务器上打开它?'))window.location='https://groups.google.com/forum/#!forum/craftyjs'" >
+				<img src="images/google.png"  />
+				google groups</a>
+			<a href="mailto:starwed@gmail.com">
+				<img src="images/email.png"  />
+				starwed@gmail.com</a>
+			<a href="javascript:if(confirm('https://github.com/craftyjs/Crafty  \n\n该文件无法用 Teleport Ultra 下载, 因为 它是一个域或路径外部被设置为它的启始地址的地址。  \n\n你想在服务器上打开它?'))window.location='https://github.com/craftyjs/Crafty'" >
+				<img src="images/github.png"  />
+				github</a>
+		</div>
+		<ul>
+			<li><a href="index.htm" >Home</a></li>
+				<li><a href="getting-started/index.htm" >Getting started</a></li>
+				<li><a href="documentation/index.htm" >Documentation</a></li>
+				<li><a href="api/index.htm" >API</a></li>
+				<li><a href="javascript:if(confirm('https://groups.google.com/forum/  \n\n该文件无法用 Teleport Ultra 下载, 因为 它是一个域或路径外部被设置为它的启始地址的地址。  \n\n你想在服务器上打开它?'))window.location='https://groups.google.com/forum/#!forum/craftyjs'" >Forum</a></li>
+				<li><a href="components/index.htm" >Modules</a></li>
+				<li class="emph"><a href="index.htm#install" >Download</a></li>
+		</ul>
+		<p>
+			&copy; Crafty 2010-2015. Crafty is distributed under the <a href="javascript:if(confirm('http://en.wikipedia.org/wiki/MIT_License  \n\n该文件无法用 Teleport Ultra 下载, 因为 它是一个域或路径外部被设置为它的启始地址的地址。  \n\n你想在服务器上打开它?'))window.location='http://en.wikipedia.org/wiki/MIT_License'" >MIT License</a>.
+		</p>
+	</div>
+</div>
+</body>
+</html>

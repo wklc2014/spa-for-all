@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><meta http-equiv=Content-Type content='text/html; charset=utf-8'>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Crafty - Crafty.js Modules</title>
+	<link type="text/css" rel="stylesheet" href="../craftyjs-site.css"  />
+
+
+
+	<link rel="shortcut icon" href="/favicon.ico">
+	<script src="../jquery.min.js"  type="text/javascript"></script>
+	<link rel="stylesheet" href="../github.css" />
+
+</head>
+<body>
+	<div id = "header-background"> </div>
+	<div id = "page-frame">
+	<div id="header">
+		<nav class="navbar">
+  			<div class="container-fluid">
+  				<div class="navbar-header">
+  					<a class="navbar-brand" href="../index.htm" > <img class="logo" src="../images/text-logo.png"  /> </a>
+
+				</div>
+				<div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li><a href="../index.htm" >Home</a></li>
+						<li><a href="../getting-started/index.htm" >Getting started</a></li>
+						<li><a href="../documentation/index.htm" >Documentation</a></li>
+						<li><a href="../api/index.htm" >API</a></li>
+						<li><a href="javascript:if(confirm('https://groups.google.com/forum/  \n\n该文件无法用 Teleport Ultra 下载, 因为 它是一个域或路径外部被设置为它的启始地址的地址。  \n\n你想在服务器上打开它?'))window.location='https://groups.google.com/forum/#!forum/craftyjs'" >Forum</a></li>
+						<li><a href="index.htm" >Components</a></li>
+						<li class="emph"><a href="../index.htm#install" >Download</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</div>
+
+
+	<div id="main">
+		<div id="content" class="container">
+
+<div id="components-div">
+  <div id="components-summary">
+    <h2>Components</h2>
+    <p>An overview over components made by the community.</p>
+    <p>If you would like your component listed here, create an issue or PR <a href="javascript:if(confirm('https://github.com/craftyjs/craftyjs.github.com  \n\n该文件无法用 Teleport Ultra 下载, 因为 它是一个域或路径外部被设置为它的启始地址的地址。  \n\n你想在服务器上打开它?'))window.location='https://github.com/craftyjs/craftyjs.github.com'" >on Github.</a></p>
+    <p>Note that some components may be outdated and may no longer work with the most recent Crafty version.</p>
+  </div>
+  <div id="appView">
+    <div class="component-count" style="font-weight: bold;"></div>
+    <ul id="component-list"></ul>
+  </div>
+</div>
+
+
+<script src="../../cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js" ></script>
+<script src="../../cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.0/backbone-min.js" ></script>
+<script>
+  var ComponentModel = Backbone.Model.extend({});
+  var ComponentView = Backbone.View.extend({
+    template: _.template('<li><a href="<%= link %>"><%= name %></a></li>'),
+    initialize: function() {
+      this.listenTo(this.model, "change", this.render);
+    },
+    render: function() {
+      this.$el.html(this.template(this.model.attributes));
+      return this;
+    }
+  });
+  var ComponentCollection = Backbone.Collection.extend({
+    model: ComponentModel,
+    url: 'components.json'/*tpa=http://craftyjs.com/components/components.json*/
+  });
+  var Components = new ComponentCollection;
+
+  var AppView = Backbone.View.extend({
+    el: $('#appView'),
+    initialize: function(){
+      Components.fetch();
+      this.listenTo(Components, 'add', this.addOne);
+      this.listenTo(Components, 'reset', this.addAll);
+      this.listenTo(Components, 'all', this.render);
+
+    },
+    addOne: function(component) {
+      var view = new ComponentView({model: component});
+      this.$('#component-list').append(view.render().el);
+    },
+    addAll: function() {
+      Components.each(this.addOne, this);
+    },
+    render: function() {
+      this.$el.find('.component-count').text('There are ' + Components.length + ' components:');
+      // Nothing really change in the app yet
+      // TODO Search, Columns
+    }
+  });
+  var App = new AppView;
+</script>
+
+
+		</div>
+	</div>
+	<div class="clearer"></div>
+	<div id="footer">
+		<div id="contact">
+			<a href="javascript:if(confirm('https://groups.google.com/forum/  \n\n该文件无法用 Teleport Ultra 下载, 因为 它是一个域或路径外部被设置为它的启始地址的地址。  \n\n你想在服务器上打开它?'))window.location='https://groups.google.com/forum/#!forum/craftyjs'" >
+				<img src="../images/google.png"  />
+				google groups</a>
+			<a href="mailto:starwed@gmail.com">
+				<img src="../images/email.png"  />
+				starwed@gmail.com</a>
+			<a href="javascript:if(confirm('https://github.com/craftyjs/Crafty  \n\n该文件无法用 Teleport Ultra 下载, 因为 它是一个域或路径外部被设置为它的启始地址的地址。  \n\n你想在服务器上打开它?'))window.location='https://github.com/craftyjs/Crafty'" >
+				<img src="../images/github.png"  />
+				github</a>
+		</div>
+		<ul>
+			<li><a href="../index.htm" >Home</a></li>
+				<li><a href="../getting-started/index.htm" >Getting started</a></li>
+				<li><a href="../documentation/index.htm" >Documentation</a></li>
+				<li><a href="../api/index.htm" >API</a></li>
+				<li><a href="javascript:if(confirm('https://groups.google.com/forum/  \n\n该文件无法用 Teleport Ultra 下载, 因为 它是一个域或路径外部被设置为它的启始地址的地址。  \n\n你想在服务器上打开它?'))window.location='https://groups.google.com/forum/#!forum/craftyjs'" >Forum</a></li>
+				<li><a href="index.htm" >Modules</a></li>
+				<li class="emph"><a href="../index.htm#install" >Download</a></li>
+		</ul>
+		<p>
+			&copy; Crafty 2010-2015. Crafty is distributed under the <a href="javascript:if(confirm('http://en.wikipedia.org/wiki/MIT_License  \n\n该文件无法用 Teleport Ultra 下载, 因为 它是一个域或路径外部被设置为它的启始地址的地址。  \n\n你想在服务器上打开它?'))window.location='http://en.wikipedia.org/wiki/MIT_License'" >MIT License</a>.
+		</p>
+	</div>
+</div>
+</body>
+</html>

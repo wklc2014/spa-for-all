@@ -1,0 +1,41 @@
+.loading_2 {
+  width: 150px;
+  height: 4px;
+  border-radius: 2px;
+  position: relative;
+  background: lightgreen;
+  animation: changeBgColor 1.04s ease-in infinite alternate;
+}
+
+.loading_2 span {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: lightgreen;
+    position: absolute;
+    margin-top: -7px;
+    margin-left: -8px;
+    animation: changePosition 1.04s ease-in infinite alternate;
+}
+
+@keyframes changeBgColor {
+    0% {
+        background: lightgreen;
+    }
+
+    100% {
+        background: lightblue;
+    }
+}
+
+@keyframes changePosition {
+    0% {
+        background: lightgreen;
+    }
+
+    100% {
+        margin-left: 142px;
+        background: lightblue;
+    }
+}

@@ -1,0 +1,4 @@
+## 项目中文翻译地址
+
+http://www.yu-lu.cn/craftyjs/
+

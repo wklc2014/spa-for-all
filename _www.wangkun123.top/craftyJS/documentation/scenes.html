@@ -1,0 +1,170 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><meta http-equiv=Content-Type content='text/html; charset=utf-8'>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Crafty - Scenes</title>
+	<link type="text/css" rel="stylesheet" href="../craftyjs-site.css"  />
+
+
+
+	<link rel="shortcut icon" href="/favicon.ico">
+	<script src="../jquery.min.js"  type="text/javascript"></script>
+	<link rel="stylesheet" href="../github.css" />
+
+</head>
+<body>
+	<div id = "header-background"> </div>
+	<div id = "page-frame">
+	<div id="header">
+		<nav class="navbar">
+  			<div class="container-fluid">
+  				<div class="navbar-header">
+  					<a class="navbar-brand" href="../index.htm" > <img class="logo" src="../images/text-logo.png"  /> </a>
+
+				</div>
+				<div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li><a href="../index.htm" >Home</a></li>
+						<li><a href="../getting-started/index.htm" >Getting started</a></li>
+						<li><a href="index.htm" >Documentation</a></li>
+						<li><a href="../api/index.htm" >API</a></li>
+						<li><a href="javascript:if(confirm('https://groups.google.com/forum/  \n\n该文件无法用 Teleport Ultra 下载, 因为 它是一个域或路径外部被设置为它的启始地址的地址。  \n\n你想在服务器上打开它?'))window.location='https://groups.google.com/forum/#!forum/craftyjs'" >Forum</a></li>
+						<li><a href="../components/index.htm" >Components</a></li>
+						<li class="emph"><a href="../index.htm#install" >Download</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</div>
+
+
+	<div id="main">
+		<div id="content" class="container">
+
+<div id="docs">
+	<div id='doc-nav'>
+		<ul id='doc-level-one'>
+			<li>
+				Topics
+				<ul>
+					<li>
+						<a href="index.htm" >
+							Documentation
+						</a>
+					</li>
+					<li>
+						<a href="entities.html" >
+							Entities
+						</a>
+					</li>
+					<li>
+						<a href="events.html" >
+							Events
+						</a>
+					</li>
+					<li>
+						<a href="components.html" >
+							Components
+						</a>
+					</li>
+					<li>
+						<a href="2d.html" >
+							2D Graphics
+						</a>
+					</li>
+					<li>
+						<a href="text.html" >
+							Text
+						</a>
+					</li>
+					<li>
+						<a href="keyboard.html" >
+							Keyboard
+						</a>
+					</li>
+					<li>
+						<a href="mouse.html" >
+							Mouse
+						</a>
+					</li>
+					<li>
+						<a href="sound.html" >
+							Sound
+						</a>
+					</li>
+					<li>
+						<a href="sprites.html" >
+							Sprites
+						</a>
+					</li>
+					<li>
+						<a href="scenes.html" >
+							Scenes
+						</a>
+					</li>
+					<li>
+						<a href="gameloop.html" >
+							Game Loop
+						</a>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+	<div id='doc-content' class="markdown">
+		<span class="edit-on-github">
+		  <a href="javascript:if(confirm('https://github.com/craftyjs/craftyjs.github.com/edit/master/source/documentation/scenes.md  \n\n该文件无法用 Teleport Ultra 下载, 因为 它是一个域或路径外部被设置为它的启始地址的地址。  \n\n你想在服务器上打开它?'))window.location='https://github.com/craftyjs/craftyjs.github.com/edit/master/source/documentation/scenes.md'" >Edit on Github</a>
+		</span>
+
+		<h2> Scenes </h2>
+<p><a href="../api/Crafty-scene.html" >Scenes</a> are a way to organize your game.</p>
+<p>A scene is defined by a name, a setup function called when the scene starts, and (optionally) a function that&#39;s called when the scene ends.  When a new scene is started, the current scene is automatically ended.  Importantly, any entity with the <code>2D</code> component will be destroyed when this happens, providing a clean slate for the next scene.  Likewise, the viewport will be reset to its default values.</p>
+<p>If an entity should not be destroyed by a new scene, you can give it  the <code>&quot;Persist&quot;</code> component.  (Persist doesn&#39;t provide any other functionality; you can use components to categorize and tag entities.)</p>
+<p>You can pass in a single object as data to the setup function.  The general syntax is:</p>
+<pre><code><span class="hljs-comment">// Defining a new scene with an init function</span>
+Crafty.scene(<span class="hljs-string">"SelectMenu"</span>, initMenu )
+
+<span class="hljs-comment">// This will call initMenu(menuData).</span>
+<span class="hljs-comment">// (`menuData` can't be a function, though!)</span>
+Crafty.scene(<span class="hljs-string">"SelectMenu"</span>, menuData)</code></pre>
+<p>There are also a couple of event hooks which are triggered on a scene change:</p>
+<ul>
+<li>When an existing scene ends, it triggers a &quot;SceneDestroy&quot; event before running the uninit function</li>
+<li>when a new scene starts, it triggers &quot;SceneChange&quot; before calling its init function</li>
+</ul>
+<p>For more detailed information, see the <a href="../api/Crafty-scene.html" >Crafty.scene</a> documentation.</p>
+	</div>
+</div>
+
+		</div>
+	</div>
+	<div class="clearer"></div>
+	<div id="footer">
+		<div id="contact">
+			<a href="javascript:if(confirm('https://groups.google.com/forum/  \n\n该文件无法用 Teleport Ultra 下载, 因为 它是一个域或路径外部被设置为它的启始地址的地址。  \n\n你想在服务器上打开它?'))window.location='https://groups.google.com/forum/#!forum/craftyjs'" >
+				<img src="../images/google.png"  />
+				google groups</a>
+			<a href="mailto:starwed@gmail.com">
+				<img src="../images/email.png"  />
+				starwed@gmail.com</a>
+			<a href="javascript:if(confirm('https://github.com/craftyjs/Crafty  \n\n该文件无法用 Teleport Ultra 下载, 因为 它是一个域或路径外部被设置为它的启始地址的地址。  \n\n你想在服务器上打开它?'))window.location='https://github.com/craftyjs/Crafty'" >
+				<img src="../images/github.png"  />
+				github</a>
+		</div>
+		<ul>
+			<li><a href="../index.htm" >Home</a></li>
+				<li><a href="../getting-started/index.htm" >Getting started</a></li>
+				<li><a href="index.htm" >Documentation</a></li>
+				<li><a href="../api/index.htm" >API</a></li>
+				<li><a href="javascript:if(confirm('https://groups.google.com/forum/  \n\n该文件无法用 Teleport Ultra 下载, 因为 它是一个域或路径外部被设置为它的启始地址的地址。  \n\n你想在服务器上打开它?'))window.location='https://groups.google.com/forum/#!forum/craftyjs'" >Forum</a></li>
+				<li><a href="../components/index.htm" >Modules</a></li>
+				<li class="emph"><a href="../index.htm#install" >Download</a></li>
+		</ul>
+		<p>
+			&copy; Crafty 2010-2015. Crafty is distributed under the <a href="javascript:if(confirm('http://en.wikipedia.org/wiki/MIT_License  \n\n该文件无法用 Teleport Ultra 下载, 因为 它是一个域或路径外部被设置为它的启始地址的地址。  \n\n你想在服务器上打开它?'))window.location='http://en.wikipedia.org/wiki/MIT_License'" >MIT License</a>.
+		</p>
+	</div>
+</div>
+</body>
+</html>
