@@ -1,0 +1,98 @@
+1. 项目初始化
+yarn init --yes
+
+2. 工具安装
+--- webpack 工具
+webpack
+webpack-cli
+webpack-dev-server: 本地开发服务器
+webpack-merge: 合并不同的 webpack 配置文件
+
+--- webpack 插件
+clean-webpack-plugin: 清理文件/文件夹
+copy-webpack-plugin: 复制文件/文件夹
+html-webpack-plugin: 生成 HTML 文件
+mini-css-extract-plugin: 合并 css 样式
+uglifyjs-webpack-plugin: 压缩 js 代码
+
+--- file loader
+babel-core
+babel-loader@7.1.5
+style-loader
+css-loader
+less-loader
+less
+file-loader
+xml-loader
+csv-loader
+papaparse
+json-loader
+url-loader
+postcss-loader
+postcss-load-config
+autoprefixer
+cssnano
+vue-loader
+vue-style-loader
+vue-template-compiler
+
+--- babel 插件
+babel-plugin-import [antd]
+babel-plugin-transform-decorators-legacy
+babel-plugin-transform-react-jsx [mithril]
+babel-plugin-transform-runtime
+babel-preset-env
+babel-preset-react
+babel-preset-stage-0
+
+--- 其他
+cross-env
+
+--- 公共模块
+classnames
+is_js
+lodash
+underscore
+moment
+axios
+mockjs
+babel-polyfill
+swiper
+antd
+vue
+vue-router
+mithril
+jquery
+layui-src
+
+--- react 相关
+react
+react-dom
+react-router
+react-router-dom
+reflux: react@^15.0.2
+redux
+react-redux
+redux-thunk
+redux-logger
+redux-immutable
+prop-types
+flux
+react-draggable
+redux-create-reducer
+
+--- 安装命令
+tnpm i -S webpack webpack-cli webpack-dev-server webpack-merge clean-webpack-plugin copy-webpack-plugin html-webpack-plugin mini-css-extract-plugin uglifyjs-webpack-plugin babel-core babel-loader@7.1.5 style-loader css-loader less-loader less file-loader xml-loader csv-loader json-loader url-loader postcss-loader postcss-load-config autoprefixer vue-loader vue-style-loader vue-template-compiler babel-plugin-import babel-plugin-transform-decorators-legacy babel-plugin-transform-react-jsx babel-plugin-transform-runtime babel-preset-env babel-preset-react babel-preset-stage-0 cross-env classnames is_js lodash underscore moment axios mockjs babel-polyfill swiper antd vue vue-router mithril react react-dom react-router react-router-dom reflux redux react-redux redux-thunk redux-logger prop-types flux react-draggable redux-immutable cssnano redux-create-reducer papaparse layui-src jquery
+
+3. 添加 npm scripts
+"scripts": {
+  "start": "cross-env NODE_ENV=development webpack-dev-server --config ./configs/webpack.dev.js",
+  "build": "cross-env NODE_ENV=production webpack --config ./configs/webpack.prod.js"
+},
+
+4. 添加配置文件
+webpack.common.js
+webpack.dev.js
+webpack.prod.js
+postcss.config.js
+.babelrc
