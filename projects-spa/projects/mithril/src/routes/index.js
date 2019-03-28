@@ -23,13 +23,23 @@ export default {
       if (!sessionStorage.getItem('auth-token')) {
         m.route.set('/login');
       } else {
-        return m(Layout, m(Secret));
+        m.route.set('/secret');
       }
     },
   },
   '/help': {
     render: (vnode) => {
       return m(Layout, m(Hello));
+    },
+  },
+  '/assess': {
+    render: (vnode) => {
+      return m(Layout, m(Assess));
+    },
+  },
+  '/secret': {
+    render: (vnode) => {
+      return m(Layout, m(Secret));
     },
   },
 }

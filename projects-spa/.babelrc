@@ -11,10 +11,10 @@
         "style": true
       }
     ],
-    // [
-    //   "transform-react-jsx", {
-    //     "pragma": "m"
-    //   }
-    // ]
+    [
+      "transform-react-jsx", {
+        "pragma": "m"
+      }
+    ]
   ]
 }

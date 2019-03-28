@@ -1,40 +1,37 @@
 import m from 'mithril';
 
-var state = {
-  uid: "",
-  setURL: function(uid) {
-    console.log(uid)
-    state.uid = uid;
-  },
-  setAction: function (e) {
-    console.log(e)
-    console.log(this)
-    e.preventDefault();
-    e.stopPropagation();
-    return false;
-  }
-}
-
 export default {
   view: function (vnode) {
     return (
-      <section>
-        <h3>My First Mithril component</h3>
-        <div
-          class="parent"
-          style={{ padding: '10px 0' }}
-          onclick={m.withAttr('style', state.setURL)}
-        >
-          <p class="child">第一行代码111</p>
-          <p class="child">第二行代码222</p>
-          <p>
-            <button
-              onclick={state.setAction}
-            >
-              按钮
-            </button>
-          </p>
-          <p>{`点击的执行 ID 是${state.uid}`}</p>
+      <section class="section">
+        <table class="layui-table">
+          <colgroup>
+            <col width="150" />
+            <col width="200" />
+            <col />
+          </colgroup>
+          <thead>
+            <tr>
+              <th>昵称</th>
+              <th>加入时间</th>
+              <th>签名</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>贤心</td>
+              <td>2016-11-29</td>
+              <td>人生就像是一场修行</td>
+            </tr>
+            <tr>
+              <td>许闲心</td>
+              <td>2016-11-28</td>
+              <td>于千万人之中遇见你所遇见的人，于千万年之中，时间的无涯的荒野里…</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="layui-progress">
+          <div class="layui-progress-bar" lay-percent="10%"></div>
         </div>
       </section>
     );

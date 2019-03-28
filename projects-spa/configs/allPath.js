@@ -4,10 +4,10 @@
 const path = require('path');
 // const name = 'redux';
 // const name = 'reflux';
-// const name = 'mithril';
+const name = 'mithril';
 // const name = 'flux';
 // const name = 'html_01';
-const name = 'vue';
+// const name = 'vue';
 
 const vueProjects = ['vue'];
 const isVue = vueProjects.indexOf(name) !== -1;
