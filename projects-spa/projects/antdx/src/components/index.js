@@ -1,4 +1,5 @@
 import HForm from './HForm/HForm.jsx';
+import HFormItem from './HForm/HFormItem.jsx';
 import getDefaultValues from './HForm/lib/getDefaultValues.js';
 import HPicture from './HPicture/HPicture.jsx';
 import HPictureWraper from './HPicture/HPictureWraper.jsx';
@@ -8,6 +9,7 @@ import WarterMark from './WarterMark/WarterMark.jsx';
 
 const antdx = {
   HForm,
+  HFormItem,
   getDefaultValues,
   HPicture,
   HPictureWraper,
