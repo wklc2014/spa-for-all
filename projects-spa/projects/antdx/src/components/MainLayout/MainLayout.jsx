@@ -49,6 +49,8 @@ class MainLayout extends Component {
   }
 
   renderSubMenuChildren = (subMenus) => {
+    const { location = {} } = this.props;
+    const { pathname } = location;
     const subMenuChildren = subMenus.map((s, j) => {
       return (
         <Item key={s.path}>
@@ -105,9 +107,25 @@ class MainLayout extends Component {
     return selectedKeys;
   }
 
+  renderTitleEle = () => {
+    const { title } = this.props;
+    const { collapsed } = this.state;
+
+    const titleObj = {};
+    if (is.string(title)) {
+      titleObj.show = title;
+      titleObj.hidden = title;
+    } else if (is.object(title)) {
+      titleObj.show = title.show;
+      titleObj.hidden = title.hidden;
+    }
+
+    return collapsed ? titleObj.show : titleObj.hidden;
+  }
+
   render() {
     const { collapsed } = this.state;
-    const { menuProps, sideMenus, siderProps, title } = this.props;
+    const { menuProps, sideMenus, siderProps } = this.props;
 
     const SideProps = {
       collapsible: true,
@@ -123,14 +141,14 @@ class MainLayout extends Component {
       selectedKeys: this.getMenuSelectedKeys(),
     };
 
-    const titleEle = !collapsed && title
-      ? <div className={styles.box}><Link to="/" className={styles.logo}>{title}</Link></div>
-      : null;
-
     return (
       <Layout style={{ minHeight: '100vh' }}>
         <Sider {...SideProps}>
-          {titleEle}
+          <div className={styles.box}>
+            <Link to="/" className={styles.logo}>
+              {this.renderTitleEle()}
+            </Link>
+          </div>
           <Menu {...MenuProps}>
             {this.renderMenuChildren()}
           </Menu>
@@ -148,9 +166,12 @@ class MainLayout extends Component {
 MainLayout.propTypes = {
   /**
    * 导航标题
-   * @type {Array}
+   * @type {Object}
    */
-  title: propTypes.string,
+  title: propTypes.oneOfType([
+    propTypes.object,
+    propTypes.string,
+  ]).isRequired,
 
   /**
    * 导航配置

@@ -9,6 +9,7 @@ const path = require('path');
 // const name = 'html_01';
 // const name = 'vue';
 const name = 'antdx';
+// const name = 'template';
 
 const vueProjects = ['vue'];
 const isVue = vueProjects.indexOf(name) !== -1;

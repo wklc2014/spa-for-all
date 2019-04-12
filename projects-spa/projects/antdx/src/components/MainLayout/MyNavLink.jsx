@@ -8,10 +8,16 @@ import { Link } from 'react-router-dom';
 import { Icon } from 'antd';
 
 const MyNavLink = (props) => {
-  const { icon, className, title, path } = props;
+  const { icon, className, title, path, location = {} } = props;
+    const { pathname } = location;
+
+  const LinkProps = {
+    to: path,
+    replace: path === pathname,
+  };
 
   return (
-    <Link to={path}>
+    <Link {...LinkProps}>
       { icon && <Icon type={icon} /> }
       { className && <i className={`anticon iconfont ${className}`} /> }
       <span>{title}</span>
@@ -26,4 +32,4 @@ MyNavLink.propTypes = {
   className: propTypes.string,
 }
 
-export default MyNavLink;
+export default withRouter(MyNavLink);
