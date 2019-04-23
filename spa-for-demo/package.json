@@ -7,9 +7,7 @@
     "doc": "doc"
   },
   "scripts": {
-    "dll": "webpack --mode production --profile --inline --config ./configs/webpack.dll.config.js",
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --config ./configs/webpack.config.js",
-    "start": "npm run dll && npm run dev",
+    "start": "cross-env NODE_ENV=development webpack-dev-server --config ./configs/webpack.config.js",
     "build": "cross-env NODE_ENV=production webpack --config ./configs/webpack.config.js"
   },
   "keywords": [],
@@ -18,9 +16,11 @@
   "devDependencies": {
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",
+    "babel-plugin-import": "^1.11.0",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
     "clean-webpack-plugin": "^2.0.1",
     "copy-webpack-plugin": "^5.0.2",
     "cross-env": "^5.2.0",

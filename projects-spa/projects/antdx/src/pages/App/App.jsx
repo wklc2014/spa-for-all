@@ -16,18 +16,20 @@ const App = (props) => {
 
   return (
     <MainLayout configs={exampleConfig} title="Antdx">
-      <Switch>
-        <Route path="/" exact component={Home} />
-        <Route path="/example/hform" component={ExampleHForm} />
-        <Route path="/example/hpicture" component={ExampleHPicture} />
-        <Route path="/example/wartermark" component={ExampleWarterMark} />
-        <Route path="/example/taggroup" component={ExampleHTagGroup} />
-        <Route path="/api" component={Api} />
-        <Route path="/help" render={() => <h2>帮助我们</h2>} />
-        <Route path="/b" render={() => <h2>Page B</h2>} />
-        <Route path="/c" render={() => <h2>Page C</h2>} />
-        <Route render={() => <h3>Not Found</h3>} />
-      </Switch>
+      <div style={{ padding: 16 }}>
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/example/hform" component={ExampleHForm} />
+          <Route path="/example/hpicture" component={ExampleHPicture} />
+          <Route path="/example/wartermark" component={ExampleWarterMark} />
+          <Route path="/example/taggroup" component={ExampleHTagGroup} />
+          <Route path="/api" component={Api} />
+          <Route path="/help" render={() => <h2>帮助我们</h2>} />
+          <Route path="/b" render={() => <h2>Page B</h2>} />
+          <Route path="/c" render={() => <h2>Page C</h2>} />
+          <Route render={() => <h3>Not Found</h3>} />
+        </Switch>
+      </div>
     </MainLayout>
   );
 }

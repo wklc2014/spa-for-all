@@ -154,9 +154,7 @@ class MainLayout extends Component {
           </Menu>
         </Sider>
         <Layout>
-          <div className={styles.wraper}>
-            {this.props.children}
-          </div>
+          {this.props.children}
         </Layout>
       </Layout>
     );

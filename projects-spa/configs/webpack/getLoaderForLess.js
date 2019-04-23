@@ -30,6 +30,10 @@ function getLoaderForLess(env, type) {
       camelCase: false,
       modules: false,
     });
+    loader[1].options.modifyVars = {
+      'primary-color': '#12ba05',
+      'font-size-base': '12px',
+    }
   }
 
   if (env === 'production') {
