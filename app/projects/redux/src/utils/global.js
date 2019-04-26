@@ -1,0 +1,2 @@
+import './antdx.pre.js';
+
