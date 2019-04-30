@@ -1,6 +1,6 @@
 import m from 'mithril';
 import classnames from 'classnames';
-import nav from '../../common/config/nav.js';
+import nav from './common/nav.js';
 
 const MyNav = {
   oncreate: (vnode) => {

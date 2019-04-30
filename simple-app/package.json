@@ -1,0 +1,30 @@
+{
+  "name": "simple-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "gulp watch",
+    "build": "gulp build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.4.4",
+    "@babel/register": "^7.4.4",
+    "babel-preset-env": "^1.7.0",
+    "browser-sync": "^2.26.5",
+    "delete": "^1.1.0",
+    "gulp": "^4.0.1",
+    "gulp-babel": "^8.0.0",
+    "gulp-cli": "^2.2.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-less": "^4.0.1",
+    "gulp-rename": "^1.4.0",
+    "gulp-uglify": "^3.0.2",
+    "less-plugin-autoprefix": "^2.0.0",
+    "less-plugin-clean-css": "^1.5.1",
+    "readable-stream": "^3.3.0"
+  }
+}

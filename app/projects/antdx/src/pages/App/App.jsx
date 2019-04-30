@@ -14,9 +14,15 @@ const { MainLayout } = Antdx
 
 const App = (props) => {
 
+  const divStyle = {
+    padding: 16,
+    background: '#fff',
+    border: '8px solid #ddd',
+  }
+
   return (
     <MainLayout configs={exampleConfig} title="Antdx">
-      <div style={{ padding: 16 }}>
+      <div style={divStyle}>
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/example/hform" component={ExampleHForm} />

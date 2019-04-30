@@ -6,9 +6,9 @@ const path = require('path');
 // const name = 'reflux';
 // const name = 'mithril';
 // const name = 'flux';
-// const name = 'html_01';
+const name = 'htmlOne';
 // const name = 'vue';
-const name = 'antdx';
+// const name = 'antdx';
 // const name = 'template';
 
 module.exports = {
@@ -19,10 +19,14 @@ module.exports = {
   htmlWebpackPlugin: [
     {
       template: path.join(__dirname, `../projects/${name}/src/entries/index.html`),
+      favicon: path.join(__dirname, `../projects/${name}/src/entries/favicon.ico`),
     }
   ],
   copyWebpackPlugin: [
-
+    {
+      from: path.join(__dirname, `../projects/${name}/public/`),
+      to: path.join(__dirname, `../projects/${name}/dist/`),
+    }
   ],
   cleanWebpackPlugin: {
     cleanOnceBeforeBuildPatterns: [
@@ -49,6 +53,6 @@ module.exports = {
   },
   filePath: {
     src: path.join(__dirname, '../projects/'),
-    node_modules: path.join(__dirname, `../node_modules/`),
+    node_modules: path.join(__dirname, '../node_modules/'),
   },
 }

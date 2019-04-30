@@ -139,22 +139,23 @@ class MainLayout extends Component {
     };
 
     const boxStyle = {
-      padding: 16,
+      padding: 8,
       backgroundColor: '#002140',
     }
 
     const logoStyle = {
-      backgroundRepeat: 'no-repeat',
-      backgroundPosition: '12px center',
-      backgroundSize: '40px',
-      display: 'block',
+      background: '#ace',
       borderRadius: '4px',
+      padding: 8,
       fontSize: '16px',
-      textAlign: 'center',
-      height: '40px',
-      lineHeight: '40px',
+      minHeight: '40px',
+      lineHeight: '22px',
       color: '#fff',
       overflow: 'hidden',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      textAlign: 'center',
     }
 
     return (

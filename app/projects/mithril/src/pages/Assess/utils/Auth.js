@@ -10,7 +10,6 @@ var Auth = {
     Auth.password = value;
   },
   login: function(e) {
-    e.preventDefault();
     m.request({
       url: "/user",
       method: 'post',
