@@ -6,6 +6,7 @@ const allPaths = require('../allPaths.js');
 module.exports = {
   contentBase: allPaths.devServer.contentBase,
   compress: true,
+  host: '0.0.0.0',
   port: allPaths.devServer.port,
   hot: true,
   overlay: true,
