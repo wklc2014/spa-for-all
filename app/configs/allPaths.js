@@ -2,11 +2,11 @@
  * 项目配置路径
  */
 const path = require('path');
-// const name = 'redux';
+const name = 'redux';
 // const name = 'reflux';
 // const name = 'mithril';
 // const name = 'flux';
-const name = 'htmlOne';
+// const name = 'htmlOne';
 // const name = 'vue';
 // const name = 'antdx';
 // const name = 'template';
