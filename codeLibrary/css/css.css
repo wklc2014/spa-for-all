@@ -1,0 +1,38 @@
+/*common*/
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-size: 12px;
+  padding: 8px;
+  line-height: 1.8;
+}
+
+p {
+  text-indent: 2em;
+  margin-bottom: 8px;
+}
+
+.flex-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.direction-column {
+}
+
+/*自适应内容*/
+figure {
+  display: inline-block;
+  border: 1px solid #ddd;
+  padding: 8px;
+  width: -webkit-fill-available;
+}
+
+figure > img {
+  max-width: inherit;
+}

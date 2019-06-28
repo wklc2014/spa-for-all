@@ -1,0 +1,18 @@
+# 3.1 包含文件
+include();
+include_once();
+require();
+require_once();
+
+include 打印警告，继续运行；
+require 打印错误，中止运行；
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+}
+
+isset($_POST['username'], $_POST['sex'])
+
+is_numeric($_POST['distance'])
+
+number_format($hours, 2);
