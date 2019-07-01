@@ -4,8 +4,8 @@
   include_once 'getRandChar.php';
 
   function getSignature($url) {
-    $appid = 'wx0dd2c805c88e7f0a';
-    $appsecret = 'b51132eb104a30e3041a363f2e9f60d0';
+    $appid = 'wx8abda545006976c8';
+    $appsecret = '6d9532e9e5707b0ecca5a2faef254066';
     $noncestr = getRandChar(16);
     $timestamp = time();
     $access_token = getAccessToken($appid, $appsecret);
