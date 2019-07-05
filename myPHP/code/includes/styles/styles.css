@@ -1,0 +1,177 @@
+body {
+  font-size: 12px;
+  line-height: 1.8;
+}  
+
+.page-container {
+  width: 100%;
+  overflow-x: hidden;
+}
+  
+.page-box {
+  width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* page-header */
+.page-header {
+  height: 120px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.page-header .logo {
+  width: 316px;
+  height: 49px;
+  background: url("../images/logo.png") no-repeat 0 0;
+}
+
+.page-header .text {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-header .text .phone,
+.page-header .text .memo {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-header .text h2,
+.page-header .text p {
+  font-weight: normal;
+}
+
+.page-header .text .phone {
+  padding-right: 30px;
+}
+
+.page-header .text .phone h2 {
+   font-size: 14px;
+}
+
+.page-header .text .phone p {
+  color: #ea0e0e;
+  font-size: 22px;
+}
+
+.page-header .memo .phone h2 {
+   font-size: 16px;
+   color: #333;
+}
+
+/* page-banner */
+.page-banner {
+  width: 100%;
+  height: 417px;
+  background: url("../images/banner.jpg") no-repeat center 0;
+}
+
+.page-nav {
+  height: 57px;
+  line-height: 57px;
+  background-color: #292929;
+}
+
+.page-nav ul,
+.page-nav li {
+  list-style: none;
+}
+
+.page-nav ul {
+  height: 100%;
+}
+
+.page-nav li {
+  float: left;
+  width: 114px;
+  color: #fff;
+  text-align: center;
+  vertical-align: middle;
+  margin-right: 2px;
+}
+
+.page-nav li:hover,
+.page-nav li.active {
+  background-color: #ea0e0e;
+}
+
+.page-nav li a {
+  width: 100%;
+  display: block;
+  font-size: 16px;
+}
+
+.page-content {
+  padding-top: 24px;
+  padding-bottom: 24px;
+  min-height: 500px;
+}
+
+.page-content .title {
+  font-size: 26px;
+}
+
+.page-content .detail {
+  text-indent: 2em;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  line-height: 2.6;
+}
+
+.page-footer {
+  text-align: center;
+  height: 80px;
+  background-color: #4d4d4d;
+  color: #fff;
+  font-size: 16px;
+  line-height: 80px;
+}
+
+.login-form {
+  width: 400px;
+}
+
+.form-control {
+  margin-bottom: 18px;
+  padding-left: 80px;
+  position: relative;
+  line-height: 44px;
+}
+
+.form-control label {
+  width: 80px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  text-align: right;
+}
+
+.form-control .form-item {
+  border: 1px solid #ddd;
+  height: 44px;
+  padding: 5px;
+  font-size: 12px;
+  border-radius: 3px;
+  width: 100%;
+}
+
+.form-control button.form-item {
+  width: auto;
+  padding-left: 30px;
+  padding-right: 30px;
+  background-color: #eee;
+  cursor: pointer;
+  margin-right: 16px;
+}
+
+.form-control button.form-item:hover,
+.form-control button.form-item:active {
+  background: #aeaeae;
+}

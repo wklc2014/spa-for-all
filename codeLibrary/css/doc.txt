@@ -1,5 +1,0 @@
-1. 内容自适应
-
-width, height
-### CSS 内部与外部尺寸模型（第三版）
-min-content, max-content, fit-content
