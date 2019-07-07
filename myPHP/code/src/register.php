@@ -1,6 +1,6 @@
 <?php
   $page_title = '用户注册';
-	$active = 1;
+	$nav_active = 1;
   include_once('./includes/header.inc.html');
 ?>
 <h1>Register</h1>

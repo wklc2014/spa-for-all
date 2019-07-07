@@ -1,6 +1,6 @@
 <?php
   $page_title = '首页';
-	$active = 0;
+	$nav_active = 0;
   include_once('./includes/header.inc.html');
 ?>
 <h1 class="title">关务我们</h1>

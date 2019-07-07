@@ -1,7 +1,7 @@
 <?php
 // header("Content-type: text/html; charset=utf-8");
 $page_title = '注册成功';
-$active = 1;
+$nav_active = 1;
 include_once('./includes/header.inc.html');
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   
