@@ -1,6 +1,7 @@
 <?php
   $page_title = '用户注册';
-  include_once('../includes/header.inc.html');
+	$active = 1;
+  include_once('./includes/header.inc.html');
 ?>
 <h1>Register</h1>
 <form action="go_register.php" method="post" class="login-form">
@@ -65,5 +66,5 @@
   </div>
 </form>
 <?php
-include('../includes/footer.inc.html');
+include('./includes/footer.inc.html');
 ?>

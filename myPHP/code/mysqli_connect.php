@@ -5,7 +5,7 @@
 // 设置编码
 DEFINE('DB_USER', 'root');
 DEFINE('DB_PASSWORD', 'ww');
-DEFINE('DB_HOST', 'localhost');
+DEFINE('DB_HOST', '127.0.0.1');
 DEFINE('DB_NAME', 'sitename');
 
 // make the connection

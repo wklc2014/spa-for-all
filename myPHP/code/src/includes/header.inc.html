@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title><?php echo $page_title ?></title>
+  <link rel="stylesheet" href="./includes/styles/normalize-v8.0.1.css">
+  <link rel="stylesheet" href="./includes/styles/common.css">
+  <link rel="stylesheet" href="./includes/styles/styles.css">
+</head>
+<body>
+<div class="page-container">
+  <div class="page-box page-header">
+    <div class="logo"></div>
+    <div class="text">
+      <div class="phone">
+        <h2>咨询热线</h2>
+        <p>400-8868888</p>
+      </div>
+      <div class="memo">
+        <h2>追求品质，追求卓越</h2>
+        <p>THE PURSUIT OF EXCELLENCE</p>
+      </div>
+    </div>
+  </div>
+  <div class="page-banner"></div>
+  <div class="page-nav">
+    <ul class="page-box">
+			<?php
+				$nav_array = array(
+					array('index', '首页'), 
+					array('register', '用户注册'),
+					array('view_users', '查看用户'),
+					array('password', '找回密码'),
+				);
+				$nav_size = count($nav_array);
+				for($i = 0; $i < $nav_size; $i++) {
+					if (isset($active) && $active === $i) {
+						$className = 'active';
+					} else {
+						$className = '';
+					}
+					$target = $nav_array[$i];
+					echo "<li class=\"$className\">
+									<a href=\"$target[0].php\">$target[1]</a>
+								</li>";
+				}
+			?>
+    </ul>
+  </div>
+  <div class="page-box page-content">

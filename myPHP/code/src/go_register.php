@@ -1,5 +1,8 @@
 <?php
-header("Content-type: text/html; charset=utf-8");
+// header("Content-type: text/html; charset=utf-8");
+$page_title = '注册成功';
+$active = 1;
+include_once('./includes/header.inc.html');
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   
   global $errors;
@@ -51,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     mysqli_close($dbc);
     
-    include('../includes/footer.inc.html');
+    
   } else {
     
     echo '<h1>Error!</h1>';
@@ -65,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     echo '<p>Please try again</p>';
   }
   
-  echo '<p><a href="register.php">注册</a></p>';
+	include('./includes/footer.inc.html');
   exit();
 }    
 ?>
